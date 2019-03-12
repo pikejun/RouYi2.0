@@ -3,4 +3,4 @@
 本项目是本人fork [lerry903](https://github.com/lerry903)大神的RuoYi项目<br>
 原地址：
 -----
-https://gitee.com/Myoukie/RuoYi
+https://github.com/lerry903/RuoYi
