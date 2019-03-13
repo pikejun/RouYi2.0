@@ -54,7 +54,6 @@ public interface ICeshiService
 	/**
 	 * 导入数据
 	 * @param userList
-	 * @param isUpdateSupport
 	 * @return
 	 */
 	public String importCeshi(List<Ceshi> userList);

@@ -50,5 +50,12 @@ public interface I${className}Service
      * @return 结果
      */
 	public int delete${className}ByIds(String ids);
-	
+
+
+    /**
+     * 导入${tableComment}数据
+     * @param ${classname}List
+     * @return
+     */
+    public String import${className}(List<${className}> ${classname}List);
 }

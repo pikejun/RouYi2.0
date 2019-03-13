@@ -7,14 +7,14 @@ import com.ruoyi.framework.web.domain.BaseEntity;
 
 /**
  * 测试格表 ceshi
- * 
+ *
  * @author ruoyi
  * @date 2019-03-12
  */
 public class Ceshi extends BaseEntity
 {
 	private static final long serialVersionUID = 1L;
-	
+
 	/** ID */
 	@Excel(name = "用户序号", prompt = "用户编号")
 	private Integer id;
@@ -28,44 +28,45 @@ public class Ceshi extends BaseEntity
 	@Excel(name = "更新时间", prompt = "更新时间")
 	private String genxin;
 
-	public void setId(Integer id) 
+	public void setId(Integer id)
 	{
 		this.id = id;
 	}
 
-	public Integer getId() 
+	public Integer getId()
 	{
 		return id;
 	}
-	public void setName(String name) 
+	public void setName(String name)
 	{
 		this.name = name;
 	}
 
-	public String getName() 
+	public String getName()
 	{
 		return name;
 	}
-	public void setPasswrod(String passwrod) 
+	public void setPasswrod(String passwrod)
 	{
 		this.passwrod = passwrod;
 	}
 
-	public String getPasswrod() 
+	public String getPasswrod()
 	{
 		return passwrod;
 	}
-	public void setGenxin(String genxin) 
+	public void setGenxin(String genxin)
 	{
 		this.genxin = genxin;
 	}
 
-	public String getGenxin() 
+	public String getGenxin()
 	{
 		return genxin;
 	}
 
-    public String toString() {
+    @Override
+	public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
             .append("id", getId())
             .append("name", getName())
