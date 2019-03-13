@@ -1,5 +1,6 @@
 package com.ruoyi.project.system.ceshi.domain;
 
+import com.ruoyi.framework.aspectj.lang.annotation.Excel;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import com.ruoyi.framework.web.domain.BaseEntity;
@@ -15,12 +16,16 @@ public class Ceshi extends BaseEntity
 	private static final long serialVersionUID = 1L;
 	
 	/** ID */
+	@Excel(name = "用户序号", prompt = "用户编号")
 	private Integer id;
 	/** 姓名 */
+	@Excel(name = "用户姓名", prompt = "用户姓名")
 	private String name;
 	/** 密码 */
+	@Excel(name = "用户密码", prompt = "用户密码")
 	private String passwrod;
 	/** 更新时间 */
+	@Excel(name = "更新时间", prompt = "更新时间")
 	private String genxin;
 
 	public void setId(Integer id) 

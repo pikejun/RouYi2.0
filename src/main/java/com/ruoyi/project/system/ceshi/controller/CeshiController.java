@@ -1,6 +1,8 @@
 package com.ruoyi.project.system.ceshi.controller;
 
 import java.util.List;
+
+import com.ruoyi.project.system.user.domain.User;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,7 @@ import com.ruoyi.framework.web.controller.BaseController;
 import com.ruoyi.framework.web.page.TableDataInfo;
 import com.ruoyi.framework.web.domain.AjaxResult;
 import com.ruoyi.common.utils.poi.ExcelUtil;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 测试格 信息操作处理
@@ -58,6 +61,7 @@ public class CeshiController extends BaseController
 	/**
 	 * 导出测试格列表
 	 */
+	@Log(title = "测试格", businessType = BusinessType.EXPORT)
 	@RequiresPermissions("system:ceshi:export")
     @PostMapping("/export")
     @ResponseBody
@@ -67,6 +71,37 @@ public class CeshiController extends BaseController
         ExcelUtil<Ceshi> util = new ExcelUtil<Ceshi>(Ceshi.class);
         return util.exportExcel(list, "ceshi");
     }
+
+	/**
+	 * 导入测试
+	 * @param file
+	 * @return
+	 * @throws Exception
+	 */
+	@Log(title = "测试格", businessType = BusinessType.IMPORT)
+	@RequiresPermissions("system:ceshi:import")
+	@PostMapping("/importData")
+	@ResponseBody
+	public AjaxResult importData(MultipartFile file) throws Exception
+	{
+		ExcelUtil<Ceshi> util = new ExcelUtil<Ceshi>(Ceshi.class);
+		List<Ceshi> userList = util.importExcel(file.getInputStream());
+		String message = ceshiService.importCeshi(userList);
+		return AjaxResult.success(message);
+	}
+
+	/**
+	 * 测试表格模板下载
+	 * @return
+	 */
+	@RequiresPermissions("system:ceshi:view")
+	@GetMapping("/importTemplate")
+	@ResponseBody
+	public AjaxResult importTemplate()
+	{
+		ExcelUtil<Ceshi> util = new ExcelUtil<Ceshi>(Ceshi.class);
+		return util.importTemplateExcel("测试表格");
+	}
 	
 	/**
 	 * 新增测试格

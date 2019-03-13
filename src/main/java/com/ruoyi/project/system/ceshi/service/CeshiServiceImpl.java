@@ -1,6 +1,10 @@
 package com.ruoyi.project.system.ceshi.service;
 
 import java.util.List;
+
+import com.ruoyi.common.exception.BusinessException;
+import com.ruoyi.common.utils.StringUtils;
+import com.ruoyi.common.utils.security.ShiroUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.project.system.ceshi.mapper.CeshiMapper;
@@ -79,5 +83,22 @@ public class CeshiServiceImpl implements ICeshiService
 	{
 		return ceshiMapper.deleteCeshiByIds(Convert.toStrArray(ids));
 	}
-	
+
+	@Override
+	public String importCeshi(List<Ceshi> userList) {
+		if (StringUtils.isNull(userList) || userList.size() == 0)
+		{
+			throw new BusinessException("导入用户数据不能为空！");
+		}
+		int successNum = 0;
+		StringBuilder successMsg = new StringBuilder();
+		for (Ceshi ceshi : userList)
+		{
+			this.insertCeshi(ceshi);
+			successNum++;
+		}
+		successMsg.insert(0, "恭喜您，数据已全部导入成功！共 " + successNum + " 条，数据如下：");
+		return successMsg.toString();
+	}
+
 }
