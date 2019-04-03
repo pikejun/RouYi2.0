@@ -67,7 +67,6 @@ public class BeanUtils
         Method[] methods = obj.getClass().getMethods();
 
         // 查找setter方法
-
         for (Method method : methods)
         {
             Matcher m = SET_PATTERN.matcher(method.getName());

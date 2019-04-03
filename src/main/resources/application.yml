@@ -132,3 +132,10 @@ gen:
   autoRemovePre: true
   # 表前缀(类名不会包含表前缀)
   tablePrefix: sys_
+
+#Neo4j
+neo4j:
+  url: bolt://211.149.217.136:7687
+  username: neo4j
+  password: ngqj@2019
+host: 999

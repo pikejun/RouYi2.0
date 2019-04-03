@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.biScopeInfo.mapper.BiScopeInfoMapper">
+    
+    <resultMap type="BiScopeInfo" id="BiScopeInfoResult">
+        <result property="scopeId"    column="scope_id"    />
+        <result property="scopeName"    column="scope_name"    />
+        <result property="scopeNameDesc"    column="scope_name_desc"    />
+        <result property="status"    column="status"    />
+        <result property="createdTime"    column="created_time"    />
+        <result property="createdBy"    column="created_by"    />
+        <result property="updatedTime"    column="updated_time"    />
+        <result property="updatedBy"    column="updated_by"    />
+    </resultMap>
+	
+	<sql id="selectBiScopeInfoVo">
+        select scope_id, scope_name, scope_name_desc, status, created_time, created_by, updated_time, updated_by from bi_scope_info
+    </sql>
+	
+    <select id="selectBiScopeInfoList" parameterType="BiScopeInfo" resultMap="BiScopeInfoResult">
+        <include refid="selectBiScopeInfoVo"/>
+        <where>  
+            <if test="scopeId != null "> and scope_id = #{scopeId}</if>
+             <if test="scopeName != null  and scopeName != '' "> and scope_name = #{scopeName}</if>
+             <if test="scopeNameDesc != null  and scopeNameDesc != '' "> and scope_name_desc = #{scopeNameDesc}</if>
+             <if test="status != null "> and status = #{status}</if>
+             <if test="createdTime != null "> and created_time = #{createdTime}</if>
+             <if test="createdBy != null  and createdBy != '' "> and created_by = #{createdBy}</if>
+             <if test="updatedTime != null "> and updated_time = #{updatedTime}</if>
+             <if test="updatedBy != null  and updatedBy != '' "> and updated_by = #{updatedBy}</if>
+         </where>
+    </select>
+    
+    <select id="selectBiScopeInfoById" parameterType="Integer" resultMap="BiScopeInfoResult">
+        <include refid="selectBiScopeInfoVo"/>
+        where scope_id = #{scopeId}
+    </select>
+        
+    <insert id="insertBiScopeInfo" parameterType="BiScopeInfo" useGeneratedKeys="true" keyProperty="scopeId">
+        insert into bi_scope_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="scopeName != null  and scopeName != ''  ">scope_name,</if>
+			<if test="scopeNameDesc != null  and scopeNameDesc != ''  ">scope_name_desc,</if>
+			<if test="status != null  ">status,</if>
+			<if test="createdTime != null  ">created_time,</if>
+			<if test="createdBy != null  and createdBy != ''  ">created_by,</if>
+			<if test="updatedTime != null  ">updated_time,</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">updated_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="scopeName != null  and scopeName != ''  ">#{scopeName},</if>
+			<if test="scopeNameDesc != null  and scopeNameDesc != ''  ">#{scopeNameDesc},</if>
+			<if test="status != null  ">#{status},</if>
+			<if test="createdTime != null  ">#{createdTime},</if>
+			<if test="createdBy != null  and createdBy != ''  ">#{createdBy},</if>
+			<if test="updatedTime != null  ">#{updatedTime},</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">#{updatedBy},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateBiScopeInfo" parameterType="BiScopeInfo">
+        update bi_scope_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="scopeName != null  and scopeName != ''  ">scope_name = #{scopeName},</if>
+            <if test="scopeNameDesc != null  and scopeNameDesc != ''  ">scope_name_desc = #{scopeNameDesc},</if>
+            <if test="status != null  ">status = #{status},</if>
+            <if test="createdTime != null  ">created_time = #{createdTime},</if>
+            <if test="createdBy != null  and createdBy != ''  ">created_by = #{createdBy},</if>
+            <if test="updatedTime != null  ">updated_time = #{updatedTime},</if>
+            <if test="updatedBy != null  and updatedBy != ''  ">updated_by = #{updatedBy},</if>
+        </trim>
+        where scope_id = #{scopeId}
+    </update>
+
+	<delete id="deleteBiScopeInfoById" parameterType="Integer">
+        delete from bi_scope_info where scope_id = #{scopeId}
+    </delete>
+	
+    <delete id="deleteBiScopeInfoByIds" parameterType="String">
+        delete from bi_scope_info where scope_id in 
+        <foreach item="scopeId" collection="array" open="(" separator="," close=")">
+            #{scopeId}
+        </foreach>
+    </delete>
+    
+</mapper>

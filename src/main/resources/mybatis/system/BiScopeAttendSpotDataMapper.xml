@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.biScopeAttendSpotData.mapper.BiScopeAttendSpotDataMapper">
+    
+    <resultMap type="BiScopeAttendSpotData" id="BiScopeAttendSpotDataResult">
+        <result property="tid"    column="tid"    />
+        <result property="id"    column="id"    />
+        <result property="attendSpotType"    column="attend_spot_type"    />
+        <result property="spotCreatedDate"    column="spot_created_date"    />
+        <result property="name"    column="name"    />
+        <result property="projectId"    column="project_id"    />
+        <result property="latitude"    column="latitude"    />
+        <result property="longitude"    column="longitude"    />
+        <result property="address"    column="address"    />
+        <result property="createdUserId"    column="created_user_id"    />
+        <result property="attendRadius"    column="attend_radius"    />
+        <result property="attendRemark"    column="attend_remark"    />
+        <result property="opStatus"    column="op_status"    />
+        <result property="opType"    column="op_type"    />
+        <result property="createdBy"    column="created_by"    />
+        <result property="createdTime"    column="created_time"    />
+        <result property="updatedBy"    column="updated_by"    />
+        <result property="updatedTime"    column="updated_time"    />
+    </resultMap>
+	
+	<sql id="selectBiScopeAttendSpotDataVo">
+        select tid, id, attend_spot_type, spot_created_date, name, project_id, latitude, longitude, address, created_user_id, attend_radius, attend_remark, op_status, op_type, created_by, created_time, updated_by, updated_time from bi_scope_attend_spot_data
+    </sql>
+	
+    <select id="selectBiScopeAttendSpotDataList" parameterType="BiScopeAttendSpotData" resultMap="BiScopeAttendSpotDataResult">
+        <include refid="selectBiScopeAttendSpotDataVo"/>
+        <where>  
+            <if test="tid != null "> and tid = #{tid}</if>
+             <if test="id != null  and id != '' "> and id = #{id}</if>
+             <if test="attendSpotType != null  and attendSpotType != '' "> and attend_spot_type = #{attendSpotType}</if>
+             <if test="spotCreatedDate != null "> and spot_created_date = #{spotCreatedDate}</if>
+             <if test="name != null  and name != '' "> and name = #{name}</if>
+             <if test="projectId != null  and projectId != '' "> and project_id = #{projectId}</if>
+             <if test="latitude != null "> and latitude = #{latitude}</if>
+             <if test="longitude != null "> and longitude = #{longitude}</if>
+             <if test="address != null  and address != '' "> and address = #{address}</if>
+             <if test="createdUserId != null  and createdUserId != '' "> and created_user_id = #{createdUserId}</if>
+             <if test="attendRadius != null "> and attend_radius = #{attendRadius}</if>
+             <if test="attendRemark != null  and attendRemark != '' "> and attend_remark = #{attendRemark}</if>
+             <if test="opStatus != null  and opStatus != '' "> and op_status = #{opStatus}</if>
+             <if test="opType != null  and opType != '' "> and op_type = #{opType}</if>
+             <if test="createdBy != null  and createdBy != '' "> and created_by = #{createdBy}</if>
+             <if test="createdTime != null "> and created_time = #{createdTime}</if>
+             <if test="updatedBy != null  and updatedBy != '' "> and updated_by = #{updatedBy}</if>
+             <if test="updatedTime != null "> and updated_time = #{updatedTime}</if>
+         </where>
+    </select>
+    
+    <select id="selectBiScopeAttendSpotDataById" parameterType="Integer" resultMap="BiScopeAttendSpotDataResult">
+        <include refid="selectBiScopeAttendSpotDataVo"/>
+        where tid = #{tid}
+    </select>
+        
+    <insert id="insertBiScopeAttendSpotData" parameterType="BiScopeAttendSpotData" useGeneratedKeys="true" keyProperty="tid">
+        insert into bi_scope_attend_spot_data
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">id,</if>
+			<if test="attendSpotType != null  and attendSpotType != ''  ">attend_spot_type,</if>
+			<if test="spotCreatedDate != null  ">spot_created_date,</if>
+			<if test="name != null  and name != ''  ">name,</if>
+			<if test="projectId != null  and projectId != ''  ">project_id,</if>
+			<if test="latitude != null  ">latitude,</if>
+			<if test="longitude != null  ">longitude,</if>
+			<if test="address != null  and address != ''  ">address,</if>
+			<if test="createdUserId != null  and createdUserId != ''  ">created_user_id,</if>
+			<if test="attendRadius != null  ">attend_radius,</if>
+			<if test="attendRemark != null  and attendRemark != ''  ">attend_remark,</if>
+			<if test="opStatus != null  and opStatus != ''  ">op_status,</if>
+			<if test="opType != null  and opType != ''  ">op_type,</if>
+			<if test="createdBy != null  and createdBy != ''  ">created_by,</if>
+			<if test="createdTime != null  ">created_time,</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">updated_by,</if>
+			<if test="updatedTime != null  ">updated_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">#{id},</if>
+			<if test="attendSpotType != null  and attendSpotType != ''  ">#{attendSpotType},</if>
+			<if test="spotCreatedDate != null  ">#{spotCreatedDate},</if>
+			<if test="name != null  and name != ''  ">#{name},</if>
+			<if test="projectId != null  and projectId != ''  ">#{projectId},</if>
+			<if test="latitude != null  ">#{latitude},</if>
+			<if test="longitude != null  ">#{longitude},</if>
+			<if test="address != null  and address != ''  ">#{address},</if>
+			<if test="createdUserId != null  and createdUserId != ''  ">#{createdUserId},</if>
+			<if test="attendRadius != null  ">#{attendRadius},</if>
+			<if test="attendRemark != null  and attendRemark != ''  ">#{attendRemark},</if>
+			<if test="opStatus != null  and opStatus != ''  ">#{opStatus},</if>
+			<if test="opType != null  and opType != ''  ">#{opType},</if>
+			<if test="createdBy != null  and createdBy != ''  ">#{createdBy},</if>
+			<if test="createdTime != null  ">#{createdTime},</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">#{updatedBy},</if>
+			<if test="updatedTime != null  ">#{updatedTime},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateBiScopeAttendSpotData" parameterType="BiScopeAttendSpotData">
+        update bi_scope_attend_spot_data
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="id != null  and id != ''  ">id = #{id},</if>
+            <if test="attendSpotType != null  and attendSpotType != ''  ">attend_spot_type = #{attendSpotType},</if>
+            <if test="spotCreatedDate != null  ">spot_created_date = #{spotCreatedDate},</if>
+            <if test="name != null  and name != ''  ">name = #{name},</if>
+            <if test="projectId != null  and projectId != ''  ">project_id = #{projectId},</if>
+            <if test="latitude != null  ">latitude = #{latitude},</if>
+            <if test="longitude != null  ">longitude = #{longitude},</if>
+            <if test="address != null  and address != ''  ">address = #{address},</if>
+            <if test="createdUserId != null  and createdUserId != ''  ">created_user_id = #{createdUserId},</if>
+            <if test="attendRadius != null  ">attend_radius = #{attendRadius},</if>
+            <if test="attendRemark != null  and attendRemark != ''  ">attend_remark = #{attendRemark},</if>
+            <if test="opStatus != null  and opStatus != ''  ">op_status = #{opStatus},</if>
+            <if test="opType != null  and opType != ''  ">op_type = #{opType},</if>
+            <if test="createdBy != null  and createdBy != ''  ">created_by = #{createdBy},</if>
+            <if test="createdTime != null  ">created_time = #{createdTime},</if>
+            <if test="updatedBy != null  and updatedBy != ''  ">updated_by = #{updatedBy},</if>
+            <if test="updatedTime != null  ">updated_time = #{updatedTime},</if>
+        </trim>
+        where tid = #{tid}
+    </update>
+
+	<delete id="deleteBiScopeAttendSpotDataById" parameterType="Integer">
+        delete from bi_scope_attend_spot_data where tid = #{tid}
+    </delete>
+	
+    <delete id="deleteBiScopeAttendSpotDataByIds" parameterType="String">
+        delete from bi_scope_attend_spot_data where tid in 
+        <foreach item="tid" collection="array" open="(" separator="," close=")">
+            #{tid}
+        </foreach>
+    </delete>
+
+
+    <update id="updateBiScopeAttendSpotDataReadyToDeal" parameterType="Map">
+        update bi_scope_attend_spot_data set op_status=3,updated_by=#{host},updated_time=now() where op_status=1 limit 100
+    </update>
+
+
+
+    <update id="updateBiScopeAttendSpotDataToFailed" parameterType="Map">
+        update bi_scope_attend_spot_data set op_status=9,updated_by=#{host},updated_time=now() where tid=#{tid}
+    </update>
+
+    <update id="updateBiScopeAttendSpotDataToComplate" parameterType="Map">
+        update bi_scope_attend_spot_data set op_status=2,updated_by=#{host},updated_time=now() where tid=#{tid}
+    </update>
+
+
+    <select id="selectBiScopeAttendSpotDataReadToDeal" parameterType="Map" resultType="com.ruoyi.project.system.biScopeAttendSpotData.vo.BiScopeAttendSpotDataVO">
+        select tid, id, attend_spot_type attendSpotType, spot_created_date spotCreatedDate, `name`, project_id projectId, latitude, longitude, address, created_user_id createdUserId, attend_radius attendRadius,
+        attend_remark attendRemark, op_status opStatus, op_type opType, created_by createdBy, created_time createdTime, updated_by updatedBy, updated_time updatedTime
+        from bi_scope_attend_spot_data where op_status=3 and updated_by=#{host} limit 100
+    </select>
+    
+</mapper>
