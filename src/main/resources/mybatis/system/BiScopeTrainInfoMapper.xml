@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.biScopeTrainInfo.mapper.BiScopeTrainInfoMapper">
+    
+    <resultMap type="BiScopeTrainInfo" id="BiScopeTrainInfoResult">
+        <result property="tid"    column="tid"    />
+        <result property="id"    column="id"    />
+        <result property="attendUserId"    column="attend_user_id"    />
+        <result property="trainCreateDate"    column="train_create_date"    />
+        <result property="createUserId"    column="create_user_id"    />
+        <result property="startDate"    column="start_date"    />
+        <result property="endDate"    column="end_date"    />
+        <result property="levelCode"    column="level_code"    />
+        <result property="locationId"    column="location_id"    />
+        <result property="name"    column="name"    />
+        <result property="projectGroupId"    column="project_group_id"    />
+        <result property="projectUnitId"    column="project_unit_id"    />
+        <result property="sceneId"    column="scene_id"    />
+        <result property="trainUserId"    column="train_user_id"    />
+        <result property="type"    column="type"    />
+        <result property="opStatus"    column="op_status"    />
+        <result property="opType"    column="op_type"    />
+        <result property="createdTime"    column="created_time"    />
+        <result property="createdBy"    column="created_by"    />
+        <result property="updatedTime"    column="updated_time"    />
+        <result property="updatedBy"    column="updated_by"    />
+    </resultMap>
+	
+	<sql id="selectBiScopeTrainInfoVo">
+        select tid, id, attend_user_id, train_create_date, create_user_id, start_date, end_date, level_code, location_id, name, project_group_id, project_unit_id, scene_id, train_user_id, type, op_status, op_type, created_time, created_by, updated_time, updated_by from bi_scope_train_info
+    </sql>
+	
+    <select id="selectBiScopeTrainInfoList" parameterType="BiScopeTrainInfo" resultMap="BiScopeTrainInfoResult">
+        <include refid="selectBiScopeTrainInfoVo"/>
+        <where>  
+            <if test="tid != null "> and tid = #{tid}</if>
+             <if test="id != null  and id != '' "> and id = #{id}</if>
+             <if test="attendUserId != null  and attendUserId != '' "> and attend_user_id = #{attendUserId}</if>
+             <if test="trainCreateDate != null "> and train_create_date = #{trainCreateDate}</if>
+             <if test="createUserId != null  and createUserId != '' "> and create_user_id = #{createUserId}</if>
+             <if test="startDate != null "> and start_date = #{startDate}</if>
+             <if test="endDate != null "> and end_date = #{endDate}</if>
+             <if test="levelCode != null  and levelCode != '' "> and level_code = #{levelCode}</if>
+             <if test="locationId != null  and locationId != '' "> and location_id = #{locationId}</if>
+             <if test="name != null  and name != '' "> and name = #{name}</if>
+             <if test="projectGroupId != null  and projectGroupId != '' "> and project_group_id = #{projectGroupId}</if>
+             <if test="projectUnitId != null  and projectUnitId != '' "> and project_unit_id = #{projectUnitId}</if>
+             <if test="sceneId != null  and sceneId != '' "> and scene_id = #{sceneId}</if>
+             <if test="trainUserId != null  and trainUserId != '' "> and train_user_id = #{trainUserId}</if>
+             <if test="type != null  and type != '' "> and type = #{type}</if>
+             <if test="opStatus != null  and opStatus != '' "> and op_status = #{opStatus}</if>
+             <if test="opType != null  and opType != '' "> and op_type = #{opType}</if>
+             <if test="createdTime != null "> and created_time = #{createdTime}</if>
+             <if test="createdBy != null  and createdBy != '' "> and created_by = #{createdBy}</if>
+             <if test="updatedTime != null "> and updated_time = #{updatedTime}</if>
+             <if test="updatedBy != null  and updatedBy != '' "> and updated_by = #{updatedBy}</if>
+         </where>
+    </select>
+    
+    <select id="selectBiScopeTrainInfoById" parameterType="Integer" resultMap="BiScopeTrainInfoResult">
+        <include refid="selectBiScopeTrainInfoVo"/>
+        where tid = #{tid}
+    </select>
+        
+    <insert id="insertBiScopeTrainInfo" parameterType="BiScopeTrainInfo" useGeneratedKeys="true" keyProperty="tid">
+        insert into bi_scope_train_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">id,</if>
+			<if test="attendUserId != null  and attendUserId != ''  ">attend_user_id,</if>
+			<if test="trainCreateDate != null  ">train_create_date,</if>
+			<if test="createUserId != null  and createUserId != ''  ">create_user_id,</if>
+			<if test="startDate != null  ">start_date,</if>
+			<if test="endDate != null  ">end_date,</if>
+			<if test="levelCode != null  and levelCode != ''  ">level_code,</if>
+			<if test="locationId != null  and locationId != ''  ">location_id,</if>
+			<if test="name != null  and name != ''  ">name,</if>
+			<if test="projectGroupId != null  and projectGroupId != ''  ">project_group_id,</if>
+			<if test="projectUnitId != null  and projectUnitId != ''  ">project_unit_id,</if>
+			<if test="sceneId != null  and sceneId != ''  ">scene_id,</if>
+			<if test="trainUserId != null  and trainUserId != ''  ">train_user_id,</if>
+			<if test="type != null  and type != ''  ">type,</if>
+			<if test="opStatus != null  and opStatus != ''  ">op_status,</if>
+			<if test="opType != null  and opType != ''  ">op_type,</if>
+			<if test="createdTime != null  ">created_time,</if>
+			<if test="createdBy != null  and createdBy != ''  ">created_by,</if>
+			<if test="updatedTime != null  ">updated_time,</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">updated_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">#{id},</if>
+			<if test="attendUserId != null  and attendUserId != ''  ">#{attendUserId},</if>
+			<if test="trainCreateDate != null  ">#{trainCreateDate},</if>
+			<if test="createUserId != null  and createUserId != ''  ">#{createUserId},</if>
+			<if test="startDate != null  ">#{startDate},</if>
+			<if test="endDate != null  ">#{endDate},</if>
+			<if test="levelCode != null  and levelCode != ''  ">#{levelCode},</if>
+			<if test="locationId != null  and locationId != ''  ">#{locationId},</if>
+			<if test="name != null  and name != ''  ">#{name},</if>
+			<if test="projectGroupId != null  and projectGroupId != ''  ">#{projectGroupId},</if>
+			<if test="projectUnitId != null  and projectUnitId != ''  ">#{projectUnitId},</if>
+			<if test="sceneId != null  and sceneId != ''  ">#{sceneId},</if>
+			<if test="trainUserId != null  and trainUserId != ''  ">#{trainUserId},</if>
+			<if test="type != null  and type != ''  ">#{type},</if>
+			<if test="opStatus != null  and opStatus != ''  ">#{opStatus},</if>
+			<if test="opType != null  and opType != ''  ">#{opType},</if>
+			<if test="createdTime != null  ">#{createdTime},</if>
+			<if test="createdBy != null  and createdBy != ''  ">#{createdBy},</if>
+			<if test="updatedTime != null  ">#{updatedTime},</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">#{updatedBy},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateBiScopeTrainInfo" parameterType="BiScopeTrainInfo">
+        update bi_scope_train_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="id != null  and id != ''  ">id = #{id},</if>
+            <if test="attendUserId != null  and attendUserId != ''  ">attend_user_id = #{attendUserId},</if>
+            <if test="trainCreateDate != null  ">train_create_date = #{trainCreateDate},</if>
+            <if test="createUserId != null  and createUserId != ''  ">create_user_id = #{createUserId},</if>
+            <if test="startDate != null  ">start_date = #{startDate},</if>
+            <if test="endDate != null  ">end_date = #{endDate},</if>
+            <if test="levelCode != null  and levelCode != ''  ">level_code = #{levelCode},</if>
+            <if test="locationId != null  and locationId != ''  ">location_id = #{locationId},</if>
+            <if test="name != null  and name != ''  ">name = #{name},</if>
+            <if test="projectGroupId != null  and projectGroupId != ''  ">project_group_id = #{projectGroupId},</if>
+            <if test="projectUnitId != null  and projectUnitId != ''  ">project_unit_id = #{projectUnitId},</if>
+            <if test="sceneId != null  and sceneId != ''  ">scene_id = #{sceneId},</if>
+            <if test="trainUserId != null  and trainUserId != ''  ">train_user_id = #{trainUserId},</if>
+            <if test="type != null  and type != ''  ">type = #{type},</if>
+            <if test="opStatus != null  and opStatus != ''  ">op_status = #{opStatus},</if>
+            <if test="opType != null  and opType != ''  ">op_type = #{opType},</if>
+            <if test="createdTime != null  ">created_time = #{createdTime},</if>
+            <if test="createdBy != null  and createdBy != ''  ">created_by = #{createdBy},</if>
+            <if test="updatedTime != null  ">updated_time = #{updatedTime},</if>
+            <if test="updatedBy != null  and updatedBy != ''  ">updated_by = #{updatedBy},</if>
+        </trim>
+        where tid = #{tid}
+    </update>
+
+	<delete id="deleteBiScopeTrainInfoById" parameterType="Integer">
+        delete from bi_scope_train_info where tid = #{tid}
+    </delete>
+	
+    <delete id="deleteBiScopeTrainInfoByIds" parameterType="String">
+        delete from bi_scope_train_info where tid in 
+        <foreach item="tid" collection="array" open="(" separator="," close=")">
+            #{tid}
+        </foreach>
+    </delete>
+
+    <update id="updateBiScopeTrainInfoReadyToDeal" parameterType="Map">
+        update bi_scope_train_info set op_status=3,updated_by=#{host},updated_time=now() where op_status=1 limit 100
+    </update>
+
+
+
+    <update id="updateBiScopeTrainInfoToFailed" parameterType="Map">
+        update bi_scope_train_info set op_status=9,updated_by=#{host},updated_time=now() where tid=#{tid}
+    </update>
+
+    <update id="updateBiScopeTrainInfoToComplate" parameterType="Map">
+        update bi_scope_train_info set op_status=2,updated_by=#{host},updated_time=now() where tid=#{tid}
+    </update>
+
+
+    <select id="selectBiScopeTrainInfoReadToDeal" parameterType="Map" resultType="com.ruoyi.project.system.biScopeTrainInfo.vo.BiScopeTrainInfoVO">
+        select tid,id, attend_user_id attendUserId, train_create_date trainCreateDate, create_user_id createUserId, start_date startDate, end_date endDate, level_code levelCode,
+        location_id locationId, name, project_group_id projectGroupId, project_unit_id projectUnitId, scene_id sceneId, train_user_id trainUserId, type, op_status opStatus, op_type opType,
+        created_time createdTime, created_by createdBy, updated_time updatedTime, updated_by updatedBy
+        from bi_scope_train_info where op_status=3 and updated_by=#{host} limit 100
+    </select>
+    
+</mapper>
