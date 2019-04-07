@@ -142,7 +142,7 @@ public class BiScopeComplaintInfoJob extends  BaseDataJob {
         sb.append(",personId:\"").append(vo.getPersonId()).append("\"");
         sb.append(",userId:\"").append(vo.getUserId()).append("\"");
         sb.append(",projectGroupId:\"").append(vo.getProjectGroupId()).append("\"");
-        sb.append(",projectUnitId:").append(vo.getProjectUnitId());
+        sb.append(",projectUnitId:\"").append(vo.getProjectUnitId()).append("\"");
         sb.append(",typeId:\"").append(vo.getTypeId()).append("\"");
 
         sb.append("})");

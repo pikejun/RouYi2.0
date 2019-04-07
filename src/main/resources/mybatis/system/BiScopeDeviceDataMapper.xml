@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.biScopeDeviceData.mapper.BiScopeDeviceDataMapper">
+    
+    <resultMap type="BiScopeDeviceData" id="BiScopeDeviceDataResult">
+        <result property="tid"    column="tid"    />
+        <result property="id"    column="id"    />
+        <result property="addrName"    column="addr_name"    />
+        <result property="addrNo"    column="addr_no"    />
+        <result property="deviceName"    column="device_name"    />
+        <result property="deviceModel"    column="device_model"    />
+        <result property="deviceType"    column="device_type"    />
+        <result property="deviceManufactor"    column="device_manufactor"    />
+        <result property="deviceVersion"    column="device_version"    />
+        <result property="buyDate"    column="buy_date"    />
+        <result property="putDate"    column="put_date"    />
+        <result property="remark"    column="remark"    />
+        <result property="useStatus"    column="use_status"    />
+        <result property="projectId"    column="project_id"    />
+        <result property="projectUnitId"    column="project_unit_id"    />
+        <result property="levelCode"    column="level_code"    />
+        <result property="sceneId"    column="scene_id"    />
+        <result property="deviceStatus"    column="device_status"    />
+        <result property="opStatus"    column="op_status"    />
+        <result property="opType"    column="op_type"    />
+        <result property="createdTime"    column="created_time"    />
+        <result property="createdBy"    column="created_by"    />
+        <result property="updatedTime"    column="updated_time"    />
+        <result property="updatedBy"    column="updated_by"    />
+    </resultMap>
+	
+	<sql id="selectBiScopeDeviceDataVo">
+        select tid, id, addr_name, addr_no, device_name, device_model, device_type, device_manufactor, device_version, buy_date, put_date, remark, use_status, project_id, project_unit_id, level_code, scene_id, device_status, op_status, op_type, created_time, created_by, updated_time, updated_by from bi_scope_device_data
+    </sql>
+	
+    <select id="selectBiScopeDeviceDataList" parameterType="BiScopeDeviceData" resultMap="BiScopeDeviceDataResult">
+        <include refid="selectBiScopeDeviceDataVo"/>
+        <where>  
+            <if test="tid != null "> and tid = #{tid}</if>
+             <if test="id != null  and id != '' "> and id = #{id}</if>
+             <if test="addrName != null  and addrName != '' "> and addr_name = #{addrName}</if>
+             <if test="addrNo != null  and addrNo != '' "> and addr_no = #{addrNo}</if>
+             <if test="deviceName != null  and deviceName != '' "> and device_name = #{deviceName}</if>
+             <if test="deviceModel != null  and deviceModel != '' "> and device_model = #{deviceModel}</if>
+             <if test="deviceType != null  and deviceType != '' "> and device_type = #{deviceType}</if>
+             <if test="deviceManufactor != null  and deviceManufactor != '' "> and device_manufactor = #{deviceManufactor}</if>
+             <if test="deviceVersion != null  and deviceVersion != '' "> and device_version = #{deviceVersion}</if>
+             <if test="buyDate != null "> and buy_date = #{buyDate}</if>
+             <if test="putDate != null "> and put_date = #{putDate}</if>
+             <if test="remark != null  and remark != '' "> and remark = #{remark}</if>
+             <if test="useStatus != null "> and use_status = #{useStatus}</if>
+             <if test="projectId != null  and projectId != '' "> and project_id = #{projectId}</if>
+             <if test="projectUnitId != null  and projectUnitId != '' "> and project_unit_id = #{projectUnitId}</if>
+             <if test="levelCode != null  and levelCode != '' "> and level_code = #{levelCode}</if>
+             <if test="sceneId != null  and sceneId != '' "> and scene_id = #{sceneId}</if>
+             <if test="deviceStatus != null  and deviceStatus != '' "> and device_status = #{deviceStatus}</if>
+             <if test="opStatus != null  and opStatus != '' "> and op_status = #{opStatus}</if>
+             <if test="opType != null  and opType != '' "> and op_type = #{opType}</if>
+             <if test="createdTime != null "> and created_time = #{createdTime}</if>
+             <if test="createdBy != null  and createdBy != '' "> and created_by = #{createdBy}</if>
+             <if test="updatedTime != null "> and updated_time = #{updatedTime}</if>
+             <if test="updatedBy != null  and updatedBy != '' "> and updated_by = #{updatedBy}</if>
+         </where>
+    </select>
+    
+    <select id="selectBiScopeDeviceDataById" parameterType="Integer" resultMap="BiScopeDeviceDataResult">
+        <include refid="selectBiScopeDeviceDataVo"/>
+        where tid = #{tid}
+    </select>
+        
+    <insert id="insertBiScopeDeviceData" parameterType="BiScopeDeviceData" useGeneratedKeys="true" keyProperty="tid">
+        insert into bi_scope_device_data
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">id,</if>
+			<if test="addrName != null  and addrName != ''  ">addr_name,</if>
+			<if test="addrNo != null  and addrNo != ''  ">addr_no,</if>
+			<if test="deviceName != null  and deviceName != ''  ">device_name,</if>
+			<if test="deviceModel != null  and deviceModel != ''  ">device_model,</if>
+			<if test="deviceType != null  and deviceType != ''  ">device_type,</if>
+			<if test="deviceManufactor != null  and deviceManufactor != ''  ">device_manufactor,</if>
+			<if test="deviceVersion != null  and deviceVersion != ''  ">device_version,</if>
+			<if test="buyDate != null  ">buy_date,</if>
+			<if test="putDate != null  ">put_date,</if>
+			<if test="remark != null  and remark != ''  ">remark,</if>
+			<if test="useStatus != null  ">use_status,</if>
+			<if test="projectId != null  and projectId != ''  ">project_id,</if>
+			<if test="projectUnitId != null  and projectUnitId != ''  ">project_unit_id,</if>
+			<if test="levelCode != null  and levelCode != ''  ">level_code,</if>
+			<if test="sceneId != null  and sceneId != ''  ">scene_id,</if>
+			<if test="deviceStatus != null  and deviceStatus != ''  ">device_status,</if>
+			<if test="opStatus != null  and opStatus != ''  ">op_status,</if>
+			<if test="opType != null  and opType != ''  ">op_type,</if>
+			<if test="createdTime != null  ">created_time,</if>
+			<if test="createdBy != null  and createdBy != ''  ">created_by,</if>
+			<if test="updatedTime != null  ">updated_time,</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">updated_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">#{id},</if>
+			<if test="addrName != null  and addrName != ''  ">#{addrName},</if>
+			<if test="addrNo != null  and addrNo != ''  ">#{addrNo},</if>
+			<if test="deviceName != null  and deviceName != ''  ">#{deviceName},</if>
+			<if test="deviceModel != null  and deviceModel != ''  ">#{deviceModel},</if>
+			<if test="deviceType != null  and deviceType != ''  ">#{deviceType},</if>
+			<if test="deviceManufactor != null  and deviceManufactor != ''  ">#{deviceManufactor},</if>
+			<if test="deviceVersion != null  and deviceVersion != ''  ">#{deviceVersion},</if>
+			<if test="buyDate != null  ">#{buyDate},</if>
+			<if test="putDate != null  ">#{putDate},</if>
+			<if test="remark != null  and remark != ''  ">#{remark},</if>
+			<if test="useStatus != null  ">#{useStatus},</if>
+			<if test="projectId != null  and projectId != ''  ">#{projectId},</if>
+			<if test="projectUnitId != null  and projectUnitId != ''  ">#{projectUnitId},</if>
+			<if test="levelCode != null  and levelCode != ''  ">#{levelCode},</if>
+			<if test="sceneId != null  and sceneId != ''  ">#{sceneId},</if>
+			<if test="deviceStatus != null  and deviceStatus != ''  ">#{deviceStatus},</if>
+			<if test="opStatus != null  and opStatus != ''  ">#{opStatus},</if>
+			<if test="opType != null  and opType != ''  ">#{opType},</if>
+			<if test="createdTime != null  ">#{createdTime},</if>
+			<if test="createdBy != null  and createdBy != ''  ">#{createdBy},</if>
+			<if test="updatedTime != null  ">#{updatedTime},</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">#{updatedBy},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateBiScopeDeviceData" parameterType="BiScopeDeviceData">
+        update bi_scope_device_data
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="id != null  and id != ''  ">id = #{id},</if>
+            <if test="addrName != null  and addrName != ''  ">addr_name = #{addrName},</if>
+            <if test="addrNo != null  and addrNo != ''  ">addr_no = #{addrNo},</if>
+            <if test="deviceName != null  and deviceName != ''  ">device_name = #{deviceName},</if>
+            <if test="deviceModel != null  and deviceModel != ''  ">device_model = #{deviceModel},</if>
+            <if test="deviceType != null  and deviceType != ''  ">device_type = #{deviceType},</if>
+            <if test="deviceManufactor != null  and deviceManufactor != ''  ">device_manufactor = #{deviceManufactor},</if>
+            <if test="deviceVersion != null  and deviceVersion != ''  ">device_version = #{deviceVersion},</if>
+            <if test="buyDate != null  ">buy_date = #{buyDate},</if>
+            <if test="putDate != null  ">put_date = #{putDate},</if>
+            <if test="remark != null  and remark != ''  ">remark = #{remark},</if>
+            <if test="useStatus != null  ">use_status = #{useStatus},</if>
+            <if test="projectId != null  and projectId != ''  ">project_id = #{projectId},</if>
+            <if test="projectUnitId != null  and projectUnitId != ''  ">project_unit_id = #{projectUnitId},</if>
+            <if test="levelCode != null  and levelCode != ''  ">level_code = #{levelCode},</if>
+            <if test="sceneId != null  and sceneId != ''  ">scene_id = #{sceneId},</if>
+            <if test="deviceStatus != null  and deviceStatus != ''  ">device_status = #{deviceStatus},</if>
+            <if test="opStatus != null  and opStatus != ''  ">op_status = #{opStatus},</if>
+            <if test="opType != null  and opType != ''  ">op_type = #{opType},</if>
+            <if test="createdTime != null  ">created_time = #{createdTime},</if>
+            <if test="createdBy != null  and createdBy != ''  ">created_by = #{createdBy},</if>
+            <if test="updatedTime != null  ">updated_time = #{updatedTime},</if>
+            <if test="updatedBy != null  and updatedBy != ''  ">updated_by = #{updatedBy},</if>
+        </trim>
+        where tid = #{tid}
+    </update>
+
+	<delete id="deleteBiScopeDeviceDataById" parameterType="Integer">
+        delete from bi_scope_device_data where tid = #{tid}
+    </delete>
+	
+    <delete id="deleteBiScopeDeviceDataByIds" parameterType="String">
+        delete from bi_scope_device_data where tid in 
+        <foreach item="tid" collection="array" open="(" separator="," close=")">
+            #{tid}
+        </foreach>
+    </delete>
+
+
+    <update id="updateBiScopeDeviceDataReadyToDeal" parameterType="Map">
+        update bi_scope_device_data set op_status=3,updated_by=#{host},updated_time=now() where op_status=1 limit 100
+    </update>
+
+
+
+    <update id="updateBiScopeDeviceDataToFailed" parameterType="Map">
+        update bi_scope_device_data set op_status=9,updated_by=#{host},updated_time=now() where tid=#{tid}
+    </update>
+
+    <update id="updateBiScopeDeviceDataToComplate" parameterType="Map">
+        update bi_scope_device_data set op_status=2,updated_by=#{host},updated_time=now() where tid=#{tid}
+    </update>
+
+
+    <select id="selectBiScopeDeviceDataReadToDeal" parameterType="Map" resultType="com.ruoyi.project.system.biScopeDeviceData.vo.BiScopeDeviceDataVO">
+        select
+        tid, id, addr_name addrName, addr_no addrNo, device_name deviceName, device_model deviceModel, device_type deviceType, device_manufactor deviceManufactor,
+        device_version deviceVersion, buy_date buyDate, put_date putDate, remark, use_status useStatus, project_id projectId, project_unit_id projectUnitId,
+         level_code levelCode, scene_id sceneId, device_status deviceStatus, op_status opStatus, op_type opType, created_time createdTime,
+         created_by createdBy, updated_time updatedTime, updated_by updatedBy
+        from bi_scope_device_data where op_status=3 and updated_by=#{host} limit 100
+    </select>
+    
+</mapper>

@@ -1,0 +1,251 @@
+<!DOCTYPE HTML>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-biScopeEnterpriseData-add">
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">企业ID：</label>
+                        <div class="col-sm-8">
+                            <input id="id" name="id" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">企业简称：</label>
+                        <div class="col-sm-8">
+                            <input id="abbrName" name="abbrName" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">营业地址：</label>
+                        <div class="col-sm-8">
+                            <input id="address" name="address" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">属地编码：</label>
+                        <div class="col-sm-8">
+                            <input id="areaCode" name="areaCode" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">经验范围：</label>
+                        <div class="col-sm-8">
+                            <input id="businessScope" name="businessScope" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">注册资本币种：</label>
+                        <div class="col-sm-8">
+                            <input id="capitalCurrencyId" name="capitalCurrencyId" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">联系人电话：</label>
+                        <div class="col-sm-8">
+                            <input id="contactPeopleCellPhone" name="contactPeopleCellPhone" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">联系人姓名：</label>
+                        <div class="col-sm-8">
+                            <input id="contactPeopleName" name="contactPeopleName" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">联系人电话：</label>
+                        <div class="col-sm-8">
+                            <input id="contactPeoplePhone" name="contactPeoplePhone" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">创建日期：</label>
+                        <div class="col-sm-8">
+                            <input id="createDate" name="createDate" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">企业联系人邮箱：</label>
+                        <div class="col-sm-8">
+                            <input id="email" name="email" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">成立日期：</label>
+                        <div class="col-sm-8">
+                            <input id="establishDate" name="establishDate" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">传真：</label>
+                        <div class="col-sm-8">
+                            <input id="faxNumber" name="faxNumber" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">企业网址：</label>
+                        <div class="col-sm-8">
+                            <input id="homeWebsiteUrl" name="homeWebsiteUrl" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">发证日期：</label>
+                        <div class="col-sm-8">
+                            <input id="issuingDate" name="issuingDate" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">发证机关：</label>
+                        <div class="col-sm-8">
+                            <input id="issuingOffice" name="issuingOffice" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">企业名称：</label>
+                        <div class="col-sm-8">
+                            <input id="name" name="name" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">办公电话：</label>
+                        <div class="col-sm-8">
+                            <input id="phoneNumber" name="phoneNumber" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">注册资本：</label>
+                        <div class="col-sm-8">
+                            <input id="registrationCapital" name="registrationCapital" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">备注：</label>
+                        <div class="col-sm-8">
+                            <input id="remark" name="remark" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">法人身份证：</label>
+                        <div class="col-sm-8">
+                            <input id="representIdCardNumber" name="representIdCardNumber" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">法人证件类型：</label>
+                        <div class="col-sm-8">
+                            <input id="representIdCardTypeId" name="representIdCardTypeId" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">法人名称：</label>
+                        <div class="col-sm-8">
+                            <input id="representName" name="representName" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">法人职务：</label>
+                        <div class="col-sm-8">
+                            <input id="representPost" name="representPost" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">法人称号：</label>
+                        <div class="col-sm-8">
+                            <input id="representTitle" name="representTitle" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">社会统一信用代码：</label>
+                        <div class="col-sm-8">
+                            <input id="socialCreditNumber" name="socialCreditNumber" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">经营状态：</label>
+                        <div class="col-sm-8">
+                            <input id="status" name="status" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">经营状态类别：</label>
+                        <div class="col-sm-8">
+                            <input id="statusId" name="statusId" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">经营状态变更日期：</label>
+                        <div class="col-sm-8">
+                            <input id="statusTime" name="statusTime" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">企业类型：</label>
+                        <div class="col-sm-8">
+                            <input id="typeId" name="typeId" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">邮政编码：</label>
+                        <div class="col-sm-8">
+                            <input id="zipCode" name="zipCode" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">：</label>
+                        <div class="col-sm-8">
+                            <input id="opStatus" name="opStatus" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">：</label>
+                        <div class="col-sm-8">
+                            <input id="opType" name="opType" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">：</label>
+                        <div class="col-sm-8">
+                            <input id="createdTime" name="createdTime" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">：</label>
+                        <div class="col-sm-8">
+                            <input id="createdBy" name="createdBy" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">：</label>
+                        <div class="col-sm-8">
+                            <input id="updatedTime" name="updatedTime" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">：</label>
+                        <div class="col-sm-8">
+                            <input id="updatedBy" name="updatedBy" class="form-control" type="text">
+                        </div>
+                    </div>
+                                        </form>
+</div>
+<div th:include="include::footer"></div>
+<script type="text/javascript">
+    var prefix = ctx + "system/biScopeEnterpriseData"
+    $("#form-biScopeEnterpriseData-add").validate({
+        rules: {
+            xxxx: {
+                required: true,
+            },
+        },
+        focusCleanup: true
+    });
+
+    function submitHandler() {
+        if ($.validate.form()) {
+            $.operate.save(prefix + "/add", $('#form-biScopeEnterpriseData-add').serialize());
+        }
+    }
+</script>
+</body>
+</html>
