@@ -10,7 +10,7 @@ import com.ruoyi.framework.aspectj.lang.annotation.Excel;
  * 企业数据表 bi_scope_enterprise_data
  *
  * @author ruoyi
- * @date 2019-04-07
+ * @date 2019-04-08
  */
 public class BiScopeEnterpriseData extends BaseEntity
         {
@@ -112,23 +112,23 @@ private String typeId;
 /** 邮政编码 */
 @Excel(name = "邮政编码", prompt = "邮政编码")
 private String zipCode;
-/**  */
-@Excel(name = "", prompt = "")
+/** 操作状态 */
+@Excel(name = "操作状态", prompt = "操作状态")
 private String opStatus;
-/**  */
-@Excel(name = "", prompt = "")
+/** 操作类型 */
+@Excel(name = "操作类型", prompt = "操作类型")
 private String opType;
-/**  */
-@Excel(name = "", prompt = "")
+/** 创建时间 */
+@Excel(name = "创建时间", prompt = "创建时间")
 private Date createdTime;
-/**  */
-@Excel(name = "", prompt = "")
+/** 创建人 */
+@Excel(name = "创建人", prompt = "创建人")
 private String createdBy;
-/**  */
-@Excel(name = "", prompt = "")
+/** 更新时间 */
+@Excel(name = "更新时间", prompt = "更新时间")
 private Date updatedTime;
-/**  */
-@Excel(name = "", prompt = "")
+/** 更新人 */
+@Excel(name = "更新人", prompt = "更新人")
 private String updatedBy;
 
 public void setTid(Integer tid)

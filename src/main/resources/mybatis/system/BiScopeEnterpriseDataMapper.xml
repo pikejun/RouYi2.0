@@ -235,7 +235,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </foreach>
     </delete>
 
-
     <update id="updateBiScopeEnterpriseDataReadyToDeal" parameterType="Map">
         update bi_scope_enterprise_data set op_status=3,updated_by=#{host},updated_time=now() where op_status=1 limit 100
     </update>
@@ -253,13 +252,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <select id="selectBiScopeEnterpriseDataReadToDeal" parameterType="Map" resultType="com.ruoyi.project.system.biScopeEnterpriseData.vo.BiScopeEnterpriseDataVO">
         select
-         tid, id, abbr_name abbrName, address, area_code areaCode, business_scope businessScope, capital_currency_id capitalCurrencyId, contact_people_cell_phone contactPeopleCellPhone,
-         contact_people_name contactPeopleName, contact_people_phone contactPeoplePhone, create_date createDate, email, establish_date establishDate, fax_number faxNumber,
-         home_website_url homeWebsiteUrl, issuing_date issuingDate, issuing_office issuingOffice, name, phone_number phoneNumber, registration_capital registrationCapital, remark,
-         represent_id_card_number representIdCardNumber, represent_id_card_type_id representIdCardTypeId, represent_name representName, represent_post representPost, represent_title representTitle,
-          social_credit_number socialCreditNumber, status, status_id statusId, status_time statusTime, type_id typeId, zip_code zipCode, op_status opStatus, op_type opType, created_time createdTime, created_by createdBy, updated_time updatedTime, updated_by updatedBy
+        tid, id, abbr_name abbrName, address, area_code areaCode, business_scope businessScope, capital_currency_id capitalCurrencyId, contact_people_cell_phone contactPeopleCellPhone,
+        contact_people_name contactPeopleName, contact_people_phone contactPeoplePhone, create_date createDate, email, establish_date establishDate, fax_number faxNumber,
+        home_website_url homeWebsiteUrl, issuing_date issuingDate, issuing_office issuingOffice, name, phone_number phoneNumber, registration_capital registrationCapital, remark,
+        represent_id_card_number representIdCardNumber, represent_id_card_type_id representIdCardTypeId, represent_name representName, represent_post representPost, represent_title representTitle,
+        social_credit_number socialCreditNumber, status, status_id statusId, status_time statusTime, type_id typeId, zip_code zipCode, op_status opStatus, op_type opType, created_time createdTime, created_by createdBy, updated_time updatedTime, updated_by updatedBy
         from bi_scope_enterprise_data where op_status=3 and updated_by=#{host} limit 100
     </select>
 
-
+    
 </mapper>

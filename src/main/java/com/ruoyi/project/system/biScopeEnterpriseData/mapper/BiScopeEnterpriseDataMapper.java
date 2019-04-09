@@ -10,7 +10,7 @@ import java.util.Map;
  * 企业数据 数据层
  *
  * @author ruoyi
- * @date 2019-04-07
+ * @date 2019-04-08
  */
 public interface BiScopeEnterpriseDataMapper
 {

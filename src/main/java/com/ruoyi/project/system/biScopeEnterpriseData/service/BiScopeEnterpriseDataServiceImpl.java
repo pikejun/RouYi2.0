@@ -17,7 +17,7 @@ import com.ruoyi.common.utils.text.Convert;
  * 企业数据 服务层实现
  *
  * @author ruoyi
- * @date 2019-04-07
+ * @date 2019-04-08
  */
 @Service
 public class BiScopeEnterpriseDataServiceImpl implements IBiScopeEnterpriseDataService {

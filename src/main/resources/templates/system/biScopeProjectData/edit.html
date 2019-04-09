@@ -1,0 +1,216 @@
+<!DOCTYPE HTML>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-biScopeProjectData-edit" th:object="${biScopeProjectData}">
+            <input id="tid" name="tid" th:field="*{tid}"  type="hidden">
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">项目ID：</label>
+				<div class="col-sm-8">
+					<input id="id" name="id" th:field="*{id}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">项目简称：</label>
+				<div class="col-sm-8">
+					<input id="abbrName" name="abbrName" th:field="*{abbrName}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">项目别名：</label>
+				<div class="col-sm-8">
+					<input id="aliasName" name="aliasName" th:field="*{aliasName}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">项目日期：</label>
+				<div class="col-sm-8">
+					<input id="createDate" name="createDate" th:field="*{createDate}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">关联企业ID：</label>
+				<div class="col-sm-8">
+					<input id="enterpriseId" name="enterpriseId" th:field="*{enterpriseId}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">项目名称：</label>
+				<div class="col-sm-8">
+					<input id="name" name="name" th:field="*{name}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">总工程ID：</label>
+				<div class="col-sm-8">
+					<input id="rootProjectId" name="rootProjectId" th:field="*{rootProjectId}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">备注：</label>
+				<div class="col-sm-8">
+					<input id="remark" name="remark" th:field="*{remark}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">项目更新日期：</label>
+				<div class="col-sm-8">
+					<input id="updateDate" name="updateDate" th:field="*{updateDate}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">项目状态：</label>
+				<div class="col-sm-8">
+					<input id="workStatus" name="workStatus" th:field="*{workStatus}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">项目地址：</label>
+				<div class="col-sm-8">
+					<input id="address" name="address" th:field="*{address}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">区域ID：</label>
+				<div class="col-sm-8">
+					<input id="areaId" name="areaId" th:field="*{areaId}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">项目性质ID：</label>
+				<div class="col-sm-8">
+					<input id="buildNatureId" name="buildNatureId" th:field="*{buildNatureId}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">施工合同编号：</label>
+				<div class="col-sm-8">
+					<input id="contractNo" name="contractNo" th:field="*{contractNo}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">项目造价：</label>
+				<div class="col-sm-8">
+					<input id="costMoney" name="costMoney" th:field="*{costMoney}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">竣工日期：</label>
+				<div class="col-sm-8">
+					<input id="endDate" name="endDate" th:field="*{endDate}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">项目面积：</label>
+				<div class="col-sm-8">
+					<input id="floorArea" name="floorArea" th:field="*{floorArea}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">项目长度：</label>
+				<div class="col-sm-8">
+					<input id="length" name="length" th:field="*{length}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">上级单位：</label>
+				<div class="col-sm-8">
+					<input id="parentEnterpriseId" name="parentEnterpriseId" th:field="*{parentEnterpriseId}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">施工许可证号：</label>
+				<div class="col-sm-8">
+					<input id="permitNo" name="permitNo" th:field="*{permitNo}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">备案号：</label>
+				<div class="col-sm-8">
+					<input id="recordNo" name="recordNo" th:field="*{recordNo}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">项目编号：</label>
+				<div class="col-sm-8">
+					<input id="serialNo" name="serialNo" th:field="*{serialNo}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">单位标签：</label>
+				<div class="col-sm-8">
+					<input id="signType" name="signType" th:field="*{signType}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">开工日期：</label>
+				<div class="col-sm-8">
+					<input id="startDate" name="startDate" th:field="*{startDate}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">项目状态：</label>
+				<div class="col-sm-8">
+					<input id="status" name="status" th:field="*{status}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">操作状态：</label>
+				<div class="col-sm-8">
+					<input id="opStatus" name="opStatus" th:field="*{opStatus}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">操作类型：</label>
+				<div class="col-sm-8">
+					<input id="opType" name="opType" th:field="*{opType}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">创建人：</label>
+				<div class="col-sm-8">
+					<input id="createdBy" name="createdBy" th:field="*{createdBy}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">创建时间：</label>
+				<div class="col-sm-8">
+					<input id="createdTime" name="createdTime" th:field="*{createdTime}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">更新人：</label>
+				<div class="col-sm-8">
+					<input id="updatedBy" name="updatedBy" th:field="*{updatedBy}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">更新时间：</label>
+				<div class="col-sm-8">
+					<input id="updatedTime" name="updatedTime" th:field="*{updatedTime}" class="form-control" type="text">
+				</div>
+			</div>
+		</form>
+    </div>
+    <div th:include="include::footer"></div>
+    <script type="text/javascript">
+		var prefix = ctx + "system/biScopeProjectData";
+		$("#form-biScopeProjectData-edit").validate({
+			rules:{
+				xxxx:{
+					required:true,
+				},
+			},
+			focusCleanup: true
+		});
+		
+		function submitHandler() {
+	        if ($.validate.form()) {
+	            $.operate.save(prefix + "/edit", $('#form-biScopeProjectData-edit').serialize());
+	        }
+	    }
+	</script>
+</body>
+</html>

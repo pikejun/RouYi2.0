@@ -1,7 +1,7 @@
 # 项目相关配置
 ruoyi:
   # 名称
-  name: CSL
+  name: 能工巧匠BI业务系统
   # 版本
   version: 3.2.0
   # 版权年份

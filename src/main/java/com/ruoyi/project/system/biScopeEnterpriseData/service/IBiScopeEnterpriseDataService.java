@@ -1,7 +1,8 @@
 package com.ruoyi.project.system.biScopeEnterpriseData.service;
 
-import com.ruoyi.project.system.biScopeEnterpriseData.vo.BiScopeEnterpriseDataVO;
 import com.ruoyi.project.system.biScopeEnterpriseData.domain.BiScopeEnterpriseData;
+import com.ruoyi.project.system.biScopeEnterpriseData.vo.BiScopeEnterpriseDataVO;
+
 import java.util.List;
 import java.util.Map;
 
@@ -9,7 +10,7 @@ import java.util.Map;
  * 企业数据 服务层
  * 
  * @author ruoyi
- * @date 2019-04-07
+ * @date 2019-04-08
  */
 public interface IBiScopeEnterpriseDataService 
 {
@@ -60,7 +61,6 @@ public interface IBiScopeEnterpriseDataService
      * @return
      */
     public String importBiScopeEnterpriseData(List<BiScopeEnterpriseData> biScopeEnterpriseDataList);
-
 
 	public int updateBiScopeEnterpriseDataReadyToDeal(Map param);
 
