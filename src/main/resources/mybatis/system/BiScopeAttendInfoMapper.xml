@@ -7,18 +7,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <resultMap type="BiScopeAttendInfo" id="BiScopeAttendInfoResult">
         <result property="tid"    column="tid"    />
         <result property="id"    column="id"    />
-        <result property="onWorkTime"    column="on_work_time"    />
-        <result property="personId"    column="person_id"    />
-        <result property="unWorkTime"    column="un_work_time"    />
-        <result property="attendMode"    column="attend_mode"    />
+        <result property="workerId"    column="worker_id"    />
         <result property="day"    column="day"    />
         <result property="month"    column="month"    />
         <result property="attendSpotId"    column="attend_spot_id"    />
+        <result property="onWorkTime"    column="on_work_time"    />
+        <result property="unWorkTime"    column="un_work_time"    />
+        <result property="attendMode"    column="attend_mode"    />
         <result property="imageId"    column="image_id"    />
-        <result property="userId"    column="user_id"    />
         <result property="deviceNumber"    column="device_number"    />
-        <result property="levelCode"    column="level_code"    />
-        <result property="projectUnitId"    column="project_unit_id"    />
         <result property="opStatus"    column="op_status"    />
         <result property="opType"    column="op_type"    />
         <result property="createdTime"    column="created_time"    />
@@ -28,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 	
 	<sql id="selectBiScopeAttendInfoVo">
-        select tid, id, on_work_time, person_id, un_work_time, attend_mode, day, month, attend_spot_id, image_id, user_id, device_number, level_code, project_unit_id, op_status, op_type, created_time, created_by, updated_time, updated_by from bi_scope_attend_info
+        select tid, id, worker_id, day, month, attend_spot_id, on_work_time, un_work_time, attend_mode, image_id, device_number, op_status, op_type, created_time, created_by, updated_time, updated_by from bi_scope_attend_info
     </sql>
 	
     <select id="selectBiScopeAttendInfoList" parameterType="BiScopeAttendInfo" resultMap="BiScopeAttendInfoResult">
@@ -36,18 +33,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <where>  
             <if test="tid != null "> and tid = #{tid}</if>
              <if test="id != null  and id != '' "> and id = #{id}</if>
-             <if test="onWorkTime != null "> and on_work_time = #{onWorkTime}</if>
-             <if test="personId != null  and personId != '' "> and person_id = #{personId}</if>
-             <if test="unWorkTime != null "> and un_work_time = #{unWorkTime}</if>
-             <if test="attendMode != null  and attendMode != '' "> and attend_mode = #{attendMode}</if>
+             <if test="workerId != null  and workerId != '' "> and worker_id = #{workerId}</if>
              <if test="day != null  and day != '' "> and day = #{day}</if>
              <if test="month != null  and month != '' "> and month = #{month}</if>
              <if test="attendSpotId != null  and attendSpotId != '' "> and attend_spot_id = #{attendSpotId}</if>
+             <if test="onWorkTime != null "> and on_work_time = #{onWorkTime}</if>
+             <if test="unWorkTime != null "> and un_work_time = #{unWorkTime}</if>
+             <if test="attendMode != null  and attendMode != '' "> and attend_mode = #{attendMode}</if>
              <if test="imageId != null  and imageId != '' "> and image_id = #{imageId}</if>
-             <if test="userId != null  and userId != '' "> and user_id = #{userId}</if>
              <if test="deviceNumber != null  and deviceNumber != '' "> and device_number = #{deviceNumber}</if>
-             <if test="levelCode != null  and levelCode != '' "> and level_code = #{levelCode}</if>
-             <if test="projectUnitId != null  and projectUnitId != '' "> and project_unit_id = #{projectUnitId}</if>
              <if test="opStatus != null  and opStatus != '' "> and op_status = #{opStatus}</if>
              <if test="opType != null  and opType != '' "> and op_type = #{opType}</if>
              <if test="createdTime != null "> and created_time = #{createdTime}</if>
@@ -66,18 +60,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         insert into bi_scope_attend_info
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null  and id != ''  ">id,</if>
-			<if test="onWorkTime != null  ">on_work_time,</if>
-			<if test="personId != null  and personId != ''  ">person_id,</if>
-			<if test="unWorkTime != null  ">un_work_time,</if>
-			<if test="attendMode != null  and attendMode != ''  ">attend_mode,</if>
+			<if test="workerId != null  and workerId != ''  ">worker_id,</if>
 			<if test="day != null  and day != ''  ">day,</if>
 			<if test="month != null  and month != ''  ">month,</if>
 			<if test="attendSpotId != null  and attendSpotId != ''  ">attend_spot_id,</if>
+			<if test="onWorkTime != null  ">on_work_time,</if>
+			<if test="unWorkTime != null  ">un_work_time,</if>
+			<if test="attendMode != null  and attendMode != ''  ">attend_mode,</if>
 			<if test="imageId != null  and imageId != ''  ">image_id,</if>
-			<if test="userId != null  and userId != ''  ">user_id,</if>
 			<if test="deviceNumber != null  and deviceNumber != ''  ">device_number,</if>
-			<if test="levelCode != null  and levelCode != ''  ">level_code,</if>
-			<if test="projectUnitId != null  and projectUnitId != ''  ">project_unit_id,</if>
 			<if test="opStatus != null  and opStatus != ''  ">op_status,</if>
 			<if test="opType != null  and opType != ''  ">op_type,</if>
 			<if test="createdTime != null  ">created_time,</if>
@@ -87,18 +78,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null  and id != ''  ">#{id},</if>
-			<if test="onWorkTime != null  ">#{onWorkTime},</if>
-			<if test="personId != null  and personId != ''  ">#{personId},</if>
-			<if test="unWorkTime != null  ">#{unWorkTime},</if>
-			<if test="attendMode != null  and attendMode != ''  ">#{attendMode},</if>
+			<if test="workerId != null  and workerId != ''  ">#{workerId},</if>
 			<if test="day != null  and day != ''  ">#{day},</if>
 			<if test="month != null  and month != ''  ">#{month},</if>
 			<if test="attendSpotId != null  and attendSpotId != ''  ">#{attendSpotId},</if>
+			<if test="onWorkTime != null  ">#{onWorkTime},</if>
+			<if test="unWorkTime != null  ">#{unWorkTime},</if>
+			<if test="attendMode != null  and attendMode != ''  ">#{attendMode},</if>
 			<if test="imageId != null  and imageId != ''  ">#{imageId},</if>
-			<if test="userId != null  and userId != ''  ">#{userId},</if>
 			<if test="deviceNumber != null  and deviceNumber != ''  ">#{deviceNumber},</if>
-			<if test="levelCode != null  and levelCode != ''  ">#{levelCode},</if>
-			<if test="projectUnitId != null  and projectUnitId != ''  ">#{projectUnitId},</if>
 			<if test="opStatus != null  and opStatus != ''  ">#{opStatus},</if>
 			<if test="opType != null  and opType != ''  ">#{opType},</if>
 			<if test="createdTime != null  ">#{createdTime},</if>
@@ -112,18 +100,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         update bi_scope_attend_info
         <trim prefix="SET" suffixOverrides=",">
             <if test="id != null  and id != ''  ">id = #{id},</if>
-            <if test="onWorkTime != null  ">on_work_time = #{onWorkTime},</if>
-            <if test="personId != null  and personId != ''  ">person_id = #{personId},</if>
-            <if test="unWorkTime != null  ">un_work_time = #{unWorkTime},</if>
-            <if test="attendMode != null  and attendMode != ''  ">attend_mode = #{attendMode},</if>
+            <if test="workerId != null  and workerId != ''  ">worker_id = #{workerId},</if>
             <if test="day != null  and day != ''  ">day = #{day},</if>
             <if test="month != null  and month != ''  ">month = #{month},</if>
             <if test="attendSpotId != null  and attendSpotId != ''  ">attend_spot_id = #{attendSpotId},</if>
+            <if test="onWorkTime != null  ">on_work_time = #{onWorkTime},</if>
+            <if test="unWorkTime != null  ">un_work_time = #{unWorkTime},</if>
+            <if test="attendMode != null  and attendMode != ''  ">attend_mode = #{attendMode},</if>
             <if test="imageId != null  and imageId != ''  ">image_id = #{imageId},</if>
-            <if test="userId != null  and userId != ''  ">user_id = #{userId},</if>
             <if test="deviceNumber != null  and deviceNumber != ''  ">device_number = #{deviceNumber},</if>
-            <if test="levelCode != null  and levelCode != ''  ">level_code = #{levelCode},</if>
-            <if test="projectUnitId != null  and projectUnitId != ''  ">project_unit_id = #{projectUnitId},</if>
             <if test="opStatus != null  and opStatus != ''  ">op_status = #{opStatus},</if>
             <if test="opType != null  and opType != ''  ">op_type = #{opType},</if>
             <if test="createdTime != null  ">created_time = #{createdTime},</if>
@@ -146,7 +131,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </delete>
 
 
-
     <update id="updateBiScopeAttendInfoReadyToDeal" parameterType="Map">
         update bi_scope_attend_info set op_status=3,updated_by=#{host},updated_time=now() where op_status=1 limit 100
     </update>
@@ -163,9 +147,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
     <select id="selectBiScopeAttendInfoReadToDeal" parameterType="Map" resultType="com.ruoyi.project.system.biScopeAttendInfo.vo.BiScopeAttendInfoVO">
-        select tid, id, on_work_time onWorkTime, person_id personId, un_work_time unWorkTime, attend_mode attendMode, `day`, `month`, attend_spot_id attendSpotId,
-         image_id imageId, user_id userId, device_number deviceNumber, level_code levelCode, project_unit_id projectUnitId, op_status opStatus, op_type opType, created_time createdTime,
-         created_by createdBy, updated_time updatedTime, updated_by updatedBy
+        select tid, id, worker_id workerId, `day`, `month`, attend_spot_id attendSpotId, on_work_time onWorkTime, un_work_time unWorkTime,
+        attend_mode attendMode, image_id imageId, device_number deviceNumber, op_status opStatus, op_type opType, created_time createdTime,
+        created_by createdBy, updated_time updatedTime, updated_by updatedBy
         from bi_scope_attend_info where op_status=3 and updated_by=#{host} limit 100
     </select>
     

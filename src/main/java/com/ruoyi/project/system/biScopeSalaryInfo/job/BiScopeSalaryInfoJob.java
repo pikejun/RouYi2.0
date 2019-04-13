@@ -1,11 +1,9 @@
 package com.ruoyi.project.system.biScopeSalaryInfo.job;
 
 import com.ruoyi.project.bi.job.BaseDataJob;
-import com.ruoyi.project.bi.service.Neo4jService;
 import com.ruoyi.project.system.biScopeSalaryInfo.service.IBiScopeSalaryInfoService;
 import com.ruoyi.project.system.biScopeSalaryInfo.vo.BiScopeSalaryInfoVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
@@ -25,12 +23,6 @@ public class BiScopeSalaryInfoJob extends  BaseDataJob {
 
     @Autowired
     private IBiScopeSalaryInfoService biScopeSalaryInfoService;
-
-    @Autowired
-    private Neo4jService neo4jService;
-
-    @Value("${host}")
-    private String host="666";
 
     @Override
     public void doJob()
@@ -53,18 +45,20 @@ public class BiScopeSalaryInfoJob extends  BaseDataJob {
 
                 try
                 {
-
                     if("A".equals(vo.getOpType()))
                     {
-                        neo4jService.executCypher(buildBiScopeSalaryInfoVOToCreate(vo));
+                        neo4jService.executCypher(buildBiScopeSalaryInfoVOToModify(vo));
+                        neo4jService.executCypher(addRelationshipToWorker(vo));
                     }
                     else if("D".equals(vo.getOpType()))
                     {
                         neo4jService.executCypher(buildBiScopeSalaryInfoVOToDelete(vo));
+                        neo4jService.executCypher(deleteRelationshipToWorker(vo));
                     }
                     else if("M".equals(vo.getOpType()))
                     {
                         neo4jService.executCypher(buildBiScopeSalaryInfoVOToModify(vo));
+                        neo4jService.executCypher(addRelationshipToWorker(vo));
                     }
 
                     biScopeSalaryInfoService.updateBiScopeSalaryInfoToComplate(param);
@@ -75,6 +69,35 @@ public class BiScopeSalaryInfoJob extends  BaseDataJob {
                 }
             }
         }
+    }
+
+    /**
+     * MATCH (u:User {username:'admin'}), (r:Role {name:'ROLE_WEB_USER'})
+     * delete (u)-[:HAS_ROLE]->(r)
+     * @param vo
+     * @return
+     */
+    public String deleteRelationshipToWorker(BiScopeSalaryInfoVO vo)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("MATCH (p:Salary {id:\"").append(vo.getId()).append("\"}),(w:Worker{id:\"").append(vo.getWorkerId()).append("\"}) ");
+        sb.append("delete (p)-[:salary]->(w)");
+        return sb.toString();
+    }
+
+    /**
+     * MATCH (u:User {username:'admin'}), (r:Role {name:'ROLE_WEB_USER'})
+     CREATE (u)-[:HAS_ROLE]->(r)
+     * @param vo
+     * @return
+     */
+    public String addRelationshipToWorker(BiScopeSalaryInfoVO vo)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("MATCH (p:Salary {id:\"").append(vo.getId()).append("\"}),(w:Worker{id:\"").append(vo.getWorkerId()).append("\"}) ");
+        sb.append("MERGE (p)-[:salary]->(w)");
+
+        return sb.toString();
     }
 
     /**
@@ -102,12 +125,8 @@ public class BiScopeSalaryInfoJob extends  BaseDataJob {
 
         sb.append(",fired:").append(vo.getFired());
         sb.append(",attendCount:").append(vo.getAttendCount());
-        sb.append(",levelCode:\"").append(vo.getLevelCode()).append("\"");
         sb.append(",month:\"").append(vo.getMonth()).append("\"");
-        sb.append(",personId:\"").append(vo.getPersonId()).append("\"");
-        sb.append(",userId:\"").append(vo.getUserId()).append("\"");
-        sb.append(",projectGroupId:\"").append(vo.getProjectGroupId()).append("\"");
-        sb.append(",projectUnitId:\"").append(vo.getProjectUnitId()).append("\"");
+        sb.append(",workerId:\"").append(vo.getWorkerId()).append("\"");
         sb.append(",satisfaction:\"").append(vo.getSatisfaction()).append("\"");
         if(vo.getFeedbackDate()!=null)
         {
@@ -127,45 +146,6 @@ public class BiScopeSalaryInfoJob extends  BaseDataJob {
     {
         StringBuilder sb=new StringBuilder();
         sb.append("match (n:Salary) where n.id='").append(vo.getId()).append("' delete n");
-
-        return sb.toString();
-    }
-
-    /*
-    CREATE (n:Label {name:"L1", type:"T1"})
-    tid, id, all_money allMoney, real_money realMoney, percent, fire_date fireDate, fired, attend_count attendCount, level_code levelCode, month,
-     person_id personId, user_id userId, project_group_id projectGroupId, project_unit_id projectUnitId, satisfaction, feedback_date feedbackDate, status, op_status opStatus, op_type opType, created_time createdTime, created_by createdBy, updated_time updatedTime, updated_by updatedBy
-        */
-    public String buildBiScopeSalaryInfoVOToCreate(BiScopeSalaryInfoVO vo)
-    {
-        StringBuilder sb=new StringBuilder();
-
-        sb.append("CREATE (n:Salary{");
-        sb.append("id:\"").append(vo.getId()).append("\"");
-        sb.append(",allMoney:").append(vo.getAllMoney());
-        sb.append(",realMoney:").append(vo.getRealMoney());
-        sb.append(",percent:").append(vo.getPercent());
-
-        if(vo.getFireDate()!=null)
-        {
-            sb.append(",fireDate:\"").append(sdf.format(vo.getFireDate())).append("\"");
-        }
-
-        sb.append(",fired:").append(vo.getFired());
-        sb.append(",attendCount:").append(vo.getAttendCount());
-        sb.append(",levelCode:\"").append(vo.getLevelCode()).append("\"");
-        sb.append(",month:\"").append(vo.getMonth()).append("\"");
-        sb.append(",personId:\"").append(vo.getPersonId()).append("\"");
-        sb.append(",userId:\"").append(vo.getUserId()).append("\"");
-        sb.append(",projectGroupId:\"").append(vo.getProjectGroupId()).append("\"");
-        sb.append(",projectUnitId:\"").append(vo.getProjectUnitId()).append("\"");
-        sb.append(",satisfaction:\"").append(vo.getSatisfaction()).append("\"");
-        if(vo.getFeedbackDate()!=null)
-        {
-            sb.append(",feedbackDate:\"").append(sdf.format(vo.getFeedbackDate())).append("\"");
-        }
-        sb.append(",status:\"").append(vo.getStatus()).append("\"");
-        sb.append("})");
 
         return sb.toString();
     }

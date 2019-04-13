@@ -1,5 +1,6 @@
 package com.ruoyi.project.system.biScopeSalaryInfo.vo;
 
+import com.ruoyi.project.bi.vo.BaseNodeVO;
 import lombok.Data;
 
 import java.util.Date;
@@ -10,9 +11,8 @@ import java.util.Date;
  * @Description:
  */
 @Data
-public class BiScopeSalaryInfoVO
+public class BiScopeSalaryInfoVO  extends BaseNodeVO
 {
-   private int tid;
    private String id;
    private double  allMoney;
    private double realMoney;
@@ -20,20 +20,10 @@ public class BiScopeSalaryInfoVO
    private Date fireDate;
    private int fired;
    private int attendCount;
-   private String levelCode;
    private String  month;
-   private String personId;
-   private String  userId;
-   private String  projectGroupId;
-   private String  projectUnitId;
+   private String workerId;
    private String  satisfaction;
    private Date  feedbackDate;
    private String  status;
-   private String  opStatus;
-   private String opType;
-   private Date createdTime;
-   private String createdBy;
-   private Date updatedTime;
-   private String updatedBy;
 
 }

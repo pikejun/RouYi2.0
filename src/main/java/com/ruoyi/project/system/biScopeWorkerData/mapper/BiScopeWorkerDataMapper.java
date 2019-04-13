@@ -10,7 +10,7 @@ import java.util.Map;
  * 工人数据 数据层
  *
  * @author ruoyi
- * @date 2019-04-07
+ * @date 2019-04-11
  */
 public interface BiScopeWorkerDataMapper
 {
@@ -61,7 +61,6 @@ public interface BiScopeWorkerDataMapper
      * @return 结果
      */
 	public int deleteBiScopeWorkerDataByIds(String[] tids);
-
 
 	public int updateBiScopeWorkerDataReadyToDeal(Map param);
 

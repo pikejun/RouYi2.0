@@ -1,5 +1,6 @@
 package com.ruoyi.project.system.biScopeAttendInfo.vo;
 
+import com.ruoyi.project.bi.vo.BaseNodeVO;
 import lombok.Data;
 
 import java.util.Date;
@@ -11,26 +12,18 @@ import java.util.Date;
  */
 
 @Data
-public class BiScopeAttendInfoVO {
+public class BiScopeAttendInfoVO  extends BaseNodeVO {
 
-    private int tid;
-    private String id;
-    private Date onWorkTime;
-    private String personId;
-    private Date unWorkTime;
-    private String attendMode;
-    private String day;
-    private String month;
-    private String attendSpotId;
-    private String imageId;
-    private String userId;
-    private String deviceNumber;
-    private String levelCode;
-    private String projectUnitId;
-    private String opStatus;
-    private String opType;
-    private Date createdTime;
-    private String createdBy;
-    private Date updatedTime;
-    private String updatedBy;
+    private String id;//考勤ID
+    private String workerId;//工人ID
+    private String day;//日期
+    private String month;//月份
+    private String attendSpotId;//考勤点ID
+
+    private Date onWorkTime;//上班考勤
+    private Date unWorkTime;//下班考勤
+    private String attendMode;//考勤模式
+
+    private String imageId;//图片
+    private String deviceNumber;//设备编号
 }

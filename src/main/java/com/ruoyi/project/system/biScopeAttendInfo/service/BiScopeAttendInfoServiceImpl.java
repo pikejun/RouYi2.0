@@ -10,13 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.project.system.biScopeAttendInfo.mapper.BiScopeAttendInfoMapper;
 import com.ruoyi.project.system.biScopeAttendInfo.domain.BiScopeAttendInfo;
+import com.ruoyi.project.system.biScopeAttendInfo.service.IBiScopeAttendInfoService;
 import com.ruoyi.common.utils.text.Convert;
 
 /**
  * 考勤 服务层实现
  *
  * @author ruoyi
- * @date 2019-04-02
+ * @date 2019-04-11
  */
 @Service
 public class BiScopeAttendInfoServiceImpl implements IBiScopeAttendInfoService {
@@ -98,6 +99,7 @@ public class BiScopeAttendInfoServiceImpl implements IBiScopeAttendInfoService {
         successMsg.insert(0, "恭喜您，数据已全部导入成功！共 " + successNum + " 条，数据如下：");
         return successMsg.toString();
     }
+
 
     public int updateBiScopeAttendInfoReadyToDeal(Map param)
     {

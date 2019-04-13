@@ -13,12 +13,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="fireDate"    column="fire_date"    />
         <result property="fired"    column="fired"    />
         <result property="attendCount"    column="attend_count"    />
-        <result property="levelCode"    column="level_code"    />
         <result property="month"    column="month"    />
-        <result property="personId"    column="person_id"    />
-        <result property="userId"    column="user_id"    />
-        <result property="projectGroupId"    column="project_group_id"    />
-        <result property="projectUnitId"    column="project_unit_id"    />
+        <result property="workerId"    column="worker_id"    />
         <result property="satisfaction"    column="satisfaction"    />
         <result property="feedbackDate"    column="feedback_date"    />
         <result property="status"    column="status"    />
@@ -31,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 	
 	<sql id="selectBiScopeSalaryInfoVo">
-        select tid, id, all_money, real_money, percent, fire_date, fired, attend_count, level_code, month, person_id, user_id, project_group_id, project_unit_id, satisfaction, feedback_date, status, op_status, op_type, created_time, created_by, updated_time, updated_by from bi_scope_salary_info
+        select tid, id, all_money, real_money, percent, fire_date, fired, attend_count, month, worker_id, satisfaction, feedback_date, status, op_status, op_type, created_time, created_by, updated_time, updated_by from bi_scope_salary_info
     </sql>
 	
     <select id="selectBiScopeSalaryInfoList" parameterType="BiScopeSalaryInfo" resultMap="BiScopeSalaryInfoResult">
@@ -45,12 +41,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
              <if test="fireDate != null "> and fire_date = #{fireDate}</if>
              <if test="fired != null "> and fired = #{fired}</if>
              <if test="attendCount != null "> and attend_count = #{attendCount}</if>
-             <if test="levelCode != null  and levelCode != '' "> and level_code = #{levelCode}</if>
              <if test="month != null  and month != '' "> and month = #{month}</if>
-             <if test="personId != null  and personId != '' "> and person_id = #{personId}</if>
-             <if test="userId != null  and userId != '' "> and user_id = #{userId}</if>
-             <if test="projectGroupId != null  and projectGroupId != '' "> and project_group_id = #{projectGroupId}</if>
-             <if test="projectUnitId != null  and projectUnitId != '' "> and project_unit_id = #{projectUnitId}</if>
+             <if test="workerId != null  and workerId != '' "> and worker_id = #{workerId}</if>
              <if test="satisfaction != null "> and satisfaction = #{satisfaction}</if>
              <if test="feedbackDate != null "> and feedback_date = #{feedbackDate}</if>
              <if test="status != null  and status != '' "> and status = #{status}</if>
@@ -78,12 +70,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="fireDate != null  ">fire_date,</if>
 			<if test="fired != null  ">fired,</if>
 			<if test="attendCount != null  ">attend_count,</if>
-			<if test="levelCode != null  and levelCode != ''  ">level_code,</if>
 			<if test="month != null  and month != ''  ">month,</if>
-			<if test="personId != null  and personId != ''  ">person_id,</if>
-			<if test="userId != null  and userId != ''  ">user_id,</if>
-			<if test="projectGroupId != null  and projectGroupId != ''  ">project_group_id,</if>
-			<if test="projectUnitId != null  and projectUnitId != ''  ">project_unit_id,</if>
+			<if test="workerId != null  and workerId != ''  ">worker_id,</if>
 			<if test="satisfaction != null  ">satisfaction,</if>
 			<if test="feedbackDate != null  ">feedback_date,</if>
 			<if test="status != null  and status != ''  ">status,</if>
@@ -102,12 +90,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="fireDate != null  ">#{fireDate},</if>
 			<if test="fired != null  ">#{fired},</if>
 			<if test="attendCount != null  ">#{attendCount},</if>
-			<if test="levelCode != null  and levelCode != ''  ">#{levelCode},</if>
 			<if test="month != null  and month != ''  ">#{month},</if>
-			<if test="personId != null  and personId != ''  ">#{personId},</if>
-			<if test="userId != null  and userId != ''  ">#{userId},</if>
-			<if test="projectGroupId != null  and projectGroupId != ''  ">#{projectGroupId},</if>
-			<if test="projectUnitId != null  and projectUnitId != ''  ">#{projectUnitId},</if>
+			<if test="workerId != null  and workerId != ''  ">#{workerId},</if>
 			<if test="satisfaction != null  ">#{satisfaction},</if>
 			<if test="feedbackDate != null  ">#{feedbackDate},</if>
 			<if test="status != null  and status != ''  ">#{status},</if>
@@ -130,12 +114,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="fireDate != null  ">fire_date = #{fireDate},</if>
             <if test="fired != null  ">fired = #{fired},</if>
             <if test="attendCount != null  ">attend_count = #{attendCount},</if>
-            <if test="levelCode != null  and levelCode != ''  ">level_code = #{levelCode},</if>
             <if test="month != null  and month != ''  ">month = #{month},</if>
-            <if test="personId != null  and personId != ''  ">person_id = #{personId},</if>
-            <if test="userId != null  and userId != ''  ">user_id = #{userId},</if>
-            <if test="projectGroupId != null  and projectGroupId != ''  ">project_group_id = #{projectGroupId},</if>
-            <if test="projectUnitId != null  and projectUnitId != ''  ">project_unit_id = #{projectUnitId},</if>
+            <if test="workerId != null  and workerId != ''  ">worker_id = #{workerId},</if>
             <if test="satisfaction != null  ">satisfaction = #{satisfaction},</if>
             <if test="feedbackDate != null  ">feedback_date = #{feedbackDate},</if>
             <if test="status != null  and status != ''  ">status = #{status},</if>
@@ -175,7 +155,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
 
     <select id="selectBiScopeSalaryInfoReadToDeal" parameterType="Map" resultType="com.ruoyi.project.system.biScopeSalaryInfo.vo.BiScopeSalaryInfoVO">
-        select tid, id, all_money allMoney, real_money realMoney, percent, fire_date fireDate, fired, attend_count attendCount, level_code levelCode, month, person_id personId, user_id userId, project_group_id projectGroupId, project_unit_id projectUnitId, satisfaction, feedback_date feedbackDate, status, op_status opStatus, op_type opType, created_time createdTime, created_by createdBy, updated_time updatedTime, updated_by updatedBy
+        select tid, id, all_money allMoney, real_money realMoney, percent, fire_date fireDate, fired, attend_count attendCount,  month, worker_id workerId, satisfaction, feedback_date feedbackDate, status,
+        op_status opStatus, op_type opType, created_time createdTime, created_by createdBy, updated_time updatedTime, updated_by updatedBy
         from bi_scope_salary_info where op_status=3 and updated_by=#{host} limit 100
     </select>
     

@@ -21,10 +21,10 @@ import com.ruoyi.common.utils.poi.ExcelUtil;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * 维权 信息操作处理
+ * 工人维权 信息操作处理
  * 
  * @author ruoyi
- * @date 2019-04-03
+ * @date 2019-04-11
  */
 @Controller
 @RequestMapping("/system/biScopeComplaintInfo")
@@ -43,7 +43,7 @@ public class BiScopeComplaintInfoController extends BaseController
 	}
 	
 	/**
-	 * 查询维权列表
+	 * 查询工人维权列表
 	 */
 	@RequiresPermissions("system:biScopeComplaintInfo:list")
 	@PostMapping("/list")
@@ -57,7 +57,7 @@ public class BiScopeComplaintInfoController extends BaseController
 	
 	
 	/**
-	 * 导出维权列表
+	 * 导出工人维权列表
 	 */
 	@RequiresPermissions("system:biScopeComplaintInfo:export")
     @PostMapping("/export")
@@ -69,7 +69,7 @@ public class BiScopeComplaintInfoController extends BaseController
         return util.exportExcel(list, "biScopeComplaintInfo");
     }
     /**
-     * 导入维权列表
+     * 导入工人维权列表
      */
     @RequiresPermissions("system:biScopeComplaintInfo:import")
     @PostMapping("/importData")
@@ -82,7 +82,7 @@ public class BiScopeComplaintInfoController extends BaseController
         return AjaxResult.success(message);
     }
     /**
-	 * 维权表格模板下载
+	 * 工人维权表格模板下载
 	 * @return
 	 */
     @RequiresPermissions("system:biScopeComplaintInfo:view")
@@ -95,7 +95,7 @@ public class BiScopeComplaintInfoController extends BaseController
     }
 	
 	/**
-	 * 新增维权
+	 * 新增工人维权
 	 */
 	@GetMapping("/add")
 	public String add()
@@ -104,10 +104,10 @@ public class BiScopeComplaintInfoController extends BaseController
 	}
 	
 	/**
-	 * 新增保存维权
+	 * 新增保存工人维权
 	 */
 	@RequiresPermissions("system:biScopeComplaintInfo:add")
-	@Log(title = "维权", businessType = BusinessType.INSERT)
+	@Log(title = "工人维权", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
 	public AjaxResult addSave(BiScopeComplaintInfo biScopeComplaintInfo)
@@ -116,7 +116,7 @@ public class BiScopeComplaintInfoController extends BaseController
 	}
 
 	/**
-	 * 修改维权
+	 * 修改工人维权
 	 */
 	@GetMapping("/edit/{tid}")
 	public String edit(@PathVariable("tid") Integer tid, ModelMap mmap)
@@ -127,10 +127,10 @@ public class BiScopeComplaintInfoController extends BaseController
 	}
 	
 	/**
-	 * 修改保存维权
+	 * 修改保存工人维权
 	 */
 	@RequiresPermissions("system:biScopeComplaintInfo:edit")
-	@Log(title = "维权", businessType = BusinessType.UPDATE)
+	@Log(title = "工人维权", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
 	public AjaxResult editSave(BiScopeComplaintInfo biScopeComplaintInfo)
@@ -139,10 +139,10 @@ public class BiScopeComplaintInfoController extends BaseController
 	}
 	
 	/**
-	 * 删除维权
+	 * 删除工人维权
 	 */
 	@RequiresPermissions("system:biScopeComplaintInfo:remove")
-	@Log(title = "维权", businessType = BusinessType.DELETE)
+	@Log(title = "工人维权", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody
 	public AjaxResult remove(String ids)

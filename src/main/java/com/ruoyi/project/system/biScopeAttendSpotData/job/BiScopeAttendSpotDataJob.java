@@ -1,11 +1,9 @@
 package com.ruoyi.project.system.biScopeAttendSpotData.job;
 
 import com.ruoyi.project.bi.job.BaseDataJob;
-import com.ruoyi.project.bi.service.Neo4jService;
 import com.ruoyi.project.system.biScopeAttendSpotData.service.IBiScopeAttendSpotDataService;
 import com.ruoyi.project.system.biScopeAttendSpotData.vo.BiScopeAttendSpotDataVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
@@ -25,12 +23,6 @@ public class BiScopeAttendSpotDataJob extends  BaseDataJob {
 
     @Autowired
     private IBiScopeAttendSpotDataService biScopeAttendSpotDataService;
-
-    @Autowired
-    private Neo4jService neo4jService;
-
-    @Value("${host}")
-    private String host="666";
 
     @Override
     public void doJob()
@@ -56,7 +48,7 @@ public class BiScopeAttendSpotDataJob extends  BaseDataJob {
 
                     if("A".equals(vo.getOpType()))
                     {
-                        neo4jService.executCypher(buildBiScopeAttendSpotDataVOToCreate(vo));
+                        neo4jService.executCypher(buildBiScopeAttendSpotDataVOToModify(vo));
                     }
                     else if("D".equals(vo.getOpType()))
                     {
@@ -76,6 +68,8 @@ public class BiScopeAttendSpotDataJob extends  BaseDataJob {
             }
         }
     }
+
+
 
     /**
      *
@@ -122,36 +116,7 @@ public class BiScopeAttendSpotDataJob extends  BaseDataJob {
         return sb.toString();
     }
 
-    /*
-    CREATE (n:Label {name:"L1", type:"T1"})
-     tid, id, attend_spot_type attendSpotType, spot_created_date spotCreatedDate, `name`, project_id projectId, latitude, longitude, address,
-     created_user_id createdUserId, attend_radius attendRadius,
-        attend_remark attendRemark, op_status opStatus, op_type opType, created_by createdBy, created_time createdTime, updated_by updatedBy, updated_time updatedTime
-        */
-    public String buildBiScopeAttendSpotDataVOToCreate(BiScopeAttendSpotDataVO vo)
-    {
-        StringBuilder sb=new StringBuilder();
 
-        sb.append("CREATE (n:AttendSpot{");
-        sb.append("id:\"").append(vo.getId()).append("\"");
-        sb.append(",attendSpotType:\"").append(vo.getAttendSpotType()).append("\"");
-        if(vo.getSpotCreatedDate()!=null)
-        {
-            sb.append(",onWorkTime:\"").append(sdf.format(vo.getSpotCreatedDate())).append("\"");
-        }
-        sb.append(",name:\"").append(vo.getName()).append("\"");
-        sb.append(",projectId:\"").append(vo.getProjectId()).append("\"");
-        sb.append(",latitude:").append(vo.getLatitude());
-        sb.append(",longitude:").append(vo.getLongitude());
-        sb.append(",address:\"").append(vo.getAddress()).append("\"");
-        sb.append(",createdUserId:\"").append(vo.getCreatedUserId()).append("\"");
-        sb.append(",attendRadius:").append(vo.getAttendRadius());
-        sb.append(",attendRemark:\"").append(vo.getAttendRemark()).append("\"");
-
-        sb.append("})");
-
-        return sb.toString();
-    }
 
     public static SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 }

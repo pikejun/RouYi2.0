@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.biScopeSectionData.mapper.BiScopeSectionDataMapper">
+    
+    <resultMap type="BiScopeSectionData" id="BiScopeSectionDataResult">
+        <result property="tid"    column="tid"    />
+        <result property="id"    column="id"    />
+        <result property="abbrName"    column="abbr_name"    />
+        <result property="aliasName"    column="alias_name"    />
+        <result property="createDate"    column="create_date"    />
+        <result property="enterpriseId"    column="enterprise_id"    />
+        <result property="name"    column="name"    />
+        <result property="rootProjectId"    column="root_project_id"    />
+        <result property="remark"    column="remark"    />
+        <result property="updateDate"    column="update_date"    />
+        <result property="workStatus"    column="work_status"    />
+        <result property="address"    column="address"    />
+        <result property="areaId"    column="area_id"    />
+        <result property="levelCode"    column="level_code"    />
+        <result property="projectId"    column="project_id"    />
+        <result property="parentId"    column="parent_id"    />
+        <result property="opStatus"    column="op_status"    />
+        <result property="opType"    column="op_type"    />
+        <result property="createdTime"    column="created_time"    />
+        <result property="createdBy"    column="created_by"    />
+        <result property="updatedTime"    column="updated_time"    />
+        <result property="updatedBy"    column="updated_by"    />
+    </resultMap>
+	
+	<sql id="selectBiScopeSectionDataVo">
+        select tid, id, abbr_name, alias_name, create_date, enterprise_id, name, root_project_id, remark, update_date, work_status, address, area_id, level_code, project_id, parent_id, op_status, op_type, created_time, created_by, updated_time, updated_by from bi_scope_section_data
+    </sql>
+	
+    <select id="selectBiScopeSectionDataList" parameterType="BiScopeSectionData" resultMap="BiScopeSectionDataResult">
+        <include refid="selectBiScopeSectionDataVo"/>
+        <where>  
+            <if test="tid != null "> and tid = #{tid}</if>
+             <if test="id != null  and id != '' "> and id = #{id}</if>
+             <if test="abbrName != null  and abbrName != '' "> and abbr_name = #{abbrName}</if>
+             <if test="aliasName != null  and aliasName != '' "> and alias_name = #{aliasName}</if>
+             <if test="createDate != null "> and create_date = #{createDate}</if>
+             <if test="enterpriseId != null  and enterpriseId != '' "> and enterprise_id = #{enterpriseId}</if>
+             <if test="name != null  and name != '' "> and name = #{name}</if>
+             <if test="rootProjectId != null  and rootProjectId != '' "> and root_project_id = #{rootProjectId}</if>
+             <if test="remark != null  and remark != '' "> and remark = #{remark}</if>
+             <if test="updateDate != null "> and update_date = #{updateDate}</if>
+             <if test="workStatus != null  and workStatus != '' "> and work_status = #{workStatus}</if>
+             <if test="address != null  and address != '' "> and address = #{address}</if>
+             <if test="areaId != null  and areaId != '' "> and area_id = #{areaId}</if>
+             <if test="levelCode != null  and levelCode != '' "> and level_code = #{levelCode}</if>
+             <if test="projectId != null  and projectId != '' "> and project_id = #{projectId}</if>
+             <if test="parentId != null  and parentId != '' "> and parent_id = #{parentId}</if>
+             <if test="opStatus != null  and opStatus != '' "> and op_status = #{opStatus}</if>
+             <if test="opType != null  and opType != '' "> and op_type = #{opType}</if>
+             <if test="createdTime != null "> and created_time = #{createdTime}</if>
+             <if test="createdBy != null  and createdBy != '' "> and created_by = #{createdBy}</if>
+             <if test="updatedTime != null "> and updated_time = #{updatedTime}</if>
+             <if test="updatedBy != null  and updatedBy != '' "> and updated_by = #{updatedBy}</if>
+         </where>
+    </select>
+    
+    <select id="selectBiScopeSectionDataById" parameterType="Integer" resultMap="BiScopeSectionDataResult">
+        <include refid="selectBiScopeSectionDataVo"/>
+        where tid = #{tid}
+    </select>
+        
+    <insert id="insertBiScopeSectionData" parameterType="BiScopeSectionData" useGeneratedKeys="true" keyProperty="tid">
+        insert into bi_scope_section_data
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">id,</if>
+			<if test="abbrName != null  and abbrName != ''  ">abbr_name,</if>
+			<if test="aliasName != null  and aliasName != ''  ">alias_name,</if>
+			<if test="createDate != null  ">create_date,</if>
+			<if test="enterpriseId != null  and enterpriseId != ''  ">enterprise_id,</if>
+			<if test="name != null  and name != ''  ">name,</if>
+			<if test="rootProjectId != null  and rootProjectId != ''  ">root_project_id,</if>
+			<if test="remark != null  and remark != ''  ">remark,</if>
+			<if test="updateDate != null  ">update_date,</if>
+			<if test="workStatus != null  and workStatus != ''  ">work_status,</if>
+			<if test="address != null  and address != ''  ">address,</if>
+			<if test="areaId != null  and areaId != ''  ">area_id,</if>
+			<if test="levelCode != null  and levelCode != ''  ">level_code,</if>
+			<if test="projectId != null  and projectId != ''  ">project_id,</if>
+			<if test="parentId != null  and parentId != ''  ">parent_id,</if>
+			<if test="opStatus != null  and opStatus != ''  ">op_status,</if>
+			<if test="opType != null  and opType != ''  ">op_type,</if>
+			<if test="createdTime != null  ">created_time,</if>
+			<if test="createdBy != null  and createdBy != ''  ">created_by,</if>
+			<if test="updatedTime != null  ">updated_time,</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">updated_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">#{id},</if>
+			<if test="abbrName != null  and abbrName != ''  ">#{abbrName},</if>
+			<if test="aliasName != null  and aliasName != ''  ">#{aliasName},</if>
+			<if test="createDate != null  ">#{createDate},</if>
+			<if test="enterpriseId != null  and enterpriseId != ''  ">#{enterpriseId},</if>
+			<if test="name != null  and name != ''  ">#{name},</if>
+			<if test="rootProjectId != null  and rootProjectId != ''  ">#{rootProjectId},</if>
+			<if test="remark != null  and remark != ''  ">#{remark},</if>
+			<if test="updateDate != null  ">#{updateDate},</if>
+			<if test="workStatus != null  and workStatus != ''  ">#{workStatus},</if>
+			<if test="address != null  and address != ''  ">#{address},</if>
+			<if test="areaId != null  and areaId != ''  ">#{areaId},</if>
+			<if test="levelCode != null  and levelCode != ''  ">#{levelCode},</if>
+			<if test="projectId != null  and projectId != ''  ">#{projectId},</if>
+			<if test="parentId != null  and parentId != ''  ">#{parentId},</if>
+			<if test="opStatus != null  and opStatus != ''  ">#{opStatus},</if>
+			<if test="opType != null  and opType != ''  ">#{opType},</if>
+			<if test="createdTime != null  ">#{createdTime},</if>
+			<if test="createdBy != null  and createdBy != ''  ">#{createdBy},</if>
+			<if test="updatedTime != null  ">#{updatedTime},</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">#{updatedBy},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateBiScopeSectionData" parameterType="BiScopeSectionData">
+        update bi_scope_section_data
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="id != null  and id != ''  ">id = #{id},</if>
+            <if test="abbrName != null  and abbrName != ''  ">abbr_name = #{abbrName},</if>
+            <if test="aliasName != null  and aliasName != ''  ">alias_name = #{aliasName},</if>
+            <if test="createDate != null  ">create_date = #{createDate},</if>
+            <if test="enterpriseId != null  and enterpriseId != ''  ">enterprise_id = #{enterpriseId},</if>
+            <if test="name != null  and name != ''  ">name = #{name},</if>
+            <if test="rootProjectId != null  and rootProjectId != ''  ">root_project_id = #{rootProjectId},</if>
+            <if test="remark != null  and remark != ''  ">remark = #{remark},</if>
+            <if test="updateDate != null  ">update_date = #{updateDate},</if>
+            <if test="workStatus != null  and workStatus != ''  ">work_status = #{workStatus},</if>
+            <if test="address != null  and address != ''  ">address = #{address},</if>
+            <if test="areaId != null  and areaId != ''  ">area_id = #{areaId},</if>
+            <if test="levelCode != null  and levelCode != ''  ">level_code = #{levelCode},</if>
+            <if test="projectId != null  and projectId != ''  ">project_id = #{projectId},</if>
+            <if test="parentId != null  and parentId != ''  ">parent_id = #{parentId},</if>
+            <if test="opStatus != null  and opStatus != ''  ">op_status = #{opStatus},</if>
+            <if test="opType != null  and opType != ''  ">op_type = #{opType},</if>
+            <if test="createdTime != null  ">created_time = #{createdTime},</if>
+            <if test="createdBy != null  and createdBy != ''  ">created_by = #{createdBy},</if>
+            <if test="updatedTime != null  ">updated_time = #{updatedTime},</if>
+            <if test="updatedBy != null  and updatedBy != ''  ">updated_by = #{updatedBy},</if>
+        </trim>
+        where tid = #{tid}
+    </update>
+
+	<delete id="deleteBiScopeSectionDataById" parameterType="Integer">
+        delete from bi_scope_section_data where tid = #{tid}
+    </delete>
+	
+    <delete id="deleteBiScopeSectionDataByIds" parameterType="String">
+        delete from bi_scope_section_data where tid in 
+        <foreach item="tid" collection="array" open="(" separator="," close=")">
+            #{tid}
+        </foreach>
+    </delete>
+
+
+
+    <update id="updateBiScopeSectionDataReadyToDeal" parameterType="Map">
+        update bi_scope_section_data set op_status=3,updated_by=#{host},updated_time=now() where op_status=1 limit 100
+    </update>
+
+    <update id="updateBiScopeSectionDataToFailed" parameterType="Map">
+        update bi_scope_section_data set op_status=9,updated_by=#{host},updated_time=now() where tid=#{tid}
+    </update>
+
+    <update id="updateBiScopeSectionDataToComplate" parameterType="Map">
+        update bi_scope_section_data set op_status=2,updated_by=#{host},updated_time=now() where tid=#{tid}
+    </update>
+
+    <select id="selectBiScopeSectionDataReadToDeal" parameterType="Map" resultType="com.ruoyi.project.system.biScopeSectionData.vo.BiScopeSectionDataVO">
+        select tid, id,
+         abbr_name abbrName, alias_name aliasName, create_date createDate, enterprise_id enterpriseId, name, root_project_id rootProjectId, remark,
+         update_date updateDate,work_status workStatus, address,area_id areaId, level_code levelCode, project_id projectId, parent_id parentId,
+         op_status opStatus, op_type opType, created_time createdTime, created_by createdBy, updated_time updatedTime, updated_by updatedBy
+        from bi_scope_section_data where op_status=3 and updated_by=#{host} limit 100
+    </select>
+    
+</mapper>

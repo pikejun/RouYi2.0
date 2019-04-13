@@ -13,55 +13,37 @@
 				</div>
 			</div>
 			<div class="form-group">	
-				<label class="col-sm-3 control-label">用户ID：</label>
+				<label class="col-sm-3 control-label">工人姓名：</label>
 				<div class="col-sm-8">
-					<input id="userId" name="userId" th:field="*{userId}" class="form-control" type="text">
+					<input id="workerName" name="workerName" th:field="*{workerName}" class="form-control" type="text">
 				</div>
 			</div>
 			<div class="form-group">	
-				<label class="col-sm-3 control-label">用户姓名：</label>
+				<label class="col-sm-3 control-label">班组ID：</label>
 				<div class="col-sm-8">
-					<input id="username" name="username" th:field="*{username}" class="form-control" type="text">
+					<input id="groupId" name="groupId" th:field="*{groupId}" class="form-control" type="text">
 				</div>
 			</div>
 			<div class="form-group">	
-				<label class="col-sm-3 control-label">身份证号：</label>
+				<label class="col-sm-3 control-label">工种ID：</label>
 				<div class="col-sm-8">
-					<input id="number" name="number" th:field="*{number}" class="form-control" type="text">
+					<input id="workTypeId" name="workTypeId" th:field="*{workTypeId}" class="form-control" type="text">
 				</div>
 			</div>
 			<div class="form-group">	
-				<label class="col-sm-3 control-label">手机号：</label>
+				<label class="col-sm-3 control-label">工种名称：</label>
 				<div class="col-sm-8">
-					<input id="mobile" name="mobile" th:field="*{mobile}" class="form-control" type="text">
+					<input id="workTypeName" name="workTypeName" th:field="*{workTypeName}" class="form-control" type="text">
 				</div>
 			</div>
 			<div class="form-group">	
-				<label class="col-sm-3 control-label">项目ID：</label>
+				<label class="col-sm-3 control-label">实名ID：</label>
 				<div class="col-sm-8">
-					<input id="ownerId" name="ownerId" th:field="*{ownerId}" class="form-control" type="text">
+					<input id="realNameId" name="realNameId" th:field="*{realNameId}" class="form-control" type="text">
 				</div>
 			</div>
 			<div class="form-group">	
-				<label class="col-sm-3 control-label">标段ID：</label>
-				<div class="col-sm-8">
-					<input id="projectSectionId" name="projectSectionId" th:field="*{projectSectionId}" class="form-control" type="text">
-				</div>
-			</div>
-			<div class="form-group">	
-				<label class="col-sm-3 control-label">层级编码：</label>
-				<div class="col-sm-8">
-					<input id="levelCode" name="levelCode" th:field="*{levelCode}" class="form-control" type="text">
-				</div>
-			</div>
-			<div class="form-group">	
-				<label class="col-sm-3 control-label">属主类型：</label>
-				<div class="col-sm-8">
-					<input id="ownerType" name="ownerType" th:field="*{ownerType}" class="form-control" type="text">
-				</div>
-			</div>
-			<div class="form-group">	
-				<label class="col-sm-3 control-label">实名类型：</label>
+				<label class="col-sm-3 control-label">实名状态：</label>
 				<div class="col-sm-8">
 					<input id="realStatus" name="realStatus" th:field="*{realStatus}" class="form-control" type="text">
 				</div>
@@ -79,27 +61,21 @@
 				</div>
 			</div>
 			<div class="form-group">	
-				<label class="col-sm-3 control-label">工种ID：</label>
-				<div class="col-sm-8">
-					<input id="workTypeId" name="workTypeId" th:field="*{workTypeId}" class="form-control" type="text">
-				</div>
-			</div>
-			<div class="form-group">	
-				<label class="col-sm-3 control-label">工种名称：</label>
-				<div class="col-sm-8">
-					<input id="workTypeName" name="workTypeName" th:field="*{workTypeName}" class="form-control" type="text">
-				</div>
-			</div>
-			<div class="form-group">	
-				<label class="col-sm-3 control-label">工人创建日期：</label>
-				<div class="col-sm-8">
-					<input id="workCreateDate" name="workCreateDate" th:field="*{workCreateDate}" class="form-control" type="text">
-				</div>
-			</div>
-			<div class="form-group">	
-				<label class="col-sm-3 control-label">是否入场培训：</label>
+				<label class="col-sm-3 control-label">入场三级：</label>
 				<div class="col-sm-8">
 					<input id="enterTrain" name="enterTrain" th:field="*{enterTrain}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">技术交底：</label>
+				<div class="col-sm-8">
+					<input id="techniqueTrain" name="techniqueTrain" th:field="*{techniqueTrain}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">工卡编号：</label>
+				<div class="col-sm-8">
+					<input id="entranceCardId" name="entranceCardId" th:field="*{entranceCardId}" class="form-control" type="text">
 				</div>
 			</div>
 			<div class="form-group">	
@@ -118,24 +94,6 @@
 				<label class="col-sm-3 control-label">安全扣分总分：</label>
 				<div class="col-sm-8">
 					<input id="safetyScore" name="safetyScore" th:field="*{safetyScore}" class="form-control" type="text">
-				</div>
-			</div>
-			<div class="form-group">	
-				<label class="col-sm-3 control-label">是否技术培训：</label>
-				<div class="col-sm-8">
-					<input id="techniqueTrain" name="techniqueTrain" th:field="*{techniqueTrain}" class="form-control" type="text">
-				</div>
-			</div>
-			<div class="form-group">	
-				<label class="col-sm-3 control-label">IC卡号：</label>
-				<div class="col-sm-8">
-					<input id="entranceCardId" name="entranceCardId" th:field="*{entranceCardId}" class="form-control" type="text">
-				</div>
-			</div>
-			<div class="form-group">	
-				<label class="col-sm-3 control-label">班组ID：</label>
-				<div class="col-sm-8">
-					<input id="projectGroupId" name="projectGroupId" th:field="*{projectGroupId}" class="form-control" type="text">
 				</div>
 			</div>
 			<div class="form-group">	

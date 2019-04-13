@@ -4,13 +4,13 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import com.ruoyi.framework.web.domain.BaseEntity;
 import com.ruoyi.framework.aspectj.lang.annotation.Excel;
-                import java.util.Date;
+                                import java.util.Date;
         
 /**
  * 考勤表 bi_scope_attend_info
  *
  * @author ruoyi
- * @date 2019-04-02
+ * @date 2019-04-11
  */
 public class BiScopeAttendInfo extends BaseEntity
         {
@@ -22,18 +22,9 @@ private Integer tid;
 /** 考勤ID */
 @Excel(name = "考勤ID", prompt = "考勤ID")
 private String id;
-/** 入场时间 */
-@Excel(name = "入场时间", prompt = "入场时间")
-private Date onWorkTime;
-/** 人员组织ID */
-@Excel(name = "人员组织ID", prompt = "人员组织ID")
-private String personId;
-/** 出场时间 */
-@Excel(name = "出场时间", prompt = "出场时间")
-private Date unWorkTime;
-/** 考勤模式 */
-@Excel(name = "考勤模式", prompt = "考勤模式")
-private String attendMode;
+/** 工人ID */
+@Excel(name = "工人ID", prompt = "工人ID")
+private String workerId;
 /** 考勤日期 */
 @Excel(name = "考勤日期", prompt = "考勤日期")
 private String day;
@@ -43,21 +34,21 @@ private String month;
 /** 考勤点ID */
 @Excel(name = "考勤点ID", prompt = "考勤点ID")
 private String attendSpotId;
+/** 上班时间 */
+@Excel(name = "上班时间", prompt = "上班时间")
+private Date onWorkTime;
+/** 下班时间 */
+@Excel(name = "下班时间", prompt = "下班时间")
+private Date unWorkTime;
+/** 考勤模式 */
+@Excel(name = "考勤模式", prompt = "考勤模式")
+private String attendMode;
 /** 考勤图片ID */
 @Excel(name = "考勤图片ID", prompt = "考勤图片ID")
 private String imageId;
-/** 用户ID */
-@Excel(name = "用户ID", prompt = "用户ID")
-private String userId;
 /** 设备编号 */
 @Excel(name = "设备编号", prompt = "设备编号")
 private String deviceNumber;
-/** 层级编码 */
-@Excel(name = "层级编码", prompt = "层级编码")
-private String levelCode;
-/** 标段ID */
-@Excel(name = "标段ID", prompt = "标段ID")
-private String projectUnitId;
 /** 操作状态 */
 @Excel(name = "操作状态", prompt = "操作状态")
 private String opStatus;
@@ -95,41 +86,14 @@ public String getId()
         {
         return id;
         }
-public void setOnWorkTime(Date onWorkTime)
+public void setWorkerId(String workerId)
         {
-        this.onWorkTime = onWorkTime;
+        this.workerId = workerId;
         }
 
-public Date getOnWorkTime()
+public String getWorkerId()
         {
-        return onWorkTime;
-        }
-public void setPersonId(String personId)
-        {
-        this.personId = personId;
-        }
-
-public String getPersonId()
-        {
-        return personId;
-        }
-public void setUnWorkTime(Date unWorkTime)
-        {
-        this.unWorkTime = unWorkTime;
-        }
-
-public Date getUnWorkTime()
-        {
-        return unWorkTime;
-        }
-public void setAttendMode(String attendMode)
-        {
-        this.attendMode = attendMode;
-        }
-
-public String getAttendMode()
-        {
-        return attendMode;
+        return workerId;
         }
 public void setDay(String day)
         {
@@ -158,6 +122,33 @@ public String getAttendSpotId()
         {
         return attendSpotId;
         }
+public void setOnWorkTime(Date onWorkTime)
+        {
+        this.onWorkTime = onWorkTime;
+        }
+
+public Date getOnWorkTime()
+        {
+        return onWorkTime;
+        }
+public void setUnWorkTime(Date unWorkTime)
+        {
+        this.unWorkTime = unWorkTime;
+        }
+
+public Date getUnWorkTime()
+        {
+        return unWorkTime;
+        }
+public void setAttendMode(String attendMode)
+        {
+        this.attendMode = attendMode;
+        }
+
+public String getAttendMode()
+        {
+        return attendMode;
+        }
 public void setImageId(String imageId)
         {
         this.imageId = imageId;
@@ -167,15 +158,6 @@ public String getImageId()
         {
         return imageId;
         }
-public void setUserId(String userId)
-        {
-        this.userId = userId;
-        }
-
-public String getUserId()
-        {
-        return userId;
-        }
 public void setDeviceNumber(String deviceNumber)
         {
         this.deviceNumber = deviceNumber;
@@ -184,24 +166,6 @@ public void setDeviceNumber(String deviceNumber)
 public String getDeviceNumber()
         {
         return deviceNumber;
-        }
-public void setLevelCode(String levelCode)
-        {
-        this.levelCode = levelCode;
-        }
-
-public String getLevelCode()
-        {
-        return levelCode;
-        }
-public void setProjectUnitId(String projectUnitId)
-        {
-        this.projectUnitId = projectUnitId;
-        }
-
-public String getProjectUnitId()
-        {
-        return projectUnitId;
         }
 public void setOpStatus(String opStatus)
         {
@@ -262,18 +226,15 @@ public String toString(){
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
                 .append("tid",getTid())
                 .append("id",getId())
-                .append("onWorkTime",getOnWorkTime())
-                .append("personId",getPersonId())
-                .append("unWorkTime",getUnWorkTime())
-                .append("attendMode",getAttendMode())
+                .append("workerId",getWorkerId())
                 .append("day",getDay())
                 .append("month",getMonth())
                 .append("attendSpotId",getAttendSpotId())
+                .append("onWorkTime",getOnWorkTime())
+                .append("unWorkTime",getUnWorkTime())
+                .append("attendMode",getAttendMode())
                 .append("imageId",getImageId())
-                .append("userId",getUserId())
                 .append("deviceNumber",getDeviceNumber())
-                .append("levelCode",getLevelCode())
-                .append("projectUnitId",getProjectUnitId())
                 .append("opStatus",getOpStatus())
                 .append("opType",getOpType())
                 .append("createdTime",getCreatedTime())

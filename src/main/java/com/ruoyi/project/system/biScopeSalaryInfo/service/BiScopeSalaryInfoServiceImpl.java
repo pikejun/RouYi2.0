@@ -10,13 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.project.system.biScopeSalaryInfo.mapper.BiScopeSalaryInfoMapper;
 import com.ruoyi.project.system.biScopeSalaryInfo.domain.BiScopeSalaryInfo;
+import com.ruoyi.project.system.biScopeSalaryInfo.service.IBiScopeSalaryInfoService;
 import com.ruoyi.common.utils.text.Convert;
 
 /**
- * 工资 服务层实现
+ * 工人工资 服务层实现
  *
  * @author ruoyi
- * @date 2019-04-04
+ * @date 2019-04-12
  */
 @Service
 public class BiScopeSalaryInfoServiceImpl implements IBiScopeSalaryInfoService {
@@ -24,10 +25,10 @@ public class BiScopeSalaryInfoServiceImpl implements IBiScopeSalaryInfoService {
     private BiScopeSalaryInfoMapper biScopeSalaryInfoMapper;
 
     /**
-     * 查询工资信息
+     * 查询工人工资信息
      *
-     * @param tid 工资ID
-     * @return 工资信息
+     * @param tid 工人工资ID
+     * @return 工人工资信息
      */
     @Override
     public BiScopeSalaryInfo selectBiScopeSalaryInfoById(Integer tid) {
@@ -35,10 +36,10 @@ public class BiScopeSalaryInfoServiceImpl implements IBiScopeSalaryInfoService {
     }
 
     /**
-     * 查询工资列表
+     * 查询工人工资列表
      *
-     * @param biScopeSalaryInfo 工资信息
-     * @return 工资集合
+     * @param biScopeSalaryInfo 工人工资信息
+     * @return 工人工资集合
      */
     @Override
     public List<BiScopeSalaryInfo> selectBiScopeSalaryInfoList(BiScopeSalaryInfo biScopeSalaryInfo) {
@@ -46,9 +47,9 @@ public class BiScopeSalaryInfoServiceImpl implements IBiScopeSalaryInfoService {
     }
 
     /**
-     * 新增工资
+     * 新增工人工资
      *
-     * @param biScopeSalaryInfo 工资信息
+     * @param biScopeSalaryInfo 工人工资信息
      * @return 结果
      */
     @Override
@@ -57,9 +58,9 @@ public class BiScopeSalaryInfoServiceImpl implements IBiScopeSalaryInfoService {
     }
 
     /**
-     * 修改工资
+     * 修改工人工资
      *
-     * @param biScopeSalaryInfo 工资信息
+     * @param biScopeSalaryInfo 工人工资信息
      * @return 结果
      */
     @Override
@@ -68,7 +69,7 @@ public class BiScopeSalaryInfoServiceImpl implements IBiScopeSalaryInfoService {
     }
 
     /**
-     * 删除工资对象
+     * 删除工人工资对象
      *
      * @param ids 需要删除的数据ID
      * @return 结果
@@ -79,7 +80,7 @@ public class BiScopeSalaryInfoServiceImpl implements IBiScopeSalaryInfoService {
     }
 
     /**
-     * 导入工资对象
+     * 导入工人工资对象
      * @param biScopeSalaryInfoList
      * @return
      */
@@ -101,7 +102,7 @@ public class BiScopeSalaryInfoServiceImpl implements IBiScopeSalaryInfoService {
 
     public int updateBiScopeSalaryInfoReadyToDeal(Map param)
     {
-       return biScopeSalaryInfoMapper.updateBiScopeSalaryInfoReadyToDeal(param);
+        return biScopeSalaryInfoMapper.updateBiScopeSalaryInfoReadyToDeal(param);
     }
 
     public int  updateBiScopeSalaryInfoToComplate(Map param)

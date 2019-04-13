@@ -17,7 +17,7 @@ import com.ruoyi.common.utils.text.Convert;
  * 工人数据 服务层实现
  *
  * @author ruoyi
- * @date 2019-04-07
+ * @date 2019-04-11
  */
 @Service
 public class BiScopeWorkerDataServiceImpl implements IBiScopeWorkerDataService {
@@ -100,12 +100,10 @@ public class BiScopeWorkerDataServiceImpl implements IBiScopeWorkerDataService {
         return successMsg.toString();
     }
 
-
     public int updateBiScopeWorkerDataReadyToDeal(Map param)
     {
         return biScopeWorkerDataMapper.updateBiScopeWorkerDataReadyToDeal(param);
     }
-
 
     public int  updateBiScopeWorkerDataToComplate(Map param)
     {

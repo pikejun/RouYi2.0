@@ -1,5 +1,6 @@
 package com.ruoyi.project.system.biScopeRootProjectData.vo;
 
+import com.ruoyi.project.bi.vo.BaseNodeVO;
 import lombok.Data;
 
 import java.util.Date;
@@ -10,18 +11,11 @@ import java.util.Date;
  * @Description:
  */
 @Data
-public class BiScopeRootProjectDataVO
+public class BiScopeRootProjectDataVO  extends BaseNodeVO
 {
-    private int tid;
     private String id;
     private String abbrName;
     private Date createDate;
     private String createUser;
     private String name;
-    private String opStatus;
-    private String opType;
-    private Date createdTime;
-    private String createdBy;
-    private Date updatedTime;
-    private String updatedBy;
 }

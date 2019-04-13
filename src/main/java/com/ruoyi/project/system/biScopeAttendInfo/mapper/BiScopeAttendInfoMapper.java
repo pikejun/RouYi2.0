@@ -10,7 +10,7 @@ import java.util.Map;
  * 考勤 数据层
  *
  * @author ruoyi
- * @date 2019-04-02
+ * @date 2019-04-11
  */
 public interface BiScopeAttendInfoMapper
 {
@@ -61,6 +61,7 @@ public interface BiScopeAttendInfoMapper
      * @return 结果
      */
 	public int deleteBiScopeAttendInfoByIds(String[] tids);
+
 
 	public int updateBiScopeAttendInfoReadyToDeal(Map param);
 

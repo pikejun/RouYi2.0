@@ -1,7 +1,8 @@
 package com.ruoyi.project.system.biScopeWorkerData.service;
 
-import com.ruoyi.project.system.biScopeWorkerData.vo.BiScopeWorkerDataVO;
 import com.ruoyi.project.system.biScopeWorkerData.domain.BiScopeWorkerData;
+import com.ruoyi.project.system.biScopeWorkerData.vo.BiScopeWorkerDataVO;
+
 import java.util.List;
 import java.util.Map;
 
@@ -9,7 +10,7 @@ import java.util.Map;
  * 工人数据 服务层
  * 
  * @author ruoyi
- * @date 2019-04-07
+ * @date 2019-04-11
  */
 public interface IBiScopeWorkerDataService 
 {

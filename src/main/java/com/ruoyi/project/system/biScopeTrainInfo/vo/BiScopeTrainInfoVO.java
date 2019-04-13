@@ -1,5 +1,6 @@
 package com.ruoyi.project.system.biScopeTrainInfo.vo;
 
+import com.ruoyi.project.bi.vo.BaseNodeVO;
 import lombok.Data;
 
 import java.util.Date;
@@ -11,9 +12,8 @@ import java.util.Date;
  */
 
 @Data
-public class BiScopeTrainInfoVO
+public class BiScopeTrainInfoVO  extends BaseNodeVO
 {
-    private int tid;
     private String id;
     private String attendUserId;
     private Date trainCreateDate;
@@ -28,10 +28,4 @@ public class BiScopeTrainInfoVO
     private String sceneId;
     private String trainUserId;
     private String type;
-    private String opStatus;
-    private String opType;
-    private Date createdTime;
-    private String createdBy;
-    private Date updatedTime;
-    private String updatedBy;
 }

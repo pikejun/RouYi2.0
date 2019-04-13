@@ -21,10 +21,10 @@ import com.ruoyi.common.utils.poi.ExcelUtil;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * 工资 信息操作处理
+ * 工人工资 信息操作处理
  * 
  * @author ruoyi
- * @date 2019-04-04
+ * @date 2019-04-12
  */
 @Controller
 @RequestMapping("/system/biScopeSalaryInfo")
@@ -43,7 +43,7 @@ public class BiScopeSalaryInfoController extends BaseController
 	}
 	
 	/**
-	 * 查询工资列表
+	 * 查询工人工资列表
 	 */
 	@RequiresPermissions("system:biScopeSalaryInfo:list")
 	@PostMapping("/list")
@@ -57,7 +57,7 @@ public class BiScopeSalaryInfoController extends BaseController
 	
 	
 	/**
-	 * 导出工资列表
+	 * 导出工人工资列表
 	 */
 	@RequiresPermissions("system:biScopeSalaryInfo:export")
     @PostMapping("/export")
@@ -69,7 +69,7 @@ public class BiScopeSalaryInfoController extends BaseController
         return util.exportExcel(list, "biScopeSalaryInfo");
     }
     /**
-     * 导入工资列表
+     * 导入工人工资列表
      */
     @RequiresPermissions("system:biScopeSalaryInfo:import")
     @PostMapping("/importData")
@@ -82,7 +82,7 @@ public class BiScopeSalaryInfoController extends BaseController
         return AjaxResult.success(message);
     }
     /**
-	 * 工资表格模板下载
+	 * 工人工资表格模板下载
 	 * @return
 	 */
     @RequiresPermissions("system:biScopeSalaryInfo:view")
@@ -95,7 +95,7 @@ public class BiScopeSalaryInfoController extends BaseController
     }
 	
 	/**
-	 * 新增工资
+	 * 新增工人工资
 	 */
 	@GetMapping("/add")
 	public String add()
@@ -104,10 +104,10 @@ public class BiScopeSalaryInfoController extends BaseController
 	}
 	
 	/**
-	 * 新增保存工资
+	 * 新增保存工人工资
 	 */
 	@RequiresPermissions("system:biScopeSalaryInfo:add")
-	@Log(title = "工资", businessType = BusinessType.INSERT)
+	@Log(title = "工人工资", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
 	public AjaxResult addSave(BiScopeSalaryInfo biScopeSalaryInfo)
@@ -116,7 +116,7 @@ public class BiScopeSalaryInfoController extends BaseController
 	}
 
 	/**
-	 * 修改工资
+	 * 修改工人工资
 	 */
 	@GetMapping("/edit/{tid}")
 	public String edit(@PathVariable("tid") Integer tid, ModelMap mmap)
@@ -127,10 +127,10 @@ public class BiScopeSalaryInfoController extends BaseController
 	}
 	
 	/**
-	 * 修改保存工资
+	 * 修改保存工人工资
 	 */
 	@RequiresPermissions("system:biScopeSalaryInfo:edit")
-	@Log(title = "工资", businessType = BusinessType.UPDATE)
+	@Log(title = "工人工资", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
 	public AjaxResult editSave(BiScopeSalaryInfo biScopeSalaryInfo)
@@ -139,10 +139,10 @@ public class BiScopeSalaryInfoController extends BaseController
 	}
 	
 	/**
-	 * 删除工资
+	 * 删除工人工资
 	 */
 	@RequiresPermissions("system:biScopeSalaryInfo:remove")
-	@Log(title = "工资", businessType = BusinessType.DELETE)
+	@Log(title = "工人工资", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody
 	public AjaxResult remove(String ids)

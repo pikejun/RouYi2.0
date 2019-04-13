@@ -26,12 +26,6 @@ public class BiScopeEnterpriseDepartmentJob extends  BaseDataJob {
     @Autowired
     private IBiScopeEnterpriseDepartmentService biScopeEnterpriseDepartmentService;
 
-    @Autowired
-    private Neo4jService neo4jService;
-
-    @Value("${host}")
-    private String host="666";
-
     @Override
     public void doJob()
     {

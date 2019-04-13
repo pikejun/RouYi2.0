@@ -23,27 +23,15 @@
                                     </li>
 
                                                                                                                                                                                     <li>
-                                        层级编码：<input type="text" name="levelCode"/>
+                                        工人ID：<input type="text" name="workerId"/>
                                     </li>
 
                                                                                                                                                                                     <li>
-                                        人员组织ID：<input type="text" name="personId"/>
+                                        维权类别ID：<input type="text" name="typeId"/>
                                     </li>
 
                                                                                                                                                                                     <li>
-                                        用户ID：<input type="text" name="userId"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        班组ID：<input type="text" name="projectGroupId"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        标段ID：<input type="text" name="projectUnitId"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        类型ID：<input type="text" name="typeId"/>
+                                        维权类别名称：<input type="text" name="typeName"/>
                                     </li>
 
                                                                                                                                                                                     <li>
@@ -110,7 +98,7 @@
     var editFlag = [[${@permission.hasPermi('system:biScopeComplaintInfo:edit')}]];
     var removeFlag = [[${@permission.hasPermi('system:biScopeComplaintInfo:remove')}]];
     var prefix = ctx + "system/biScopeComplaintInfo";
-                                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                            
     $(function () {
         var options = {
             url: prefix + "/list",
@@ -120,7 +108,7 @@
             exportUrl: prefix + "/export",
             importUrl: prefix + "/importData",
             importTemplateUrl: prefix + "/importTemplate",
-            modalName: "维权",
+            modalName: "工人维权",
             showExport: true,
             columns: [{
                 checkbox: true
@@ -146,33 +134,18 @@
                                 sortable: true
                             },
                                                                                                                                     {
-                                field: 'levelCode',
-                                title: '层级编码',
-                                sortable: true
-                            },
-                                                                                                                                    {
-                                field: 'personId',
-                                title: '人员组织ID',
-                                sortable: true
-                            },
-                                                                                                                                    {
-                                field: 'userId',
-                                title: '用户ID',
-                                sortable: true
-                            },
-                                                                                                                                    {
-                                field: 'projectGroupId',
-                                title: '班组ID',
-                                sortable: true
-                            },
-                                                                                                                                    {
-                                field: 'projectUnitId',
-                                title: '标段ID',
+                                field: 'workerId',
+                                title: '工人ID',
                                 sortable: true
                             },
                                                                                                                                     {
                                 field: 'typeId',
-                                title: '类型ID',
+                                title: '维权类别ID',
+                                sortable: true
+                            },
+                                                                                                                                    {
+                                field: 'typeName',
+                                title: '维权类别名称',
                                 sortable: true
                             },
                                                                                                                                     {

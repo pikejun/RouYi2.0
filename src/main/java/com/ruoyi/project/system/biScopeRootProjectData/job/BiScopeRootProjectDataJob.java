@@ -26,12 +26,6 @@ public class BiScopeRootProjectDataJob extends  BaseDataJob {
     @Autowired
     private IBiScopeRootProjectDataService biScopeRootProjectDataService;
 
-    @Autowired
-    private Neo4jService neo4jService;
-
-    @Value("${host}")
-    private String host="666";
-
     @Override
     public void doJob()
     {

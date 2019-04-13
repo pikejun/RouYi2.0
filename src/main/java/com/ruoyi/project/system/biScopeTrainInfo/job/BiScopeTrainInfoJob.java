@@ -26,12 +26,6 @@ public class BiScopeTrainInfoJob extends  BaseDataJob {
     @Autowired
     private IBiScopeTrainInfoService biScopeTrainInfoService;
 
-    @Autowired
-    private Neo4jService neo4jService;
-
-    @Value("${host}")
-    private String host="666";
-
     @Override
     public void doJob()
     {

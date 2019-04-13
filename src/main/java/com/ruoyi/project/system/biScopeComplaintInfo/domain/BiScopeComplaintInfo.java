@@ -7,10 +7,10 @@ import com.ruoyi.framework.aspectj.lang.annotation.Excel;
                 import java.util.Date;
         
 /**
- * 维权表 bi_scope_complaint_info
+ * 工人维权表 bi_scope_complaint_info
  *
  * @author ruoyi
- * @date 2019-04-03
+ * @date 2019-04-11
  */
 public class BiScopeComplaintInfo extends BaseEntity
         {
@@ -28,24 +28,15 @@ private Date complaintCreatedDate;
 /** 是否结束 */
 @Excel(name = "是否结束", prompt = "是否结束")
 private Integer done;
-/** 层级编码 */
-@Excel(name = "层级编码", prompt = "层级编码")
-private String levelCode;
-/** 人员组织ID */
-@Excel(name = "人员组织ID", prompt = "人员组织ID")
-private String personId;
-/** 用户ID */
-@Excel(name = "用户ID", prompt = "用户ID")
-private String userId;
-/** 班组ID */
-@Excel(name = "班组ID", prompt = "班组ID")
-private String projectGroupId;
-/** 标段ID */
-@Excel(name = "标段ID", prompt = "标段ID")
-private String projectUnitId;
-/** 类型ID */
-@Excel(name = "类型ID", prompt = "类型ID")
+/** 工人ID */
+@Excel(name = "工人ID", prompt = "工人ID")
+private String workerId;
+/** 维权类别ID */
+@Excel(name = "维权类别ID", prompt = "维权类别ID")
 private Integer typeId;
+/** 维权类别名称 */
+@Excel(name = "维权类别名称", prompt = "维权类别名称")
+private String typeName;
 /** 操作状态 */
 @Excel(name = "操作状态", prompt = "操作状态")
 private String opStatus;
@@ -101,50 +92,14 @@ public Integer getDone()
         {
         return done;
         }
-public void setLevelCode(String levelCode)
+public void setWorkerId(String workerId)
         {
-        this.levelCode = levelCode;
+        this.workerId = workerId;
         }
 
-public String getLevelCode()
+public String getWorkerId()
         {
-        return levelCode;
-        }
-public void setPersonId(String personId)
-        {
-        this.personId = personId;
-        }
-
-public String getPersonId()
-        {
-        return personId;
-        }
-public void setUserId(String userId)
-        {
-        this.userId = userId;
-        }
-
-public String getUserId()
-        {
-        return userId;
-        }
-public void setProjectGroupId(String projectGroupId)
-        {
-        this.projectGroupId = projectGroupId;
-        }
-
-public String getProjectGroupId()
-        {
-        return projectGroupId;
-        }
-public void setProjectUnitId(String projectUnitId)
-        {
-        this.projectUnitId = projectUnitId;
-        }
-
-public String getProjectUnitId()
-        {
-        return projectUnitId;
+        return workerId;
         }
 public void setTypeId(Integer typeId)
         {
@@ -154,6 +109,15 @@ public void setTypeId(Integer typeId)
 public Integer getTypeId()
         {
         return typeId;
+        }
+public void setTypeName(String typeName)
+        {
+        this.typeName = typeName;
+        }
+
+public String getTypeName()
+        {
+        return typeName;
         }
 public void setOpStatus(String opStatus)
         {
@@ -216,12 +180,9 @@ public String toString(){
                 .append("id",getId())
                 .append("complaintCreatedDate",getComplaintCreatedDate())
                 .append("done",getDone())
-                .append("levelCode",getLevelCode())
-                .append("personId",getPersonId())
-                .append("userId",getUserId())
-                .append("projectGroupId",getProjectGroupId())
-                .append("projectUnitId",getProjectUnitId())
+                .append("workerId",getWorkerId())
                 .append("typeId",getTypeId())
+                .append("typeName",getTypeName())
                 .append("opStatus",getOpStatus())
                 .append("opType",getOpType())
                 .append("createdTime",getCreatedTime())

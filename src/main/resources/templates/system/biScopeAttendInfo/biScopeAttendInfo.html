@@ -15,19 +15,7 @@
                                     </li>
 
                                                                                                                                                                                     <li>
-                                        入场时间：<input type="text" name="onWorkTime"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        人员组织ID：<input type="text" name="personId"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        出场时间：<input type="text" name="unWorkTime"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        考勤模式：<input type="text" name="attendMode"/>
+                                        工人ID：<input type="text" name="workerId"/>
                                     </li>
 
                                                                                                                                                                                     <li>
@@ -43,23 +31,23 @@
                                     </li>
 
                                                                                                                                                                                     <li>
+                                        上班时间：<input type="text" name="onWorkTime"/>
+                                    </li>
+
+                                                                                                                                                                                    <li>
+                                        下班时间：<input type="text" name="unWorkTime"/>
+                                    </li>
+
+                                                                                                                                                                                    <li>
+                                        考勤模式：<input type="text" name="attendMode"/>
+                                    </li>
+
+                                                                                                                                                                                    <li>
                                         考勤图片ID：<input type="text" name="imageId"/>
                                     </li>
 
                                                                                                                                                                                     <li>
-                                        用户ID：<input type="text" name="userId"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
                                         设备编号：<input type="text" name="deviceNumber"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        层级编码：<input type="text" name="levelCode"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        标段ID：<input type="text" name="projectUnitId"/>
                                     </li>
 
                                                                                                                                                                                     <li>
@@ -126,7 +114,7 @@
     var editFlag = [[${@permission.hasPermi('system:biScopeAttendInfo:edit')}]];
     var removeFlag = [[${@permission.hasPermi('system:biScopeAttendInfo:remove')}]];
     var prefix = ctx + "system/biScopeAttendInfo";
-                                                                                                                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                                            
     $(function () {
         var options = {
             url: prefix + "/list",
@@ -152,23 +140,8 @@
                                 sortable: true
                             },
                                                                                                                                     {
-                                field: 'onWorkTime',
-                                title: '入场时间',
-                                sortable: true
-                            },
-                                                                                                                                    {
-                                field: 'personId',
-                                title: '人员组织ID',
-                                sortable: true
-                            },
-                                                                                                                                    {
-                                field: 'unWorkTime',
-                                title: '出场时间',
-                                sortable: true
-                            },
-                                                                                                                                    {
-                                field: 'attendMode',
-                                title: '考勤模式',
+                                field: 'workerId',
+                                title: '工人ID',
                                 sortable: true
                             },
                                                                                                                                     {
@@ -187,28 +160,28 @@
                                 sortable: true
                             },
                                                                                                                                     {
+                                field: 'onWorkTime',
+                                title: '上班时间',
+                                sortable: true
+                            },
+                                                                                                                                    {
+                                field: 'unWorkTime',
+                                title: '下班时间',
+                                sortable: true
+                            },
+                                                                                                                                    {
+                                field: 'attendMode',
+                                title: '考勤模式',
+                                sortable: true
+                            },
+                                                                                                                                    {
                                 field: 'imageId',
                                 title: '考勤图片ID',
                                 sortable: true
                             },
                                                                                                                                     {
-                                field: 'userId',
-                                title: '用户ID',
-                                sortable: true
-                            },
-                                                                                                                                    {
                                 field: 'deviceNumber',
                                 title: '设备编号',
-                                sortable: true
-                            },
-                                                                                                                                    {
-                                field: 'levelCode',
-                                title: '层级编码',
-                                sortable: true
-                            },
-                                                                                                                                    {
-                                field: 'projectUnitId',
-                                title: '标段ID',
                                 sortable: true
                             },
                                                                                                                                     {

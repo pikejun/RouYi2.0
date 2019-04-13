@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.biScopeRealName.mapper.BiScopeRealNameMapper">
+    
+    <resultMap type="BiScopeRealName" id="BiScopeRealNameResult">
+        <result property="tid"    column="tid"    />
+        <result property="id"    column="id"    />
+        <result property="name"    column="name"    />
+        <result property="sex"    column="sex"    />
+        <result property="birthDay"    column="birth_day"    />
+        <result property="province"    column="province"    />
+        <result property="nation"    column="nation"    />
+        <result property="address"    column="address"    />
+        <result property="idNo"    column="id_no"    />
+        <result property="validPeriod"    column="valid_period"    />
+        <result property="signDate"    column="sign_date"    />
+        <result property="organization"    column="organization"    />
+        <result property="backId"    column="back_id"    />
+        <result property="frontId"    column="front_id"    />
+        <result property="photoId"    column="photo_id"    />
+        <result property="mobile"    column="mobile"    />
+        <result property="imageId"    column="image_id"    />
+        <result property="realDate"    column="real_date"    />
+        <result property="realType"    column="real_type"    />
+        <result property="opStatus"    column="op_status"    />
+        <result property="opType"    column="op_type"    />
+        <result property="createdTime"    column="created_time"    />
+        <result property="createdBy"    column="created_by"    />
+        <result property="updatedTime"    column="updated_time"    />
+        <result property="updatedBy"    column="updated_by"    />
+    </resultMap>
+	
+	<sql id="selectBiScopeRealNameVo">
+        select tid, id, name, sex, birth_day, province, nation, address, id_no, valid_period, sign_date, organization, back_id, front_id, photo_id, mobile, image_id, real_date, real_type, op_status, op_type, created_time, created_by, updated_time, updated_by from bi_scope_real_name
+    </sql>
+	
+    <select id="selectBiScopeRealNameList" parameterType="BiScopeRealName" resultMap="BiScopeRealNameResult">
+        <include refid="selectBiScopeRealNameVo"/>
+        <where>  
+            <if test="tid != null "> and tid = #{tid}</if>
+             <if test="id != null  and id != '' "> and id = #{id}</if>
+             <if test="name != null  and name != '' "> and name = #{name}</if>
+             <if test="sex != null  and sex != '' "> and sex = #{sex}</if>
+             <if test="birthDay != null  and birthDay != '' "> and birth_day = #{birthDay}</if>
+             <if test="province != null  and province != '' "> and province = #{province}</if>
+             <if test="nation != null  and nation != '' "> and nation = #{nation}</if>
+             <if test="address != null  and address != '' "> and address = #{address}</if>
+             <if test="idNo != null  and idNo != '' "> and id_no = #{idNo}</if>
+             <if test="validPeriod != null  and validPeriod != '' "> and valid_period = #{validPeriod}</if>
+             <if test="signDate != null  and signDate != '' "> and sign_date = #{signDate}</if>
+             <if test="organization != null  and organization != '' "> and organization = #{organization}</if>
+             <if test="backId != null  and backId != '' "> and back_id = #{backId}</if>
+             <if test="frontId != null  and frontId != '' "> and front_id = #{frontId}</if>
+             <if test="photoId != null  and photoId != '' "> and photo_id = #{photoId}</if>
+             <if test="mobile != null  and mobile != '' "> and mobile = #{mobile}</if>
+             <if test="imageId != null  and imageId != '' "> and image_id = #{imageId}</if>
+             <if test="realDate != null "> and real_date = #{realDate}</if>
+             <if test="realType != null  and realType != '' "> and real_type = #{realType}</if>
+             <if test="opStatus != null  and opStatus != '' "> and op_status = #{opStatus}</if>
+             <if test="opType != null  and opType != '' "> and op_type = #{opType}</if>
+             <if test="createdTime != null "> and created_time = #{createdTime}</if>
+             <if test="createdBy != null  and createdBy != '' "> and created_by = #{createdBy}</if>
+             <if test="updatedTime != null "> and updated_time = #{updatedTime}</if>
+             <if test="updatedBy != null  and updatedBy != '' "> and updated_by = #{updatedBy}</if>
+         </where>
+    </select>
+    
+    <select id="selectBiScopeRealNameById" parameterType="Integer" resultMap="BiScopeRealNameResult">
+        <include refid="selectBiScopeRealNameVo"/>
+        where tid = #{tid}
+    </select>
+        
+    <insert id="insertBiScopeRealName" parameterType="BiScopeRealName" useGeneratedKeys="true" keyProperty="tid">
+        insert into bi_scope_real_name
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">id,</if>
+			<if test="name != null  and name != ''  ">name,</if>
+			<if test="sex != null  and sex != ''  ">sex,</if>
+			<if test="birthDay != null  and birthDay != ''  ">birth_day,</if>
+			<if test="province != null  and province != ''  ">province,</if>
+			<if test="nation != null  and nation != ''  ">nation,</if>
+			<if test="address != null  and address != ''  ">address,</if>
+			<if test="idNo != null  and idNo != ''  ">id_no,</if>
+			<if test="validPeriod != null  and validPeriod != ''  ">valid_period,</if>
+			<if test="signDate != null  and signDate != ''  ">sign_date,</if>
+			<if test="organization != null  and organization != ''  ">organization,</if>
+			<if test="backId != null  and backId != ''  ">back_id,</if>
+			<if test="frontId != null  and frontId != ''  ">front_id,</if>
+			<if test="photoId != null  and photoId != ''  ">photo_id,</if>
+			<if test="mobile != null  and mobile != ''  ">mobile,</if>
+			<if test="imageId != null  and imageId != ''  ">image_id,</if>
+			<if test="realDate != null  ">real_date,</if>
+			<if test="realType != null  and realType != ''  ">real_type,</if>
+			<if test="opStatus != null  and opStatus != ''  ">op_status,</if>
+			<if test="opType != null  and opType != ''  ">op_type,</if>
+			<if test="createdTime != null  ">created_time,</if>
+			<if test="createdBy != null  and createdBy != ''  ">created_by,</if>
+			<if test="updatedTime != null  ">updated_time,</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">updated_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">#{id},</if>
+			<if test="name != null  and name != ''  ">#{name},</if>
+			<if test="sex != null  and sex != ''  ">#{sex},</if>
+			<if test="birthDay != null  and birthDay != ''  ">#{birthDay},</if>
+			<if test="province != null  and province != ''  ">#{province},</if>
+			<if test="nation != null  and nation != ''  ">#{nation},</if>
+			<if test="address != null  and address != ''  ">#{address},</if>
+			<if test="idNo != null  and idNo != ''  ">#{idNo},</if>
+			<if test="validPeriod != null  and validPeriod != ''  ">#{validPeriod},</if>
+			<if test="signDate != null  and signDate != ''  ">#{signDate},</if>
+			<if test="organization != null  and organization != ''  ">#{organization},</if>
+			<if test="backId != null  and backId != ''  ">#{backId},</if>
+			<if test="frontId != null  and frontId != ''  ">#{frontId},</if>
+			<if test="photoId != null  and photoId != ''  ">#{photoId},</if>
+			<if test="mobile != null  and mobile != ''  ">#{mobile},</if>
+			<if test="imageId != null  and imageId != ''  ">#{imageId},</if>
+			<if test="realDate != null  ">#{realDate},</if>
+			<if test="realType != null  and realType != ''  ">#{realType},</if>
+			<if test="opStatus != null  and opStatus != ''  ">#{opStatus},</if>
+			<if test="opType != null  and opType != ''  ">#{opType},</if>
+			<if test="createdTime != null  ">#{createdTime},</if>
+			<if test="createdBy != null  and createdBy != ''  ">#{createdBy},</if>
+			<if test="updatedTime != null  ">#{updatedTime},</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">#{updatedBy},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateBiScopeRealName" parameterType="BiScopeRealName">
+        update bi_scope_real_name
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="id != null  and id != ''  ">id = #{id},</if>
+            <if test="name != null  and name != ''  ">name = #{name},</if>
+            <if test="sex != null  and sex != ''  ">sex = #{sex},</if>
+            <if test="birthDay != null  and birthDay != ''  ">birth_day = #{birthDay},</if>
+            <if test="province != null  and province != ''  ">province = #{province},</if>
+            <if test="nation != null  and nation != ''  ">nation = #{nation},</if>
+            <if test="address != null  and address != ''  ">address = #{address},</if>
+            <if test="idNo != null  and idNo != ''  ">id_no = #{idNo},</if>
+            <if test="validPeriod != null  and validPeriod != ''  ">valid_period = #{validPeriod},</if>
+            <if test="signDate != null  and signDate != ''  ">sign_date = #{signDate},</if>
+            <if test="organization != null  and organization != ''  ">organization = #{organization},</if>
+            <if test="backId != null  and backId != ''  ">back_id = #{backId},</if>
+            <if test="frontId != null  and frontId != ''  ">front_id = #{frontId},</if>
+            <if test="photoId != null  and photoId != ''  ">photo_id = #{photoId},</if>
+            <if test="mobile != null  and mobile != ''  ">mobile = #{mobile},</if>
+            <if test="imageId != null  and imageId != ''  ">image_id = #{imageId},</if>
+            <if test="realDate != null  ">real_date = #{realDate},</if>
+            <if test="realType != null  and realType != ''  ">real_type = #{realType},</if>
+            <if test="opStatus != null  and opStatus != ''  ">op_status = #{opStatus},</if>
+            <if test="opType != null  and opType != ''  ">op_type = #{opType},</if>
+            <if test="createdTime != null  ">created_time = #{createdTime},</if>
+            <if test="createdBy != null  and createdBy != ''  ">created_by = #{createdBy},</if>
+            <if test="updatedTime != null  ">updated_time = #{updatedTime},</if>
+            <if test="updatedBy != null  and updatedBy != ''  ">updated_by = #{updatedBy},</if>
+        </trim>
+        where tid = #{tid}
+    </update>
+
+	<delete id="deleteBiScopeRealNameById" parameterType="Integer">
+        delete from bi_scope_real_name where tid = #{tid}
+    </delete>
+	
+    <delete id="deleteBiScopeRealNameByIds" parameterType="String">
+        delete from bi_scope_real_name where tid in 
+        <foreach item="tid" collection="array" open="(" separator="," close=")">
+            #{tid}
+        </foreach>
+    </delete>
+
+
+    <update id="updateBiScopeRealNameReadyToDeal" parameterType="Map">
+        update bi_scope_real_name set op_status=3,updated_by=#{host},updated_time=now() where op_status=1 limit 100
+    </update>
+
+
+
+    <update id="updateBiScopeRealNameToFailed" parameterType="Map">
+        update bi_scope_real_name set op_status=9,updated_by=#{host},updated_time=now() where tid=#{tid}
+    </update>
+
+    <update id="updateBiScopeRealNameToComplate" parameterType="Map">
+        update bi_scope_real_name set op_status=2,updated_by=#{host},updated_time=now() where tid=#{tid}
+    </update>
+
+
+    <select id="selectBiScopeRealNameReadToDeal" parameterType="Map" resultType="com.ruoyi.project.system.biScopeRealName.vo.BiScopeRealNameVO">
+        select tid, id, birth_day as birthDay, name, nation, address, id_no idNo, province, sex, valid_period validPeriod, sign_date signDate, organization, back_id backId, front_id frontId, photo_id photoId, mobile, image_id imageId, real_date realDate, real_type realType,
+        op_status opStatus, op_type opType, created_time createdTime, created_by createdBy, updated_time updatedTime, updated_by updatedBy
+        from bi_scope_real_name where op_status=3 and updated_by=#{host} limit 100
+    </select>
+    
+</mapper>

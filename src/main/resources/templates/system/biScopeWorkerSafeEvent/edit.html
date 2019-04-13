@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-biScopeWorkerSafeEvent-edit" th:object="${biScopeWorkerSafeEvent}">
+            <input id="tid" name="tid" th:field="*{tid}"  type="hidden">
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">事件ID：</label>
+				<div class="col-sm-8">
+					<input id="id" name="id" th:field="*{id}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">事件日期：</label>
+				<div class="col-sm-8">
+					<input id="eventDate" name="eventDate" th:field="*{eventDate}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">事件备注：</label>
+				<div class="col-sm-8">
+					<input id="remark" name="remark" th:field="*{remark}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">检查人ID：</label>
+				<div class="col-sm-8">
+					<input id="checkerId" name="checkerId" th:field="*{checkerId}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">被扣分工人ID：</label>
+				<div class="col-sm-8">
+					<input id="workerId" name="workerId" th:field="*{workerId}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">事件子类ID：</label>
+				<div class="col-sm-8">
+					<input id="itemId" name="itemId" th:field="*{itemId}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">事件子类名称：</label>
+				<div class="col-sm-8">
+					<input id="itemName" name="itemName" th:field="*{itemName}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">事件类别ID：</label>
+				<div class="col-sm-8">
+					<input id="typeId" name="typeId" th:field="*{typeId}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">事件类别名称：</label>
+				<div class="col-sm-8">
+					<input id="typeName" name="typeName" th:field="*{typeName}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">事件扣分分值：</label>
+				<div class="col-sm-8">
+					<input id="eventPoints" name="eventPoints" th:field="*{eventPoints}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">操作状态：</label>
+				<div class="col-sm-8">
+					<input id="opStatus" name="opStatus" th:field="*{opStatus}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">操作类型：</label>
+				<div class="col-sm-8">
+					<input id="opType" name="opType" th:field="*{opType}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">创建时间：</label>
+				<div class="col-sm-8">
+					<input id="createdTime" name="createdTime" th:field="*{createdTime}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">创建人：</label>
+				<div class="col-sm-8">
+					<input id="createdBy" name="createdBy" th:field="*{createdBy}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">更新时间：</label>
+				<div class="col-sm-8">
+					<input id="updatedTime" name="updatedTime" th:field="*{updatedTime}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">更新人：</label>
+				<div class="col-sm-8">
+					<input id="updatedBy" name="updatedBy" th:field="*{updatedBy}" class="form-control" type="text">
+				</div>
+			</div>
+		</form>
+    </div>
+    <div th:include="include::footer"></div>
+    <script type="text/javascript">
+		var prefix = ctx + "system/biScopeWorkerSafeEvent";
+		$("#form-biScopeWorkerSafeEvent-edit").validate({
+			rules:{
+				xxxx:{
+					required:true,
+				},
+			},
+			focusCleanup: true
+		});
+		
+		function submitHandler() {
+	        if ($.validate.form()) {
+	            $.operate.save(prefix + "/edit", $('#form-biScopeWorkerSafeEvent-edit').serialize());
+	        }
+	    }
+	</script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 package com.ruoyi.project.system.biScopeAttendSpotData.vo;
 
+import com.ruoyi.project.bi.vo.BaseNodeVO;
 import lombok.Data;
 
 import java.util.Date;
@@ -10,9 +11,8 @@ import java.util.Date;
  * @Description:
  */
 @Data
-public class BiScopeAttendSpotDataVO
+public class BiScopeAttendSpotDataVO  extends BaseNodeVO
 {
-    private int tid;
     private String id;
     private String attendSpotType;
     private Date spotCreatedDate;
@@ -24,10 +24,4 @@ public class BiScopeAttendSpotDataVO
     private String createdUserId;
     private int attendRadius;
     private String attendRemark;
-    private String opStatus;
-    private String opType;
-    private String createdBy;
-    private Date createdTime;
-    private String updatedBy;
-    private Date updatedTime;
 }

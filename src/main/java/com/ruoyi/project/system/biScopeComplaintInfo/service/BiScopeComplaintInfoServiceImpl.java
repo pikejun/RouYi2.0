@@ -14,10 +14,10 @@ import com.ruoyi.project.system.biScopeComplaintInfo.service.IBiScopeComplaintIn
 import com.ruoyi.common.utils.text.Convert;
 
 /**
- * 维权 服务层实现
+ * 工人维权 服务层实现
  *
  * @author ruoyi
- * @date 2019-04-03
+ * @date 2019-04-11
  */
 @Service
 public class BiScopeComplaintInfoServiceImpl implements IBiScopeComplaintInfoService {
@@ -25,10 +25,10 @@ public class BiScopeComplaintInfoServiceImpl implements IBiScopeComplaintInfoSer
     private BiScopeComplaintInfoMapper biScopeComplaintInfoMapper;
 
     /**
-     * 查询维权信息
+     * 查询工人维权信息
      *
-     * @param tid 维权ID
-     * @return 维权信息
+     * @param tid 工人维权ID
+     * @return 工人维权信息
      */
     @Override
     public BiScopeComplaintInfo selectBiScopeComplaintInfoById(Integer tid) {
@@ -36,10 +36,10 @@ public class BiScopeComplaintInfoServiceImpl implements IBiScopeComplaintInfoSer
     }
 
     /**
-     * 查询维权列表
+     * 查询工人维权列表
      *
-     * @param biScopeComplaintInfo 维权信息
-     * @return 维权集合
+     * @param biScopeComplaintInfo 工人维权信息
+     * @return 工人维权集合
      */
     @Override
     public List<BiScopeComplaintInfo> selectBiScopeComplaintInfoList(BiScopeComplaintInfo biScopeComplaintInfo) {
@@ -47,9 +47,9 @@ public class BiScopeComplaintInfoServiceImpl implements IBiScopeComplaintInfoSer
     }
 
     /**
-     * 新增维权
+     * 新增工人维权
      *
-     * @param biScopeComplaintInfo 维权信息
+     * @param biScopeComplaintInfo 工人维权信息
      * @return 结果
      */
     @Override
@@ -58,9 +58,9 @@ public class BiScopeComplaintInfoServiceImpl implements IBiScopeComplaintInfoSer
     }
 
     /**
-     * 修改维权
+     * 修改工人维权
      *
-     * @param biScopeComplaintInfo 维权信息
+     * @param biScopeComplaintInfo 工人维权信息
      * @return 结果
      */
     @Override
@@ -69,7 +69,7 @@ public class BiScopeComplaintInfoServiceImpl implements IBiScopeComplaintInfoSer
     }
 
     /**
-     * 删除维权对象
+     * 删除工人维权对象
      *
      * @param ids 需要删除的数据ID
      * @return 结果
@@ -80,7 +80,7 @@ public class BiScopeComplaintInfoServiceImpl implements IBiScopeComplaintInfoSer
     }
 
     /**
-     * 导入维权对象
+     * 导入工人维权对象
      * @param biScopeComplaintInfoList
      * @return
      */

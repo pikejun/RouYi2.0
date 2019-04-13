@@ -1,5 +1,6 @@
 package com.ruoyi.project.system.biScopeDeviceData.vo;
 
+import com.ruoyi.project.bi.vo.BaseNodeVO;
 import lombok.Data;
 
 import java.util.Date;
@@ -11,9 +12,8 @@ import java.util.Date;
  */
 
 @Data
-public class BiScopeDeviceDataVO {
+public class BiScopeDeviceDataVO   extends BaseNodeVO {
 
-    private int tid;
     private String id;
 
     private String addrName;
@@ -33,10 +33,4 @@ public class BiScopeDeviceDataVO {
     private String sceneId;
     private String deviceStatus;
 
-    private String opStatus;
-    private String opType;
-    private Date createdTime;
-    private String createdBy;
-    private Date updatedTime;
-    private String updatedBy;
 }

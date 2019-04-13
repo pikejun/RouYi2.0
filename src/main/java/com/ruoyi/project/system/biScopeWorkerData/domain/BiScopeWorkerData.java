@@ -4,13 +4,13 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import com.ruoyi.framework.web.domain.BaseEntity;
 import com.ruoyi.framework.aspectj.lang.annotation.Excel;
-                                                    import java.util.Date;
+                                        import java.util.Date;
         
 /**
  * 工人数据表 bi_scope_worker_data
  *
  * @author ruoyi
- * @date 2019-04-07
+ * @date 2019-04-11
  */
 public class BiScopeWorkerData extends BaseEntity
         {
@@ -22,32 +22,23 @@ private Integer tid;
 /** 工人ID */
 @Excel(name = "工人ID", prompt = "工人ID")
 private String id;
-/** 用户ID */
-@Excel(name = "用户ID", prompt = "用户ID")
-private String userId;
-/** 用户姓名 */
-@Excel(name = "用户姓名", prompt = "用户姓名")
-private String username;
-/** 身份证号 */
-@Excel(name = "身份证号", prompt = "身份证号")
-private String number;
-/** 手机号 */
-@Excel(name = "手机号", prompt = "手机号")
-private String mobile;
-/** 项目ID */
-@Excel(name = "项目ID", prompt = "项目ID")
-private String ownerId;
-/** 标段ID */
-@Excel(name = "标段ID", prompt = "标段ID")
-private String projectSectionId;
-/** 层级编码 */
-@Excel(name = "层级编码", prompt = "层级编码")
-private String levelCode;
-/** 属主类型 */
-@Excel(name = "属主类型", prompt = "属主类型")
-private String ownerType;
-/** 实名类型 */
-@Excel(name = "实名类型", prompt = "实名类型")
+/** 工人姓名 */
+@Excel(name = "工人姓名", prompt = "工人姓名")
+private String workerName;
+/** 班组ID */
+@Excel(name = "班组ID", prompt = "班组ID")
+private String groupId;
+/** 工种ID */
+@Excel(name = "工种ID", prompt = "工种ID")
+private String workTypeId;
+/** 工种名称 */
+@Excel(name = "工种名称", prompt = "工种名称")
+private String workTypeName;
+/** 实名ID */
+@Excel(name = "实名ID", prompt = "实名ID")
+private String realNameId;
+/** 实名状态 */
+@Excel(name = "实名状态", prompt = "实名状态")
 private String realStatus;
 /** 实名日期 */
 @Excel(name = "实名日期", prompt = "实名日期")
@@ -55,18 +46,15 @@ private Date realDate;
 /** 工作状态 */
 @Excel(name = "工作状态", prompt = "工作状态")
 private String workStatus;
-/** 工种ID */
-@Excel(name = "工种ID", prompt = "工种ID")
-private String workTypeId;
-/** 工种名称 */
-@Excel(name = "工种名称", prompt = "工种名称")
-private String workTypeName;
-/** 工人创建日期 */
-@Excel(name = "工人创建日期", prompt = "工人创建日期")
-private Date workCreateDate;
-/** 是否入场培训 */
-@Excel(name = "是否入场培训", prompt = "是否入场培训")
-private String enterTrain;
+/** 入场三级 */
+@Excel(name = "入场三级", prompt = "入场三级")
+private Integer enterTrain;
+/** 技术交底 */
+@Excel(name = "技术交底", prompt = "技术交底")
+private Integer techniqueTrain;
+/** 工卡编号 */
+@Excel(name = "工卡编号", prompt = "工卡编号")
+private String entranceCardId;
 /** 最后安全扣分日期 */
 @Excel(name = "最后安全扣分日期", prompt = "最后安全扣分日期")
 private Date lastSafetyDate;
@@ -76,15 +64,6 @@ private Integer safetyCount;
 /** 安全扣分总分 */
 @Excel(name = "安全扣分总分", prompt = "安全扣分总分")
 private Integer safetyScore;
-/** 是否技术培训 */
-@Excel(name = "是否技术培训", prompt = "是否技术培训")
-private String techniqueTrain;
-/** IC卡号 */
-@Excel(name = "IC卡号", prompt = "IC卡号")
-private String entranceCardId;
-/** 班组ID */
-@Excel(name = "班组ID", prompt = "班组ID")
-private String projectGroupId;
 /** 操作状态 */
 @Excel(name = "操作状态", prompt = "操作状态")
 private String opStatus;
@@ -122,77 +101,50 @@ public String getId()
         {
         return id;
         }
-public void setUserId(String userId)
+public void setWorkerName(String workerName)
         {
-        this.userId = userId;
+        this.workerName = workerName;
         }
 
-public String getUserId()
+public String getWorkerName()
         {
-        return userId;
+        return workerName;
         }
-public void setUsername(String username)
+public void setGroupId(String groupId)
         {
-        this.username = username;
-        }
-
-public String getUsername()
-        {
-        return username;
-        }
-public void setNumber(String number)
-        {
-        this.number = number;
+        this.groupId = groupId;
         }
 
-public String getNumber()
+public String getGroupId()
         {
-        return number;
+        return groupId;
         }
-public void setMobile(String mobile)
+public void setWorkTypeId(String workTypeId)
         {
-        this.mobile = mobile;
-        }
-
-public String getMobile()
-        {
-        return mobile;
-        }
-public void setOwnerId(String ownerId)
-        {
-        this.ownerId = ownerId;
+        this.workTypeId = workTypeId;
         }
 
-public String getOwnerId()
+public String getWorkTypeId()
         {
-        return ownerId;
+        return workTypeId;
         }
-public void setProjectSectionId(String projectSectionId)
+public void setWorkTypeName(String workTypeName)
         {
-        this.projectSectionId = projectSectionId;
-        }
-
-public String getProjectSectionId()
-        {
-        return projectSectionId;
-        }
-public void setLevelCode(String levelCode)
-        {
-        this.levelCode = levelCode;
+        this.workTypeName = workTypeName;
         }
 
-public String getLevelCode()
+public String getWorkTypeName()
         {
-        return levelCode;
+        return workTypeName;
         }
-public void setOwnerType(String ownerType)
+public void setRealNameId(String realNameId)
         {
-        this.ownerType = ownerType;
+        this.realNameId = realNameId;
         }
 
-public String getOwnerType()
+public String getRealNameId()
         {
-        return ownerType;
+        return realNameId;
         }
 public void setRealStatus(String realStatus)
         {
@@ -221,41 +173,32 @@ public String getWorkStatus()
         {
         return workStatus;
         }
-public void setWorkTypeId(String workTypeId)
-        {
-        this.workTypeId = workTypeId;
-        }
-
-public String getWorkTypeId()
-        {
-        return workTypeId;
-        }
-public void setWorkTypeName(String workTypeName)
-        {
-        this.workTypeName = workTypeName;
-        }
-
-public String getWorkTypeName()
-        {
-        return workTypeName;
-        }
-public void setWorkCreateDate(Date workCreateDate)
-        {
-        this.workCreateDate = workCreateDate;
-        }
-
-public Date getWorkCreateDate()
-        {
-        return workCreateDate;
-        }
-public void setEnterTrain(String enterTrain)
+public void setEnterTrain(Integer enterTrain)
         {
         this.enterTrain = enterTrain;
         }
 
-public String getEnterTrain()
+public Integer getEnterTrain()
         {
         return enterTrain;
+        }
+public void setTechniqueTrain(Integer techniqueTrain)
+        {
+        this.techniqueTrain = techniqueTrain;
+        }
+
+public Integer getTechniqueTrain()
+        {
+        return techniqueTrain;
+        }
+public void setEntranceCardId(String entranceCardId)
+        {
+        this.entranceCardId = entranceCardId;
+        }
+
+public String getEntranceCardId()
+        {
+        return entranceCardId;
         }
 public void setLastSafetyDate(Date lastSafetyDate)
         {
@@ -283,33 +226,6 @@ public void setSafetyScore(Integer safetyScore)
 public Integer getSafetyScore()
         {
         return safetyScore;
-        }
-public void setTechniqueTrain(String techniqueTrain)
-        {
-        this.techniqueTrain = techniqueTrain;
-        }
-
-public String getTechniqueTrain()
-        {
-        return techniqueTrain;
-        }
-public void setEntranceCardId(String entranceCardId)
-        {
-        this.entranceCardId = entranceCardId;
-        }
-
-public String getEntranceCardId()
-        {
-        return entranceCardId;
-        }
-public void setProjectGroupId(String projectGroupId)
-        {
-        this.projectGroupId = projectGroupId;
-        }
-
-public String getProjectGroupId()
-        {
-        return projectGroupId;
         }
 public void setOpStatus(String opStatus)
         {
@@ -370,27 +286,20 @@ public String toString(){
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
                 .append("tid",getTid())
                 .append("id",getId())
-                .append("userId",getUserId())
-                .append("username",getUsername())
-                .append("number",getNumber())
-                .append("mobile",getMobile())
-                .append("ownerId",getOwnerId())
-                .append("projectSectionId",getProjectSectionId())
-                .append("levelCode",getLevelCode())
-                .append("ownerType",getOwnerType())
+                .append("workerName",getWorkerName())
+                .append("groupId",getGroupId())
+                .append("workTypeId",getWorkTypeId())
+                .append("workTypeName",getWorkTypeName())
+                .append("realNameId",getRealNameId())
                 .append("realStatus",getRealStatus())
                 .append("realDate",getRealDate())
                 .append("workStatus",getWorkStatus())
-                .append("workTypeId",getWorkTypeId())
-                .append("workTypeName",getWorkTypeName())
-                .append("workCreateDate",getWorkCreateDate())
                 .append("enterTrain",getEnterTrain())
+                .append("techniqueTrain",getTechniqueTrain())
+                .append("entranceCardId",getEntranceCardId())
                 .append("lastSafetyDate",getLastSafetyDate())
                 .append("safetyCount",getSafetyCount())
                 .append("safetyScore",getSafetyScore())
-                .append("techniqueTrain",getTechniqueTrain())
-                .append("entranceCardId",getEntranceCardId())
-                .append("projectGroupId",getProjectGroupId())
                 .append("opStatus",getOpStatus())
                 .append("opType",getOpType())
                 .append("createdTime",getCreatedTime())

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.biScopeTrainImage.mapper.BiScopeTrainImageMapper">
+    
+    <resultMap type="BiScopeTrainImage" id="BiScopeTrainImageResult">
+        <result property="tid"    column="tid"    />
+        <result property="id"    column="id"    />
+        <result property="picId"    column="pic_id"    />
+        <result property="createDate"    column="create_date"    />
+        <result property="trainId"    column="train_id"    />
+        <result property="opStatus"    column="op_status"    />
+        <result property="opType"    column="op_type"    />
+        <result property="createdTime"    column="created_time"    />
+        <result property="createdBy"    column="created_by"    />
+        <result property="updatedTime"    column="updated_time"    />
+        <result property="updatedBy"    column="updated_by"    />
+    </resultMap>
+	
+	<sql id="selectBiScopeTrainImageVo">
+        select tid, id, pic_id, create_date, train_id, op_status, op_type, created_time, created_by, updated_time, updated_by from bi_scope_train_image
+    </sql>
+	
+    <select id="selectBiScopeTrainImageList" parameterType="BiScopeTrainImage" resultMap="BiScopeTrainImageResult">
+        <include refid="selectBiScopeTrainImageVo"/>
+        <where>  
+            <if test="tid != null "> and tid = #{tid}</if>
+             <if test="id != null  and id != '' "> and id = #{id}</if>
+             <if test="picId != null  and picId != '' "> and pic_id = #{picId}</if>
+             <if test="createDate != null "> and create_date = #{createDate}</if>
+             <if test="trainId != null  and trainId != '' "> and train_id = #{trainId}</if>
+             <if test="opStatus != null  and opStatus != '' "> and op_status = #{opStatus}</if>
+             <if test="opType != null  and opType != '' "> and op_type = #{opType}</if>
+             <if test="createdTime != null "> and created_time = #{createdTime}</if>
+             <if test="createdBy != null  and createdBy != '' "> and created_by = #{createdBy}</if>
+             <if test="updatedTime != null "> and updated_time = #{updatedTime}</if>
+             <if test="updatedBy != null  and updatedBy != '' "> and updated_by = #{updatedBy}</if>
+         </where>
+    </select>
+    
+    <select id="selectBiScopeTrainImageById" parameterType="Integer" resultMap="BiScopeTrainImageResult">
+        <include refid="selectBiScopeTrainImageVo"/>
+        where tid = #{tid}
+    </select>
+        
+    <insert id="insertBiScopeTrainImage" parameterType="BiScopeTrainImage" useGeneratedKeys="true" keyProperty="tid">
+        insert into bi_scope_train_image
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">id,</if>
+			<if test="picId != null  and picId != ''  ">pic_id,</if>
+			<if test="createDate != null  ">create_date,</if>
+			<if test="trainId != null  and trainId != ''  ">train_id,</if>
+			<if test="opStatus != null  and opStatus != ''  ">op_status,</if>
+			<if test="opType != null  and opType != ''  ">op_type,</if>
+			<if test="createdTime != null  ">created_time,</if>
+			<if test="createdBy != null  and createdBy != ''  ">created_by,</if>
+			<if test="updatedTime != null  ">updated_time,</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">updated_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">#{id},</if>
+			<if test="picId != null  and picId != ''  ">#{picId},</if>
+			<if test="createDate != null  ">#{createDate},</if>
+			<if test="trainId != null  and trainId != ''  ">#{trainId},</if>
+			<if test="opStatus != null  and opStatus != ''  ">#{opStatus},</if>
+			<if test="opType != null  and opType != ''  ">#{opType},</if>
+			<if test="createdTime != null  ">#{createdTime},</if>
+			<if test="createdBy != null  and createdBy != ''  ">#{createdBy},</if>
+			<if test="updatedTime != null  ">#{updatedTime},</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">#{updatedBy},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateBiScopeTrainImage" parameterType="BiScopeTrainImage">
+        update bi_scope_train_image
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="id != null  and id != ''  ">id = #{id},</if>
+            <if test="picId != null  and picId != ''  ">pic_id = #{picId},</if>
+            <if test="createDate != null  ">create_date = #{createDate},</if>
+            <if test="trainId != null  and trainId != ''  ">train_id = #{trainId},</if>
+            <if test="opStatus != null  and opStatus != ''  ">op_status = #{opStatus},</if>
+            <if test="opType != null  and opType != ''  ">op_type = #{opType},</if>
+            <if test="createdTime != null  ">created_time = #{createdTime},</if>
+            <if test="createdBy != null  and createdBy != ''  ">created_by = #{createdBy},</if>
+            <if test="updatedTime != null  ">updated_time = #{updatedTime},</if>
+            <if test="updatedBy != null  and updatedBy != ''  ">updated_by = #{updatedBy},</if>
+        </trim>
+        where tid = #{tid}
+    </update>
+
+	<delete id="deleteBiScopeTrainImageById" parameterType="Integer">
+        delete from bi_scope_train_image where tid = #{tid}
+    </delete>
+	
+    <delete id="deleteBiScopeTrainImageByIds" parameterType="String">
+        delete from bi_scope_train_image where tid in 
+        <foreach item="tid" collection="array" open="(" separator="," close=")">
+            #{tid}
+        </foreach>
+    </delete>
+
+
+    <update id="updateBiScopeTrainImageReadyToDeal" parameterType="Map">
+        update bi_scope_train_image set op_status=3,updated_by=#{host},updated_time=now() where op_status=1 limit 100
+    </update>
+
+    <update id="updateBiScopeTrainImageToFailed" parameterType="Map">
+        update bi_scope_train_image set op_status=9,updated_by=#{host},updated_time=now() where tid=#{tid}
+    </update>
+
+    <update id="updateBiScopeTrainImageToComplate" parameterType="Map">
+        update bi_scope_train_image set op_status=2,updated_by=#{host},updated_time=now() where tid=#{tid}
+    </update>
+
+    <select id="selectBiScopeTrainImageReadToDeal" parameterType="Map" resultType="com.ruoyi.project.system.biScopeTrainImage.vo.BiScopeTrainImageVO">
+        select tid, id,  pic_id picId, create_date createDate, train_id trainId,
+        op_status opStatus, op_type opType, created_time createdTime, created_by createdBy, updated_time updatedTime, updated_by updatedBy
+        from bi_scope_train_image where op_status=3 and updated_by=#{host} limit 100
+    </select>
+    
+</mapper>

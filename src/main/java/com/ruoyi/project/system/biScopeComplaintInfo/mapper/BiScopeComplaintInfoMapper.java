@@ -7,55 +7,55 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 维权 数据层
+ * 工人维权 数据层
  *
  * @author ruoyi
- * @date 2019-04-03
+ * @date 2019-04-11
  */
 public interface BiScopeComplaintInfoMapper
 {
 	/**
-     * 查询维权信息
+     * 查询工人维权信息
      *
-     * @param tid 维权ID
-     * @return 维权信息
+     * @param tid 工人维权ID
+     * @return 工人维权信息
      */
 	public BiScopeComplaintInfo selectBiScopeComplaintInfoById(Integer tid);
 
 	/**
-     * 查询维权列表
+     * 查询工人维权列表
      *
-     * @param biScopeComplaintInfo 维权信息
-     * @return 维权集合
+     * @param biScopeComplaintInfo 工人维权信息
+     * @return 工人维权集合
      */
 	public List<BiScopeComplaintInfo> selectBiScopeComplaintInfoList(BiScopeComplaintInfo biScopeComplaintInfo);
 
 	/**
-     * 新增维权
+     * 新增工人维权
      *
-     * @param biScopeComplaintInfo 维权信息
+     * @param biScopeComplaintInfo 工人维权信息
      * @return 结果
      */
 	public int insertBiScopeComplaintInfo(BiScopeComplaintInfo biScopeComplaintInfo);
 
 	/**
-     * 修改维权
+     * 修改工人维权
      *
-     * @param biScopeComplaintInfo 维权信息
+     * @param biScopeComplaintInfo 工人维权信息
      * @return 结果
      */
 	public int updateBiScopeComplaintInfo(BiScopeComplaintInfo biScopeComplaintInfo);
 
 	/**
-     * 删除维权
+     * 删除工人维权
      *
-     * @param tid 维权ID
+     * @param tid 工人维权ID
      * @return 结果
      */
 	public int deleteBiScopeComplaintInfoById(Integer tid);
 
 	/**
-     * 批量删除维权
+     * 批量删除工人维权
      *
      * @param tids 需要删除的数据ID
      * @return 结果

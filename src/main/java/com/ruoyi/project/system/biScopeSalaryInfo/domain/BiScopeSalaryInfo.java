@@ -7,10 +7,10 @@ import com.ruoyi.framework.aspectj.lang.annotation.Excel;
                             import java.util.Date;
         
 /**
- * 工资表 bi_scope_salary_info
+ * 工人工资表 bi_scope_salary_info
  *
  * @author ruoyi
- * @date 2019-04-04
+ * @date 2019-04-12
  */
 public class BiScopeSalaryInfo extends BaseEntity
         {
@@ -40,24 +40,12 @@ private Integer fired;
 /** 考勤人数 */
 @Excel(name = "考勤人数", prompt = "考勤人数")
 private Integer attendCount;
-/** 层级编码 */
-@Excel(name = "层级编码", prompt = "层级编码")
-private String levelCode;
 /** 月份 */
 @Excel(name = "月份", prompt = "月份")
 private String month;
 /** 组织人员ID */
 @Excel(name = "组织人员ID", prompt = "组织人员ID")
-private String personId;
-/** 用户ID */
-@Excel(name = "用户ID", prompt = "用户ID")
-private String userId;
-/** 班组ID */
-@Excel(name = "班组ID", prompt = "班组ID")
-private String projectGroupId;
-/** 标段ID */
-@Excel(name = "标段ID", prompt = "标段ID")
-private String projectUnitId;
+private String workerId;
 /** 是否满意 */
 @Excel(name = "是否满意", prompt = "是否满意")
 private Integer satisfaction;
@@ -158,15 +146,6 @@ public Integer getAttendCount()
         {
         return attendCount;
         }
-public void setLevelCode(String levelCode)
-        {
-        this.levelCode = levelCode;
-        }
-
-public String getLevelCode()
-        {
-        return levelCode;
-        }
 public void setMonth(String month)
         {
         this.month = month;
@@ -176,41 +155,14 @@ public String getMonth()
         {
         return month;
         }
-public void setPersonId(String personId)
+public void setWorkerId(String workerId)
         {
-        this.personId = personId;
+        this.workerId = workerId;
         }
 
-public String getPersonId()
+public String getWorkerId()
         {
-        return personId;
-        }
-public void setUserId(String userId)
-        {
-        this.userId = userId;
-        }
-
-public String getUserId()
-        {
-        return userId;
-        }
-public void setProjectGroupId(String projectGroupId)
-        {
-        this.projectGroupId = projectGroupId;
-        }
-
-public String getProjectGroupId()
-        {
-        return projectGroupId;
-        }
-public void setProjectUnitId(String projectUnitId)
-        {
-        this.projectUnitId = projectUnitId;
-        }
-
-public String getProjectUnitId()
-        {
-        return projectUnitId;
+        return workerId;
         }
 public void setSatisfaction(Integer satisfaction)
         {
@@ -304,12 +256,8 @@ public String toString(){
                 .append("fireDate",getFireDate())
                 .append("fired",getFired())
                 .append("attendCount",getAttendCount())
-                .append("levelCode",getLevelCode())
                 .append("month",getMonth())
-                .append("personId",getPersonId())
-                .append("userId",getUserId())
-                .append("projectGroupId",getProjectGroupId())
-                .append("projectUnitId",getProjectUnitId())
+                .append("workerId",getWorkerId())
                 .append("satisfaction",getSatisfaction())
                 .append("feedbackDate",getFeedbackDate())
                 .append("status",getStatus())

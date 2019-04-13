@@ -15,47 +15,11 @@
                                     </li>
 
                                                                                                                                                                                     <li>
-                                        用户ID：<input type="text" name="userId"/>
+                                        工人姓名：<input type="text" name="workerName"/>
                                     </li>
 
                                                                                                                                                                                     <li>
-                                        用户姓名：<input type="text" name="username"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        身份证号：<input type="text" name="number"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        手机号：<input type="text" name="mobile"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        项目ID：<input type="text" name="ownerId"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        标段ID：<input type="text" name="projectSectionId"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        层级编码：<input type="text" name="levelCode"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        属主类型：<input type="text" name="ownerType"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        实名类型：<input type="text" name="realStatus"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        实名日期：<input type="text" name="realDate"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        工作状态：<input type="text" name="workStatus"/>
+                                        班组ID：<input type="text" name="groupId"/>
                                     </li>
 
                                                                                                                                                                                     <li>
@@ -67,11 +31,31 @@
                                     </li>
 
                                                                                                                                                                                     <li>
-                                        工人创建日期：<input type="text" name="workCreateDate"/>
+                                        实名ID：<input type="text" name="realNameId"/>
                                     </li>
 
                                                                                                                                                                                     <li>
-                                        是否入场培训：<input type="text" name="enterTrain"/>
+                                        实名状态：<input type="text" name="realStatus"/>
+                                    </li>
+
+                                                                                                                                                                                    <li>
+                                        实名日期：<input type="text" name="realDate"/>
+                                    </li>
+
+                                                                                                                                                                                    <li>
+                                        工作状态：<input type="text" name="workStatus"/>
+                                    </li>
+
+                                                                                                                                                                                    <li>
+                                        入场三级：<input type="text" name="enterTrain"/>
+                                    </li>
+
+                                                                                                                                                                                    <li>
+                                        技术交底：<input type="text" name="techniqueTrain"/>
+                                    </li>
+
+                                                                                                                                                                                    <li>
+                                        工卡编号：<input type="text" name="entranceCardId"/>
                                     </li>
 
                                                                                                                                                                                     <li>
@@ -84,18 +68,6 @@
 
                                                                                                                                                                                     <li>
                                         安全扣分总分：<input type="text" name="safetyScore"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        是否技术培训：<input type="text" name="techniqueTrain"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        IC卡号：<input type="text" name="entranceCardId"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        班组ID：<input type="text" name="projectGroupId"/>
                                     </li>
 
                                                                                                                                                                                     <li>
@@ -162,7 +134,7 @@
     var editFlag = [[${@permission.hasPermi('system:biScopeWorkerData:edit')}]];
     var removeFlag = [[${@permission.hasPermi('system:biScopeWorkerData:remove')}]];
     var prefix = ctx + "system/biScopeWorkerData";
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                
     $(function () {
         var options = {
             url: prefix + "/list",
@@ -188,58 +160,13 @@
                                 sortable: true
                             },
                                                                                                                                     {
-                                field: 'userId',
-                                title: '用户ID',
+                                field: 'workerName',
+                                title: '工人姓名',
                                 sortable: true
                             },
                                                                                                                                     {
-                                field: 'username',
-                                title: '用户姓名',
-                                sortable: true
-                            },
-                                                                                                                                    {
-                                field: 'number',
-                                title: '身份证号',
-                                sortable: true
-                            },
-                                                                                                                                    {
-                                field: 'mobile',
-                                title: '手机号',
-                                sortable: true
-                            },
-                                                                                                                                    {
-                                field: 'ownerId',
-                                title: '项目ID',
-                                sortable: true
-                            },
-                                                                                                                                    {
-                                field: 'projectSectionId',
-                                title: '标段ID',
-                                sortable: true
-                            },
-                                                                                                                                    {
-                                field: 'levelCode',
-                                title: '层级编码',
-                                sortable: true
-                            },
-                                                                                                                                    {
-                                field: 'ownerType',
-                                title: '属主类型',
-                                sortable: true
-                            },
-                                                                                                                                    {
-                                field: 'realStatus',
-                                title: '实名类型',
-                                sortable: true
-                            },
-                                                                                                                                    {
-                                field: 'realDate',
-                                title: '实名日期',
-                                sortable: true
-                            },
-                                                                                                                                    {
-                                field: 'workStatus',
-                                title: '工作状态',
+                                field: 'groupId',
+                                title: '班组ID',
                                 sortable: true
                             },
                                                                                                                                     {
@@ -253,13 +180,38 @@
                                 sortable: true
                             },
                                                                                                                                     {
-                                field: 'workCreateDate',
-                                title: '工人创建日期',
+                                field: 'realNameId',
+                                title: '实名ID',
+                                sortable: true
+                            },
+                                                                                                                                    {
+                                field: 'realStatus',
+                                title: '实名状态',
+                                sortable: true
+                            },
+                                                                                                                                    {
+                                field: 'realDate',
+                                title: '实名日期',
+                                sortable: true
+                            },
+                                                                                                                                    {
+                                field: 'workStatus',
+                                title: '工作状态',
                                 sortable: true
                             },
                                                                                                                                     {
                                 field: 'enterTrain',
-                                title: '是否入场培训',
+                                title: '入场三级',
+                                sortable: true
+                            },
+                                                                                                                                    {
+                                field: 'techniqueTrain',
+                                title: '技术交底',
+                                sortable: true
+                            },
+                                                                                                                                    {
+                                field: 'entranceCardId',
+                                title: '工卡编号',
                                 sortable: true
                             },
                                                                                                                                     {
@@ -275,21 +227,6 @@
                                                                                                                                     {
                                 field: 'safetyScore',
                                 title: '安全扣分总分',
-                                sortable: true
-                            },
-                                                                                                                                    {
-                                field: 'techniqueTrain',
-                                title: '是否技术培训',
-                                sortable: true
-                            },
-                                                                                                                                    {
-                                field: 'entranceCardId',
-                                title: 'IC卡号',
-                                sortable: true
-                            },
-                                                                                                                                    {
-                                field: 'projectGroupId',
-                                title: '班组ID',
                                 sortable: true
                             },
                                                                                                                                     {

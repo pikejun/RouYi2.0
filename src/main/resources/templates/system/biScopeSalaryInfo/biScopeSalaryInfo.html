@@ -39,27 +39,11 @@
                                     </li>
 
                                                                                                                                                                                     <li>
-                                        层级编码：<input type="text" name="levelCode"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
                                         月份：<input type="text" name="month"/>
                                     </li>
 
                                                                                                                                                                                     <li>
-                                        组织人员ID：<input type="text" name="personId"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        用户ID：<input type="text" name="userId"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        班组ID：<input type="text" name="projectGroupId"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        标段ID：<input type="text" name="projectUnitId"/>
+                                        组织人员ID：<input type="text" name="workerId"/>
                                     </li>
 
                                                                                                                                                                                     <li>
@@ -138,7 +122,7 @@
     var editFlag = [[${@permission.hasPermi('system:biScopeSalaryInfo:edit')}]];
     var removeFlag = [[${@permission.hasPermi('system:biScopeSalaryInfo:remove')}]];
     var prefix = ctx + "system/biScopeSalaryInfo";
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                                                                                    
     $(function () {
         var options = {
             url: prefix + "/list",
@@ -148,7 +132,7 @@
             exportUrl: prefix + "/export",
             importUrl: prefix + "/importData",
             importTemplateUrl: prefix + "/importTemplate",
-            modalName: "工资",
+            modalName: "工人工资",
             showExport: true,
             columns: [{
                 checkbox: true
@@ -194,33 +178,13 @@
                                 sortable: true
                             },
                                                                                                                                     {
-                                field: 'levelCode',
-                                title: '层级编码',
-                                sortable: true
-                            },
-                                                                                                                                    {
                                 field: 'month',
                                 title: '月份',
                                 sortable: true
                             },
                                                                                                                                     {
-                                field: 'personId',
+                                field: 'workerId',
                                 title: '组织人员ID',
-                                sortable: true
-                            },
-                                                                                                                                    {
-                                field: 'userId',
-                                title: '用户ID',
-                                sortable: true
-                            },
-                                                                                                                                    {
-                                field: 'projectGroupId',
-                                title: '班组ID',
-                                sortable: true
-                            },
-                                                                                                                                    {
-                                field: 'projectUnitId',
-                                title: '标段ID',
                                 sortable: true
                             },
                                                                                                                                     {

@@ -1,5 +1,6 @@
 package com.ruoyi.project.system.biScopeComplaintInfo.vo;
 
+import com.ruoyi.project.bi.vo.BaseNodeVO;
 import lombok.Data;
 
 import java.util.Date;
@@ -11,22 +12,12 @@ import java.util.Date;
  */
 
 @Data
-public class BiScopeComplaintInfoVO {
+public class BiScopeComplaintInfoVO   extends BaseNodeVO {
 
-   private int tid;
     private String id;
     private Date complaintCreatedDate;
     private int done;
-    private String levelCode;
-    private String personId;
-    private String userId;
-    private String projectGroupId;
-    private String projectUnitId;
+    private String workerId;
     private String typeId;
-    private String opStatus;
-    private String opType;
-    private Date createdTime;
-    private String createdBy;
-    private Date updatedTime;
-    private String updatedBy;
+    private String typeName;
 }
