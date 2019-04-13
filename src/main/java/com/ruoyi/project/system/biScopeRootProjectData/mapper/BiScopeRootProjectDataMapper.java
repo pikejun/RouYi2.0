@@ -1,6 +1,5 @@
 package com.ruoyi.project.system.biScopeRootProjectData.mapper;
 
-import com.ruoyi.project.system.biScopePersonData.vo.BiScopePersonDataVO;
 import com.ruoyi.project.system.biScopeRootProjectData.domain.BiScopeRootProjectData;
 import com.ruoyi.project.system.biScopeRootProjectData.vo.BiScopeRootProjectDataVO;
 

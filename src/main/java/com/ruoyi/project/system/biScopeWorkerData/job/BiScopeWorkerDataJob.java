@@ -1,6 +1,7 @@
 package com.ruoyi.project.system.biScopeWorkerData.job;
 
 import com.ruoyi.project.bi.job.BaseDataJob;
+import com.ruoyi.project.system.biScopeTrainInfoLog.vo.BiScopeTrainInfoLogVO;
 import com.ruoyi.project.system.biScopeWorkerData.service.IBiScopeWorkerDataService;
 import com.ruoyi.project.system.biScopeWorkerData.vo.BiScopeWorkerDataVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,35 @@ public class BiScopeWorkerDataJob extends  BaseDataJob {
 
     @Autowired
     private IBiScopeWorkerDataService biScopeWorkerDataService;
+
+    /**
+     * MATCH (u:User {username:'admin'}), (r:Role {name:'ROLE_WEB_USER'})
+     * delete (u)-[:HAS_ROLE]->(r)
+     * @param vo
+     * @return
+     */
+    public String deleteRelationshipToWorkerGroup(BiScopeWorkerDataVO vo)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("MATCH (p:WorkerGroup {id:\"").append(vo.getId()).append("\"}),(w:Worker{groupId:\"").append(vo.getGroupId()).append("\"}) ");
+        sb.append("delete (w)-[:workerGroup]->(p)");
+        return sb.toString();
+    }
+
+    /**
+     * MATCH (u:User {username:'admin'}), (r:Role {name:'ROLE_WEB_USER'})
+     CREATE (u)-[:HAS_ROLE]->(r)
+     * @param vo
+     * @return
+     */
+    public String addRelationshipToWorkerGroup(BiScopeWorkerDataVO vo)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("MATCH (p:WorkerGroup {id:\"").append(vo.getId()).append("\"}),(w:Worker{groupId:\"").append(vo.getGroupId()).append("\"}) ");
+        sb.append("MERGE (w)-[:workerGroup]->(p)");
+
+        return sb.toString();
+    }
 
     @Override
     public void doJob()
@@ -48,14 +78,17 @@ public class BiScopeWorkerDataJob extends  BaseDataJob {
                     if("A".equals(vo.getOpType()))
                     {
                         neo4jService.executCypher(buildBiScopeWorkerDataVOToModify(vo));
+                        neo4jService.executCypher(addRelationshipToWorkerGroup(vo));
                     }
                     else if("D".equals(vo.getOpType()))
                     {
                         neo4jService.executCypher(buildBiScopeWorkerDataVOToDelete(vo));
+                        neo4jService.executCypher(deleteRelationshipToWorkerGroup(vo));
                     }
                     else if("M".equals(vo.getOpType()))
                     {
                         neo4jService.executCypher(buildBiScopeWorkerDataVOToModify(vo));
+                        neo4jService.executCypher(addRelationshipToWorkerGroup(vo));
                     }
 
                     biScopeWorkerDataService.updateBiScopeWorkerDataToComplate(param);

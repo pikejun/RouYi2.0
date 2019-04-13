@@ -13,20 +13,20 @@ import java.util.Date;
 @Data
 public class BiScopeSectionDataVO  extends BaseNodeVO
 {
-   private String id;
+   private String id;//标段ID
    private String abbrName;
    private String aliasName;
    private Date createDate;
    private String enterpriseId;
-   private String name;
-   private String rootProjectId;
+   private String name;//标段名单
+   private String rootProjectId;//总工程ID
    private String remark;
    private Date updateDate;
    private String workStatus;
    private String address;
-   private String areaId;
-   private String levelCode;
-   private String projectId;
-   private String parentId;
+   private String areaId;//
+   private String levelCode;//层级编码
+   private String projectId;//项目ID
+   private String parentId;//上级标段ID
 
 }

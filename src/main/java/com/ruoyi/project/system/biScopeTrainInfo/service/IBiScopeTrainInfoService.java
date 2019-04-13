@@ -1,6 +1,5 @@
 package com.ruoyi.project.system.biScopeTrainInfo.service;
 
-import com.ruoyi.project.system.biScopePersonData.vo.BiScopePersonDataVO;
 import com.ruoyi.project.system.biScopeTrainInfo.domain.BiScopeTrainInfo;
 import com.ruoyi.project.system.biScopeTrainInfo.vo.BiScopeTrainInfoVO;
 

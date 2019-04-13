@@ -13,12 +13,12 @@ import java.util.Date;
 @Data
 public class BiScopeProjectDataVO  extends BaseNodeVO
 {
-   private String id;
+   private String id; //项目ID
    private String  abbrName;
    private String  aliasName;
    private Date createDate;
    private String  enterpriseId;
-   private String name;
+   private String name; //项目名称
    private String  rootProjectId;
    private String  remark;
    private Date updateDate;
