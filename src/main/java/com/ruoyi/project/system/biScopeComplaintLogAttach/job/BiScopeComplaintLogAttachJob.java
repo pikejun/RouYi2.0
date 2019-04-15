@@ -85,8 +85,8 @@ public class BiScopeComplaintLogAttachJob extends  BaseDataJob {
     public String deleteRelationshipToComplaintLog(BiScopeComplaintLogAttachVO vo)
     {
         StringBuilder sb = new StringBuilder();
-        sb.append("MATCH (p:ComplaintLog {id:\"").append(vo.getComplaintLogId()).append("\"}),(w:ComplaintLogAttach{id:\"").append(vo.getId()).append("\"}) ");
-        sb.append("delete (w)-[:complaintLogAttach]->(p)");
+        sb.append("MATCH (p:ComplaintLog {id:\"").append(vo.getComplaintLogId()).append("\"})-[r:complaintLogAttach]-(w:ComplaintLogAttach{id:\"").append(vo.getId()).append("\"}) ");
+        sb.append("delete r");
         return sb.toString();
     }
 

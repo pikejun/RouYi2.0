@@ -13,14 +13,14 @@ import java.util.Date;
 @Data
 public class BiScopeGroupDataVO extends BaseNodeVO
 {
-    private String  id;
-    private Date    createDate;
-    private String  name;
-    private String  levelCode;
-    private String  parentId;
-    private String  projectId;
-    private String  rootProjectId;
-    private String  remark;
-    private String  updateDate;
-    private String  workStatus;
+    private String  id;//班组ID
+    private Date    createDate;//创建日期
+    private String  name;//班组名称
+    private String  levelCode;//层级编码
+    private String  parentId;//上级标段ID
+    private String  projectId;//项目ID
+    private String  rootProjectId;//总工程ID
+    private String  remark;//备注
+    private Date  updateDate;//离场日期
+    private String  workStatus;//班组状态
 }

@@ -4,6 +4,7 @@ import com.ruoyi.project.bi.job.BaseDataJob;
 import com.ruoyi.project.bi.service.Neo4jService;
 import com.ruoyi.project.system.biScopeEnterpriseDepartment.service.IBiScopeEnterpriseDepartmentService;
 import com.ruoyi.project.system.biScopeEnterpriseDepartment.vo.BiScopeEnterpriseDepartmentVO;
+import com.ruoyi.project.system.biScopeProjectData.vo.BiScopeProjectDataVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -25,6 +26,58 @@ public class BiScopeEnterpriseDepartmentJob extends  BaseDataJob {
 
     @Autowired
     private IBiScopeEnterpriseDepartmentService biScopeEnterpriseDepartmentService;
+
+    /**
+     * @param vo
+     * @return
+     */
+    public String deleteRelationshipToEnterprise(BiScopeEnterpriseDepartmentVO vo)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("MATCH (p:EnterpriseDepartment {id:\"").append(vo.getId()).append("\"})-[r:combination]-(w:Enterprise{id:\"").append(vo.getEnterpriseId()).append("\"}) ");
+        sb.append("delete r");
+        return sb.toString();
+    }
+
+    /**
+     * @param vo
+     * @return
+     */
+    public String deleteRelationshipToParentDept(BiScopeEnterpriseDepartmentVO vo)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("MATCH (p:EnterpriseDepartment {id:\"").append(vo.getId()).append("\"})-[r:combination]-(w:EnterpriseDepartment{id:\"").append(vo.getParentId()).append("\"}) ");
+        sb.append("delete r");
+        return sb.toString();
+    }
+
+    /**
+     * @param vo
+     * @return
+     */
+    public String addRelationshipToEnterprise(BiScopeEnterpriseDepartmentVO vo)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("MATCH (p:EnterpriseDepartment {id:\"").append(vo.getId()).append("\"}),(w:Enterprise{id:\"").append(vo.getEnterpriseId()).append("\"}) ");
+
+        sb.append("MERGE (p)-[:combination]->(w)");
+
+        return sb.toString();
+    }
+
+    /**
+     * @param vo
+     * @return
+     */
+    public String addRelationshipToParentDept(BiScopeEnterpriseDepartmentVO vo)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("MATCH (p:EnterpriseDepartment {id:\"").append(vo.getId()).append("\"}),(w:EnterpriseDepartment{id:\"").append(vo.getParentId()).append("\"}) ");
+
+        sb.append("MERGE (p)-[:combination]->(w)");
+
+        return sb.toString();
+    }
 
     @Override
     public void doJob()
@@ -50,15 +103,22 @@ public class BiScopeEnterpriseDepartmentJob extends  BaseDataJob {
 
                     if("A".equals(vo.getOpType()))
                     {
-                        neo4jService.executCypher(buildBiScopeEnterpriseDepartmentVOToCreate(vo));
+                        neo4jService.executCypher(buildBiScopeEnterpriseDepartmentVOToModify(vo));
+                        neo4jService.executCypher(addRelationshipToEnterprise(vo));
+                        neo4jService.executCypher(addRelationshipToParentDept(vo));
                     }
                     else if("D".equals(vo.getOpType()))
                     {
+
+                        neo4jService.executCypher(deleteRelationshipToParentDept(vo));
+                        neo4jService.executCypher(deleteRelationshipToEnterprise(vo));
                         neo4jService.executCypher(buildBiScopeEnterpriseDepartmentVOToDelete(vo));
                     }
                     else if("M".equals(vo.getOpType()))
                     {
                         neo4jService.executCypher(buildBiScopeEnterpriseDepartmentVOToModify(vo));
+                        neo4jService.executCypher(addRelationshipToEnterprise(vo));
+                        neo4jService.executCypher(addRelationshipToParentDept(vo));
                     }
 
                     biScopeEnterpriseDepartmentService.updateBiScopeEnterpriseDepartmentToComplate(param);
@@ -118,37 +178,7 @@ public class BiScopeEnterpriseDepartmentJob extends  BaseDataJob {
         return sb.toString();
     }
 
-    /*
-    CREATE (n:Label {name:"L1", type:"T1"})
-     tid, id, abbr_name abbrName, create_date createDate, enterprise_id enterpriseId, level_code levelCode, name, parent_id parentId, remark, root_id rootId,
-         op_status opStatus, op_type opType, created_time createdTime, created_by createdBy, updated_time updatedTime, updated_by updatedBy
-        */
-    public String buildBiScopeEnterpriseDepartmentVOToCreate(BiScopeEnterpriseDepartmentVO vo)
-    {
-        StringBuilder sb=new StringBuilder();
 
-        sb.append("CREATE (n:EnterpriseDepartment{");
-        sb.append("id:\"").append(vo.getId()).append("\"");
-        sb.append(",abbrName:\"").append(vo.getAbbrName()).append("\"");
-        if(vo.getCreateDate()!=null)
-        {
-            sb.append(",createDate:\"").append(sdf.format(vo.getCreateDate())).append("\"");
-        }
-        sb.append(",enterpriseId:\"").append(vo.getEnterpriseId()).append("\"");
-
-
-        sb.append(",levelCode:\"").append(vo.getLevelCode()).append("\"");
-        sb.append(",name:\"").append(vo.getName()).append("\"");
-
-        sb.append(",parentId:\"").append(vo.getParentId()).append("\"");
-
-        sb.append(",remark:\"").append(vo.getRemark()).append("\"");
-        sb.append(",rootId:\"").append(vo.getRootId()).append("\"");
-
-        sb.append("})");
-
-        return sb.toString();
-    }
 
     public static SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 }

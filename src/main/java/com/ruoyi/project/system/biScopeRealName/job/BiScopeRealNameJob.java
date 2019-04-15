@@ -82,8 +82,8 @@ public class BiScopeRealNameJob extends  BaseDataJob {
     public String deleteRelationshipToWorker(BiScopeRealNameVO vo)
     {
         StringBuilder sb = new StringBuilder();
-        sb.append("MATCH (p:RealName {id:\"").append(vo.getId()).append("\"}),(w:Worker{realNameId:\"").append(vo.getId()).append("\"}) ");
-        sb.append("delete (w)-[:realName]->(p)");
+        sb.append("MATCH (p:RealName {id:\"").append(vo.getId()).append("\"})-[r:realName]->(w:Worker{realNameId:\"").append(vo.getId()).append("\"}) ");
+        sb.append("delete r");
         return sb.toString();
     }
 

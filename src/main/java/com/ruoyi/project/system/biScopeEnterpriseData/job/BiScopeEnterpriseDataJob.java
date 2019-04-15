@@ -51,7 +51,7 @@ public class BiScopeEnterpriseDataJob extends  BaseDataJob {
 
                     if("A".equals(vo.getOpType()))
                     {
-                        neo4jService.executCypher(buildBiScopeEnterpriseDataVOToCreate(vo));
+                        neo4jService.executCypher(buildBiScopeEnterpriseDataVOToModify(vo));
                     }
                     else if("D".equals(vo.getOpType()))
                     {

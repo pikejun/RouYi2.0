@@ -50,7 +50,7 @@ public class BiScopeRootProjectDataJob extends  BaseDataJob {
 
                     if("A".equals(vo.getOpType()))
                     {
-                        neo4jService.executCypher(buildBiScopeRootProjectDataVOToCreate(vo));
+                        neo4jService.executCypher(buildBiScopeRootProjectDataVOToModify(vo));
                     }
                     else if("D".equals(vo.getOpType()))
                     {
@@ -110,27 +110,6 @@ public class BiScopeRootProjectDataJob extends  BaseDataJob {
         return sb.toString();
     }
 
-    /*
-    CREATE (n:Label {name:"L1", type:"T1"})
-   tid, id, abbr_name abbrName, create_date createDate, createUser, name, op_status opStatus, op_type opType, created_time createdTime, created_by createdBy, updated_time updatedTime, updated_by updatedBy  */
-    public String buildBiScopeRootProjectDataVOToCreate(BiScopeRootProjectDataVO vo)
-    {
-        StringBuilder sb=new StringBuilder();
-
-        sb.append("CREATE (n:RootProject{");
-        sb.append("id:\"").append(vo.getId()).append("\"");
-        sb.append(",abbrName:\"").append(vo.getAbbrName()).append("\"");
-        if(vo.getCreateDate()!=null)
-        {
-            sb.append(",createDate:\"").append(sdf.format(vo.getCreateDate())).append("\"");
-        }
-
-        sb.append(",createUser:\"").append(vo.getCreateUser()).append("\"");
-        sb.append(",name:\"").append(vo.getName()).append("\"");
-        sb.append("})");
-
-        return sb.toString();
-    }
 
     public static SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 }

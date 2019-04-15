@@ -2,6 +2,7 @@ package com.ruoyi.project.system.biScopeSectionData.job;
 
 import com.ruoyi.project.bi.job.BaseDataJob;
 import com.ruoyi.project.bi.service.Neo4jService;
+import com.ruoyi.project.system.biScopeProjectData.vo.BiScopeProjectDataVO;
 import com.ruoyi.project.system.biScopeSectionData.service.IBiScopeSectionDataService;
 import com.ruoyi.project.system.biScopeSectionData.vo.BiScopeSectionDataVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,83 @@ public class BiScopeSectionDataJob extends  BaseDataJob {
 
     @Autowired
     private IBiScopeSectionDataService biScopeSectionDataService;
+
+    /**
+     * @param vo
+     * @return
+     */
+    public String deleteRelationshipToParentSection(BiScopeSectionDataVO vo)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("MATCH (p:Section {id:\"").append(vo.getId()).append("\"})-[r:combination]-(w:Section{id:\"").append(vo.getParentId()).append("\"}) ");
+        sb.append("delete r");
+        return sb.toString();
+    }
+
+    /**
+     * @param vo
+     * @return
+     */
+    public String addRelationshipToParentSection(BiScopeSectionDataVO vo)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("MATCH (p:Section {id:\"").append(vo.getId()).append("\"}),(w:Section{id:\"").append(vo.getParentId()).append("\"}) ");
+        sb.append("MERGE (p)-[:combination]->(w)");
+
+        return sb.toString();
+    }
+
+
+
+    /**
+     * @param vo
+     * @return
+     */
+    public String deleteRelationshipToEnterprise(BiScopeSectionDataVO vo)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("MATCH (p:Section {id:\"").append(vo.getId()).append("\"})-[r:combination]-(w:Enterprise{id:\"").append(vo.getEnterpriseId()).append("\"}) ");
+        sb.append("delete r");
+        return sb.toString();
+    }
+
+    /**
+     * @param vo
+     * @return
+     */
+    public String addRelationshipToEnterprise(BiScopeSectionDataVO vo)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("MATCH (p:Section {id:\"").append(vo.getId()).append("\"}),(w:Enterprise{id:\"").append(vo.getEnterpriseId()).append("\"}) ");
+        sb.append("MERGE (p)-[:combination]->(w)");
+
+        return sb.toString();
+    }
+
+    /**
+     * @param vo
+     * @return
+     */
+    public String deleteRelationshipToProject(BiScopeSectionDataVO vo)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("MATCH (p:Section {id:\"").append(vo.getId()).append("\"})-[r:combination]-(w:Project{id:\"").append(vo.getProjectId()).append("\"}) ");
+        sb.append("delete r");
+        return sb.toString();
+    }
+
+    /**
+     * @param vo
+     * @return
+     */
+    public String addRelationshipToProject(BiScopeSectionDataVO vo)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("MATCH (p:Section {id:\"").append(vo.getId()).append("\"}),(w:Project{id:\"").append(vo.getProjectId()).append("\"}) ");
+        sb.append("MERGE (p)-[:combination]->(w)");
+
+        return sb.toString();
+    }
 
     @Override
     public void doJob()
@@ -50,15 +128,26 @@ public class BiScopeSectionDataJob extends  BaseDataJob {
 
                     if("A".equals(vo.getOpType()))
                     {
-                        neo4jService.executCypher(buildBiScopeSectionDataVOToCreate(vo));
+                        neo4jService.executCypher(buildBiScopeSectionDataVOToModify(vo));
+                        neo4jService.executCypher(addRelationshipToParentSection(vo));
+                        neo4jService.executCypher(addRelationshipToEnterprise(vo));
+                        neo4jService.executCypher(addRelationshipToProject(vo));
                     }
                     else if("D".equals(vo.getOpType()))
                     {
+                        neo4jService.executCypher(deleteRelationshipToParentSection(vo));
+                        neo4jService.executCypher(deleteRelationshipToEnterprise(vo));
+                        neo4jService.executCypher(deleteRelationshipToProject(vo));
+
                         neo4jService.executCypher(buildBiScopeSectionDataVOToDelete(vo));
                     }
                     else if("M".equals(vo.getOpType()))
                     {
                         neo4jService.executCypher(buildBiScopeSectionDataVOToModify(vo));
+
+                        neo4jService.executCypher(addRelationshipToParentSection(vo));
+                        neo4jService.executCypher(addRelationshipToEnterprise(vo));
+                        neo4jService.executCypher(addRelationshipToProject(vo));
                     }
 
                     biScopeSectionDataService.updateBiScopeSectionDataToComplate(param);
@@ -118,45 +207,6 @@ public class BiScopeSectionDataJob extends  BaseDataJob {
     {
         StringBuilder sb=new StringBuilder();
         sb.append("match (n:Section) where n.id='").append(vo.getId()).append("' delete n");
-
-        return sb.toString();
-    }
-
-    /*
-    CREATE (n:Label {name:"L1", type:"T1"})
-    tid, id,
-         abbr_name abbrName, alias_name aliasName, create_date createDate, enterprise_id enterpriseId, name, root_project_id rootProjectId, remark,
-         update_date updateDate,work_status workStatus, address,area_id areaId, level_code levelCode, project_id projectId, parent_id parentId,
-         op_status opStatus, op_type opType, created_time createdTime, created_by createdBy, updated_time updatedTime, updated_by updatedBy
-
-     */
-    public String buildBiScopeSectionDataVOToCreate(BiScopeSectionDataVO vo)
-    {
-        StringBuilder sb=new StringBuilder();
-
-        sb.append("CREATE (n:Section{");
-        sb.append("id:\"").append(vo.getId()).append("\"");
-        sb.append(",abbrName:\"").append(vo.getAbbrName()).append("\"");
-        sb.append(",aliasName:\"").append(vo.getAliasName()).append("\"");
-        if(vo.getCreateDate()!=null)
-        {
-            sb.append(",createDate:\"").append(sdf.format(vo.getCreateDate())).append("\"");
-        }
-        sb.append(",enterpriseId:\"").append(vo.getEnterpriseId()).append("\"");
-        sb.append(",name:\"").append(vo.getName()).append("\"");
-        sb.append(",rootProjectId:\"").append(vo.getRootProjectId()).append("\"");
-        sb.append(",remark:\"").append(vo.getRemark()).append("\"");
-        if(vo.getUpdateDate()!=null)
-        {
-            sb.append(",updateDate:\"").append(sdf.format(vo.getUpdateDate())).append("\"");
-        }
-        sb.append(",workStatus:\"").append(vo.getWorkStatus()).append("\"");
-        sb.append(",address:\"").append(vo.getAddress()).append("\"");
-        sb.append(",areaId:\"").append(vo.getAreaId()).append("\"");
-        sb.append(",levelCode:\"").append(vo.getLevelCode()).append("\"");
-        sb.append(",projectId:\"").append(vo.getProjectId()).append("\"");
-        sb.append(",parentId:\"").append(vo.getParentId()).append("\"");
-        sb.append("})");
 
         return sb.toString();
     }

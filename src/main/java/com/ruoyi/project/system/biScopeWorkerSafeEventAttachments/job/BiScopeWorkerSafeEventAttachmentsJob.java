@@ -81,8 +81,8 @@ public class BiScopeWorkerSafeEventAttachmentsJob extends  BaseDataJob {
     public String deleteRelationshipToWorkerSafeEvent(BiScopeWorkerSafeEventAttachmentsVO vo)
     {
         StringBuilder sb = new StringBuilder();
-        sb.append("MATCH (p:WorkerSafeEventAttachments {id:\"").append(vo.getId()).append("\"}),(w:WorkerSafeEvent{id:\"").append(vo.getWorkerEventId()).append("\"}) ");
-        sb.append("delete (p)-[:workerSafeEventAttachments]->(w)");
+        sb.append("MATCH (p:WorkerSafeEventAttachments {id:\"").append(vo.getId()).append("\"})-[r:workerSafeEventAttachments]->(w:WorkerSafeEvent{id:\"").append(vo.getWorkerEventId()).append("\"}) ");
+        sb.append("delete r");
         return sb.toString();
     }
 

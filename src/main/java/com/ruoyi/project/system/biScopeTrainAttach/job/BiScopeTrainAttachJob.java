@@ -82,8 +82,8 @@ public class BiScopeTrainAttachJob extends  BaseDataJob {
     public String deleteRelationshipToTrainInfo(BiScopeTrainAttachVO vo)
     {
         StringBuilder sb = new StringBuilder();
-        sb.append("MATCH (p:TrainAttach {id:\"").append(vo.getId()).append("\"}),(w:TrainInfo{id:\"").append(vo.getTrainId()).append("\"}) ");
-        sb.append("delete (p)-[:trainAttach]->(w)");
+        sb.append("MATCH (p:TrainAttach {id:\"").append(vo.getId()).append("\"})-[r:trainAttach]->(w:TrainInfo{id:\"").append(vo.getTrainId()).append("\"}) ");
+        sb.append("delete r");
         return sb.toString();
     }
 

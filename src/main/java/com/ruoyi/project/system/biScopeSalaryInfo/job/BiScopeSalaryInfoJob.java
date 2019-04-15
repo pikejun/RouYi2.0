@@ -80,8 +80,8 @@ public class BiScopeSalaryInfoJob extends  BaseDataJob {
     public String deleteRelationshipToWorker(BiScopeSalaryInfoVO vo)
     {
         StringBuilder sb = new StringBuilder();
-        sb.append("MATCH (p:Salary {id:\"").append(vo.getId()).append("\"}),(w:Worker{id:\"").append(vo.getWorkerId()).append("\"}) ");
-        sb.append("delete (p)-[:salary]->(w)");
+        sb.append("MATCH (p:Salary {id:\"").append(vo.getId()).append("\"})-[r:salary]->(w:Worker{id:\"").append(vo.getWorkerId()).append("\"}) ");
+        sb.append("delete r");
         return sb.toString();
     }
 

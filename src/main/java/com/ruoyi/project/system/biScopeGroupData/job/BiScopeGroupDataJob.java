@@ -24,6 +24,58 @@ public class BiScopeGroupDataJob extends  BaseDataJob {
     @Autowired
     private IBiScopeGroupDataService biScopeGroupDataService;
 
+
+    /**
+     * @param vo
+     * @return
+     */
+    public String deleteRelationshipToParentSection(BiScopeGroupDataVO vo)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("MATCH (p:WorkerGroup {id:\"").append(vo.getId()).append("\"})-[r:combination]-(w:Section{id:\"").append(vo.getParentId()).append("\"}) ");
+        sb.append("delete r");
+        return sb.toString();
+    }
+
+    /**
+     * @param vo
+     * @return
+     */
+    public String addRelationshipToParentSection(BiScopeGroupDataVO vo)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("MATCH (p:WorkerGroup {id:\"").append(vo.getId()).append("\"}),(w:Section{id:\"").append(vo.getParentId()).append("\"}) ");
+        sb.append("MERGE (p)-[:combination]->(w)");
+
+        return sb.toString();
+    }
+
+
+    /**
+     * @param vo
+     * @return
+     */
+    public String deleteRelationshipToProject(BiScopeGroupDataVO vo)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("MATCH (p:WorkerGroup {id:\"").append(vo.getId()).append("\"})-[r:combination]-(w:Project{id:\"").append(vo.getProjectId()).append("\"}) ");
+        sb.append("delete r");
+        return sb.toString();
+    }
+
+    /**
+     * @param vo
+     * @return
+     */
+    public String addRelationshipToProject(BiScopeGroupDataVO vo)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("MATCH (p:WorkerGroup {id:\"").append(vo.getId()).append("\"}),(w:Project{id:\"").append(vo.getProjectId()).append("\"}) ");
+        sb.append("MERGE (p)-[:combination]->(w)");
+
+        return sb.toString();
+    }
+
     @Override
     public void doJob()
     {
@@ -49,14 +101,21 @@ public class BiScopeGroupDataJob extends  BaseDataJob {
                     if("A".equals(vo.getOpType()))
                     {
                         neo4jService.executCypher(buildBiScopeGroupDataVOToModify(vo));
+                        neo4jService.executCypher(addRelationshipToParentSection(vo));
+                        neo4jService.executCypher(addRelationshipToProject(vo));
                     }
                     else if("D".equals(vo.getOpType()))
                     {
+                        neo4jService.executCypher(deleteRelationshipToProject(vo));
+                        neo4jService.executCypher(deleteRelationshipToParentSection(vo));
+
                         neo4jService.executCypher(buildBiScopeGroupDataVOToDelete(vo));
                     }
                     else if("M".equals(vo.getOpType()))
                     {
                         neo4jService.executCypher(buildBiScopeGroupDataVOToModify(vo));
+                        neo4jService.executCypher(addRelationshipToParentSection(vo));
+                        neo4jService.executCypher(addRelationshipToProject(vo));
                     }
 
                     biScopeGroupDataService.updateBiScopeGroupDataToComplate(param);

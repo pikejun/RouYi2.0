@@ -35,8 +35,8 @@ public class BiScopeTrainInfoLogJob extends  BaseDataJob {
     public String deleteRelationshipToTrainInfo(BiScopeTrainInfoLogVO vo)
     {
         StringBuilder sb = new StringBuilder();
-        sb.append("MATCH (p:TrainInfoLog {id:\"").append(vo.getId()).append("\"}),(w:TrainInfo{id:\"").append(vo.getTrainId()).append("\"}) ");
-        sb.append("delete (p)-[:trainInfoLog]->(w)");
+        sb.append("MATCH (p:TrainInfoLog {id:\"").append(vo.getId()).append("\"})-[r:trainInfoLog]->(w:TrainInfo{id:\"").append(vo.getTrainId()).append("\"}) ");
+        sb.append("delete r");
         return sb.toString();
     }
 
@@ -64,8 +64,8 @@ public class BiScopeTrainInfoLogJob extends  BaseDataJob {
     public String deleteRelationshipToWorker(BiScopeTrainInfoLogVO vo)
     {
         StringBuilder sb = new StringBuilder();
-        sb.append("MATCH (p:TrainInfoLog {id:\"").append(vo.getId()).append("\"}),(w:Worker{id:\"").append(vo.getWorkerId()).append("\"}) ");
-        sb.append("delete (p)-[:workerTrain]->(w)");
+        sb.append("MATCH (p:TrainInfoLog {id:\"").append(vo.getId()).append("\"})-[r:workerTrain]->(w:Worker{id:\"").append(vo.getWorkerId()).append("\"}) ");
+        sb.append("delete r");
         return sb.toString();
     }
 

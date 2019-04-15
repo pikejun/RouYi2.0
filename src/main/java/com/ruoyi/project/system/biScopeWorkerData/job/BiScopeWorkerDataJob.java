@@ -34,8 +34,8 @@ public class BiScopeWorkerDataJob extends  BaseDataJob {
     public String deleteRelationshipToWorkerGroup(BiScopeWorkerDataVO vo)
     {
         StringBuilder sb = new StringBuilder();
-        sb.append("MATCH (p:WorkerGroup {id:\"").append(vo.getId()).append("\"}),(w:Worker{groupId:\"").append(vo.getGroupId()).append("\"}) ");
-        sb.append("delete (w)-[:workerGroup]->(p)");
+        sb.append("MATCH (p:WorkerGroup {id:\"").append(vo.getGroupId()).append("\"})-[r:combination]-(w:Worker{id:\"").append(vo.getId()).append("\"}) ");
+        sb.append("delete r");
         return sb.toString();
     }
 
@@ -48,8 +48,8 @@ public class BiScopeWorkerDataJob extends  BaseDataJob {
     public String addRelationshipToWorkerGroup(BiScopeWorkerDataVO vo)
     {
         StringBuilder sb = new StringBuilder();
-        sb.append("MATCH (p:WorkerGroup {id:\"").append(vo.getId()).append("\"}),(w:Worker{groupId:\"").append(vo.getGroupId()).append("\"}) ");
-        sb.append("MERGE (w)-[:workerGroup]->(p)");
+        sb.append("MATCH (p:WorkerGroup {id:\"").append(vo.getGroupId()).append("\"}),(w:Worker{id:\"").append(vo.getId()).append("\"}) ");
+        sb.append("MERGE (w)-[:combination]->(p)");
 
         return sb.toString();
     }

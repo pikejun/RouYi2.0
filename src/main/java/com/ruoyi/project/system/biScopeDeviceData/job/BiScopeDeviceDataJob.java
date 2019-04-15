@@ -50,7 +50,7 @@ public class BiScopeDeviceDataJob extends  BaseDataJob {
 
                     if("A".equals(vo.getOpType()))
                     {
-                        neo4jService.executCypher(buildBiScopeDeviceDataVOToCreate(vo));
+                        neo4jService.executCypher(buildBiScopeDeviceDataVOToModify(vo));
                     }
                     else if("D".equals(vo.getOpType()))
                     {
@@ -129,50 +129,6 @@ public class BiScopeDeviceDataJob extends  BaseDataJob {
         return sb.toString();
     }
 
-    /*
-    CREATE (n:Label {name:"L1", type:"T1"})
-       tid, id, addr_name addrName, addr_no addrNo, device_name deviceName, device_model deviceModel, device_type deviceType, device_manufactor deviceManufactor,
-        device_version deviceVersion, buy_date buyDate, put_date putDate, remark, use_status useStatus, project_id projectId, project_unit_id projectUnitId,
-         level_code levelCode, scene_id sceneId, device_status deviceStatus, op_status opStatus, op_type opType, created_time createdTime,
-         created_by createdBy, updated_time updatedTime, updated_by updatedBy
-        */
-    public String buildBiScopeDeviceDataVOToCreate(BiScopeDeviceDataVO vo)
-    {
-        StringBuilder sb=new StringBuilder();
-
-        sb.append("CREATE (n:Device{");
-        sb.append("id:\"").append(vo.getId()).append("\"");
-        sb.append(",addrName:\"").append(vo.getAddrName()).append("\"");
-        sb.append(",addrNo:\"").append(vo.getAddrNo()).append("\"");
-        sb.append(",deviceName:\"").append(vo.getDeviceName()).append("\"");
-        sb.append(",deviceModel:\"").append(vo.getDeviceModel()).append("\"");
-        sb.append(",deviceType:\"").append(vo.getDeviceType()).append("\"");
-        sb.append(",deviceManufactor:\"").append(vo.getDeviceManufactor()).append("\"");
-        sb.append(",deviceVersion:\"").append(vo.getDeviceVersion()).append("\"");
-
-        if(vo.getBuyDate()!=null)
-        {
-            sb.append(",buyDate:\"").append(sdf.format(vo.getBuyDate())).append("\"");
-        }
-
-        if(vo.getPutDate()!=null)
-        {
-            sb.append(",putDate:\"").append(sdf.format(vo.getPutDate())).append("\"");
-        }
-
-        sb.append(",remark:\"").append(vo.getRemark()).append("\"");
-
-        sb.append(",useStatus:\"").append(vo.getUseStatus()).append("\"");
-        sb.append(",projectId:\"").append(vo.getProjectId()).append("\"");
-        sb.append(",projectUnitId:\"").append(vo.getProjectUnitId()).append("\"");
-        sb.append(",levelCode:\"").append(vo.getLevelCode()).append("\"");
-        sb.append(",sceneId:\"").append(vo.getSceneId()).append("\"");
-        sb.append(",deviceStatus:\"").append(vo.getDeviceStatus()).append("\"");
-
-        sb.append("})");
-
-        return sb.toString();
-    }
 
     public static SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 }

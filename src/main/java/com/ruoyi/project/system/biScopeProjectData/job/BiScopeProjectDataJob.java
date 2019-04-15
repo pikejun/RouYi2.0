@@ -27,6 +27,59 @@ public class BiScopeProjectDataJob extends  BaseDataJob {
     @Autowired
     private IBiScopeProjectDataService biScopeProjectDataService;
 
+
+    /**
+     * @param vo
+     * @return
+     */
+    public String deleteRelationshipToEnterprise(BiScopeProjectDataVO vo)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("MATCH (p:Project {id:\"").append(vo.getId()).append("\"})-[r:combination]-(w:Enterprise{id:\"").append(vo.getEnterpriseId()).append("\"}) ");
+        sb.append("delete r");
+        return sb.toString();
+    }
+
+    /**
+     * @param vo
+     * @return
+     */
+    public String addRelationshipToEnterprise(BiScopeProjectDataVO vo)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("MATCH (p:Project {id:\"").append(vo.getId()).append("\"}),(w:Enterprise{id:\"").append(vo.getEnterpriseId()).append("\"}) ");
+        sb.append("MERGE (p)-[:combination]->(w)");
+
+        return sb.toString();
+    }
+
+
+
+    /**
+     * @param vo
+     * @return
+     */
+    public String deleteRelationshipToRootProject(BiScopeProjectDataVO vo)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("MATCH (p:Project {id:\"").append(vo.getId()).append("\"})-[r:combination]-(w:RootProject{id:\"").append(vo.getRootProjectId()).append("\"}) ");
+        sb.append("delete r");
+        return sb.toString();
+    }
+
+    /**
+     * @param vo
+     * @return
+     */
+    public String addRelationshipToRootProject(BiScopeProjectDataVO vo)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("MATCH (p:Project {id:\"").append(vo.getId()).append("\"}),(w:RootProject{id:\"").append(vo.getRootProjectId()).append("\"}) ");
+        sb.append("MERGE (p)-[:combination]->(w)");
+
+        return sb.toString();
+    }
+
     @Override
     public void doJob()
     {
@@ -51,15 +104,23 @@ public class BiScopeProjectDataJob extends  BaseDataJob {
 
                     if("A".equals(vo.getOpType()))
                     {
-                        neo4jService.executCypher(buildBiScopeProjectDataVOToCreate(vo));
+                        neo4jService.executCypher(buildBiScopeProjectDataVOToModify(vo));
+                        neo4jService.executCypher(addRelationshipToRootProject(vo));
+                        neo4jService.executCypher(addRelationshipToEnterprise(vo));
+
                     }
                     else if("D".equals(vo.getOpType()))
                     {
+
+                        neo4jService.executCypher(deleteRelationshipToEnterprise(vo));
+                        neo4jService.executCypher(deleteRelationshipToRootProject(vo));
                         neo4jService.executCypher(buildBiScopeProjectDataVOToDelete(vo));
                     }
                     else if("M".equals(vo.getOpType()))
                     {
                         neo4jService.executCypher(buildBiScopeProjectDataVOToModify(vo));
+                        neo4jService.executCypher(addRelationshipToRootProject(vo));
+                        neo4jService.executCypher(addRelationshipToEnterprise(vo));
                     }
 
                     biScopeProjectDataService.updateBiScopeProjectDataToComplate(param);
@@ -135,56 +196,7 @@ public class BiScopeProjectDataJob extends  BaseDataJob {
         return sb.toString();
     }
 
-    /*
-    CREATE (n:Label {name:"L1", type:"T1"})
-    tid, id, abbr_name abbrName, alias_name aliasName, create_date createDate, enterprise_id enterpriseId, name, root_project_id rootProjectId,  remark,
-        update_date updateDate, work_status workStatus, address,
- area_id areaId, build_nature_id buildNatureId, contract_no contractNo, cost_money costMoney, end_date endDate,
-  floor_area floorArea, length, parent_enterprise_id parentEnterpriseId, permit_no permitNo, record_no recordNo,
-  serial_no serialNo, sign_type signType, start_date startDate, status, op_status opStatus, op_type opType, created_by createdBy, created_time createdTime, updated_by updatedBy, updated_time updatedTime
-         */
-    public String buildBiScopeProjectDataVOToCreate(BiScopeProjectDataVO vo)
-    {
-        StringBuilder sb=new StringBuilder();
 
-        sb.append("CREATE (n:Project{");
-        sb.append("id:\"").append(vo.getId()).append("\"");
-        sb.append(",abbrName:\"").append(vo.getAbbrName()).append("\"");
-        sb.append(",aliasName:\"").append(vo.getAliasName()).append("\"");
-        if(vo.getCreateDate()!=null)
-        {
-            sb.append(",createDate:\"").append(sdf.format(vo.getCreateDate())).append("\"");
-        }
-        sb.append(",enterpriseId:\"").append(vo.getEnterpriseId()).append("\"");
-        sb.append(",name:\"").append(vo.getName()).append("\"");
-        sb.append(",rootProjectId:\"").append(vo.getRootProjectId()).append("\"");
-        sb.append(",remark:\"").append(vo.getRemark()).append("\"");
-        sb.append(",updateDate:\"").append(vo.getUpdateDate()).append("\"");
-        sb.append(",workStatus:\"").append(vo.getWorkStatus()).append("\"");
-        sb.append(",address:\"").append(vo.getAddress()).append("\"");
-        sb.append(",areaId:\"").append(vo.getAreaId()).append("\"");
-        sb.append(",buildNatureId:\"").append(vo.getBuildNatureId()).append("\"");
-        sb.append(",contractNo:\"").append(vo.getContractNo()).append("\"");
-        sb.append(",costMoney:\"").append(vo.getCostMoney()).append("\"");
-        sb.append(",endDate:\"").append(vo.getEndDate()).append("\"");
-        sb.append(",floorArea:\"").append(vo.getFloorArea()).append("\"");
-        sb.append(",length:\"").append(vo.getLength()).append("\"");
-        sb.append(",parentEnterpriseId:\"").append(vo.getParentEnterpriseId()).append("\"");
-        sb.append(",permitNo:\"").append(vo.getPermitNo()).append("\"");
-        sb.append(",recordNo:\"").append(vo.getRecordNo()).append("\"");
-        sb.append(",serialNo:\"").append(vo.getSerialNo()).append("\"");
-        sb.append(",signType:\"").append(vo.getSignType()).append("\"");
-
-        if(vo.getStartDate()!=null)
-        {
-            sb.append(",startDate:\"").append(sdf.format(vo.getStartDate())).append("\"");
-        }
-
-        sb.append(",status:\"").append(vo.getStatus()).append("\"");
-        sb.append("})");
-
-        return sb.toString();
-    }
 
     public static SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 }

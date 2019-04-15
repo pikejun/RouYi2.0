@@ -1,6 +1,6 @@
 -- 菜单 SQL
 insert into sys_menu (menu_name, parent_id, order_num, url,menu_type, visible, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('安全事件', '3', '1', '/system/biScopeSafeEvent', 'C', '0', 'system:biScopeSafeEvent:view', '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '安全事件菜单');
+values('安全事件', '2000', '1', '/system/biScopeSafeEvent', 'C', '0', 'system:biScopeSafeEvent:view', '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '安全事件菜单');
 
 -- 按钮父菜单ID
 SELECT @parentId := LAST_INSERT_ID();

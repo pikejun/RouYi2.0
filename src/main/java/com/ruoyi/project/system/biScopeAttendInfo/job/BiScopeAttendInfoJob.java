@@ -34,8 +34,8 @@ public class BiScopeAttendInfoJob extends  BaseDataJob {
     public String deleteRelationshipToWorker(BiScopeAttendInfoVO vo)
     {
         StringBuilder sb = new StringBuilder();
-        sb.append("MATCH (p:Attend {workerId:\"").append(vo.getWorkerId()).append("\"}),(w:Worker{id:\"").append(vo.getId()).append("\"}) ");
-        sb.append("delete (p)-[:attend]->(w)");
+        sb.append("MATCH (p:Attend {workerId:\"").append(vo.getWorkerId()).append("\"})-[r:attend]->(w:Worker{id:\"").append(vo.getId()).append("\"}) ");
+        sb.append("delete r");
         return sb.toString();
     }
 
@@ -64,8 +64,8 @@ public class BiScopeAttendInfoJob extends  BaseDataJob {
     public String deleteRelationshipToAttendSpot(BiScopeAttendInfoVO vo)
     {
         StringBuilder sb = new StringBuilder();
-        sb.append("MATCH (p:Attend {attendSpotId:\"").append(vo.getAttendSpotId()).append("\"}),(w:AttendSpot{id:\"").append(vo.getAttendSpotId()).append("\"}) ");
-        sb.append("delete (p)-[:in]->(w)");
+        sb.append("MATCH (p:Attend {attendSpotId:\"").append(vo.getAttendSpotId()).append("\"})-[r:in]->(w:AttendSpot{id:\"").append(vo.getAttendSpotId()).append("\"}) ");
+        sb.append("delete r");
         return sb.toString();
     }
 

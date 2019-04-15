@@ -1,6 +1,6 @@
 -- 菜单 SQL
 insert into sys_menu (menu_name, parent_id, order_num, url,menu_type, visible, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('企业部门', '3', '1', '/system/biScopeEnterpriseDepartment', 'C', '0', 'system:biScopeEnterpriseDepartment:view', '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '企业部门菜单');
+values('企业部门', '2000', '1', '/system/biScopeEnterpriseDepartment', 'C', '0', 'system:biScopeEnterpriseDepartment:view', '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '企业部门菜单');
 
 -- 按钮父菜单ID
 SELECT @parentId := LAST_INSERT_ID();

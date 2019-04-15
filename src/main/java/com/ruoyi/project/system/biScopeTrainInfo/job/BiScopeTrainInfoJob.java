@@ -1,7 +1,8 @@
 package com.ruoyi.project.system.biScopeTrainInfo.job;
 
 import com.ruoyi.project.bi.job.BaseDataJob;
-import com.ruoyi.project.bi.service.Neo4jService; 
+import com.ruoyi.project.bi.service.Neo4jService;
+import com.ruoyi.project.system.biScopeComplaintInfo.vo.BiScopeComplaintInfoVO;
 import com.ruoyi.project.system.biScopeTrainInfo.vo.BiScopeTrainInfoVO;
 import com.ruoyi.project.system.biScopeTrainInfo.service.IBiScopeTrainInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,7 @@ public class BiScopeTrainInfoJob extends  BaseDataJob {
 
                     if("A".equals(vo.getOpType()))
                     {
-                        neo4jService.executCypher(buildBiScopeTrainInfoVOToCreate(vo));
+                        neo4jService.executCypher(buildBiScopeTrainInfoVOToModify(vo));
                     }
                     else if("D".equals(vo.getOpType()))
                     {
@@ -128,47 +129,7 @@ public class BiScopeTrainInfoJob extends  BaseDataJob {
         return sb.toString();
     }
 
-    /*
-    CREATE (n:Label {name:"L1", type:"T1"})
-    tid,id, attend_user_id attendUserId, train_create_date trainCreateDate, create_user_id createUserId, start_date startDate, end_date endDate, level_code levelCode,
-        location_id locationId, name, project_group_id projectGroupId, project_unit_id projectUnitId, scene_id sceneId, train_user_id trainUserId, type, op_status opStatus, op_type opType,
-        created_date createdDate, created_by createdBy, updated_date updatedDate, updated_by updatedBy */
-    public String buildBiScopeTrainInfoVOToCreate(BiScopeTrainInfoVO vo)
-    {
-        StringBuilder sb=new StringBuilder();
 
-        sb.append("CREATE (n:Train{");
-        sb.append("id:\"").append(vo.getId()).append("\"");
-        sb.append(",attendUserId:\"").append(vo.getAttendUserId()).append("\"");
-        if(vo.getTrainCreateDate()!=null)
-        {
-            sb.append(",trainCreateDate:\"").append(sdf.format(vo.getTrainCreateDate())).append("\"");
-        }
-
-        sb.append(",createUserId:\"").append(vo.getCreateUserId()).append("\"");
-
-        if(vo.getStartDate()!=null)
-        {
-            sb.append(",startDate:\"").append(sdf.format(vo.getStartDate())).append("\"");
-        }
-
-        if(vo.getEndDate()!=null)
-        {
-            sb.append(",endDate:\"").append(sdf.format(vo.getEndDate())).append("\"");
-        }
-
-        sb.append(",levelCode:\"").append(vo.getLevelCode()).append("\"");
-        sb.append(",locationId:\"").append(vo.getLocationId()).append("\"");
-        sb.append(",name:\"").append(vo.getName()).append("\"");
-        sb.append(",projectGroupId:\"").append(vo.getProjectGroupId()).append("\"");
-        sb.append(",projectUnitId:\"").append(vo.getProjectUnitId()).append("\"");
-        sb.append(",sceneId:\"").append(vo.getSceneId()).append("\"");
-        sb.append(",trainUserId:\"").append(vo.getTrainUserId()).append("\"");
-        sb.append(",type:\"").append(vo.getType()).append("\"");
-        sb.append("})");
-
-        return sb.toString();
-    }
 
     public static SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 }
