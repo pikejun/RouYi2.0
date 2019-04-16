@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-biTemplateInfo-edit" th:object="${biTemplateInfo}">
+            <input id="templateId" name="templateId" th:field="*{templateId}"  type="hidden">
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">模板编号：</label>
+				<div class="col-sm-8">
+					<input id="templateNo" name="templateNo" th:field="*{templateNo}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">发送对象指标编号：</label>
+				<div class="col-sm-8">
+					<input id="senderIndexNo" name="senderIndexNo" th:field="*{senderIndexNo}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">模板名称：</label>
+				<div class="col-sm-8">
+					<input id="templateName" name="templateName" th:field="*{templateName}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">模板内容：</label>
+				<div class="col-sm-8">
+					<input id="templateContent" name="templateContent" th:field="*{templateContent}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">模板状态：</label>
+				<div class="col-sm-8">
+					<input id="status" name="status" th:field="*{status}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">创建时间：</label>
+				<div class="col-sm-8">
+					<input id="createdTime" name="createdTime" th:field="*{createdTime}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">创建人：</label>
+				<div class="col-sm-8">
+					<input id="createdBy" name="createdBy" th:field="*{createdBy}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">更新时间：</label>
+				<div class="col-sm-8">
+					<input id="updatedTime" name="updatedTime" th:field="*{updatedTime}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">更新人：</label>
+				<div class="col-sm-8">
+					<input id="updatedBy" name="updatedBy" th:field="*{updatedBy}" class="form-control" type="text">
+				</div>
+			</div>
+		</form>
+    </div>
+    <div th:include="include::footer"></div>
+    <script type="text/javascript">
+		var prefix = ctx + "system/biTemplateInfo";
+		$("#form-biTemplateInfo-edit").validate({
+			rules:{
+				xxxx:{
+					required:true,
+				},
+			},
+			focusCleanup: true
+		});
+		
+		function submitHandler() {
+	        if ($.validate.form()) {
+	            $.operate.save(prefix + "/edit", $('#form-biTemplateInfo-edit').serialize());
+	        }
+	    }
+	</script>
+</body>
+</html>

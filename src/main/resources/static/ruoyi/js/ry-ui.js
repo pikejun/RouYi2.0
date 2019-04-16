@@ -637,6 +637,12 @@
          	        }
             	});
             },
+
+			// 显示信息
+			display: function(id) {
+				var url = $.common.isEmpty(id) ? $.table._option.displayUrl : $.table._option.displayUrl.replace("{id}", id);
+				$.modal.open("显示" + $.table._option.modalName, url);
+			},
             // 删除信息
             remove: function(id) {
             	$.modal.confirm("确定删除该条" + $.table._option.modalName + "信息吗？", function() {

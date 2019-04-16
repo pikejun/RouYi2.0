@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.biScopeProperty.mapper.BiScopePropertyMapper">
+    
+    <resultMap type="BiScopeProperty" id="BiScopePropertyResult">
+        <result property="propertyId"    column="property_id"    />
+        <result property="scopeName"    column="scope_name"    />
+        <result property="propertyName"    column="property_name"    />
+        <result property="propertyNameDesc"    column="property_name_desc"    />
+        <result property="propertyType"    column="property_type"    />
+    </resultMap>
+	
+	<sql id="selectBiScopePropertyVo">
+        select property_id, scope_name, property_name, property_name_desc, property_type from bi_scope_property
+    </sql>
+	
+    <select id="selectBiScopePropertyList" parameterType="BiScopeProperty" resultMap="BiScopePropertyResult">
+        <include refid="selectBiScopePropertyVo"/>
+        <where>  
+            <if test="propertyId != null "> and property_id = #{propertyId}</if>
+             <if test="scopeName != null  and scopeName != '' "> and scope_name = #{scopeName}</if>
+             <if test="propertyName != null  and propertyName != '' "> and property_name = #{propertyName}</if>
+             <if test="propertyNameDesc != null  and propertyNameDesc != '' "> and property_name_desc = #{propertyNameDesc}</if>
+             <if test="propertyType != null  and propertyType != '' "> and property_type = #{propertyType}</if>
+         </where>
+    </select>
+    
+    <select id="selectBiScopePropertyById" parameterType="Integer" resultMap="BiScopePropertyResult">
+        <include refid="selectBiScopePropertyVo"/>
+        where property_id = #{propertyId}
+    </select>
+        
+    <insert id="insertBiScopeProperty" parameterType="BiScopeProperty" useGeneratedKeys="true" keyProperty="propertyId">
+        insert into bi_scope_property
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="scopeName != null  and scopeName != ''  ">scope_name,</if>
+			<if test="propertyName != null  and propertyName != ''  ">property_name,</if>
+			<if test="propertyNameDesc != null  and propertyNameDesc != ''  ">property_name_desc,</if>
+			<if test="propertyType != null  and propertyType != ''  ">property_type,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="scopeName != null  and scopeName != ''  ">#{scopeName},</if>
+			<if test="propertyName != null  and propertyName != ''  ">#{propertyName},</if>
+			<if test="propertyNameDesc != null  and propertyNameDesc != ''  ">#{propertyNameDesc},</if>
+			<if test="propertyType != null  and propertyType != ''  ">#{propertyType},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateBiScopeProperty" parameterType="BiScopeProperty">
+        update bi_scope_property
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="scopeName != null  and scopeName != ''  ">scope_name = #{scopeName},</if>
+            <if test="propertyName != null  and propertyName != ''  ">property_name = #{propertyName},</if>
+            <if test="propertyNameDesc != null  and propertyNameDesc != ''  ">property_name_desc = #{propertyNameDesc},</if>
+            <if test="propertyType != null  and propertyType != ''  ">property_type = #{propertyType},</if>
+        </trim>
+        where property_id = #{propertyId}
+    </update>
+
+	<delete id="deleteBiScopePropertyById" parameterType="Integer">
+        delete from bi_scope_property where property_id = #{propertyId}
+    </delete>
+	
+    <delete id="deleteBiScopePropertyByIds" parameterType="String">
+        delete from bi_scope_property where property_id in 
+        <foreach item="propertyId" collection="array" open="(" separator="," close=")">
+            #{propertyId}
+        </foreach>
+    </delete>
+    
+</mapper>

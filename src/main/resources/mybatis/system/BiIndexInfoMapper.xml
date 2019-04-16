@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.biIndexInfo.mapper.BiIndexInfoMapper">
+    
+    <resultMap type="BiIndexInfo" id="BiIndexInfoResult">
+        <result property="indexId"    column="index_id"    />
+        <result property="indexNo"    column="index_no"    />
+        <result property="indexName"    column="index_name"    />
+        <result property="displayType"    column="display_type"    />
+        <result property="status"    column="status"    />
+        <result property="createdTime"    column="created_time"    />
+        <result property="createdBy"    column="created_by"    />
+        <result property="updatedTime"    column="updated_time"    />
+        <result property="updatedBy"    column="updated_by"    />
+    </resultMap>
+	
+	<sql id="selectBiIndexInfoVo">
+        select index_id, index_no, index_name, display_type, status, created_time, created_by, updated_time, updated_by from bi_index_info
+    </sql>
+	
+    <select id="selectBiIndexInfoList" parameterType="BiIndexInfo" resultMap="BiIndexInfoResult">
+        <include refid="selectBiIndexInfoVo"/>
+        <where>  
+            <if test="indexId != null "> and index_id = #{indexId}</if>
+             <if test="indexNo != null  and indexNo != '' "> and index_no = #{indexNo}</if>
+             <if test="indexName != null  and indexName != '' "> and index_name = #{indexName}</if>
+             <if test="displayType != null  and displayType != '' "> and display_type = #{displayType}</if>
+             <if test="status != null "> and status = #{status}</if>
+             <if test="createdTime != null "> and created_time = #{createdTime}</if>
+             <if test="createdBy != null  and createdBy != '' "> and created_by = #{createdBy}</if>
+             <if test="updatedTime != null "> and updated_time = #{updatedTime}</if>
+             <if test="updatedBy != null  and updatedBy != '' "> and updated_by = #{updatedBy}</if>
+         </where>
+    </select>
+    
+    <select id="selectBiIndexInfoById" parameterType="Integer" resultMap="BiIndexInfoResult">
+        <include refid="selectBiIndexInfoVo"/>
+        where index_id = #{indexId}
+    </select>
+        
+    <insert id="insertBiIndexInfo" parameterType="BiIndexInfo" useGeneratedKeys="true" keyProperty="indexId">
+        insert into bi_index_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="indexNo != null  and indexNo != ''  ">index_no,</if>
+			<if test="indexName != null  and indexName != ''  ">index_name,</if>
+			<if test="displayType != null  and displayType != ''  ">display_type,</if>
+			<if test="status != null  ">status,</if>
+			<if test="createdTime != null  ">created_time,</if>
+			<if test="createdBy != null  and createdBy != ''  ">created_by,</if>
+			<if test="updatedTime != null  ">updated_time,</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">updated_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="indexNo != null  and indexNo != ''  ">#{indexNo},</if>
+			<if test="indexName != null  and indexName != ''  ">#{indexName},</if>
+			<if test="displayType != null  and displayType != ''  ">#{displayType},</if>
+			<if test="status != null  ">#{status},</if>
+			<if test="createdTime != null  ">#{createdTime},</if>
+			<if test="createdBy != null  and createdBy != ''  ">#{createdBy},</if>
+			<if test="updatedTime != null  ">#{updatedTime},</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">#{updatedBy},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateBiIndexInfo" parameterType="BiIndexInfo">
+        update bi_index_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="indexNo != null  and indexNo != ''  ">index_no = #{indexNo},</if>
+            <if test="indexName != null  and indexName != ''  ">index_name = #{indexName},</if>
+            <if test="displayType != null  and displayType != ''  ">display_type = #{displayType},</if>
+            <if test="status != null  ">status = #{status},</if>
+            <if test="createdTime != null  ">created_time = #{createdTime},</if>
+            <if test="createdBy != null  and createdBy != ''  ">created_by = #{createdBy},</if>
+            <if test="updatedTime != null  ">updated_time = #{updatedTime},</if>
+            <if test="updatedBy != null  and updatedBy != ''  ">updated_by = #{updatedBy},</if>
+        </trim>
+        where index_id = #{indexId}
+    </update>
+
+	<delete id="deleteBiIndexInfoById" parameterType="Integer">
+        delete from bi_index_info where index_id = #{indexId}
+    </delete>
+	
+    <delete id="deleteBiIndexInfoByIds" parameterType="String">
+        delete from bi_index_info where index_id in 
+        <foreach item="indexId" collection="array" open="(" separator="," close=")">
+            #{indexId}
+        </foreach>
+    </delete>
+    
+</mapper>

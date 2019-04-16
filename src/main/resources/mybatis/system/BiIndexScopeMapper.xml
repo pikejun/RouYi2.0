@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.biIndexScope.mapper.BiIndexScopeMapper">
+    
+    <resultMap type="BiIndexScope" id="BiIndexScopeResult">
+        <result property="isId"    column="is_id"    />
+        <result property="indexNo"    column="index_no"    />
+        <result property="orderNum"    column="order_num"    />
+        <result property="relatedMethod"    column="related_method"    />
+        <result property="scopeName"    column="scope_name"    />
+        <result property="propertyName"    column="property_name"    />
+        <result property="compareMethod"    column="compare_method"    />
+        <result property="compareValue"    column="compare_value"    />
+        <result property="compareValueTo"    column="compare_value_to"    />
+    </resultMap>
+	
+	<sql id="selectBiIndexScopeVo">
+        select is_id, index_no, order_num, related_method, scope_name, property_name, compare_method, compare_value, compare_value_to from bi_index_scope
+    </sql>
+	
+    <select id="selectBiIndexScopeList" parameterType="BiIndexScope" resultMap="BiIndexScopeResult">
+        <include refid="selectBiIndexScopeVo"/>
+        <where>  
+            <if test="isId != null "> and is_id = #{isId}</if>
+             <if test="indexNo != null  and indexNo != '' "> and index_no = #{indexNo}</if>
+             <if test="orderNum != null "> and order_num = #{orderNum}</if>
+             <if test="relatedMethod != null  and relatedMethod != '' "> and related_method = #{relatedMethod}</if>
+             <if test="scopeName != null  and scopeName != '' "> and scope_name = #{scopeName}</if>
+             <if test="propertyName != null  and propertyName != '' "> and property_name = #{propertyName}</if>
+             <if test="compareMethod != null  and compareMethod != '' "> and compare_method = #{compareMethod}</if>
+             <if test="compareValue != null  and compareValue != '' "> and compare_value = #{compareValue}</if>
+             <if test="compareValueTo != null  and compareValueTo != '' "> and compare_value_to = #{compareValueTo}</if>
+         </where>
+         order by order_num
+    </select>
+    
+    <select id="selectBiIndexScopeById" parameterType="Integer" resultMap="BiIndexScopeResult">
+        <include refid="selectBiIndexScopeVo"/>
+        where is_id = #{isId}
+    </select>
+        
+    <insert id="insertBiIndexScope" parameterType="BiIndexScope" useGeneratedKeys="true" keyProperty="isId">
+        insert into bi_index_scope
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="indexNo != null  and indexNo != ''  ">index_no,</if>
+			<if test="orderNum != null  ">order_num,</if>
+			<if test="relatedMethod != null  and relatedMethod != ''  ">related_method,</if>
+			<if test="scopeName != null  and scopeName != ''  ">scope_name,</if>
+			<if test="propertyName != null  and propertyName != ''  ">property_name,</if>
+			<if test="compareMethod != null  and compareMethod != ''  ">compare_method,</if>
+			<if test="compareValue != null  and compareValue != ''  ">compare_value,</if>
+			<if test="compareValueTo != null  and compareValueTo != ''  ">compare_value_to,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="indexNo != null  and indexNo != ''  ">#{indexNo},</if>
+			<if test="orderNum != null  ">#{orderNum},</if>
+			<if test="relatedMethod != null  and relatedMethod != ''  ">#{relatedMethod},</if>
+			<if test="scopeName != null  and scopeName != ''  ">#{scopeName},</if>
+			<if test="propertyName != null  and propertyName != ''  ">#{propertyName},</if>
+			<if test="compareMethod != null  and compareMethod != ''  ">#{compareMethod},</if>
+			<if test="compareValue != null  and compareValue != ''  ">#{compareValue},</if>
+			<if test="compareValueTo != null  and compareValueTo != ''  ">#{compareValueTo},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateBiIndexScope" parameterType="BiIndexScope">
+        update bi_index_scope
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="indexNo != null  and indexNo != ''  ">index_no = #{indexNo},</if>
+            <if test="orderNum != null  ">order_num = #{orderNum},</if>
+            <if test="relatedMethod != null  and relatedMethod != ''  ">related_method = #{relatedMethod},</if>
+            <if test="scopeName != null  and scopeName != ''  ">scope_name = #{scopeName},</if>
+            <if test="propertyName != null  and propertyName != ''  ">property_name = #{propertyName},</if>
+            <if test="compareMethod != null  and compareMethod != ''  ">compare_method = #{compareMethod},</if>
+            <if test="compareValue != null  and compareValue != ''  ">compare_value = #{compareValue},</if>
+            <if test="compareValueTo != null  and compareValueTo != ''  ">compare_value_to = #{compareValueTo},</if>
+        </trim>
+        where is_id = #{isId}
+    </update>
+
+	<delete id="deleteBiIndexScopeById" parameterType="Integer">
+        delete from bi_index_scope where is_id = #{isId}
+    </delete>
+	
+    <delete id="deleteBiIndexScopeByIds" parameterType="String">
+        delete from bi_index_scope where is_id in 
+        <foreach item="isId" collection="array" open="(" separator="," close=")">
+            #{isId}
+        </foreach>
+    </delete>
+    
+</mapper>

@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-biIndexInfo-edit" th:object="${biIndexInfo}">
+            <input id="indexId" name="indexId" th:field="*{indexId}"  type="hidden">
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">指标编号：</label>
+				<div class="col-sm-8">
+					<input id="indexNo" name="indexNo" th:field="*{indexNo}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">指标名称：</label>
+				<div class="col-sm-8">
+					<input id="indexName" name="indexName" th:field="*{indexName}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">显示类型：</label>
+				<div class="col-sm-8">
+					<select name="displayType" class="form-control m-b" th:with="type=${@dict.getType('bi_index_display_type')}">
+						<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}" th:field="*{displayType}"></option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">指标状态：</label>
+				<div class="col-sm-8">
+					<input id="status" name="status" th:field="*{status}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">创建时间：</label>
+				<div class="col-sm-8">
+					<input id="createdTime" name="createdTime" th:field="*{createdTime}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">创建人：</label>
+				<div class="col-sm-8">
+					<input id="createdBy" name="createdBy" th:field="*{createdBy}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">更新时间：</label>
+				<div class="col-sm-8">
+					<input id="updatedTime" name="updatedTime" th:field="*{updatedTime}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">更新人：</label>
+				<div class="col-sm-8">
+					<input id="updatedBy" name="updatedBy" th:field="*{updatedBy}" class="form-control" type="text">
+				</div>
+			</div>
+		</form>
+    </div>
+    <div th:include="include::footer"></div>
+    <script type="text/javascript">
+		var prefix = ctx + "system/biIndexInfo";
+		$("#form-biIndexInfo-edit").validate({
+			rules:{
+				xxxx:{
+					required:true,
+				},
+			},
+			focusCleanup: true
+		});
+		
+		function submitHandler() {
+	        if ($.validate.form()) {
+	            $.operate.save(prefix + "/edit", $('#form-biIndexInfo-edit').serialize());
+	        }
+	    }
+	</script>
+</body>
+</html>

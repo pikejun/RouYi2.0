@@ -1,6 +1,7 @@
 package com.ruoyi.project.bi.service.impl;
 
 import com.ruoyi.project.bi.service.Neo4jService;
+import org.neo4j.driver.internal.value.StringValue;
 import org.neo4j.driver.v1.*;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Value;
@@ -62,7 +63,20 @@ public class Neo4jServiceImpl implements Neo4jService
                 Record record = result.next();
                 for(String key:record.keys())
                 {
-                    pp.putAll(record.get(key).asMap());
+                    org.neo4j.driver.v1.Value obj = record.get(key);
+                    if("STRING".equals(obj.type().name()))
+                    {
+                        pp.put(key,obj.asString());
+                    }
+                    else if("INTEGER".equals(obj.type().name()))
+                    {
+                        pp.put(key,obj.asInt());
+                    }
+                    else
+                    {
+                        pp.putAll(obj.asMap());
+                    }
+
                 }
 
                 ret.add(pp);
