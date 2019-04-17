@@ -27,6 +27,10 @@
                                     </li>
 
                                                                                                                                                                                     <li>
+                                        别名：<input type="text" name="aliasName"/>
+                                    </li>
+
+                                                                                                                                                                                    <li>
                                         关联范围属性：<input type="text" name="propertyName"/>
                                     </li>
 
@@ -82,7 +86,9 @@
     var editFlag = [[${@permission.hasPermi('system:biIndexScope:edit')}]];
     var removeFlag = [[${@permission.hasPermi('system:biIndexScope:remove')}]];
     var prefix = ctx + "system/biIndexScope";
-                                                                                                                                                                                            
+
+
+                                                                                                                                                                                                                
     $(function () {
         var options = {
             url: prefix + "/list",
@@ -120,6 +126,11 @@
                                                                                                                                     {
                                 field: 'scopeName',
                                 title: '关联范围',
+                                sortable: true
+                            },
+                                                                                                                                    {
+                                field: 'aliasName',
+                                title: '别名',
                                 sortable: true
                             },
                                                                                                                                     {

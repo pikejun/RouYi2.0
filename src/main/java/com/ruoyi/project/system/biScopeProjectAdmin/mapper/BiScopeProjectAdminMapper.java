@@ -10,7 +10,7 @@ import java.util.Map;
  * 项目管理员 数据层
  *
  * @author ruoyi
- * @date 2019-04-16
+ * @date 2019-04-17
  */
 public interface BiScopeProjectAdminMapper
 {

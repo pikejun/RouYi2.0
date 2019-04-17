@@ -146,18 +146,159 @@ public class BiIndexInfoController extends BaseController
 
 	private List<Map> getDetailCypherStringResult(List<BiIndexScope> indexScopeList,List<BiIndexField> biIndexFieldList)
 	{
-		String cypher = "match(n:Train)  return n.name,n.id";
+		String cypher = buildCypherWithBiIndexScopeAndIndexFieldList(indexScopeList,biIndexFieldList);
+
+		System.out.println(cypher);
 
 		List<Map> list =	neo4jService.queryByCypher(cypher);
 
 		return list;
 	}
 
+	public String buildCypherWithBiIndexScopeAndIndexFieldList(List<BiIndexScope> indexScopeList,List<BiIndexField> biIndexFieldList)
+	{
+		StringBuilder sb=new StringBuilder();
+
+		sb.append("match ");
+
+		StringBuilder where=new StringBuilder();
+		StringBuilder ret=new StringBuilder(" return ");
+
+		int k=0;
+		for(BiIndexField biIndexField:biIndexFieldList)
+		{
+			if(k!=0)
+			{
+				ret.append(",");
+			}
+			ret.append(" ").append(biIndexField.getFieldName());
+			k++;
+		}
+
+		String currentScopeName=null;
+		String lastScopeName=null;
+
+		boolean isFirst=true;
+
+		for(BiIndexScope scope: indexScopeList)
+		{
+			if(!scope.getScopeName().equals(currentScopeName))
+			{
+				lastScopeName = currentScopeName;
+				currentScopeName =scope.getScopeName();
+				if(!isFirst)
+				{
+					sb.append("--");
+
+				}
+				else
+				{
+					isFirst=false;
+				}
+
+				sb.append("(").append(scope.getAliasName()).append(":").append(scope.getScopeName()).append(")");
+			}
+			else
+			{
+
+			}
+
+			if(scope.getPropertyName()!=null && scope.getPropertyName().trim().length()>0)
+			{
+				if(where.length()==0)
+				{
+					where.append(" where ");
+				}
+				else
+				{
+					where.append(" ").append(scope.getRelatedMethod()).append(" ");
+				}
+
+				where.append(scope.getAliasName()).append(".").append(scope.getPropertyName()).append(scope.getCompareMethod()).append(scope.getCompareValue());
+			}
+
+		}
+
+
+
+		sb.append(" ").append(where.toString()).append(" ").append(ret.toString());
+
+		return sb.toString();
+	}
+
+	/**
+	 * match(n:WorkerGroup),(p:Person)  where n.name='1' and p.name='aaa' return count(n) as totalNumber
+	 * @param indexScopeList
+	 * @return
+     */
+	public String buildCypherWithBiIndexScopeList(List<BiIndexScope> indexScopeList)
+	{
+		StringBuilder sb=new StringBuilder();
+
+		sb.append("match ");
+
+		StringBuilder where=new StringBuilder();
+		StringBuilder ret=new StringBuilder(" return count(distinct ");
+
+		String currentScopeName=null;
+		String lastScopeName=null;
+
+		boolean isFirst=true;
+
+        for(BiIndexScope scope: indexScopeList)
+		{
+            if(!scope.getScopeName().equals(currentScopeName))
+			{
+				lastScopeName = currentScopeName;
+				currentScopeName =scope.getScopeName();
+				if(!isFirst)
+				{
+					sb.append("--");
+
+				}
+				else
+				{
+					isFirst=false;
+					ret.append(scope.getAliasName()).append(") as totalNumber");
+				}
+
+				sb.append("(").append(scope.getAliasName()).append(":").append(scope.getScopeName()).append(")");
+			}
+			else
+			{
+
+			}
+
+			if(scope.getPropertyName()!=null && scope.getPropertyName().trim().length()>0)
+			{
+				if(where.length()==0)
+				{
+					where.append(" where ");
+				}
+				else
+				{
+					where.append(" ").append(scope.getRelatedMethod()).append(" ");
+				}
+
+				where.append(scope.getAliasName()).append(".").append(scope.getPropertyName()).append(scope.getCompareMethod()).append(scope.getCompareValue());
+			}
+
+		}
+
+
+
+		sb.append(" ").append(where.toString()).append(" ").append(ret.toString());
+
+		return sb.toString();
+	}
+
 	private Map getCntCypherStringResult(List<BiIndexScope> indexScopeList)
 	{
-		String cypher = "match(n:Train)  return count(n) as totalNumber";
+		String cypher = buildCypherWithBiIndexScopeList(indexScopeList);
 
-	   List<Map> list =	neo4jService.queryByCypher(cypher);
+		System.out.println(cypher);
+
+	    List<Map> list =	neo4jService.queryByCypher(cypher);
 
 		if(list!=null && list.size()>0)
 		{

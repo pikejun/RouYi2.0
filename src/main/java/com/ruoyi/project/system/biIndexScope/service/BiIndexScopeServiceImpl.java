@@ -15,7 +15,7 @@ import com.ruoyi.common.utils.text.Convert;
  * 指标范围 服务层实现
  *
  * @author ruoyi
- * @date 2019-04-16
+ * @date 2019-04-17
  */
 @Service
 public class BiIndexScopeServiceImpl implements IBiIndexScopeService {

@@ -11,10 +11,6 @@
                 <div class="select-list">
                     <ul>
                                                                                                                                                                             <li>
-                                        字段编号：<input type="text" name="fieldNo"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
                                         指标编号：<input type="text" name="indexNo"/>
                                     </li>
 
@@ -23,27 +19,7 @@
                                     </li>
 
                                                                                                                                                                                     <li>
-                                        默认值：<input type="text" name="defaultValue"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
                                         排序号：<input type="text" name="orderNum"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        创建时间：<input type="text" name="createdTime"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        创建人：<input type="text" name="createdBy"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        更新时间：<input type="text" name="updatedTime"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        更新人：<input type="text" name="updatedBy"/>
                                     </li>
 
                                                                                                             <li>
@@ -86,7 +62,7 @@
     var editFlag = [[${@permission.hasPermi('system:biIndexField:edit')}]];
     var removeFlag = [[${@permission.hasPermi('system:biIndexField:remove')}]];
     var prefix = ctx + "system/biIndexField";
-                                                                                                                                                                                                                
+                                                                                        
     $(function () {
         var options = {
             url: prefix + "/list",
@@ -107,11 +83,6 @@
                             visible: false
                         },
                                                                                                             {
-                                field: 'fieldNo',
-                                title: '字段编号',
-                                sortable: true
-                            },
-                                                                                                                                    {
                                 field: 'indexNo',
                                 title: '指标编号',
                                 sortable: true
@@ -122,33 +93,8 @@
                                 sortable: true
                             },
                                                                                                                                     {
-                                field: 'defaultValue',
-                                title: '默认值',
-                                sortable: true
-                            },
-                                                                                                                                    {
                                 field: 'orderNum',
                                 title: '排序号',
-                                sortable: true
-                            },
-                                                                                                                                    {
-                                field: 'createdTime',
-                                title: '创建时间',
-                                sortable: true
-                            },
-                                                                                                                                    {
-                                field: 'createdBy',
-                                title: '创建人',
-                                sortable: true
-                            },
-                                                                                                                                    {
-                                field: 'updatedTime',
-                                title: '更新时间',
-                                sortable: true
-                            },
-                                                                                                                                    {
-                                field: 'updatedBy',
-                                title: '更新人',
                                 sortable: true
                             },
                                                                             {

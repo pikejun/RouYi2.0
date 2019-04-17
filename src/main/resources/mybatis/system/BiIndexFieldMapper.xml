@@ -6,34 +6,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <resultMap type="BiIndexField" id="BiIndexFieldResult">
         <result property="fieldId"    column="field_id"    />
-        <result property="fieldNo"    column="field_no"    />
         <result property="indexNo"    column="index_no"    />
         <result property="fieldName"    column="field_name"    />
-        <result property="defaultValue"    column="default_value"    />
         <result property="orderNum"    column="order_num"    />
-        <result property="createdTime"    column="created_time"    />
-        <result property="createdBy"    column="created_by"    />
-        <result property="updatedTime"    column="updated_time"    />
-        <result property="updatedBy"    column="updated_by"    />
     </resultMap>
 	
 	<sql id="selectBiIndexFieldVo">
-        select field_id, field_no, index_no, field_name, default_value, order_num, created_time, created_by, updated_time, updated_by from bi_index_field
+        select field_id, index_no, field_name, order_num from bi_index_field
     </sql>
 	
     <select id="selectBiIndexFieldList" parameterType="BiIndexField" resultMap="BiIndexFieldResult">
         <include refid="selectBiIndexFieldVo"/>
         <where>  
             <if test="fieldId != null "> and field_id = #{fieldId}</if>
-             <if test="fieldNo != null  and fieldNo != '' "> and field_no = #{fieldNo}</if>
              <if test="indexNo != null  and indexNo != '' "> and index_no = #{indexNo}</if>
              <if test="fieldName != null  and fieldName != '' "> and field_name = #{fieldName}</if>
-             <if test="defaultValue != null  and defaultValue != '' "> and default_value = #{defaultValue}</if>
              <if test="orderNum != null "> and order_num = #{orderNum}</if>
-             <if test="createdTime != null "> and created_time = #{createdTime}</if>
-             <if test="createdBy != null  and createdBy != '' "> and created_by = #{createdBy}</if>
-             <if test="updatedTime != null "> and updated_time = #{updatedTime}</if>
-             <if test="updatedBy != null  and updatedBy != '' "> and updated_by = #{updatedBy}</if>
          </where>
     </select>
     
@@ -42,46 +30,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where field_id = #{fieldId}
     </select>
         
-    <insert id="insertBiIndexField" parameterType="BiIndexField">
+    <insert id="insertBiIndexField" parameterType="BiIndexField" useGeneratedKeys="true" keyProperty="fieldId">
         insert into bi_index_field
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="fieldId != null  ">field_id,</if>
-			<if test="fieldNo != null  and fieldNo != ''  ">field_no,</if>
 			<if test="indexNo != null  and indexNo != ''  ">index_no,</if>
 			<if test="fieldName != null  and fieldName != ''  ">field_name,</if>
-			<if test="defaultValue != null  and defaultValue != ''  ">default_value,</if>
 			<if test="orderNum != null  ">order_num,</if>
-			<if test="createdTime != null  ">created_time,</if>
-			<if test="createdBy != null  and createdBy != ''  ">created_by,</if>
-			<if test="updatedTime != null  ">updated_time,</if>
-			<if test="updatedBy != null  and updatedBy != ''  ">updated_by,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="fieldId != null  ">#{fieldId},</if>
-			<if test="fieldNo != null  and fieldNo != ''  ">#{fieldNo},</if>
 			<if test="indexNo != null  and indexNo != ''  ">#{indexNo},</if>
 			<if test="fieldName != null  and fieldName != ''  ">#{fieldName},</if>
-			<if test="defaultValue != null  and defaultValue != ''  ">#{defaultValue},</if>
 			<if test="orderNum != null  ">#{orderNum},</if>
-			<if test="createdTime != null  ">#{createdTime},</if>
-			<if test="createdBy != null  and createdBy != ''  ">#{createdBy},</if>
-			<if test="updatedTime != null  ">#{updatedTime},</if>
-			<if test="updatedBy != null  and updatedBy != ''  ">#{updatedBy},</if>
          </trim>
     </insert>
 	 
     <update id="updateBiIndexField" parameterType="BiIndexField">
         update bi_index_field
         <trim prefix="SET" suffixOverrides=",">
-            <if test="fieldNo != null  and fieldNo != ''  ">field_no = #{fieldNo},</if>
             <if test="indexNo != null  and indexNo != ''  ">index_no = #{indexNo},</if>
             <if test="fieldName != null  and fieldName != ''  ">field_name = #{fieldName},</if>
-            <if test="defaultValue != null  and defaultValue != ''  ">default_value = #{defaultValue},</if>
             <if test="orderNum != null  ">order_num = #{orderNum},</if>
-            <if test="createdTime != null  ">created_time = #{createdTime},</if>
-            <if test="createdBy != null  and createdBy != ''  ">created_by = #{createdBy},</if>
-            <if test="updatedTime != null  ">updated_time = #{updatedTime},</if>
-            <if test="updatedBy != null  and updatedBy != ''  ">updated_by = #{updatedBy},</if>
         </trim>
         where field_id = #{fieldId}
     </update>

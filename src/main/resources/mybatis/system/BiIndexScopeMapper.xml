@@ -10,6 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="orderNum"    column="order_num"    />
         <result property="relatedMethod"    column="related_method"    />
         <result property="scopeName"    column="scope_name"    />
+        <result property="aliasName"    column="alias_name"    />
         <result property="propertyName"    column="property_name"    />
         <result property="compareMethod"    column="compare_method"    />
         <result property="compareValue"    column="compare_value"    />
@@ -17,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 	
 	<sql id="selectBiIndexScopeVo">
-        select is_id, index_no, order_num, related_method, scope_name, property_name, compare_method, compare_value, compare_value_to from bi_index_scope
+        select is_id, index_no, order_num, related_method, scope_name, alias_name, property_name, compare_method, compare_value, compare_value_to from bi_index_scope
     </sql>
 	
     <select id="selectBiIndexScopeList" parameterType="BiIndexScope" resultMap="BiIndexScopeResult">
@@ -28,12 +29,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
              <if test="orderNum != null "> and order_num = #{orderNum}</if>
              <if test="relatedMethod != null  and relatedMethod != '' "> and related_method = #{relatedMethod}</if>
              <if test="scopeName != null  and scopeName != '' "> and scope_name = #{scopeName}</if>
+             <if test="aliasName != null  and aliasName != '' "> and alias_name = #{aliasName}</if>
              <if test="propertyName != null  and propertyName != '' "> and property_name = #{propertyName}</if>
              <if test="compareMethod != null  and compareMethod != '' "> and compare_method = #{compareMethod}</if>
              <if test="compareValue != null  and compareValue != '' "> and compare_value = #{compareValue}</if>
              <if test="compareValueTo != null  and compareValueTo != '' "> and compare_value_to = #{compareValueTo}</if>
          </where>
-         order by order_num
+        order by order_num,scope_name
     </select>
     
     <select id="selectBiIndexScopeById" parameterType="Integer" resultMap="BiIndexScopeResult">
@@ -48,6 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="orderNum != null  ">order_num,</if>
 			<if test="relatedMethod != null  and relatedMethod != ''  ">related_method,</if>
 			<if test="scopeName != null  and scopeName != ''  ">scope_name,</if>
+			<if test="aliasName != null  and aliasName != ''  ">alias_name,</if>
 			<if test="propertyName != null  and propertyName != ''  ">property_name,</if>
 			<if test="compareMethod != null  and compareMethod != ''  ">compare_method,</if>
 			<if test="compareValue != null  and compareValue != ''  ">compare_value,</if>
@@ -58,6 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="orderNum != null  ">#{orderNum},</if>
 			<if test="relatedMethod != null  and relatedMethod != ''  ">#{relatedMethod},</if>
 			<if test="scopeName != null  and scopeName != ''  ">#{scopeName},</if>
+			<if test="aliasName != null  and aliasName != ''  ">#{aliasName},</if>
 			<if test="propertyName != null  and propertyName != ''  ">#{propertyName},</if>
 			<if test="compareMethod != null  and compareMethod != ''  ">#{compareMethod},</if>
 			<if test="compareValue != null  and compareValue != ''  ">#{compareValue},</if>
@@ -72,6 +76,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="orderNum != null  ">order_num = #{orderNum},</if>
             <if test="relatedMethod != null  and relatedMethod != ''  ">related_method = #{relatedMethod},</if>
             <if test="scopeName != null  and scopeName != ''  ">scope_name = #{scopeName},</if>
+            <if test="aliasName != null  and aliasName != ''  ">alias_name = #{aliasName},</if>
             <if test="propertyName != null  and propertyName != ''  ">property_name = #{propertyName},</if>
             <if test="compareMethod != null  and compareMethod != ''  ">compare_method = #{compareMethod},</if>
             <if test="compareValue != null  and compareValue != ''  ">compare_value = #{compareValue},</if>

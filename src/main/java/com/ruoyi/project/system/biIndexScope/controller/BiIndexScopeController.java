@@ -24,7 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
  * 指标范围 信息操作处理
  * 
  * @author ruoyi
- * @date 2019-04-16
+ * @date 2019-04-17
  */
 @Controller
 @RequestMapping("/system/biIndexScope")

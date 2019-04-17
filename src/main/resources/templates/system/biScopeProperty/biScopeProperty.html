@@ -66,6 +66,21 @@
     var editFlag = [[${@permission.hasPermi('system:biScopeProperty:edit')}]];
     var removeFlag = [[${@permission.hasPermi('system:biScopeProperty:remove')}]];
     var prefix = ctx + "system/biScopeProperty";
+
+    function typeFunc(value)
+    {
+        if(value=='C')
+        {
+            return "字符串";
+        }
+        else if(value=='D') {
+            return "日期";
+        }
+        else
+        {
+            return "数字";
+        }
+    }
                                                                                                             
     $(function () {
         var options = {
@@ -104,7 +119,10 @@
                                                                                                                                     {
                                 field: 'propertyType',
                                 title: '属性类型',
-                                sortable: true
+                                sortable: true,
+                                formatter: function (value, row, index) {
+                                    return typeFunc(value);
+                                }
                             },
                                                                             {
                     title: '操作',

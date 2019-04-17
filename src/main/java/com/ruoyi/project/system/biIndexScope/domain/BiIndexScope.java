@@ -4,12 +4,12 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import com.ruoyi.framework.web.domain.BaseEntity;
 import com.ruoyi.framework.aspectj.lang.annotation.Excel;
-                                    
+                                        
 /**
  * 指标范围表 bi_index_scope
  *
  * @author ruoyi
- * @date 2019-04-16
+ * @date 2019-04-17
  */
 public class BiIndexScope extends BaseEntity
         {
@@ -30,6 +30,9 @@ private String relatedMethod;
 /** 关联范围 */
 @Excel(name = "关联范围", prompt = "关联范围")
 private String scopeName;
+/** 别名 */
+@Excel(name = "别名", prompt = "别名")
+private String aliasName;
 /** 关联范围属性 */
 @Excel(name = "关联范围属性", prompt = "关联范围属性")
 private String propertyName;
@@ -88,6 +91,15 @@ public String getScopeName()
         {
         return scopeName;
         }
+public void setAliasName(String aliasName)
+        {
+        this.aliasName = aliasName;
+        }
+
+public String getAliasName()
+        {
+        return aliasName;
+        }
 public void setPropertyName(String propertyName)
         {
         this.propertyName = propertyName;
@@ -132,6 +144,7 @@ public String toString(){
                 .append("orderNum",getOrderNum())
                 .append("relatedMethod",getRelatedMethod())
                 .append("scopeName",getScopeName())
+                .append("aliasName",getAliasName())
                 .append("propertyName",getPropertyName())
                 .append("compareMethod",getCompareMethod())
                 .append("compareValue",getCompareValue())

@@ -17,7 +17,7 @@ import com.ruoyi.common.utils.text.Convert;
  * 项目管理员 服务层实现
  *
  * @author ruoyi
- * @date 2019-04-16
+ * @date 2019-04-17
  */
 @Service
 public class BiScopeProjectAdminServiceImpl implements IBiScopeProjectAdminService {
@@ -99,7 +99,6 @@ public class BiScopeProjectAdminServiceImpl implements IBiScopeProjectAdminServi
         successMsg.insert(0, "恭喜您，数据已全部导入成功！共 " + successNum + " 条，数据如下：");
         return successMsg.toString();
     }
-
 
     public int updateBiScopeProjectAdminReadyToDeal(Map param)
     {

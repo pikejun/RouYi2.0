@@ -10,7 +10,7 @@ import java.util.Map;
  * 企业管理员 数据层
  *
  * @author ruoyi
- * @date 2019-04-16
+ * @date 2019-04-17
  */
 public interface BiScopeEnterpriseAdminMapper
 {
@@ -61,7 +61,6 @@ public interface BiScopeEnterpriseAdminMapper
      * @return 结果
      */
 	public int deleteBiScopeEnterpriseAdminByIds(String[] tids);
-
 
 	public int updateBiScopeEnterpriseAdminReadyToDeal(Map param);
 

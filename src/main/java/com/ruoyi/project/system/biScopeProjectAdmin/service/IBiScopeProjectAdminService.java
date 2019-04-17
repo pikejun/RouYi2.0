@@ -10,7 +10,7 @@ import java.util.Map;
  * 项目管理员 服务层
  * 
  * @author ruoyi
- * @date 2019-04-16
+ * @date 2019-04-17
  */
 public interface IBiScopeProjectAdminService 
 {
@@ -61,7 +61,6 @@ public interface IBiScopeProjectAdminService
      * @return
      */
     public String importBiScopeProjectAdmin(List<BiScopeProjectAdmin> biScopeProjectAdminList);
-
 
 	public int updateBiScopeProjectAdminReadyToDeal(Map param);
 

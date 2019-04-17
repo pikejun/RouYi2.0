@@ -78,6 +78,17 @@
     var editFlag = [[${@permission.hasPermi('system:biScopeInfo:edit')}]];
     var removeFlag = [[${@permission.hasPermi('system:biScopeInfo:remove')}]];
     var prefix = ctx + "system/biScopeInfo";
+
+    function statusFunc(value)
+    {
+        if(value==1)
+        {
+            return "有效";
+        }
+        else {
+            return "无效";
+        }
+    }
                                                                                                                                                                         
     $(function () {
         var options = {
@@ -111,7 +122,10 @@
                                                                                                                                     {
                                 field: 'status',
                                 title: '范围状态',
-                                sortable: true
+                                sortable: true,
+                                formatter: function (value, row, index) {
+                                    return statusFunc(value);
+                                }
                             },
                                                                                                                                     {
                                 field: 'createdTime',

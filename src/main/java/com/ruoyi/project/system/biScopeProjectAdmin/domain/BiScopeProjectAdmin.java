@@ -10,7 +10,7 @@ import com.ruoyi.framework.aspectj.lang.annotation.Excel;
  * 项目管理员表 bi_scope_project_admin
  *
  * @author ruoyi
- * @date 2019-04-16
+ * @date 2019-04-17
  */
 public class BiScopeProjectAdmin extends BaseEntity
         {
@@ -27,7 +27,7 @@ private String id;
 private String name;
 /** 实名ID */
 @Excel(name = "实名ID", prompt = "实名ID")
-private Integer realNameId;
+private String realNameId;
 /** 工作状态 */
 @Excel(name = "工作状态", prompt = "工作状态")
 private String workStatus;
@@ -86,12 +86,12 @@ public String getName()
         {
         return name;
         }
-public void setRealNameId(Integer realNameId)
+public void setRealNameId(String realNameId)
         {
         this.realNameId = realNameId;
         }
 
-public Integer getRealNameId()
+public String getRealNameId()
         {
         return realNameId;
         }

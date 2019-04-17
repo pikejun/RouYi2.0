@@ -79,6 +79,30 @@
 </div>
 <div th:include="include :: footer"></div>
 <script th:inline="javascript">
+    function displayType(value)
+    {
+        if(value==1)
+        {
+            return "总数";
+        }
+        else {
+            return "字段明细";
+        }
+    }
+
+    function statusFunc(value)
+    {
+        if(value==1)
+        {
+            return "有效";
+        }
+        else {
+            return "无效";
+        }
+    }
+
+
+
     var editFlag = [[${@permission.hasPermi('system:biIndexInfo:edit')}]];
     var removeFlag = [[${@permission.hasPermi('system:biIndexInfo:remove')}]];
     var prefix = ctx + "system/biIndexInfo";
@@ -116,12 +140,18 @@
                                                                                                                                     {
                                 field: 'displayType',
                                 title: '显示类型',
-                                sortable: true
+                                sortable: true,
+                                formatter: function (value, row, index) {
+                                    return displayType(value);
+                                }
                             },
                                                                                                                                     {
                                 field: 'status',
                                 title: '指标状态',
-                                sortable: true
+                                sortable: true,
+                                formatter: function (value, row, index) {
+                                    return statusFunc(value);
+                                }
                             },
                                                                                                                                     {
                                 field: 'createdTime',

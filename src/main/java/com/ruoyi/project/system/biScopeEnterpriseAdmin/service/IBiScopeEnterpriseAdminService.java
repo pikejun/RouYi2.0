@@ -10,7 +10,7 @@ import java.util.Map;
  * 企业管理员 服务层
  * 
  * @author ruoyi
- * @date 2019-04-16
+ * @date 2019-04-17
  */
 public interface IBiScopeEnterpriseAdminService 
 {

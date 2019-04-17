@@ -31,7 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="tid != null "> and tid = #{tid}</if>
              <if test="id != null  and id != '' "> and id = #{id}</if>
              <if test="name != null  and name != '' "> and name = #{name}</if>
-             <if test="realNameId != null "> and real_name_id = #{realNameId}</if>
+             <if test="realNameId != null  and realNameId != '' "> and real_name_id = #{realNameId}</if>
              <if test="workStatus != null  and workStatus != '' "> and work_status = #{workStatus}</if>
              <if test="projectId != null  and projectId != '' "> and project_id = #{projectId}</if>
              <if test="levelCode != null  and levelCode != '' "> and level_code = #{levelCode}</if>
@@ -55,7 +55,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null  and id != ''  ">id,</if>
 			<if test="name != null  and name != ''  ">name,</if>
-			<if test="realNameId != null  ">real_name_id,</if>
+			<if test="realNameId != null  and realNameId != ''  ">real_name_id,</if>
 			<if test="workStatus != null  and workStatus != ''  ">work_status,</if>
 			<if test="projectId != null  and projectId != ''  ">project_id,</if>
 			<if test="levelCode != null  and levelCode != ''  ">level_code,</if>
@@ -70,7 +70,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null  and id != ''  ">#{id},</if>
 			<if test="name != null  and name != ''  ">#{name},</if>
-			<if test="realNameId != null  ">#{realNameId},</if>
+			<if test="realNameId != null  and realNameId != ''  ">#{realNameId},</if>
 			<if test="workStatus != null  and workStatus != ''  ">#{workStatus},</if>
 			<if test="projectId != null  and projectId != ''  ">#{projectId},</if>
 			<if test="levelCode != null  and levelCode != ''  ">#{levelCode},</if>
@@ -89,7 +89,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <trim prefix="SET" suffixOverrides=",">
             <if test="id != null  and id != ''  ">id = #{id},</if>
             <if test="name != null  and name != ''  ">name = #{name},</if>
-            <if test="realNameId != null  ">real_name_id = #{realNameId},</if>
+            <if test="realNameId != null  and realNameId != ''  ">real_name_id = #{realNameId},</if>
             <if test="workStatus != null  and workStatus != ''  ">work_status = #{workStatus},</if>
             <if test="projectId != null  and projectId != ''  ">project_id = #{projectId},</if>
             <if test="levelCode != null  and levelCode != ''  ">level_code = #{levelCode},</if>
@@ -114,7 +114,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             #{tid}
         </foreach>
     </delete>
-
 
 
 

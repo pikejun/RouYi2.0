@@ -24,7 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
  * 企业管理员 信息操作处理
  * 
  * @author ruoyi
- * @date 2019-04-16
+ * @date 2019-04-17
  */
 @Controller
 @RequestMapping("/system/biScopeEnterpriseAdmin")
