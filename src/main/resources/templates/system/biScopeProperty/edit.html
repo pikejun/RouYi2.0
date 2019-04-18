@@ -9,7 +9,9 @@
 			<div class="form-group">	
 				<label class="col-sm-3 control-label">所属范围名称：</label>
 				<div class="col-sm-8">
-					<input id="scopeName" name="scopeName" th:field="*{scopeName}" class="form-control" type="text">
+					<select name="scopeName" class="form-control m-b" th:with="type=${@dict.getType('bi_scope_info')}">
+						<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}" th:field="*{scopeName}"></option>
+					</select>
 				</div>
 			</div>
 			<div class="form-group">	
