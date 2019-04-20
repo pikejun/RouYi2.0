@@ -24,7 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
  * 汇报数据 信息操作处理
  * 
  * @author ruoyi
- * @date 2019-04-15
+ * @date 2019-04-20
  */
 @Controller
 @RequestMapping("/system/biReportInfo")

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.biIndexDisplay.mapper.BiIndexDisplayMapper">
+    
+    <resultMap type="BiIndexDisplay" id="BiIndexDisplayResult">
+        <result property="displayId"    column="display_id"    />
+        <result property="displayNo"    column="display_no"    />
+        <result property="indexNo"    column="index_no"    />
+        <result property="displayContent"    column="display_content"    />
+    </resultMap>
+	
+	<sql id="selectBiIndexDisplayVo">
+        select display_id, display_no, index_no, display_content from bi_index_display
+    </sql>
+	
+    <select id="selectBiIndexDisplayList" parameterType="BiIndexDisplay" resultMap="BiIndexDisplayResult">
+        <include refid="selectBiIndexDisplayVo"/>
+        <where>  
+            <if test="displayId != null "> and display_id = #{displayId}</if>
+             <if test="displayNo != null  and displayNo != '' "> and display_no = #{displayNo}</if>
+             <if test="indexNo != null  and indexNo != '' "> and index_no = #{indexNo}</if>
+             <if test="displayContent != null  and displayContent != '' "> and display_content = #{displayContent}</if>
+         </where>
+    </select>
+    
+    <select id="selectBiIndexDisplayById" parameterType="Integer" resultMap="BiIndexDisplayResult">
+        <include refid="selectBiIndexDisplayVo"/>
+        where display_id = #{displayId}
+    </select>
+        
+    <insert id="insertBiIndexDisplay" parameterType="BiIndexDisplay" useGeneratedKeys="true" keyProperty="displayId">
+        insert into bi_index_display
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="displayNo != null  and displayNo != ''  ">display_no,</if>
+			<if test="indexNo != null  and indexNo != ''  ">index_no,</if>
+			<if test="displayContent != null  and displayContent != ''  ">display_content,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="displayNo != null  and displayNo != ''  ">#{displayNo},</if>
+			<if test="indexNo != null  and indexNo != ''  ">#{indexNo},</if>
+			<if test="displayContent != null  and displayContent != ''  ">#{displayContent},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateBiIndexDisplay" parameterType="BiIndexDisplay">
+        update bi_index_display
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="displayNo != null  and displayNo != ''  ">display_no = #{displayNo},</if>
+            <if test="indexNo != null  and indexNo != ''  ">index_no = #{indexNo},</if>
+            <if test="displayContent != null  and displayContent != ''  ">display_content = #{displayContent},</if>
+        </trim>
+        where display_id = #{displayId}
+    </update>
+
+	<delete id="deleteBiIndexDisplayById" parameterType="Integer">
+        delete from bi_index_display where display_id = #{displayId}
+    </delete>
+	
+    <delete id="deleteBiIndexDisplayByIds" parameterType="String">
+        delete from bi_index_display where display_id in 
+        <foreach item="displayId" collection="array" open="(" separator="," close=")">
+            #{displayId}
+        </foreach>
+    </delete>
+    
+</mapper>

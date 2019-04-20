@@ -1,6 +1,9 @@
 package com.ruoyi.project.system.biScopeProperty.controller;
 
 import java.util.List;
+import java.util.Map;
+
+import com.alibaba.fastjson.JSON;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +22,8 @@ import com.ruoyi.framework.web.page.TableDataInfo;
 import com.ruoyi.framework.web.domain.AjaxResult;
 import com.ruoyi.common.utils.poi.ExcelUtil;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 范围属性 信息操作处理
@@ -53,6 +58,16 @@ public class BiScopePropertyController extends BaseController
 		startPage();
         List<BiScopeProperty> list = biScopePropertyService.selectBiScopePropertyList(biScopeProperty);
 		return getDataTable(list);
+	}
+
+	@PostMapping("/getScopePropertyByScopeName")
+	@ResponseBody
+	public String getScopePropertyByScopeName(HttpServletRequest request) {
+		BiScopeProperty biScopeProperty = new BiScopeProperty();
+		biScopeProperty.setScopeName(request.getParameter("scopeName"));
+		List<BiScopeProperty> list = biScopePropertyService.selectBiScopePropertyList(biScopeProperty);
+
+		return JSON.toJSONString(list);
 	}
 	
 	

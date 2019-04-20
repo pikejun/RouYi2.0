@@ -1,14 +1,20 @@
 package com.ruoyi.project.system.biIndexInfo.service;
 
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import com.ruoyi.common.exception.BusinessException;
 import com.ruoyi.common.utils.StringUtils;
+import com.ruoyi.common.utils.security.ShiroUtils;
+import com.ruoyi.project.bi.service.Neo4jService;
+import com.ruoyi.project.system.biIndexField.domain.BiIndexField;
+import com.ruoyi.project.system.biIndexField.service.IBiIndexFieldService;
+import com.ruoyi.project.system.biIndexScope.domain.BiIndexScope;
+import com.ruoyi.project.system.biIndexScope.service.IBiIndexScopeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.project.system.biIndexInfo.mapper.BiIndexInfoMapper;
 import com.ruoyi.project.system.biIndexInfo.domain.BiIndexInfo;
-import com.ruoyi.project.system.biIndexInfo.service.IBiIndexInfoService;
 import com.ruoyi.common.utils.text.Convert;
 
 /**
@@ -21,6 +27,15 @@ import com.ruoyi.common.utils.text.Convert;
 public class BiIndexInfoServiceImpl implements IBiIndexInfoService {
     @Autowired
     private BiIndexInfoMapper biIndexInfoMapper;
+
+    @Autowired
+    private Neo4jService neo4jService;
+
+    @Autowired
+    private IBiIndexScopeService  biIndexScopeService;
+
+    @Autowired
+    private IBiIndexFieldService  biIndexFieldService;
 
     /**
      * 查询指标信息
@@ -52,6 +67,14 @@ public class BiIndexInfoServiceImpl implements IBiIndexInfoService {
      */
     @Override
     public int insertBiIndexInfo(BiIndexInfo biIndexInfo) {
+
+        String name=ShiroUtils.getLoginName();
+        biIndexInfo.setCreatedBy(name);
+        biIndexInfo.setUpdatedBy(name);
+        Date d = new Date();
+        biIndexInfo.setCreatedTime(d);
+        biIndexInfo.setUpdatedTime(d);
+
         return biIndexInfoMapper.insertBiIndexInfo(biIndexInfo);
     }
 
@@ -63,6 +86,12 @@ public class BiIndexInfoServiceImpl implements IBiIndexInfoService {
      */
     @Override
     public int updateBiIndexInfo(BiIndexInfo biIndexInfo) {
+
+        String name=ShiroUtils.getLoginName();
+        biIndexInfo.setUpdatedBy(name);
+        Date d = new Date();
+        biIndexInfo.setUpdatedTime(d);
+
         return biIndexInfoMapper.updateBiIndexInfo(biIndexInfo);
     }
 
@@ -96,6 +125,429 @@ public class BiIndexInfoServiceImpl implements IBiIndexInfoService {
         }
         successMsg.insert(0, "恭喜您，数据已全部导入成功！共 " + successNum + " 条，数据如下：");
         return successMsg.toString();
+    }
+
+    public List<Map> getDetailDataByIndex(String scopeName, String id,String indexNo)
+    {
+        List<Map> retList = new ArrayList();
+
+        String cypher =  getDetailDataCypherString(scopeName,id,indexNo);
+
+        if(cypher!=null)
+        {
+            retList =	neo4jService.queryByCypher(cypher);
+        }
+
+        return retList;
+    }
+
+    public List<Map> getDetailDataByIndex(String indexNo)
+    {
+        List<Map> retList = new ArrayList();
+
+        String cypher =  getDetailDataCypherString(indexNo);
+
+        if(cypher!=null)
+        {
+            retList =	neo4jService.queryByCypher(cypher);
+        }
+
+        return retList;
+    }
+
+    public String buildCypherWithBiIndexScopeAndIndexFieldList(List<BiIndexScope> indexScopeList,List<BiIndexField> biIndexFieldList)
+    {
+        StringBuilder sb=new StringBuilder();
+
+        sb.append("match ");
+
+        StringBuilder where=new StringBuilder();
+        StringBuilder ret=new StringBuilder(" return ");
+
+        int k=0;
+
+        for(BiIndexField biIndexField:biIndexFieldList)
+        {
+            if(k!=0)
+            {
+                ret.append(",");
+            }
+            ret.append(" ").append(biIndexField.getFieldName());
+            k++;
+        }
+
+        String currentScopeName=null;
+        String lastScopeName=null;
+
+        boolean isFirst=true;
+
+        for(BiIndexScope scope: indexScopeList)
+        {
+            if(scope.getAliasName()==null||"null".equalsIgnoreCase(scope.getAliasName()))
+            {
+                scope.setAliasName("n_"+scope.getScopeName().toLowerCase());
+            }
+
+            if(!scope.getScopeName().equals(currentScopeName))
+            {
+                currentScopeName =scope.getScopeName();
+
+                lastScopeName = ":"+currentScopeName+")";
+
+                if(!sb.toString().contains(lastScopeName))
+                {
+                    if (!isFirst)
+                    {
+                        sb.append("--");
+                    }
+                    else
+                    {
+                        isFirst = false;
+                    }
+
+                    sb.append("(").append(scope.getAliasName()).append(":").append(scope.getScopeName()).append(")");
+                }
+            }
+
+            if(scope.getPropertyName()!=null && scope.getPropertyName().trim().length()>0)
+            {
+                if(where.length()==0)
+                {
+                    where.append(" where 1=1");
+                }
+
+                if(scope.getCompareValue()!=null&&scope.getCompareValue().trim().length()>0)
+                {
+                    where.append(" ").append(scope.getRelatedMethod()).append(" ");
+
+                    where.append(scope.getAliasName()).append(".").append(scope.getPropertyName());
+
+                    appendWhereCompareValue(scope.getCompareMethod(),where,scope.getCompareValue(),scope.getCompareValueTo());
+                }
+                else
+                {
+                    if(")".equalsIgnoreCase(scope.getRelatedMethod()))
+                    {
+                        where.append(")");
+                    }
+                }
+            }
+
+        }
+
+
+
+        sb.append(" ").append(where.toString()).append(" ").append(ret.toString());
+
+        return sb.toString();
+    }
+
+    /**
+     * match(n:WorkerGroup),(p:Person)  where n.name='1' and p.name='aaa' return count(n) as totalNumber
+     * @param indexScopeList
+     * @return
+     */
+    public String buildCypherWithBiIndexScopeList(List<BiIndexScope> indexScopeList)
+    {
+        StringBuilder sb=new StringBuilder();
+
+        sb.append("match ");
+
+        StringBuilder where=new StringBuilder();
+        StringBuilder ret=new StringBuilder(" return count(distinct ");
+
+        String currentScopeName=null;
+        String lastScopeName=null;
+
+        boolean isFirst=true;
+
+        for(BiIndexScope scope: indexScopeList)
+        {
+            if(scope.getAliasName()==null||"null".equalsIgnoreCase(scope.getAliasName()))
+            {
+                scope.setAliasName("n_"+scope.getScopeName().toLowerCase());
+            }
+
+            if(!scope.getScopeName().equals(currentScopeName))
+            {
+                currentScopeName =scope.getScopeName();
+
+                lastScopeName = ":"+currentScopeName+")";
+
+                if(!sb.toString().contains(lastScopeName))
+                {
+                    if (!isFirst) {
+                        sb.append("--");
+                    } else {
+                        isFirst = false;
+                        ret.append(scope.getAliasName()).append(") as totalNumber");
+                    }
+
+                    sb.append("(").append(scope.getAliasName()).append(":").append(scope.getScopeName()).append(")");
+                }
+            }
+            else
+            {
+
+            }
+
+            if(scope.getPropertyName()!=null && scope.getPropertyName().trim().length()>0)
+            {
+                if(where.length()==0)
+                {
+                    where.append(" where 1=1 ");
+                }
+
+
+
+                if(scope.getCompareValue()!=null&&scope.getCompareValue().length()>0)
+                {
+                    where.append(" ").append(scope.getRelatedMethod()).append(" ");
+
+                    where.append(scope.getAliasName()).append(".").append(scope.getPropertyName());
+
+                    appendWhereCompareValue(scope.getCompareMethod(),where,scope.getCompareValue(),scope.getCompareValueTo());
+                }
+                else
+                {
+                    if(")".equalsIgnoreCase(scope.getRelatedMethod()))
+                    {
+                        where.append(")");
+                    }
+                }
+            }
+        }
+
+
+
+        sb.append(" ").append(where.toString()).append(" ").append(ret.toString());
+
+        return sb.toString();
+    }
+
+    private void appendWhereCompareValue(String compareMethod,StringBuilder where,String compareValue,String compareValueTo)
+    {
+        where.append(compareMethod);
+
+        if("today".equalsIgnoreCase(compareValueTo))
+        {
+            SimpleDateFormat sdf = new SimpleDateFormat(compareValue);
+
+
+            if("=~".equalsIgnoreCase(compareMethod))
+            {
+                where.append("'.*").append(sdf.format(new Date())).append(".*'");
+            }
+            else
+            {
+                where.append("'").append(sdf.format(new Date())).append("'");
+            }
+        }
+        else
+        {
+            if(compareValue.startsWith("'")||compareValue.startsWith("\""))
+            {
+                where.append(compareValue);
+            }
+            else
+            {
+                if("=~".equalsIgnoreCase(compareMethod))
+                {
+                    where.append("'.*").append(compareValue).append(".*'");
+                }
+                else
+                {
+                    if(compareValue.matches("\\d*"))
+                    {
+                        where.append(compareValue);
+                    }
+                    else
+                    {
+                        where.append("'").append(compareValue).append("'");
+                    }
+                }
+
+            }
+        }
+    }
+
+    public Map getTotalCntDataByIndex(String scopeName, String id,String indexNo)
+    {
+        Map ret = new HashMap();
+
+        String cypher = getTotalCntCypherString(scopeName,id,indexNo);
+
+
+
+        if(cypher!=null)
+        {
+            List<Map> list =	neo4jService.queryByCypher(cypher);
+
+            if(list!=null && list.size()>0)
+            {
+                return list.get(0);
+            }
+        }
+        else
+        {
+            ret.put("totalNumber","0");
+        }
+
+        return ret;
+    }
+
+
+    public Map getTotalCntDataByIndex(String indexNo)
+    {
+        Map ret = new HashMap();
+
+        String cypher = getTotalCntCypherString(indexNo);
+
+        if(cypher!=null)
+        {
+            List<Map> list =	neo4jService.queryByCypher(cypher);
+
+            if(list!=null && list.size()>0)
+            {
+                return list.get(0);
+            }
+        }
+        else
+        {
+            ret.put("totalNumber","0");
+        }
+
+        return ret;
+    }
+
+    public  String getTotalCntCypherString(String scopeName,String id,String indexNo)
+    {
+        BiIndexScope query=new BiIndexScope();
+        query.setIndexNo(indexNo);
+        List<BiIndexScope> indexScopeList = biIndexScopeService.selectBiIndexScopeList(query);
+        if(indexScopeList!=null&&indexScopeList.size()>0)
+        {
+            String cypher = buildCypherWithBiIndexScopeList(indexScopeList);
+
+            boolean isContain=false;
+
+            for(BiIndexScope scope:indexScopeList)
+            {
+                if(scope.getScopeName().equals(scopeName))
+                {
+                    isContain =true;
+
+                    cypher = cypher.replace(" where "," where "+scope.getAliasName()+".id='"+id+"' and ");
+                }
+            }
+
+
+            if(!isContain)
+            {
+                String aliasName=scopeName.toLowerCase()+"000";
+
+                cypher=  cypher.replace(" where ","-[*1..5]-("+aliasName+":"+scopeName+") where "+aliasName+".id='"+id+"' and ");
+            }
+
+
+
+            System.out.println(cypher);
+
+            return cypher;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public  String getTotalCntCypherString(String indexNo)
+    {
+        BiIndexScope query=new BiIndexScope();
+        query.setIndexNo(indexNo);
+        List<BiIndexScope> indexScopeList = biIndexScopeService.selectBiIndexScopeList(query);
+        if(indexScopeList!=null&&indexScopeList.size()>0)
+        {
+            String cypher = buildCypherWithBiIndexScopeList(indexScopeList);
+
+            System.out.println(cypher);
+
+            return cypher;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public String getDetailDataCypherString(String scopeName,String id,String indexNo)
+    {
+        BiIndexScope query=new BiIndexScope();
+        query.setIndexNo(indexNo);
+        List<BiIndexScope> indexScopeList = biIndexScopeService.selectBiIndexScopeList(query);
+
+        BiIndexField biIndexField=new BiIndexField();
+        biIndexField.setIndexNo(indexNo);
+        List<BiIndexField> biIndexFieldList =	biIndexFieldService.selectBiIndexFieldList(biIndexField);
+
+        if(biIndexFieldList!=null&&biIndexFieldList.size()>0)
+        {
+            String cypher = buildCypherWithBiIndexScopeAndIndexFieldList(indexScopeList,biIndexFieldList);
+
+            boolean isContain=false;
+
+            for(BiIndexScope scope:indexScopeList)
+            {
+                if(scope.getScopeName().equals(scopeName))
+                {
+                    isContain =true;
+
+                    cypher = cypher.replace(" where "," where "+scope.getAliasName()+".id='"+id+"' and ");
+                }
+            }
+
+
+            if(!isContain)
+            {
+                String aliasName=scopeName.toLowerCase()+"000";
+
+                cypher =  cypher.replace(" where ","-[*1..5]-("+aliasName+":"+scopeName+") where "+aliasName+".id='"+id+"' and ");
+            }
+
+
+            System.out.println(cypher);
+
+            return cypher;
+        }
+        else
+        {
+            return  null;
+        }
+    }
+
+
+    public String getDetailDataCypherString(String indexNo)
+    {
+        BiIndexScope query=new BiIndexScope();
+        query.setIndexNo(indexNo);
+        List<BiIndexScope> indexScopeList = biIndexScopeService.selectBiIndexScopeList(query);
+
+        BiIndexField biIndexField=new BiIndexField();
+        biIndexField.setIndexNo(indexNo);
+        List<BiIndexField> biIndexFieldList =	biIndexFieldService.selectBiIndexFieldList(biIndexField);
+
+        if(biIndexFieldList!=null&&biIndexFieldList.size()>0)
+        {
+            String cypher = buildCypherWithBiIndexScopeAndIndexFieldList(indexScopeList,biIndexFieldList);
+
+            System.out.println(cypher);
+
+            return cypher;
+        }
+        else
+        {
+            return  null;
+        }
     }
 
 }

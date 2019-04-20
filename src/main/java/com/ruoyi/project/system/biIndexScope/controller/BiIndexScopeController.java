@@ -1,6 +1,9 @@
 package com.ruoyi.project.system.biIndexScope.controller;
 
 import java.util.List;
+import java.util.Map;
+
+import com.alibaba.fastjson.JSON;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,6 +44,26 @@ public class BiIndexScopeController extends BaseController
 	{
 	    return prefix + "/biIndexScope";
 	}
+
+	@RequiresPermissions("system:biIndexScope:view")
+	@GetMapping("/{indexNo}")
+	public String biIndexScopeAtIndexNo(@PathVariable String indexNo,ModelMap mmap)
+	{
+		mmap.put("indexNo",indexNo);
+		return prefix + "/biIndexScopeAtIndexNo";
+	}
+
+	/**
+	 * 查询指标范围名称和别名列表
+	 */
+	@PostMapping("/getScopeAndAliasNameList")
+	@ResponseBody
+	public String getScopeAndAliasNameList(BiIndexScope biIndexScope)
+	{
+		List<Map> list = biIndexScopeService.getScopeAndAliasNameList(biIndexScope);
+		return JSON.toJSONString(list);
+	}
+
 	
 	/**
 	 * 查询指标范围列表
@@ -54,6 +77,21 @@ public class BiIndexScopeController extends BaseController
         List<BiIndexScope> list = biIndexScopeService.selectBiIndexScopeList(biIndexScope);
 		return getDataTable(list);
 	}
+
+	/**
+	 * 查询指标范围列表
+	 */
+	@RequiresPermissions("system:biIndexScope:list")
+	@PostMapping("/list/{indexNo}")
+	@ResponseBody
+	public TableDataInfo list(BiIndexScope biIndexScope,@PathVariable String indexNo)
+	{
+		biIndexScope.setIndexNo(indexNo);
+		List<BiIndexScope> list = biIndexScopeService.selectBiIndexScopeList(biIndexScope);
+		return getDataTable(list);
+	}
+
+
 	
 	
 	/**
@@ -102,6 +140,18 @@ public class BiIndexScopeController extends BaseController
 	{
 	    return prefix + "/add";
 	}
+
+	/**
+	 * 新增指标范围
+	 */
+	@GetMapping("/add/{indexNo}")
+	public String add(@PathVariable String indexNo, ModelMap mmap)
+	{
+		mmap.put("indexNo",indexNo);
+		return prefix + "/addAtIndexNo";
+	}
+
+
 	
 	/**
 	 * 新增保存指标范围

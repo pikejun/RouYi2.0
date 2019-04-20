@@ -15,6 +15,14 @@
                                     </li>
 
                                                                                                                                                                                     <li>
+                                        范围别名：<input type="text" name="aliasName"/>
+                                    </li>
+
+                                                                                                                                                                                    <li>
+                                        属性名称：<input type="text" name="propertyName"/>
+                                    </li>
+
+                                                                                                                                                                                    <li>
                                         字段名称：<input type="text" name="fieldName"/>
                                     </li>
 
@@ -62,7 +70,7 @@
     var editFlag = [[${@permission.hasPermi('system:biIndexField:edit')}]];
     var removeFlag = [[${@permission.hasPermi('system:biIndexField:remove')}]];
     var prefix = ctx + "system/biIndexField";
-                                                                                        
+                                                                                                                                
     $(function () {
         var options = {
             url: prefix + "/list",
@@ -85,6 +93,16 @@
                                                                                                             {
                                 field: 'indexNo',
                                 title: '指标编号',
+                                sortable: true
+                            },
+                                                                                                                                    {
+                                field: 'aliasName',
+                                title: '范围别名',
+                                sortable: true
+                            },
+                                                                                                                                    {
+                                field: 'propertyName',
+                                title: '属性名称',
                                 sortable: true
                             },
                                                                                                                                     {

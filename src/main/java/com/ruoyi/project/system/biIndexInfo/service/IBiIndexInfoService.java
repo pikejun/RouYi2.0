@@ -1,7 +1,11 @@
 package com.ruoyi.project.system.biIndexInfo.service;
 
+import com.ruoyi.project.system.biIndexField.domain.BiIndexField;
 import com.ruoyi.project.system.biIndexInfo.domain.BiIndexInfo;
+import com.ruoyi.project.system.biIndexScope.domain.BiIndexScope;
+
 import java.util.List;
+import java.util.Map;
 
 /**
  * 指标 服务层
@@ -58,4 +62,21 @@ public interface IBiIndexInfoService
      * @return
      */
     public String importBiIndexInfo(List<BiIndexInfo> biIndexInfoList);
+
+	Map getTotalCntDataByIndex(String indexNo);
+
+	Map getTotalCntDataByIndex(String scopeName, String id,String indexNo);
+
+
+
+
+	String getTotalCntCypherString(String indexNo);
+
+	public List<Map> getDetailDataByIndex(String indexNo);
+
+	public List<Map> getDetailDataByIndex(String scopeName, String id,String indexNo);
+
+	String getDetailDataCypherString(String indexNo);
+
+
 }

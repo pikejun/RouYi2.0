@@ -58,4 +58,9 @@ public interface IBiTemplateInfoService
      * @return
      */
     public String importBiTemplateInfo(List<BiTemplateInfo> biTemplateInfoList);
+
+
+	public String getTestContentByBiTemplateInfo(BiTemplateInfo biTemplateInfo);
+
+	public void reportTemplateByTemplateNo(String templateNo);
 }

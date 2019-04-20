@@ -19,28 +19,12 @@
                                     </li>
 
                                                                                                                                                                                     <li>
-                                        显示类型：<input type="text" name="displayType"/>
-                                    </li>
+                                        显示类型：
 
-                                                                                                                                                                                    <li>
-                                        指标状态：<input type="text" name="status"/>
                                     </li>
-
-                                                                                                                                                                                    <li>
-                                        创建时间：<input type="text" name="createdTime"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        创建人：<input type="text" name="createdBy"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        更新时间：<input type="text" name="updatedTime"/>
-                                    </li>
-
-                                                                                                                                                                                    <li>
-                                        更新人：<input type="text" name="updatedBy"/>
-                                    </li>
+                                      <li> <select name="displayType" class="form-control m-b" th:with="type=${@dict.getType('bi_index_display_type')}">
+                                          <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                                      </select></li>
 
                                                                                                             <li>
                             <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i
@@ -79,14 +63,14 @@
 </div>
 <div th:include="include :: footer"></div>
 <script th:inline="javascript">
-    function displayType(value)
+    function displayType(value,row)
     {
         if(value==1)
         {
             return "总数";
         }
         else {
-            return "字段明细";
+            return '<a href="#" onclick="detailField(\'' + row.indexNo + '\')">' + "字段明细" + '</a>'+'&nbsp; <a href="#" onclick="detailDisplay(\'' + row.indexNo + '\')">' + "明细模板" + '</a>';
         }
     }
 
@@ -135,14 +119,18 @@
                                                                                                                                     {
                                 field: 'indexName',
                                 title: '指标名称',
-                                sortable: true
+                                sortable: true,
+                                formatter: function(value, row, index)
+                                {
+                                    return '<a href="#" onclick="detail(\'' + row.indexNo + '\')">' + value + '</a>';
+                                }
                             },
                                                                                                                                     {
                                 field: 'displayType',
                                 title: '显示类型',
                                 sortable: true,
                                 formatter: function (value, row, index) {
-                                    return displayType(value);
+                                    return displayType(value,row);
                                 }
                             },
                                                                                                                                     {
@@ -187,6 +175,27 @@
         };
         $.table.init(options);
     });
+
+    /*指标范围-详细*/
+    function detail(indexNo)
+    {
+        var url = ctx + "system/biIndexScope/"+indexNo;
+        createMenuItem(url, "指标范围");
+    }
+
+    /*指标字段明细-详细*/
+    function detailField(indexNo)
+    {
+        var url = ctx + "system/biIndexField/"+indexNo;
+        createMenuItem(url, "指标字段明细");
+    }
+
+    /*指标展示-详细*/
+    function detailDisplay(indexNo)
+    {
+        var url = ctx + "system/biIndexDisplay/"+indexNo;
+        createMenuItem(url, "指标字段明细模板");
+    }
 </script>
 </body>
 <form id="importForm" enctype="multipart/form-data" class="mt20 mb10" style="display: none;">

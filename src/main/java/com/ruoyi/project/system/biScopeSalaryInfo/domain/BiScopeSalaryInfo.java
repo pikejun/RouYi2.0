@@ -43,8 +43,8 @@ private Integer attendCount;
 /** 月份 */
 @Excel(name = "月份", prompt = "月份")
 private String month;
-/** 组织人员ID */
-@Excel(name = "组织人员ID", prompt = "组织人员ID")
+/** 工人ID */
+@Excel(name = "工人ID", prompt = "工人ID")
 private String workerId;
 /** 是否满意 */
 @Excel(name = "是否满意", prompt = "是否满意")

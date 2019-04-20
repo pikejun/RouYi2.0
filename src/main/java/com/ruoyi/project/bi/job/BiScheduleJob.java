@@ -1,5 +1,7 @@
 package com.ruoyi.project.bi.job;
 
+import com.ruoyi.project.system.biTemplateInfo.service.IBiTemplateInfoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,8 +12,12 @@ import org.springframework.stereotype.Component;
 @Component("biScheduleJob")
 public class BiScheduleJob
 {
-    public  void execute(String templateId)
+    @Autowired
+    IBiTemplateInfoService biTemplateInfoService;
+    public  void execute(String templateNo)
     {
-        System.out.println(Thread.currentThread().getId()+":"+templateId);
+
+
+        biTemplateInfoService.reportTemplateByTemplateNo(templateNo);
     }
 }

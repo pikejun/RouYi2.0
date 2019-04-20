@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+
+<div class="container-div">
+    <div class="row">
+        <form id="formId">
+            <input type="hidden" name="indexNo" id="indexNo" th:value="${indexNo}"/>
+        </form>
+
+        <div class="btn-group-sm" id="toolbar" role="group">
+            <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="system:biIndexDisplay:add">
+                <i class="fa fa-plus"></i> 添加
+            </a>
+            <a class="btn btn-danger btn-del btn-del disabled" onclick="$.operate.removeAll()"
+               shiro:hasPermission="system:biIndexDisplay:remove">
+                <i class="fa fa-remove"></i> 删除
+            </a>
+        </div>
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table" data-mobile-responsive="true"></table>
+        </div>
+    </div>
+</div>
+<div th:include="include :: footer"></div>
+<script th:inline="javascript">
+    var editFlag = [[${@permission.hasPermi('system:biIndexDisplay:edit')}]];
+    var removeFlag = [[${@permission.hasPermi('system:biIndexDisplay:remove')}]];
+    var prefix = ctx + "system/biIndexDisplay";
+    var indexNo = $("#indexNo").val();
+    $(function () {
+        var options = {
+            url: prefix + "/list/"+indexNo,
+            createUrl: prefix + "/add/"+indexNo,
+            updateUrl: prefix + "/edit/{id}",
+            displayUrl: prefix + "/display/{id}",
+            removeUrl: prefix + "/remove",
+            exportUrl: prefix + "/export",
+            importUrl: prefix + "/importData",
+            importTemplateUrl: prefix + "/importTemplate",
+            modalName: "指标展示",
+            showExport: true,
+            columns: [{
+                checkbox: true
+            },
+                                                            {
+                            field: 'displayId',
+                            title: '展示ID',
+                            visible: false
+                        },
+                                                                                                            {
+                                field: 'displayNo',
+                                title: '展示编号',
+                                sortable: true
+                            },
+                                                                                                                                    {
+                                field: 'indexNo',
+                                title: '指标编号',
+                                sortable: true
+                            },
+                                                                                                                                    {
+                                field: 'displayContent',
+                                title: '展示格式',
+                                sortable: true
+                            },
+                                                                            {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="#" onclick="$.operate.edit(\'' + row.displayId + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="#" onclick="$.operate.remove(\'' + row.displayId + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        actions.push('<a class="btn btn-success btn-xs ' + removeFlag + '" href="#" onclick="$.operate.display(\'' + row.displayId + '\')"><i class="fa fa-music"></i>预览</a>');
+                        return actions.join('&nbsp;');
+                    }
+                }]
+        };
+        $.table.init(options);
+    });
+</script>
+</body>
+<form id="importForm" enctype="multipart/form-data" class="mt20 mb10" style="display: none;">
+    <div class="col-xs-offset-1">
+        <input type="file" id="file" name="file"/>
+        <div class="mt10 pt5">
+            &nbsp;	<a onclick="$.table.importTemplate()" class="btn btn-default btn-xs"><i class="fa fa-file-excel-o"></i> 下载模板</a>
+        </div>
+        <font color="red" class="pull-left mt10">
+            提示：仅允许导入“xls”或“xlsx”格式文件！
+        </font>
+    </div>
+</form>
+</html>

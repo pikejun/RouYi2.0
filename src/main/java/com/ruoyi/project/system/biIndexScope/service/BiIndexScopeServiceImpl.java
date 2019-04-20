@@ -1,6 +1,7 @@
 package com.ruoyi.project.system.biIndexScope.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.ruoyi.common.exception.BusinessException;
 import com.ruoyi.common.utils.StringUtils;
@@ -42,6 +43,11 @@ public class BiIndexScopeServiceImpl implements IBiIndexScopeService {
     @Override
     public List<BiIndexScope> selectBiIndexScopeList(BiIndexScope biIndexScope) {
         return biIndexScopeMapper.selectBiIndexScopeList(biIndexScope);
+    }
+
+    public List<Map> getScopeAndAliasNameList(BiIndexScope biIndexScope)
+    {
+        return biIndexScopeMapper.getScopeAndAliasNameList(biIndexScope);
     }
 
     /**

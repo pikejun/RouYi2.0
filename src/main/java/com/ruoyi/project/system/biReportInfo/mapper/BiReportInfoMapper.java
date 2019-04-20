@@ -7,7 +7,7 @@ import java.util.List;
  * 汇报数据 数据层
  *
  * @author ruoyi
- * @date 2019-04-15
+ * @date 2019-04-20
  */
 public interface BiReportInfoMapper
 {

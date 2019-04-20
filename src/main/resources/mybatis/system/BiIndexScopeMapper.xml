@@ -95,5 +95,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             #{isId}
         </foreach>
     </delete>
+
+    <select id="getScopeAndAliasNameList" parameterType="BiIndexScope" resultType="java.util.HashMap">
+        select insc.alias_name aliasName,insc.scope_name scopeName,si.scope_name_desc aliasNameDesc
+        from  bi_index_scope insc , bi_scope_info si
+        where insc.index_no=  #{indexNo}
+        and insc.scope_name = si.scope_name
+        and insc.alias_name is not null
+        order by insc.order_num
+    </select>
     
 </mapper>

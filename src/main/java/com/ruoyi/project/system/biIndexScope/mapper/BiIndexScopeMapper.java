@@ -2,6 +2,7 @@ package com.ruoyi.project.system.biIndexScope.mapper;
 
 import com.ruoyi.project.system.biIndexScope.domain.BiIndexScope;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 指标范围 数据层
@@ -26,6 +27,8 @@ public interface BiIndexScopeMapper
      * @return 指标范围集合
      */
 	public List<BiIndexScope> selectBiIndexScopeList(BiIndexScope biIndexScope);
+
+	public List<Map> getScopeAndAliasNameList(BiIndexScope biIndexScope);
 
 	/**
      * 新增指标范围

@@ -10,7 +10,7 @@ import com.ruoyi.framework.aspectj.lang.annotation.Excel;
  * 汇报数据表 bi_report_info
  *
  * @author ruoyi
- * @date 2019-04-15
+ * @date 2019-04-20
  */
 public class BiReportInfo extends BaseEntity
         {
@@ -19,9 +19,9 @@ private static final long serialVersionUID=1L;
 /** 报告ID */
 @Excel(name = "报告ID", prompt = "报告ID")
 private Integer reportId;
-/** 模板ID */
-@Excel(name = "模板ID", prompt = "模板ID")
-private Integer templateId;
+/** 模板编号 */
+@Excel(name = "模板编号", prompt = "模板编号")
+private String templateNo;
 /** 接收人姓名 */
 @Excel(name = "接收人姓名", prompt = "接收人姓名")
 private String receiverName;
@@ -59,14 +59,14 @@ public Integer getReportId()
         {
         return reportId;
         }
-public void setTemplateId(Integer templateId)
+public void setTemplateNo(String templateNo)
         {
-        this.templateId = templateId;
+        this.templateNo = templateNo;
         }
 
-public Integer getTemplateId()
+public String getTemplateNo()
         {
-        return templateId;
+        return templateNo;
         }
 public void setReceiverName(String receiverName)
         {
@@ -153,7 +153,7 @@ public String getUpdatedBy()
 public String toString(){
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
                 .append("reportId",getReportId())
-                .append("templateId",getTemplateId())
+                .append("templateNo",getTemplateNo())
                 .append("receiverName",getReceiverName())
                 .append("receiverId",getReceiverId())
                 .append("reportContent",getReportContent())

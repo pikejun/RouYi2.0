@@ -125,6 +125,23 @@ public class BiTemplateInfoController extends BaseController
 		mmap.put("biTemplateInfo", biTemplateInfo);
 	    return prefix + "/edit";
 	}
+
+	/**
+	 * 预览指标
+	 * @return
+	 */
+	@GetMapping("/display/{templateId}")
+	public String display(@PathVariable("templateId") Integer templateId, ModelMap mmap)
+	{
+		BiTemplateInfo biTemplateInfo = biTemplateInfoService.selectBiTemplateInfoById(templateId);
+		mmap.put("biTemplateInfo", biTemplateInfo);
+		String ret= prefix + "/display";
+
+		String content=biTemplateInfoService.getTestContentByBiTemplateInfo(biTemplateInfo);
+
+		mmap.put("content", content);
+		return ret;
+	}
 	
 	/**
 	 * 修改保存模板数据

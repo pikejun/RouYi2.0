@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-biIndexScope-add">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">指标编号：</label>
+            <div class="col-sm-8">
+                <input id="indexNo" name="indexNo" class="form-control" type="text"  readonly="true" th:value="${indexNo}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">排序号：</label>
+            <div class="col-sm-8">
+                <select id="orderNum" name="orderNum" class="form-control m-b" th:with="type=${@dict.getType('order_no')}">
+                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">关联方式：</label>
+            <div class="col-sm-8">
+                <select id="relatedMethod" name="relatedMethod" class="form-control m-b" th:with="type=${@dict.getType('relation_method')}">
+                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}" ></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">关联范围：</label>
+            <div class="col-sm-8">
+                <select id="scopeName" name="scopeName" class="form-control m-b" th:with="type=${@dict.getType('bi_scope_info')}">
+                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">指标范围别名：</label>
+            <div class="col-sm-8">
+                <input id="aliasName" name="aliasName" class="form-control" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">关联范围属性：</label>
+            <div class="col-sm-8">
+                <select id="propertyName" name="propertyName" class="form-control m-b">
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">属性计算方式：</label>
+            <div class="col-sm-8">
+                <select id="compareMethod" name="compareMethod" class="form-control m-b" th:with="type=${@dict.getType('compare_method')}">
+                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}" ></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">比较值1：</label>
+            <div class="col-sm-8">
+                <input id="compareValue" name="compareValue" class="form-control" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">比较值2：</label>
+            <div class="col-sm-8">
+                <input id="compareValueTo" name="compareValueTo" class="form-control" type="text">
+            </div>
+        </div>
+    </form>
+</div>
+<div th:include="include::footer"></div>
+<script type="text/javascript">
+    var prefix = ctx + "system/biIndexScope"
+    $("#form-biIndexScope-add").validate({
+        rules: {
+            xxxx: {
+                required: true,
+            },
+        },
+        focusCleanup: true
+    });
+
+    function submitHandler() {
+        if ($.validate.form()) {
+            $.operate.save(prefix + "/add", $('#form-biIndexScope-add').serialize());
+        }
+    }
+
+    var scopeName = $("#scopeName").val();
+    if (scopeName) {
+        $("#propertyName").empty();
+        $.post(ctx + "system/biScopeProperty/getScopePropertyByScopeName", {scopeName: scopeName}, function (result) {
+            var data = result;
+            data = $.parseJSON(data);
+            $.each(data, function (k, item) {
+                $("#propertyName").append("<option value='" + item.propertyName + "'>" + item.propertyNameDesc + "</option>");
+            });
+        })
+    }
+
+    //加载
+    $(function () {
+        //范围属性联动
+        $("#scopeName").change(function () {
+            var scopeValue = $(this).children('option:selected').val();
+            $("#propertyName").empty();
+            $.post(ctx + "system/biScopeProperty/getScopePropertyByScopeName", {scopeName: scopeValue}, function (result) {
+                var data = result;
+                data = $.parseJSON(data);
+                $.each(data, function (k, item) {
+                    $("#propertyName").append("<option value='" + item.propertyName + "'>" + item.propertyNameDesc + "</option>");
+                });
+            })
+        })
+
+    });
+
+</script>
+</body>
+</html>

@@ -4,12 +4,12 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import com.ruoyi.framework.web.domain.BaseEntity;
 import com.ruoyi.framework.aspectj.lang.annotation.Excel;
-                
+                        
 /**
  * 指标字段明细表 bi_index_field
  *
  * @author ruoyi
- * @date 2019-04-17
+ * @date 2019-04-19
  */
 public class BiIndexField extends BaseEntity
         {
@@ -21,6 +21,12 @@ private Integer fieldId;
 /** 指标编号 */
 @Excel(name = "指标编号", prompt = "指标编号")
 private String indexNo;
+/** 范围别名 */
+@Excel(name = "范围别名", prompt = "范围别名")
+private String aliasName;
+/** 属性名称 */
+@Excel(name = "属性名称", prompt = "属性名称")
+private String propertyName;
 /** 字段名称 */
 @Excel(name = "字段名称", prompt = "字段名称")
 private String fieldName;
@@ -46,6 +52,24 @@ public String getIndexNo()
         {
         return indexNo;
         }
+public void setAliasName(String aliasName)
+        {
+        this.aliasName = aliasName;
+        }
+
+public String getAliasName()
+        {
+        return aliasName;
+        }
+public void setPropertyName(String propertyName)
+        {
+        this.propertyName = propertyName;
+        }
+
+public String getPropertyName()
+        {
+        return propertyName;
+        }
 public void setFieldName(String fieldName)
         {
         this.fieldName = fieldName;
@@ -69,6 +93,8 @@ public String toString(){
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
                 .append("fieldId",getFieldId())
                 .append("indexNo",getIndexNo())
+                .append("aliasName",getAliasName())
+                .append("propertyName",getPropertyName())
                 .append("fieldName",getFieldName())
                 .append("orderNum",getOrderNum())
             .toString();

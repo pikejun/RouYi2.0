@@ -1,86 +1,135 @@
 <!DOCTYPE HTML>
-<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
 <body class="white-bg">
-    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
-        <form class="form-horizontal m" id="form-biIndexScope-edit" th:object="${biIndexScope}">
-            <input id="isId" name="isId" th:field="*{isId}"  type="hidden">
-			<div class="form-group">	
-				<label class="col-sm-3 control-label">指标编号：</label>
-				<div class="col-sm-8">
-					<input id="indexNo" name="indexNo" th:field="*{indexNo}" class="form-control" type="text">
-				</div>
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+	<form class="form-horizontal m" id="form-biIndexScope-edit" th:object="${biIndexScope}">
+		<input id="isId" name="isId" th:field="*{isId}" type="hidden">
+		<div class="form-group">
+			<label class="col-sm-3 control-label">指标编号：</label>
+			<div class="col-sm-8">
+				<input id="indexNo" name="indexNo" th:field="*{indexNo}" class="form-control" type="text" readonly="true">
 			</div>
-			<div class="form-group">	
-				<label class="col-sm-3 control-label">排序号：</label>
-				<div class="col-sm-8">
-					<input id="orderNum" name="orderNum" th:field="*{orderNum}" class="form-control" type="text">
-				</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label">排序号：</label>
+			<div class="col-sm-8">
+				<select id="orderNum" name="orderNum" class="form-control m-b" th:with="type=${@dict.getType('order_no')}">
+					<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}" th:field="*{orderNum}" ></option>
+				</select>
 			</div>
-			<div class="form-group">	
-				<label class="col-sm-3 control-label">关联方式：</label>
-				<div class="col-sm-8">
-					<input id="relatedMethod" name="relatedMethod" th:field="*{relatedMethod}" class="form-control" type="text">
-				</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label">关联方式：</label>
+			<div class="col-sm-8">
+				<select id="relatedMethod" name="relatedMethod" class="form-control m-b" th:with="type=${@dict.getType('relation_method')}">
+					<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}" th:field="*{relatedMethod}" ></option>
+				</select>
 			</div>
-			<div class="form-group">	
-				<label class="col-sm-3 control-label">关联范围：</label>
-				<div class="col-sm-8">
-					<select name="scopeName" class="form-control m-b" th:with="type=${@dict.getType('bi_scope_info')}">
-						<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}" th:field="*{scopeName}"></option>
-					</select>
-				</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label">关联范围：</label>
+			<div class="col-sm-8">
+				<select id="scopeName" name="scopeName" class="form-control m-b" th:with="type=${@dict.getType('bi_scope_info')}">
+					<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}" th:field="*{scopeName}"></option>
+				</select>
 			</div>
-			<div class="form-group">	
-				<label class="col-sm-3 control-label">别名：</label>
-				<div class="col-sm-8">
-					<input id="aliasName" name="aliasName" th:field="*{aliasName}" class="form-control" type="text">
-				</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label">指标范围别名：</label>
+			<div class="col-sm-8">
+				<input id="aliasName" name="aliasName" th:field="*{aliasName}" class="form-control" type="text">
 			</div>
-			<div class="form-group">	
-				<label class="col-sm-3 control-label">关联范围属性：</label>
-				<div class="col-sm-8">
-					<input id="propertyName" name="propertyName" th:field="*{propertyName}" class="form-control" type="text">
-				</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label">关联范围属性：</label>
+			<div class="col-sm-8">
+				<input id="propertyNameHid" type="hidden" th:value="*{propertyName}"/>
+				<select id="propertyName" name="propertyName" class="form-control m-b">
+				</select>
 			</div>
-			<div class="form-group">	
-				<label class="col-sm-3 control-label">属性计算方式：</label>
-				<div class="col-sm-8">
-					<input id="compareMethod" name="compareMethod" th:field="*{compareMethod}" class="form-control" type="text">
-				</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label">属性计算方式：</label>
+			<div class="col-sm-8">
+				<select id="compareMethod" name="compareMethod" class="form-control m-b" th:with="type=${@dict.getType('compare_method')}">
+					<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}" th:field="*{compareMethod}" ></option>
+				</select>
 			</div>
-			<div class="form-group">	
-				<label class="col-sm-3 control-label">比较值1：</label>
-				<div class="col-sm-8">
-					<input id="compareValue" name="compareValue" th:field="*{compareValue}" class="form-control" type="text">
-				</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label">比较值1：</label>
+			<div class="col-sm-8">
+				<input id="compareValue" name="compareValue" th:field="*{compareValue}" class="form-control" type="text">
 			</div>
-			<div class="form-group">	
-				<label class="col-sm-3 control-label">比较值2：</label>
-				<div class="col-sm-8">
-					<input id="compareValueTo" name="compareValueTo" th:field="*{compareValueTo}" class="form-control" type="text">
-				</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label">比较值2：</label>
+			<div class="col-sm-8">
+				<input id="compareValueTo" name="compareValueTo" th:field="*{compareValueTo}" class="form-control" type="text">
 			</div>
-		</form>
-    </div>
-    <div th:include="include::footer"></div>
-    <script type="text/javascript">
-		var prefix = ctx + "system/biIndexScope";
-		$("#form-biIndexScope-edit").validate({
-			rules:{
-				xxxx:{
-					required:true,
-				},
+		</div>
+	</form>
+</div>
+<div th:include="include::footer"></div>
+<script type="text/javascript">
+	var prefix = ctx + "system/biIndexScope";
+	$("#form-biIndexScope-edit").validate({
+		rules: {
+			xxxx: {
+				required: true,
 			},
-			focusCleanup: true
-		});
-		
-		function submitHandler() {
-	        if ($.validate.form()) {
-	            $.operate.save(prefix + "/edit", $('#form-biIndexScope-edit').serialize());
-	        }
-	    }
-	</script>
+		},
+		focusCleanup: true
+	});
+
+	function submitHandler() {
+		if ($.validate.form()) {
+			$.operate.save(prefix + "/edit", $('#form-biIndexScope-edit').serialize());
+		}
+	}
+
+	var propertyName = $("#propertyNameHid").val();
+	var scopeName = $("#scopeName").val();
+	if (scopeName && propertyName) {
+		$.post(ctx + "system/biScopeProperty/getScopePropertyByScopeName", {scopeName: scopeName}, function (result) {
+			var data = result;
+			data = $.parseJSON(data);
+			if (data.length > 0) {
+				$("#propertyName").empty();
+				$.each(data, function (k, item) {
+					if (item.propertyName == propertyName) {
+						$("#propertyName").append("<option value='" + item.propertyName + "' selected='selected'>" + item.propertyNameDesc + "</option>");
+					} else {
+						$("#propertyName").append("<option value='" + item.propertyName + "'>" + item.propertyNameDesc + "</option>");
+					}
+				});
+			}
+		})
+	}
+
+	//加载
+	$(function () {
+		//范围属性联动
+		$("#scopeName").change(function () {
+			// var scopeValue = $(this > 'option:selected').val();
+			var scopeValue = $(this).children('option:selected').val();
+			$.post(ctx + "system/biScopeProperty/getScopePropertyByScopeName", {scopeName: scopeValue}, function (result) {
+				var data = result;
+				data = $.parseJSON(data);
+				if (data.length > 0) {
+					$("#propertyName").empty()
+					$.each(data, function (k, item) {
+						$("#propertyName").append("<option value='" + item.propertyName + "'>" + item.propertyNameDesc + "</option>");
+					});
+				}
+
+			})
+		})
+
+	})
+	;
+</script>
 </body>
 </html>

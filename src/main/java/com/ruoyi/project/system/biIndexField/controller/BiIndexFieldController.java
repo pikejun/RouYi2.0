@@ -24,7 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
  * 指标字段明细 信息操作处理
  * 
  * @author ruoyi
- * @date 2019-04-17
+ * @date 2019-04-19
  */
 @Controller
 @RequestMapping("/system/biIndexField")
@@ -41,7 +41,30 @@ public class BiIndexFieldController extends BaseController
 	{
 	    return prefix + "/biIndexField";
 	}
-	
+
+	@RequiresPermissions("system:biIndexField:view")
+	@GetMapping("{indexNo}")
+	public String biIndexField(@PathVariable String indexNo,ModelMap modelMap)
+	{
+		modelMap.put("indexNo",indexNo);
+		return prefix + "/biIndexFieldAtIndexNo";
+	}
+
+	/**
+	 * 查询指标字段明细列表
+	 */
+	@RequiresPermissions("system:biIndexField:list")
+	@PostMapping("/list/{indexNo}")
+	@ResponseBody
+	public TableDataInfo list(@PathVariable String indexNo, BiIndexField biIndexField)
+	{
+		biIndexField.setIndexNo(indexNo);
+		List<BiIndexField> list = biIndexFieldService.selectBiIndexFieldList(biIndexField);
+		return getDataTable(list);
+	}
+
+
+
 	/**
 	 * 查询指标字段明细列表
 	 */
@@ -102,7 +125,25 @@ public class BiIndexFieldController extends BaseController
 	{
 	    return prefix + "/add";
 	}
-	
+
+
+	/**
+	 * 新增指标字段明细
+	 */
+	@GetMapping("/add/{indexNo}")
+	public String add(@PathVariable String indexNo,ModelMap modelMap)
+	{
+		modelMap.put("indexNo",indexNo);
+
+		//别名列表
+
+
+		//属性列表
+
+		return prefix + "/addAtIndexNo";
+	}
+
+
 	/**
 	 * 新增保存指标字段明细
 	 */

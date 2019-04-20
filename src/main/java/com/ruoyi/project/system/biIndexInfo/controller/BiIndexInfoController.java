@@ -5,7 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.alibaba.fastjson.JSON;
 import com.ruoyi.project.bi.service.Neo4jService;
+import com.ruoyi.project.system.biIndexDisplay.domain.BiIndexDisplay;
+import com.ruoyi.project.system.biIndexDisplay.service.IBiIndexDisplayService;
 import com.ruoyi.project.system.biIndexField.domain.BiIndexField;
 import com.ruoyi.project.system.biIndexField.service.IBiIndexFieldService;
 import com.ruoyi.project.system.biIndexScope.domain.BiIndexScope;
@@ -45,13 +48,10 @@ public class BiIndexInfoController extends BaseController
 	private IBiIndexInfoService biIndexInfoService;
 
 	@Autowired
-	private IBiIndexScopeService biIndexScopeService;
+	private IBiIndexDisplayService biIndexDisplayService;
 
 	@Autowired
 	private IBiIndexFieldService biIndexFieldService;
-
-	@Autowired
-	private Neo4jService neo4jService;
 	
 	@RequiresPermissions("system:biIndexInfo:view")
 	@GetMapping()
@@ -59,6 +59,83 @@ public class BiIndexInfoController extends BaseController
 	{
 	    return prefix + "/biIndexInfo";
 	}
+
+
+	@GetMapping("/selectIndexDetailList")
+	@ResponseBody
+	public String selectIndexDetailList()
+	{
+		BiIndexInfo biIndexInfo = new BiIndexInfo();
+		biIndexInfo.setDisplayType("2");
+		List<BiIndexInfo> list = biIndexInfoService.selectBiIndexInfoList(biIndexInfo);
+
+		return JSON.toJSONString(list);
+	}
+
+	@GetMapping("/selectAllIndexList")
+	@ResponseBody
+	public String selectAllIndexList()
+	{
+		BiIndexInfo biIndexInfo = new BiIndexInfo();
+		List<BiIndexInfo> list = biIndexInfoService.selectBiIndexInfoList(biIndexInfo);
+
+		return JSON.toJSONString(list);
+	}
+
+	@PostMapping("/getIndexNoParamByIndexNo")
+	@ResponseBody
+	public String getIndexNoParamByIndexNo(BiIndexDisplay biIndexDisplay)
+	{
+		List<BiIndexDisplay> list = biIndexDisplayService.selectBiIndexDisplayList(biIndexDisplay);
+
+		StringBuilder sb=new StringBuilder();
+		if(list!=null && list.size()>0)
+		{
+			for(BiIndexDisplay display:list)
+			{
+				if(sb.length()!=0)
+				{
+					sb.append(" , ");
+				}
+
+				sb.append("${").append(display.getDisplayNo()).append("@").append(display.getIndexNo()).append("}");
+			}
+		}
+		else
+		{
+			sb.append("${").append(biIndexDisplay.getIndexNo()).append("}");
+		}
+
+		return sb.toString();
+	}
+
+
+
+
+	@PostMapping("/getIndexNoParamStr")
+	@ResponseBody
+	public String getIndexNoParamStr(BiIndexField biIndexField)
+	{
+		List<BiIndexField> list = biIndexFieldService.selectBiIndexFieldList(biIndexField);
+
+		StringBuilder sb=new StringBuilder();
+		if(list!=null && list.size()>0)
+		{
+			for(BiIndexField field:list)
+			{
+				if(sb.length()!=0)
+				{
+					sb.append(" , ");
+				}
+
+				sb.append("${").append(field.getFieldName()).append("@").append(field.getIndexNo()).append("}");
+			}
+		}
+
+		return sb.toString();
+	}
+
+
 	
 	/**
 	 * 查询指标列表
@@ -144,174 +221,6 @@ public class BiIndexInfoController extends BaseController
 	    return prefix + "/edit";
 	}
 
-	private List<Map> getDetailCypherStringResult(List<BiIndexScope> indexScopeList,List<BiIndexField> biIndexFieldList)
-	{
-		String cypher = buildCypherWithBiIndexScopeAndIndexFieldList(indexScopeList,biIndexFieldList);
-
-		System.out.println(cypher);
-
-		List<Map> list =	neo4jService.queryByCypher(cypher);
-
-		return list;
-	}
-
-	public String buildCypherWithBiIndexScopeAndIndexFieldList(List<BiIndexScope> indexScopeList,List<BiIndexField> biIndexFieldList)
-	{
-		StringBuilder sb=new StringBuilder();
-
-		sb.append("match ");
-
-		StringBuilder where=new StringBuilder();
-		StringBuilder ret=new StringBuilder(" return ");
-
-		int k=0;
-		for(BiIndexField biIndexField:biIndexFieldList)
-		{
-			if(k!=0)
-			{
-				ret.append(",");
-			}
-			ret.append(" ").append(biIndexField.getFieldName());
-			k++;
-		}
-
-		String currentScopeName=null;
-		String lastScopeName=null;
-
-		boolean isFirst=true;
-
-		for(BiIndexScope scope: indexScopeList)
-		{
-			if(!scope.getScopeName().equals(currentScopeName))
-			{
-				lastScopeName = currentScopeName;
-				currentScopeName =scope.getScopeName();
-				if(!isFirst)
-				{
-					sb.append("--");
-
-				}
-				else
-				{
-					isFirst=false;
-				}
-
-				sb.append("(").append(scope.getAliasName()).append(":").append(scope.getScopeName()).append(")");
-			}
-			else
-			{
-
-			}
-
-			if(scope.getPropertyName()!=null && scope.getPropertyName().trim().length()>0)
-			{
-				if(where.length()==0)
-				{
-					where.append(" where ");
-				}
-				else
-				{
-					where.append(" ").append(scope.getRelatedMethod()).append(" ");
-				}
-
-				where.append(scope.getAliasName()).append(".").append(scope.getPropertyName()).append(scope.getCompareMethod()).append(scope.getCompareValue());
-			}
-
-		}
-
-
-
-		sb.append(" ").append(where.toString()).append(" ").append(ret.toString());
-
-		return sb.toString();
-	}
-
-	/**
-	 * match(n:WorkerGroup),(p:Person)  where n.name='1' and p.name='aaa' return count(n) as totalNumber
-	 * @param indexScopeList
-	 * @return
-     */
-	public String buildCypherWithBiIndexScopeList(List<BiIndexScope> indexScopeList)
-	{
-		StringBuilder sb=new StringBuilder();
-
-		sb.append("match ");
-
-		StringBuilder where=new StringBuilder();
-		StringBuilder ret=new StringBuilder(" return count(distinct ");
-
-		String currentScopeName=null;
-		String lastScopeName=null;
-
-		boolean isFirst=true;
-
-        for(BiIndexScope scope: indexScopeList)
-		{
-            if(!scope.getScopeName().equals(currentScopeName))
-			{
-				lastScopeName = currentScopeName;
-				currentScopeName =scope.getScopeName();
-				if(!isFirst)
-				{
-					sb.append("--");
-
-				}
-				else
-				{
-					isFirst=false;
-					ret.append(scope.getAliasName()).append(") as totalNumber");
-				}
-
-				sb.append("(").append(scope.getAliasName()).append(":").append(scope.getScopeName()).append(")");
-			}
-			else
-			{
-
-			}
-
-			if(scope.getPropertyName()!=null && scope.getPropertyName().trim().length()>0)
-			{
-				if(where.length()==0)
-				{
-					where.append(" where ");
-				}
-				else
-				{
-					where.append(" ").append(scope.getRelatedMethod()).append(" ");
-				}
-
-				where.append(scope.getAliasName()).append(".").append(scope.getPropertyName()).append(scope.getCompareMethod()).append(scope.getCompareValue());
-			}
-
-		}
-
-
-
-		sb.append(" ").append(where.toString()).append(" ").append(ret.toString());
-
-		return sb.toString();
-	}
-
-	private Map getCntCypherStringResult(List<BiIndexScope> indexScopeList)
-	{
-		String cypher = buildCypherWithBiIndexScopeList(indexScopeList);
-
-		System.out.println(cypher);
-
-	    List<Map> list =	neo4jService.queryByCypher(cypher);
-
-		if(list!=null && list.size()>0)
-		{
-			return list.get(0);
-		}
-
-		Map ret = new HashMap();
-
-		ret.put("totalNumber","0");
-
-		return ret;
-	}
-
 	/**
 	 * 预览指标
      * @return
@@ -322,22 +231,16 @@ public class BiIndexInfoController extends BaseController
 		BiIndexInfo biIndexInfo = biIndexInfoService.selectBiIndexInfoById(indexId);
 		mmap.put("biIndexInfo", biIndexInfo);
 		String ret= prefix + "/display";
-		BiIndexScope query=new BiIndexScope();
-		query.setIndexNo(biIndexInfo.getIndexNo());
-		List<BiIndexScope> list = biIndexScopeService.selectBiIndexScopeList(query);
 
 		if("1".equals(biIndexInfo.getDisplayType()))
 		{
-			mmap.putAll(getCntCypherStringResult(list));
+			mmap.putAll(biIndexInfoService.getTotalCntDataByIndex(biIndexInfo.getIndexNo()));
 
 			return ret;
 		}
 		else
 		{
-			BiIndexField biIndexField=new BiIndexField();
-			biIndexField.setIndexNo(biIndexInfo.getIndexNo());
-			List<BiIndexField> list2 =	biIndexFieldService.selectBiIndexFieldList(biIndexField);
-			mmap.put("retList",getDetailCypherStringResult(list,list2));
+			mmap.put("retList",biIndexInfoService.getDetailDataByIndex(biIndexInfo.getIndexNo()));
 		}
 
 		return prefix + "/displayDetail";

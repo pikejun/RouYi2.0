@@ -13,11 +13,25 @@
 				</div>
 			</div>
 			<div class="form-group">	
-				<label class="col-sm-3 control-label">发送对象指标编号：</label>
+				<label class="col-sm-3 control-label">汇报对象：</label>
 				<div class="col-sm-8">
-					<input id="senderIndexNo" name="senderIndexNo" th:field="*{senderIndexNo}" class="form-control" type="text">
+					<input id="senderIndexNoHidden" th:value="*{senderIndexNo}"  type="hidden">
+
+					<select id="senderIndexNo" name="senderIndexNo" class="form-control m-b"></select>
 				</div>
 			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">参考指标：</label>
+				<div class="col-sm-8">
+					<select id="exampleIndexNo" class="form-control m-b"></select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">可选参数：</label>
+				<div class="col-sm-8" id="paramStr">
+				</div>
+			</div>
+
 			<div class="form-group">	
 				<label class="col-sm-3 control-label">模板名称：</label>
 				<div class="col-sm-8">
@@ -27,37 +41,15 @@
 			<div class="form-group">	
 				<label class="col-sm-3 control-label">模板内容：</label>
 				<div class="col-sm-8">
-					<input id="templateContent" name="templateContent" th:field="*{templateContent}" class="form-control" type="text">
+					<textarea id="templateContent" name="templateContent" th:field="*{templateContent}" class="form-control" rows="15" cols="150"></textarea>
 				</div>
 			</div>
 			<div class="form-group">	
 				<label class="col-sm-3 control-label">模板状态：</label>
 				<div class="col-sm-8">
-					<input id="status" name="status" th:field="*{status}" class="form-control" type="text">
-				</div>
-			</div>
-			<div class="form-group">	
-				<label class="col-sm-3 control-label">创建时间：</label>
-				<div class="col-sm-8">
-					<input id="createdTime" name="createdTime" th:field="*{createdTime}" class="form-control" type="text">
-				</div>
-			</div>
-			<div class="form-group">	
-				<label class="col-sm-3 control-label">创建人：</label>
-				<div class="col-sm-8">
-					<input id="createdBy" name="createdBy" th:field="*{createdBy}" class="form-control" type="text">
-				</div>
-			</div>
-			<div class="form-group">	
-				<label class="col-sm-3 control-label">更新时间：</label>
-				<div class="col-sm-8">
-					<input id="updatedTime" name="updatedTime" th:field="*{updatedTime}" class="form-control" type="text">
-				</div>
-			</div>
-			<div class="form-group">	
-				<label class="col-sm-3 control-label">更新人：</label>
-				<div class="col-sm-8">
-					<input id="updatedBy" name="updatedBy" th:field="*{updatedBy}" class="form-control" type="text">
+					<select id="status" name="status" class="form-control m-b" th:with="type=${@dict.getType('bi_y1_n0')}">
+						<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}" th:field="*{status}"></option>
+					</select>
 				</div>
 			</div>
 		</form>
@@ -79,6 +71,64 @@
 	            $.operate.save(prefix + "/edit", $('#form-biTemplateInfo-edit').serialize());
 	        }
 	    }
+
+		var indexNo = null;
+		var senderIndexNoHidden =$("#senderIndexNoHidden").val();
+
+		$.get(ctx + "system/biIndexInfo/selectIndexDetailList", function (result)
+		{
+			var data = result;
+			data = $.parseJSON(data);
+			$.each(data, function (k, item) {
+
+				if(senderIndexNoHidden == item.indexNo)
+				{
+					$("#senderIndexNo").append("<option value='" + item.indexNo + "' selected='selected'>" + item.indexName + "</option>");
+					indexNo = item.indexNo;
+					alert(indexNo);
+				}
+				else
+				{
+					$("#senderIndexNo").append("<option value='" + item.indexNo + "'>" + item.indexName + "</option>");
+				}
+			});
+
+			$.post(ctx + "system/biIndexInfo/getIndexNoParamStr",{"indexNo":indexNo}, function (result) {
+				var data = result;
+
+				$("#paramStr").text(data);
+			})
+		});
+
+		//范围属性联动
+		$("#senderIndexNo").change(function ()
+		{
+			indexNo = $(this).children('option:selected').val();
+			$.post(ctx + "system/biIndexInfo/getIndexNoParamStr",{"indexNo":indexNo}, function (result) {
+				var data = result;
+				$("#paramStr").text(data);
+			})
+		})
+
+
+		$.get(ctx + "system/biIndexInfo/selectAllIndexList", function (result) {
+			var data = result;
+			data = $.parseJSON(data);
+			$.each(data, function (k, item) {
+				$("#exampleIndexNo").append("<option value='" + item.indexNo + "'>" + item.indexName + "</option>");
+			});
+		});
+
+		//范围属性联动
+		$("#exampleIndexNo").change(function ()
+		{
+			indexNo = $(this).children('option:selected').val();
+			$.post(ctx + "system/biIndexInfo/getIndexNoParamByIndexNo",{"indexNo":indexNo}, function (result) {
+				var data = result;
+				$("#paramStr").text(data);
+			})
+		})
+
 	</script>
 </body>
 </html>

@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <resultMap type="BiReportInfo" id="BiReportInfoResult">
         <result property="reportId"    column="report_id"    />
-        <result property="templateId"    column="template_id"    />
+        <result property="templateNo"    column="template_no"    />
         <result property="receiverName"    column="receiver_name"    />
         <result property="receiverId"    column="receiver_id"    />
         <result property="reportContent"    column="report_content"    />
@@ -19,14 +19,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 	
 	<sql id="selectBiReportInfoVo">
-        select report_id, template_id, receiver_name, receiver_id, report_content, send_status, send_date, created_time, created_by, updated_time, updated_by from bi_report_info
+        select report_id, template_no, receiver_name, receiver_id, report_content, send_status, send_date, created_time, created_by, updated_time, updated_by from bi_report_info
     </sql>
 	
     <select id="selectBiReportInfoList" parameterType="BiReportInfo" resultMap="BiReportInfoResult">
         <include refid="selectBiReportInfoVo"/>
         <where>  
             <if test="reportId != null "> and report_id = #{reportId}</if>
-             <if test="templateId != null "> and template_id = #{templateId}</if>
+             <if test="templateNo != null  and templateNo != '' "> and template_no = #{templateNo}</if>
              <if test="receiverName != null  and receiverName != '' "> and receiver_name = #{receiverName}</if>
              <if test="receiverId != null  and receiverId != '' "> and receiver_id = #{receiverId}</if>
              <if test="reportContent != null  and reportContent != '' "> and report_content = #{reportContent}</if>
@@ -47,7 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <insert id="insertBiReportInfo" parameterType="BiReportInfo" useGeneratedKeys="true" keyProperty="reportId">
         insert into bi_report_info
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="templateId != null  ">template_id,</if>
+			<if test="templateNo != null  and templateNo != ''  ">template_no,</if>
 			<if test="receiverName != null  and receiverName != ''  ">receiver_name,</if>
 			<if test="receiverId != null  and receiverId != ''  ">receiver_id,</if>
 			<if test="reportContent != null  and reportContent != ''  ">report_content,</if>
@@ -59,7 +59,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="updatedBy != null  and updatedBy != ''  ">updated_by,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="templateId != null  ">#{templateId},</if>
+			<if test="templateNo != null  and templateNo != ''  ">#{templateNo},</if>
 			<if test="receiverName != null  and receiverName != ''  ">#{receiverName},</if>
 			<if test="receiverId != null  and receiverId != ''  ">#{receiverId},</if>
 			<if test="reportContent != null  and reportContent != ''  ">#{reportContent},</if>
@@ -75,7 +75,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <update id="updateBiReportInfo" parameterType="BiReportInfo">
         update bi_report_info
         <trim prefix="SET" suffixOverrides=",">
-            <if test="templateId != null  ">template_id = #{templateId},</if>
+            <if test="templateNo != null  and templateNo != ''  ">template_no = #{templateNo},</if>
             <if test="receiverName != null  and receiverName != ''  ">receiver_name = #{receiverName},</if>
             <if test="receiverId != null  and receiverId != ''  ">receiver_id = #{receiverId},</if>
             <if test="reportContent != null  and reportContent != ''  ">report_content = #{reportContent},</if>
