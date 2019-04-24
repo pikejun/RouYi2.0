@@ -35,7 +35,7 @@ public class BiScopeWorkerSafeEventAttachmentsController extends BaseController
 	@Autowired
 	private IBiScopeWorkerSafeEventAttachmentsService biScopeWorkerSafeEventAttachmentsService;
 	
-	@RequiresPermissions("system:biScopeWorkerSafeEventAttachments:view")
+	@RequiresPermissions("bi:biScopeWorkerSafeEventAttachments:view")
 	@GetMapping()
 	public String biScopeWorkerSafeEventAttachments()
 	{
@@ -45,7 +45,7 @@ public class BiScopeWorkerSafeEventAttachmentsController extends BaseController
 	/**
 	 * 查询工人安全事件附件列表
 	 */
-	@RequiresPermissions("system:biScopeWorkerSafeEventAttachments:list")
+	@RequiresPermissions("bi:biScopeWorkerSafeEventAttachments:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiScopeWorkerSafeEventAttachments biScopeWorkerSafeEventAttachments)
@@ -59,7 +59,7 @@ public class BiScopeWorkerSafeEventAttachmentsController extends BaseController
 	/**
 	 * 导出工人安全事件附件列表
 	 */
-	@RequiresPermissions("system:biScopeWorkerSafeEventAttachments:export")
+	@RequiresPermissions("bi:biScopeWorkerSafeEventAttachments:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiScopeWorkerSafeEventAttachments biScopeWorkerSafeEventAttachments)
@@ -71,7 +71,7 @@ public class BiScopeWorkerSafeEventAttachmentsController extends BaseController
     /**
      * 导入工人安全事件附件列表
      */
-    @RequiresPermissions("system:biScopeWorkerSafeEventAttachments:import")
+    @RequiresPermissions("bi:biScopeWorkerSafeEventAttachments:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -85,7 +85,7 @@ public class BiScopeWorkerSafeEventAttachmentsController extends BaseController
 	 * 工人安全事件附件表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biScopeWorkerSafeEventAttachments:view")
+    @RequiresPermissions("bi:biScopeWorkerSafeEventAttachments:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -106,7 +106,7 @@ public class BiScopeWorkerSafeEventAttachmentsController extends BaseController
 	/**
 	 * 新增保存工人安全事件附件
 	 */
-	@RequiresPermissions("system:biScopeWorkerSafeEventAttachments:add")
+	@RequiresPermissions("bi:biScopeWorkerSafeEventAttachments:add")
 	@Log(title = "工人安全事件附件", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -129,7 +129,7 @@ public class BiScopeWorkerSafeEventAttachmentsController extends BaseController
 	/**
 	 * 修改保存工人安全事件附件
 	 */
-	@RequiresPermissions("system:biScopeWorkerSafeEventAttachments:edit")
+	@RequiresPermissions("bi:biScopeWorkerSafeEventAttachments:edit")
 	@Log(title = "工人安全事件附件", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -141,7 +141,7 @@ public class BiScopeWorkerSafeEventAttachmentsController extends BaseController
 	/**
 	 * 删除工人安全事件附件
 	 */
-	@RequiresPermissions("system:biScopeWorkerSafeEventAttachments:remove")
+	@RequiresPermissions("bi:biScopeWorkerSafeEventAttachments:remove")
 	@Log(title = "工人安全事件附件", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody

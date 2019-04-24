@@ -35,7 +35,7 @@ public class BiScopeEnterpriseDepartmentController extends BaseController
 	@Autowired
 	private IBiScopeEnterpriseDepartmentService biScopeEnterpriseDepartmentService;
 	
-	@RequiresPermissions("system:biScopeEnterpriseDepartment:view")
+	@RequiresPermissions("bi:biScopeEnterpriseDepartment:view")
 	@GetMapping()
 	public String biScopeEnterpriseDepartment()
 	{
@@ -45,7 +45,7 @@ public class BiScopeEnterpriseDepartmentController extends BaseController
 	/**
 	 * 查询企业部门列表
 	 */
-	@RequiresPermissions("system:biScopeEnterpriseDepartment:list")
+	@RequiresPermissions("bi:biScopeEnterpriseDepartment:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiScopeEnterpriseDepartment biScopeEnterpriseDepartment)
@@ -59,7 +59,7 @@ public class BiScopeEnterpriseDepartmentController extends BaseController
 	/**
 	 * 导出企业部门列表
 	 */
-	@RequiresPermissions("system:biScopeEnterpriseDepartment:export")
+	@RequiresPermissions("bi:biScopeEnterpriseDepartment:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiScopeEnterpriseDepartment biScopeEnterpriseDepartment)
@@ -71,7 +71,7 @@ public class BiScopeEnterpriseDepartmentController extends BaseController
     /**
      * 导入企业部门列表
      */
-    @RequiresPermissions("system:biScopeEnterpriseDepartment:import")
+    @RequiresPermissions("bi:biScopeEnterpriseDepartment:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -85,7 +85,7 @@ public class BiScopeEnterpriseDepartmentController extends BaseController
 	 * 企业部门表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biScopeEnterpriseDepartment:view")
+    @RequiresPermissions("bi:biScopeEnterpriseDepartment:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -106,7 +106,7 @@ public class BiScopeEnterpriseDepartmentController extends BaseController
 	/**
 	 * 新增保存企业部门
 	 */
-	@RequiresPermissions("system:biScopeEnterpriseDepartment:add")
+	@RequiresPermissions("bi:biScopeEnterpriseDepartment:add")
 	@Log(title = "企业部门", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -129,7 +129,7 @@ public class BiScopeEnterpriseDepartmentController extends BaseController
 	/**
 	 * 修改保存企业部门
 	 */
-	@RequiresPermissions("system:biScopeEnterpriseDepartment:edit")
+	@RequiresPermissions("bi:biScopeEnterpriseDepartment:edit")
 	@Log(title = "企业部门", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -141,7 +141,7 @@ public class BiScopeEnterpriseDepartmentController extends BaseController
 	/**
 	 * 删除企业部门
 	 */
-	@RequiresPermissions("system:biScopeEnterpriseDepartment:remove")
+	@RequiresPermissions("bi:biScopeEnterpriseDepartment:remove")
 	@Log(title = "企业部门", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody

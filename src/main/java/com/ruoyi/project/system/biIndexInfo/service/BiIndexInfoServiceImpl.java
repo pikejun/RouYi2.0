@@ -207,6 +207,11 @@ public class BiIndexInfoServiceImpl implements IBiIndexInfoService {
 
                     sb.append("(").append(scope.getAliasName()).append(":").append(scope.getScopeName()).append(")");
                 }
+                else
+                {
+                    sb.append(",");
+                    sb.append("(").append(scope.getAliasName()).append(":").append(scope.getScopeName()).append(")");
+                }
             }
 
             if(scope.getPropertyName()!=null && scope.getPropertyName().trim().length()>0)
@@ -285,6 +290,11 @@ public class BiIndexInfoServiceImpl implements IBiIndexInfoService {
 
                     sb.append("(").append(scope.getAliasName()).append(":").append(scope.getScopeName()).append(")");
                 }
+                else
+                {
+                    sb.append(",");
+                    sb.append("(").append(scope.getAliasName()).append(":").append(scope.getScopeName()).append(")");
+                }
             }
             else
             {
@@ -329,10 +339,9 @@ public class BiIndexInfoServiceImpl implements IBiIndexInfoService {
     {
         where.append(compareMethod);
 
-        if("today".equalsIgnoreCase(compareValueTo))
+        if("now".equalsIgnoreCase(compareValueTo))
         {
             SimpleDateFormat sdf = new SimpleDateFormat(compareValue);
-
 
             if("=~".equalsIgnoreCase(compareMethod))
             {
@@ -429,27 +438,7 @@ public class BiIndexInfoServiceImpl implements IBiIndexInfoService {
         {
             String cypher = buildCypherWithBiIndexScopeList(indexScopeList);
 
-            boolean isContain=false;
-
-            for(BiIndexScope scope:indexScopeList)
-            {
-                if(scope.getScopeName().equals(scopeName))
-                {
-                    isContain =true;
-
-                    cypher = cypher.replace(" where "," where "+scope.getAliasName()+".id='"+id+"' and ");
-                }
-            }
-
-
-            if(!isContain)
-            {
-                String aliasName=scopeName.toLowerCase()+"000";
-
-                cypher=  cypher.replace(" where ","-[*1..5]-("+aliasName+":"+scopeName+") where "+aliasName+".id='"+id+"' and ");
-            }
-
-
+            cypher = fixCyperWithIndexScopeList(indexScopeList,cypher,scopeName,id);
 
             System.out.println(cypher);
 
@@ -480,6 +469,52 @@ public class BiIndexInfoServiceImpl implements IBiIndexInfoService {
         }
     }
 
+    public String fixCyperWithIndexScopeList( List<BiIndexScope> indexScopeList ,String cypher,String scopeName,String id)
+    {
+        boolean isContain=false;
+
+        String aliasProject = null;
+
+        for(BiIndexScope scope:indexScopeList)
+        {
+            if(scope.getScopeName().equals(scopeName))
+            {
+                isContain =true;
+
+                cypher = cypher.replace(" where "," where "+scope.getAliasName()+".id='"+id+"' and ");
+            }
+
+            if("Project".equalsIgnoreCase(scope.getScopeName()))
+            {
+                aliasProject = scope.getAliasName();
+            }
+        }
+
+
+        if(!isContain)
+        {
+            String aliasName=scopeName.toLowerCase()+"000";
+
+            if(scopeName.equalsIgnoreCase("GroupOwner")||scopeName.equalsIgnoreCase("ProjectAdmin")||scopeName.equalsIgnoreCase("EnterpriseAdmin"))
+            {
+                if(aliasProject!=null)
+                {
+                    cypher =  cypher.replace(" where ",",("+aliasProject+":Project)--("+aliasName+":"+scopeName+") where "+aliasName+".id='"+id+"' and ");
+                }
+                else
+                {
+                    cypher=  cypher.replace(" where ","-[*1..5]-("+aliasName+":"+scopeName+") where "+aliasName+".id='"+id+"' and ");
+                }
+            }
+            else
+            {
+                cypher=  cypher.replace(" where ","-[*1..5]-("+aliasName+":"+scopeName+") where "+aliasName+".id='"+id+"' and ");
+            }
+        }
+
+       return cypher;
+    }
+
     public String getDetailDataCypherString(String scopeName,String id,String indexNo)
     {
         BiIndexScope query=new BiIndexScope();
@@ -494,26 +529,7 @@ public class BiIndexInfoServiceImpl implements IBiIndexInfoService {
         {
             String cypher = buildCypherWithBiIndexScopeAndIndexFieldList(indexScopeList,biIndexFieldList);
 
-            boolean isContain=false;
-
-            for(BiIndexScope scope:indexScopeList)
-            {
-                if(scope.getScopeName().equals(scopeName))
-                {
-                    isContain =true;
-
-                    cypher = cypher.replace(" where "," where "+scope.getAliasName()+".id='"+id+"' and ");
-                }
-            }
-
-
-            if(!isContain)
-            {
-                String aliasName=scopeName.toLowerCase()+"000";
-
-                cypher =  cypher.replace(" where ","-[*1..5]-("+aliasName+":"+scopeName+") where "+aliasName+".id='"+id+"' and ");
-            }
-
+            cypher = fixCyperWithIndexScopeList(indexScopeList,cypher,scopeName,id);
 
             System.out.println(cypher);
 

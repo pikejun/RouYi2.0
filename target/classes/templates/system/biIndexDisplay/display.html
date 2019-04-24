@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+	<table>
+		<tr> <td>指标编号:</td><td  th:text="${biIndexDisplay.indexNo}">指标编号....</td> </tr>
+		<tr> <td>显示编号:</td><td  th:text="${biIndexDisplay.displayNo}">显示编号.....</td> </tr>
+		<tr>
+			<td colspan="2" th:text="${content}"> 这里是内容.... </td>
+		</tr>
+	</table>
+</div>
+<div th:include="include::footer"></div>
+</body>
+</html>

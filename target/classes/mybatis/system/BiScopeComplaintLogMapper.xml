@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.biScopeComplaintLog.mapper.BiScopeComplaintLogMapper">
+    
+    <resultMap type="BiScopeComplaintLog" id="BiScopeComplaintLogResult">
+        <result property="tid"    column="tid"    />
+        <result property="id"    column="id"    />
+        <result property="complaintId"    column="complaint_id"    />
+        <result property="content"    column="content"    />
+        <result property="createDate"    column="create_date"    />
+        <result property="sender"    column="sender"    />
+        <result property="replayId"    column="replay_id"    />
+        <result property="replayName"    column="replay_name"    />
+        <result property="opStatus"    column="op_status"    />
+        <result property="opType"    column="op_type"    />
+        <result property="createdTime"    column="created_time"    />
+        <result property="createdBy"    column="created_by"    />
+        <result property="updatedTime"    column="updated_time"    />
+        <result property="updatedBy"    column="updated_by"    />
+    </resultMap>
+	
+	<sql id="selectBiScopeComplaintLogVo">
+        select tid, id, complaint_id, content, create_date, sender, replay_id, replay_name, op_status, op_type, created_time, created_by, updated_time, updated_by from bi_scope_complaint_log
+    </sql>
+	
+    <select id="selectBiScopeComplaintLogList" parameterType="BiScopeComplaintLog" resultMap="BiScopeComplaintLogResult">
+        <include refid="selectBiScopeComplaintLogVo"/>
+        <where>  
+            <if test="tid != null "> and tid = #{tid}</if>
+             <if test="id != null  and id != '' "> and id = #{id}</if>
+             <if test="complaintId != null  and complaintId != '' "> and complaint_id = #{complaintId}</if>
+             <if test="content != null  and content != '' "> and content = #{content}</if>
+             <if test="createDate != null "> and create_date = #{createDate}</if>
+             <if test="sender != null "> and sender = #{sender}</if>
+             <if test="replayId != null  and replayId != '' "> and replay_id = #{replayId}</if>
+             <if test="replayName != null  and replayName != '' "> and replay_name = #{replayName}</if>
+             <if test="opStatus != null  and opStatus != '' "> and op_status = #{opStatus}</if>
+             <if test="opType != null  and opType != '' "> and op_type = #{opType}</if>
+             <if test="createdTime != null "> and created_time = #{createdTime}</if>
+             <if test="createdBy != null  and createdBy != '' "> and created_by = #{createdBy}</if>
+             <if test="updatedTime != null "> and updated_time = #{updatedTime}</if>
+             <if test="updatedBy != null  and updatedBy != '' "> and updated_by = #{updatedBy}</if>
+         </where>
+    </select>
+    
+    <select id="selectBiScopeComplaintLogById" parameterType="Integer" resultMap="BiScopeComplaintLogResult">
+        <include refid="selectBiScopeComplaintLogVo"/>
+        where tid = #{tid}
+    </select>
+        
+    <insert id="insertBiScopeComplaintLog" parameterType="BiScopeComplaintLog" useGeneratedKeys="true" keyProperty="tid">
+        insert into bi_scope_complaint_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">id,</if>
+			<if test="complaintId != null  and complaintId != ''  ">complaint_id,</if>
+			<if test="content != null  and content != ''  ">content,</if>
+			<if test="createDate != null  ">create_date,</if>
+			<if test="sender != null  ">sender,</if>
+			<if test="replayId != null  and replayId != ''  ">replay_id,</if>
+			<if test="replayName != null  and replayName != ''  ">replay_name,</if>
+			<if test="opStatus != null  and opStatus != ''  ">op_status,</if>
+			<if test="opType != null  and opType != ''  ">op_type,</if>
+			<if test="createdTime != null  ">created_time,</if>
+			<if test="createdBy != null  and createdBy != ''  ">created_by,</if>
+			<if test="updatedTime != null  ">updated_time,</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">updated_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">#{id},</if>
+			<if test="complaintId != null  and complaintId != ''  ">#{complaintId},</if>
+			<if test="content != null  and content != ''  ">#{content},</if>
+			<if test="createDate != null  ">#{createDate},</if>
+			<if test="sender != null  ">#{sender},</if>
+			<if test="replayId != null  and replayId != ''  ">#{replayId},</if>
+			<if test="replayName != null  and replayName != ''  ">#{replayName},</if>
+			<if test="opStatus != null  and opStatus != ''  ">#{opStatus},</if>
+			<if test="opType != null  and opType != ''  ">#{opType},</if>
+			<if test="createdTime != null  ">#{createdTime},</if>
+			<if test="createdBy != null  and createdBy != ''  ">#{createdBy},</if>
+			<if test="updatedTime != null  ">#{updatedTime},</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">#{updatedBy},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateBiScopeComplaintLog" parameterType="BiScopeComplaintLog">
+        update bi_scope_complaint_log
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="id != null  and id != ''  ">id = #{id},</if>
+            <if test="complaintId != null  and complaintId != ''  ">complaint_id = #{complaintId},</if>
+            <if test="content != null  and content != ''  ">content = #{content},</if>
+            <if test="createDate != null  ">create_date = #{createDate},</if>
+            <if test="sender != null  ">sender = #{sender},</if>
+            <if test="replayId != null  and replayId != ''  ">replay_id = #{replayId},</if>
+            <if test="replayName != null  and replayName != ''  ">replay_name = #{replayName},</if>
+            <if test="opStatus != null  and opStatus != ''  ">op_status = #{opStatus},</if>
+            <if test="opType != null  and opType != ''  ">op_type = #{opType},</if>
+            <if test="createdTime != null  ">created_time = #{createdTime},</if>
+            <if test="createdBy != null  and createdBy != ''  ">created_by = #{createdBy},</if>
+            <if test="updatedTime != null  ">updated_time = #{updatedTime},</if>
+            <if test="updatedBy != null  and updatedBy != ''  ">updated_by = #{updatedBy},</if>
+        </trim>
+        where tid = #{tid}
+    </update>
+
+	<delete id="deleteBiScopeComplaintLogById" parameterType="Integer">
+        delete from bi_scope_complaint_log where tid = #{tid}
+    </delete>
+	
+    <delete id="deleteBiScopeComplaintLogByIds" parameterType="String">
+        delete from bi_scope_complaint_log where tid in 
+        <foreach item="tid" collection="array" open="(" separator="," close=")">
+            #{tid}
+        </foreach>
+    </delete>
+
+
+    <update id="updateBiScopeComplaintLogReadyToDeal" parameterType="Map">
+        update bi_scope_complaint_log set op_status=3,updated_by=#{host},updated_time=now() where op_status=1 limit 100
+    </update>
+
+
+
+    <update id="updateBiScopeComplaintLogToFailed" parameterType="Map">
+        update bi_scope_complaint_log set op_status=9,updated_by=#{host},updated_time=now() where tid=#{tid}
+    </update>
+
+    <update id="updateBiScopeComplaintLogToComplate" parameterType="Map">
+        update bi_scope_complaint_log set op_status=2,updated_by=#{host},updated_time=now() where tid=#{tid}
+    </update>
+
+
+    <select id="selectBiScopeComplaintLogReadToDeal" parameterType="Map" resultType="com.ruoyi.project.system.biScopeComplaintLog.vo.BiScopeComplaintLogVO">
+        select
+        tid, id, complaint_id complaintId, content, create_date createDate, sender, replay_id replayId, replay_name replayName,
+        op_status opStatus, op_type opType, created_time createdTime, created_by createdBy, updated_time updatedTime, updated_by updatedBy
+        from bi_scope_complaint_log where op_status=3 and updated_by=#{host} limit 100
+    </select>
+
+
+</mapper>

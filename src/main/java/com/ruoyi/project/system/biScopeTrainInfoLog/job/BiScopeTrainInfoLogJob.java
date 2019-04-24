@@ -35,7 +35,7 @@ public class BiScopeTrainInfoLogJob extends  BaseDataJob {
     public String deleteRelationshipToTrainInfo(BiScopeTrainInfoLogVO vo)
     {
         StringBuilder sb = new StringBuilder();
-        sb.append("MATCH (p:TrainInfoLog {id:\"").append(vo.getId()).append("\"})-[r:trainInfoLog]->(w:TrainInfo{id:\"").append(vo.getTrainId()).append("\"}) ");
+        sb.append("MATCH (p:TrainInfoLog {id:\"").append(vo.getId()).append("\"})-[r:trainInfoLog]->(w:Train{id:\"").append(vo.getTrainId()).append("\"}) ");
         sb.append("delete r");
         return sb.toString();
     }
@@ -49,7 +49,7 @@ public class BiScopeTrainInfoLogJob extends  BaseDataJob {
     public String addRelationshipToTrainInfo(BiScopeTrainInfoLogVO vo)
     {
         StringBuilder sb = new StringBuilder();
-        sb.append("MATCH (p:TrainInfoLog {id:\"").append(vo.getId()).append("\"}),(w:TrainInfo{id:\"").append(vo.getWorkerId()).append("\"}) ");
+        sb.append("MATCH (p:TrainInfoLog {id:\"").append(vo.getId()).append("\"}),(w:Train{id:\"").append(vo.getTrainId()).append("\"}) ");
         sb.append("MERGE (p)-[:trainInfoLog]->(w)");
 
         return sb.toString();

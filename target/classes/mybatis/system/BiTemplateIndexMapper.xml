@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.biTemplateIndex.mapper.BiTemplateIndexMapper">
+    
+    <resultMap type="BiTemplateIndex" id="BiTemplateIndexResult">
+        <result property="tiid"    column="tiid"    />
+        <result property="templateNo"    column="template_no"    />
+        <result property="indexNo"    column="index_no"    />
+        <result property="displayType"    column="display_type"    />
+        <result property="createdTime"    column="created_time"    />
+        <result property="createdBy"    column="created_by"    />
+        <result property="updatedTime"    column="updated_time"    />
+        <result property="updatedBy"    column="updated_by"    />
+    </resultMap>
+	
+	<sql id="selectBiTemplateIndexVo">
+        select tiid, template_no, index_no, display_type, created_time, created_by, updated_time, updated_by from bi_template_index
+    </sql>
+	
+    <select id="selectBiTemplateIndexList" parameterType="BiTemplateIndex" resultMap="BiTemplateIndexResult">
+        <include refid="selectBiTemplateIndexVo"/>
+        <where>  
+            <if test="tiid != null "> and tiid = #{tiid}</if>
+             <if test="templateNo != null  and templateNo != '' "> and template_no = #{templateNo}</if>
+             <if test="indexNo != null  and indexNo != '' "> and index_no = #{indexNo}</if>
+             <if test="displayType != null "> and display_type = #{displayType}</if>
+             <if test="createdTime != null "> and created_time = #{createdTime}</if>
+             <if test="createdBy != null  and createdBy != '' "> and created_by = #{createdBy}</if>
+             <if test="updatedTime != null "> and updated_time = #{updatedTime}</if>
+             <if test="updatedBy != null  and updatedBy != '' "> and updated_by = #{updatedBy}</if>
+         </where>
+    </select>
+    
+    <select id="selectBiTemplateIndexById" parameterType="Integer" resultMap="BiTemplateIndexResult">
+        <include refid="selectBiTemplateIndexVo"/>
+        where tiid = #{tiid}
+    </select>
+        
+    <insert id="insertBiTemplateIndex" parameterType="BiTemplateIndex" useGeneratedKeys="true" keyProperty="tiid">
+        insert into bi_template_index
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="templateNo != null  and templateNo != ''  ">template_no,</if>
+			<if test="indexNo != null  and indexNo != ''  ">index_no,</if>
+			<if test="displayType != null  ">display_type,</if>
+			<if test="createdTime != null  ">created_time,</if>
+			<if test="createdBy != null  and createdBy != ''  ">created_by,</if>
+			<if test="updatedTime != null  ">updated_time,</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">updated_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="templateNo != null  and templateNo != ''  ">#{templateNo},</if>
+			<if test="indexNo != null  and indexNo != ''  ">#{indexNo},</if>
+			<if test="displayType != null  ">#{displayType},</if>
+			<if test="createdTime != null  ">#{createdTime},</if>
+			<if test="createdBy != null  and createdBy != ''  ">#{createdBy},</if>
+			<if test="updatedTime != null  ">#{updatedTime},</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">#{updatedBy},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateBiTemplateIndex" parameterType="BiTemplateIndex">
+        update bi_template_index
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="templateNo != null  and templateNo != ''  ">template_no = #{templateNo},</if>
+            <if test="indexNo != null  and indexNo != ''  ">index_no = #{indexNo},</if>
+            <if test="displayType != null  ">display_type = #{displayType},</if>
+            <if test="createdTime != null  ">created_time = #{createdTime},</if>
+            <if test="createdBy != null  and createdBy != ''  ">created_by = #{createdBy},</if>
+            <if test="updatedTime != null  ">updated_time = #{updatedTime},</if>
+            <if test="updatedBy != null  and updatedBy != ''  ">updated_by = #{updatedBy},</if>
+        </trim>
+        where tiid = #{tiid}
+    </update>
+
+	<delete id="deleteBiTemplateIndexById" parameterType="Integer">
+        delete from bi_template_index where tiid = #{tiid}
+    </delete>
+	
+    <delete id="deleteBiTemplateIndexByIds" parameterType="String">
+        delete from bi_template_index where tiid in 
+        <foreach item="tiid" collection="array" open="(" separator="," close=")">
+            #{tiid}
+        </foreach>
+    </delete>
+    
+</mapper>

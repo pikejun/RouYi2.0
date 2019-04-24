@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-biScopeGroupData-edit" th:object="${biScopeGroupData}">
+            <input id="tid" name="tid" th:field="*{tid}"  type="hidden">
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">班组ID：</label>
+				<div class="col-sm-8">
+					<input id="id" name="id" th:field="*{id}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">班组创建日期：</label>
+				<div class="col-sm-8">
+					<input id="createDate" name="createDate" th:field="*{createDate}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">班组名称：</label>
+				<div class="col-sm-8">
+					<input id="name" name="name" th:field="*{name}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">层级编码：</label>
+				<div class="col-sm-8">
+					<input id="levelCode" name="levelCode" th:field="*{levelCode}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">上级标段ID：</label>
+				<div class="col-sm-8">
+					<input id="parentId" name="parentId" th:field="*{parentId}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">项目ID：</label>
+				<div class="col-sm-8">
+					<input id="projectId" name="projectId" th:field="*{projectId}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">总工程ID：</label>
+				<div class="col-sm-8">
+					<input id="rootProjectId" name="rootProjectId" th:field="*{rootProjectId}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">备注：</label>
+				<div class="col-sm-8">
+					<input id="remark" name="remark" th:field="*{remark}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">离场日期：</label>
+				<div class="col-sm-8">
+					<input id="updateDate" name="updateDate" th:field="*{updateDate}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">班组状态：</label>
+				<div class="col-sm-8">
+					<input id="workStatus" name="workStatus" th:field="*{workStatus}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">操作状态：</label>
+				<div class="col-sm-8">
+					<input id="opStatus" name="opStatus" th:field="*{opStatus}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">操作类型：</label>
+				<div class="col-sm-8">
+					<input id="opType" name="opType" th:field="*{opType}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">创建时间：</label>
+				<div class="col-sm-8">
+					<input id="createdTime" name="createdTime" th:field="*{createdTime}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">创建人：</label>
+				<div class="col-sm-8">
+					<input id="createdBy" name="createdBy" th:field="*{createdBy}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">更新时间：</label>
+				<div class="col-sm-8">
+					<input id="updatedTime" name="updatedTime" th:field="*{updatedTime}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">更新人：</label>
+				<div class="col-sm-8">
+					<input id="updatedBy" name="updatedBy" th:field="*{updatedBy}" class="form-control" type="text">
+				</div>
+			</div>
+		</form>
+    </div>
+    <div th:include="include::footer"></div>
+    <script type="text/javascript">
+		var prefix = ctx + "system/biScopeGroupData";
+		$("#form-biScopeGroupData-edit").validate({
+			rules:{
+				xxxx:{
+					required:true,
+				},
+			},
+			focusCleanup: true
+		});
+		
+		function submitHandler() {
+	        if ($.validate.form()) {
+	            $.operate.save(prefix + "/edit", $('#form-biScopeGroupData-edit').serialize());
+	        }
+	    }
+	</script>
+</body>
+</html>

@@ -35,7 +35,7 @@ public class BiScopeComplaintInfoController extends BaseController
 	@Autowired
 	private IBiScopeComplaintInfoService biScopeComplaintInfoService;
 	
-	@RequiresPermissions("system:biScopeComplaintInfo:view")
+	@RequiresPermissions("bi:biScopeComplaintInfo:view")
 	@GetMapping()
 	public String biScopeComplaintInfo()
 	{
@@ -45,7 +45,7 @@ public class BiScopeComplaintInfoController extends BaseController
 	/**
 	 * 查询工人维权列表
 	 */
-	@RequiresPermissions("system:biScopeComplaintInfo:list")
+	@RequiresPermissions("bi:biScopeComplaintInfo:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiScopeComplaintInfo biScopeComplaintInfo)
@@ -59,7 +59,7 @@ public class BiScopeComplaintInfoController extends BaseController
 	/**
 	 * 导出工人维权列表
 	 */
-	@RequiresPermissions("system:biScopeComplaintInfo:export")
+	@RequiresPermissions("bi:biScopeComplaintInfo:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiScopeComplaintInfo biScopeComplaintInfo)
@@ -71,7 +71,7 @@ public class BiScopeComplaintInfoController extends BaseController
     /**
      * 导入工人维权列表
      */
-    @RequiresPermissions("system:biScopeComplaintInfo:import")
+    @RequiresPermissions("bi:biScopeComplaintInfo:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -85,7 +85,7 @@ public class BiScopeComplaintInfoController extends BaseController
 	 * 工人维权表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biScopeComplaintInfo:view")
+    @RequiresPermissions("bi:biScopeComplaintInfo:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -106,7 +106,7 @@ public class BiScopeComplaintInfoController extends BaseController
 	/**
 	 * 新增保存工人维权
 	 */
-	@RequiresPermissions("system:biScopeComplaintInfo:add")
+	@RequiresPermissions("bi:biScopeComplaintInfo:add")
 	@Log(title = "工人维权", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -129,7 +129,7 @@ public class BiScopeComplaintInfoController extends BaseController
 	/**
 	 * 修改保存工人维权
 	 */
-	@RequiresPermissions("system:biScopeComplaintInfo:edit")
+	@RequiresPermissions("bi:biScopeComplaintInfo:edit")
 	@Log(title = "工人维权", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -141,7 +141,7 @@ public class BiScopeComplaintInfoController extends BaseController
 	/**
 	 * 删除工人维权
 	 */
-	@RequiresPermissions("system:biScopeComplaintInfo:remove")
+	@RequiresPermissions("bi:biScopeComplaintInfo:remove")
 	@Log(title = "工人维权", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody

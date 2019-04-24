@@ -35,7 +35,7 @@ public class BiScopeRealNameController extends BaseController
 	@Autowired
 	private IBiScopeRealNameService biScopeRealNameService;
 	
-	@RequiresPermissions("system:biScopeRealName:view")
+	@RequiresPermissions("bi:biScopeRealName:view")
 	@GetMapping()
 	public String biScopeRealName()
 	{
@@ -45,7 +45,7 @@ public class BiScopeRealNameController extends BaseController
 	/**
 	 * 查询人员列表
 	 */
-	@RequiresPermissions("system:biScopeRealName:list")
+	@RequiresPermissions("bi:biScopeRealName:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiScopeRealName biScopeRealName)
@@ -59,7 +59,7 @@ public class BiScopeRealNameController extends BaseController
 	/**
 	 * 导出人员列表
 	 */
-	@RequiresPermissions("system:biScopeRealName:export")
+	@RequiresPermissions("bi:biScopeRealName:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiScopeRealName biScopeRealName)
@@ -71,7 +71,7 @@ public class BiScopeRealNameController extends BaseController
     /**
      * 导入人员列表
      */
-    @RequiresPermissions("system:biScopeRealName:import")
+    @RequiresPermissions("bi:biScopeRealName:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -85,7 +85,7 @@ public class BiScopeRealNameController extends BaseController
 	 * 人员表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biScopeRealName:view")
+    @RequiresPermissions("bi:biScopeRealName:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -106,7 +106,7 @@ public class BiScopeRealNameController extends BaseController
 	/**
 	 * 新增保存人员
 	 */
-	@RequiresPermissions("system:biScopeRealName:add")
+	@RequiresPermissions("bi:biScopeRealName:add")
 	@Log(title = "人员", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -129,7 +129,7 @@ public class BiScopeRealNameController extends BaseController
 	/**
 	 * 修改保存人员
 	 */
-	@RequiresPermissions("system:biScopeRealName:edit")
+	@RequiresPermissions("bi:biScopeRealName:edit")
 	@Log(title = "人员", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -141,7 +141,7 @@ public class BiScopeRealNameController extends BaseController
 	/**
 	 * 删除人员
 	 */
-	@RequiresPermissions("system:biScopeRealName:remove")
+	@RequiresPermissions("bi:biScopeRealName:remove")
 	@Log(title = "人员", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody

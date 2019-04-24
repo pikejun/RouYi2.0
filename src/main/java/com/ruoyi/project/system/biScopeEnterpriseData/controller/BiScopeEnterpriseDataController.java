@@ -35,7 +35,7 @@ public class BiScopeEnterpriseDataController extends BaseController
 	@Autowired
 	private IBiScopeEnterpriseDataService biScopeEnterpriseDataService;
 	
-	@RequiresPermissions("system:biScopeEnterpriseData:view")
+	@RequiresPermissions("bi:biScopeEnterpriseData:view")
 	@GetMapping()
 	public String biScopeEnterpriseData()
 	{
@@ -45,7 +45,7 @@ public class BiScopeEnterpriseDataController extends BaseController
 	/**
 	 * 查询企业数据列表
 	 */
-	@RequiresPermissions("system:biScopeEnterpriseData:list")
+	@RequiresPermissions("bi:biScopeEnterpriseData:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiScopeEnterpriseData biScopeEnterpriseData)
@@ -59,7 +59,7 @@ public class BiScopeEnterpriseDataController extends BaseController
 	/**
 	 * 导出企业数据列表
 	 */
-	@RequiresPermissions("system:biScopeEnterpriseData:export")
+	@RequiresPermissions("bi:biScopeEnterpriseData:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiScopeEnterpriseData biScopeEnterpriseData)
@@ -71,7 +71,7 @@ public class BiScopeEnterpriseDataController extends BaseController
     /**
      * 导入企业数据列表
      */
-    @RequiresPermissions("system:biScopeEnterpriseData:import")
+    @RequiresPermissions("bi:biScopeEnterpriseData:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -85,7 +85,7 @@ public class BiScopeEnterpriseDataController extends BaseController
 	 * 企业数据表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biScopeEnterpriseData:view")
+    @RequiresPermissions("bi:biScopeEnterpriseData:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -106,7 +106,7 @@ public class BiScopeEnterpriseDataController extends BaseController
 	/**
 	 * 新增保存企业数据
 	 */
-	@RequiresPermissions("system:biScopeEnterpriseData:add")
+	@RequiresPermissions("bi:biScopeEnterpriseData:add")
 	@Log(title = "企业数据", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -129,7 +129,7 @@ public class BiScopeEnterpriseDataController extends BaseController
 	/**
 	 * 修改保存企业数据
 	 */
-	@RequiresPermissions("system:biScopeEnterpriseData:edit")
+	@RequiresPermissions("bi:biScopeEnterpriseData:edit")
 	@Log(title = "企业数据", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -141,7 +141,7 @@ public class BiScopeEnterpriseDataController extends BaseController
 	/**
 	 * 删除企业数据
 	 */
-	@RequiresPermissions("system:biScopeEnterpriseData:remove")
+	@RequiresPermissions("bi:biScopeEnterpriseData:remove")
 	@Log(title = "企业数据", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody

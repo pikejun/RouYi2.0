@@ -35,7 +35,7 @@ public class BiScopeWorkerDataController extends BaseController
 	@Autowired
 	private IBiScopeWorkerDataService biScopeWorkerDataService;
 	
-	@RequiresPermissions("system:biScopeWorkerData:view")
+	@RequiresPermissions("bi:biScopeWorkerData:view")
 	@GetMapping()
 	public String biScopeWorkerData()
 	{
@@ -45,7 +45,7 @@ public class BiScopeWorkerDataController extends BaseController
 	/**
 	 * 查询工人数据列表
 	 */
-	@RequiresPermissions("system:biScopeWorkerData:list")
+	@RequiresPermissions("bi:biScopeWorkerData:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiScopeWorkerData biScopeWorkerData)
@@ -59,7 +59,7 @@ public class BiScopeWorkerDataController extends BaseController
 	/**
 	 * 导出工人数据列表
 	 */
-	@RequiresPermissions("system:biScopeWorkerData:export")
+	@RequiresPermissions("bi:biScopeWorkerData:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiScopeWorkerData biScopeWorkerData)
@@ -71,7 +71,7 @@ public class BiScopeWorkerDataController extends BaseController
     /**
      * 导入工人数据列表
      */
-    @RequiresPermissions("system:biScopeWorkerData:import")
+    @RequiresPermissions("bi:biScopeWorkerData:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -85,7 +85,7 @@ public class BiScopeWorkerDataController extends BaseController
 	 * 工人数据表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biScopeWorkerData:view")
+    @RequiresPermissions("bi:biScopeWorkerData:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -106,7 +106,7 @@ public class BiScopeWorkerDataController extends BaseController
 	/**
 	 * 新增保存工人数据
 	 */
-	@RequiresPermissions("system:biScopeWorkerData:add")
+	@RequiresPermissions("bi:biScopeWorkerData:add")
 	@Log(title = "工人数据", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -129,7 +129,7 @@ public class BiScopeWorkerDataController extends BaseController
 	/**
 	 * 修改保存工人数据
 	 */
-	@RequiresPermissions("system:biScopeWorkerData:edit")
+	@RequiresPermissions("bi:biScopeWorkerData:edit")
 	@Log(title = "工人数据", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -141,7 +141,7 @@ public class BiScopeWorkerDataController extends BaseController
 	/**
 	 * 删除工人数据
 	 */
-	@RequiresPermissions("system:biScopeWorkerData:remove")
+	@RequiresPermissions("bi:biScopeWorkerData:remove")
 	@Log(title = "工人数据", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody

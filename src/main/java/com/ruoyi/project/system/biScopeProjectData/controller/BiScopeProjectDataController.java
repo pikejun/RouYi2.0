@@ -35,7 +35,7 @@ public class BiScopeProjectDataController extends BaseController
 	@Autowired
 	private IBiScopeProjectDataService biScopeProjectDataService;
 	
-	@RequiresPermissions("system:biScopeProjectData:view")
+	@RequiresPermissions("bi:biScopeProjectData:view")
 	@GetMapping()
 	public String biScopeProjectData()
 	{
@@ -45,7 +45,7 @@ public class BiScopeProjectDataController extends BaseController
 	/**
 	 * 查询项目数据列表
 	 */
-	@RequiresPermissions("system:biScopeProjectData:list")
+	@RequiresPermissions("bi:biScopeProjectData:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiScopeProjectData biScopeProjectData)
@@ -59,7 +59,7 @@ public class BiScopeProjectDataController extends BaseController
 	/**
 	 * 导出项目数据列表
 	 */
-	@RequiresPermissions("system:biScopeProjectData:export")
+	@RequiresPermissions("bi:biScopeProjectData:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiScopeProjectData biScopeProjectData)
@@ -71,7 +71,7 @@ public class BiScopeProjectDataController extends BaseController
     /**
      * 导入项目数据列表
      */
-    @RequiresPermissions("system:biScopeProjectData:import")
+    @RequiresPermissions("bi:biScopeProjectData:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -85,7 +85,7 @@ public class BiScopeProjectDataController extends BaseController
 	 * 项目数据表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biScopeProjectData:view")
+    @RequiresPermissions("bi:biScopeProjectData:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -106,7 +106,7 @@ public class BiScopeProjectDataController extends BaseController
 	/**
 	 * 新增保存项目数据
 	 */
-	@RequiresPermissions("system:biScopeProjectData:add")
+	@RequiresPermissions("bi:biScopeProjectData:add")
 	@Log(title = "项目数据", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -129,7 +129,7 @@ public class BiScopeProjectDataController extends BaseController
 	/**
 	 * 修改保存项目数据
 	 */
-	@RequiresPermissions("system:biScopeProjectData:edit")
+	@RequiresPermissions("bi:biScopeProjectData:edit")
 	@Log(title = "项目数据", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -141,7 +141,7 @@ public class BiScopeProjectDataController extends BaseController
 	/**
 	 * 删除项目数据
 	 */
-	@RequiresPermissions("system:biScopeProjectData:remove")
+	@RequiresPermissions("bi:biScopeProjectData:remove")
 	@Log(title = "项目数据", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody

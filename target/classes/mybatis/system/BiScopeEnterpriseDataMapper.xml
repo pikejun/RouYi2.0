@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.biScopeEnterpriseData.mapper.BiScopeEnterpriseDataMapper">
+    
+    <resultMap type="BiScopeEnterpriseData" id="BiScopeEnterpriseDataResult">
+        <result property="tid"    column="tid"    />
+        <result property="id"    column="id"    />
+        <result property="abbrName"    column="abbr_name"    />
+        <result property="address"    column="address"    />
+        <result property="areaCode"    column="area_code"    />
+        <result property="businessScope"    column="business_scope"    />
+        <result property="capitalCurrencyId"    column="capital_currency_id"    />
+        <result property="contactPeopleCellPhone"    column="contact_people_cell_phone"    />
+        <result property="contactPeopleName"    column="contact_people_name"    />
+        <result property="contactPeoplePhone"    column="contact_people_phone"    />
+        <result property="createDate"    column="create_date"    />
+        <result property="email"    column="email"    />
+        <result property="establishDate"    column="establish_date"    />
+        <result property="faxNumber"    column="fax_number"    />
+        <result property="homeWebsiteUrl"    column="home_website_url"    />
+        <result property="issuingDate"    column="issuing_date"    />
+        <result property="issuingOffice"    column="issuing_office"    />
+        <result property="name"    column="name"    />
+        <result property="phoneNumber"    column="phone_number"    />
+        <result property="registrationCapital"    column="registration_capital"    />
+        <result property="remark"    column="remark"    />
+        <result property="representIdCardNumber"    column="represent_id_card_number"    />
+        <result property="representIdCardTypeId"    column="represent_id_card_type_id"    />
+        <result property="representName"    column="represent_name"    />
+        <result property="representPost"    column="represent_post"    />
+        <result property="representTitle"    column="represent_title"    />
+        <result property="socialCreditNumber"    column="social_credit_number"    />
+        <result property="status"    column="status"    />
+        <result property="statusId"    column="status_id"    />
+        <result property="statusTime"    column="status_time"    />
+        <result property="typeId"    column="type_id"    />
+        <result property="zipCode"    column="zip_code"    />
+        <result property="opStatus"    column="op_status"    />
+        <result property="opType"    column="op_type"    />
+        <result property="createdTime"    column="created_time"    />
+        <result property="createdBy"    column="created_by"    />
+        <result property="updatedTime"    column="updated_time"    />
+        <result property="updatedBy"    column="updated_by"    />
+    </resultMap>
+	
+	<sql id="selectBiScopeEnterpriseDataVo">
+        select tid, id, abbr_name, address, area_code, business_scope, capital_currency_id, contact_people_cell_phone, contact_people_name, contact_people_phone, create_date, email, establish_date, fax_number, home_website_url, issuing_date, issuing_office, name, phone_number, registration_capital, remark, represent_id_card_number, represent_id_card_type_id, represent_name, represent_post, represent_title, social_credit_number, status, status_id, status_time, type_id, zip_code, op_status, op_type, created_time, created_by, updated_time, updated_by from bi_scope_enterprise_data
+    </sql>
+	
+    <select id="selectBiScopeEnterpriseDataList" parameterType="BiScopeEnterpriseData" resultMap="BiScopeEnterpriseDataResult">
+        <include refid="selectBiScopeEnterpriseDataVo"/>
+        <where>  
+            <if test="tid != null "> and tid = #{tid}</if>
+             <if test="id != null  and id != '' "> and id = #{id}</if>
+             <if test="abbrName != null  and abbrName != '' "> and abbr_name = #{abbrName}</if>
+             <if test="address != null  and address != '' "> and address = #{address}</if>
+             <if test="areaCode != null  and areaCode != '' "> and area_code = #{areaCode}</if>
+             <if test="businessScope != null  and businessScope != '' "> and business_scope = #{businessScope}</if>
+             <if test="capitalCurrencyId != null  and capitalCurrencyId != '' "> and capital_currency_id = #{capitalCurrencyId}</if>
+             <if test="contactPeopleCellPhone != null  and contactPeopleCellPhone != '' "> and contact_people_cell_phone = #{contactPeopleCellPhone}</if>
+             <if test="contactPeopleName != null  and contactPeopleName != '' "> and contact_people_name = #{contactPeopleName}</if>
+             <if test="contactPeoplePhone != null  and contactPeoplePhone != '' "> and contact_people_phone = #{contactPeoplePhone}</if>
+             <if test="createDate != null "> and create_date = #{createDate}</if>
+             <if test="email != null  and email != '' "> and email = #{email}</if>
+             <if test="establishDate != null "> and establish_date = #{establishDate}</if>
+             <if test="faxNumber != null  and faxNumber != '' "> and fax_number = #{faxNumber}</if>
+             <if test="homeWebsiteUrl != null  and homeWebsiteUrl != '' "> and home_website_url = #{homeWebsiteUrl}</if>
+             <if test="issuingDate != null "> and issuing_date = #{issuingDate}</if>
+             <if test="issuingOffice != null  and issuingOffice != '' "> and issuing_office = #{issuingOffice}</if>
+             <if test="name != null  and name != '' "> and name = #{name}</if>
+             <if test="phoneNumber != null  and phoneNumber != '' "> and phone_number = #{phoneNumber}</if>
+             <if test="registrationCapital != null  and registrationCapital != '' "> and registration_capital = #{registrationCapital}</if>
+             <if test="remark != null  and remark != '' "> and remark = #{remark}</if>
+             <if test="representIdCardNumber != null  and representIdCardNumber != '' "> and represent_id_card_number = #{representIdCardNumber}</if>
+             <if test="representIdCardTypeId != null  and representIdCardTypeId != '' "> and represent_id_card_type_id = #{representIdCardTypeId}</if>
+             <if test="representName != null  and representName != '' "> and represent_name = #{representName}</if>
+             <if test="representPost != null  and representPost != '' "> and represent_post = #{representPost}</if>
+             <if test="representTitle != null  and representTitle != '' "> and represent_title = #{representTitle}</if>
+             <if test="socialCreditNumber != null  and socialCreditNumber != '' "> and social_credit_number = #{socialCreditNumber}</if>
+             <if test="status != null  and status != '' "> and status = #{status}</if>
+             <if test="statusId != null  and statusId != '' "> and status_id = #{statusId}</if>
+             <if test="statusTime != null "> and status_time = #{statusTime}</if>
+             <if test="typeId != null  and typeId != '' "> and type_id = #{typeId}</if>
+             <if test="zipCode != null  and zipCode != '' "> and zip_code = #{zipCode}</if>
+             <if test="opStatus != null  and opStatus != '' "> and op_status = #{opStatus}</if>
+             <if test="opType != null  and opType != '' "> and op_type = #{opType}</if>
+             <if test="createdTime != null "> and created_time = #{createdTime}</if>
+             <if test="createdBy != null  and createdBy != '' "> and created_by = #{createdBy}</if>
+             <if test="updatedTime != null "> and updated_time = #{updatedTime}</if>
+             <if test="updatedBy != null  and updatedBy != '' "> and updated_by = #{updatedBy}</if>
+         </where>
+    </select>
+    
+    <select id="selectBiScopeEnterpriseDataById" parameterType="Integer" resultMap="BiScopeEnterpriseDataResult">
+        <include refid="selectBiScopeEnterpriseDataVo"/>
+        where tid = #{tid}
+    </select>
+        
+    <insert id="insertBiScopeEnterpriseData" parameterType="BiScopeEnterpriseData" useGeneratedKeys="true" keyProperty="tid">
+        insert into bi_scope_enterprise_data
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">id,</if>
+			<if test="abbrName != null  and abbrName != ''  ">abbr_name,</if>
+			<if test="address != null  and address != ''  ">address,</if>
+			<if test="areaCode != null  and areaCode != ''  ">area_code,</if>
+			<if test="businessScope != null  and businessScope != ''  ">business_scope,</if>
+			<if test="capitalCurrencyId != null  and capitalCurrencyId != ''  ">capital_currency_id,</if>
+			<if test="contactPeopleCellPhone != null  and contactPeopleCellPhone != ''  ">contact_people_cell_phone,</if>
+			<if test="contactPeopleName != null  and contactPeopleName != ''  ">contact_people_name,</if>
+			<if test="contactPeoplePhone != null  and contactPeoplePhone != ''  ">contact_people_phone,</if>
+			<if test="createDate != null  ">create_date,</if>
+			<if test="email != null  and email != ''  ">email,</if>
+			<if test="establishDate != null  ">establish_date,</if>
+			<if test="faxNumber != null  and faxNumber != ''  ">fax_number,</if>
+			<if test="homeWebsiteUrl != null  and homeWebsiteUrl != ''  ">home_website_url,</if>
+			<if test="issuingDate != null  ">issuing_date,</if>
+			<if test="issuingOffice != null  and issuingOffice != ''  ">issuing_office,</if>
+			<if test="name != null  and name != ''  ">name,</if>
+			<if test="phoneNumber != null  and phoneNumber != ''  ">phone_number,</if>
+			<if test="registrationCapital != null  and registrationCapital != ''  ">registration_capital,</if>
+			<if test="remark != null  and remark != ''  ">remark,</if>
+			<if test="representIdCardNumber != null  and representIdCardNumber != ''  ">represent_id_card_number,</if>
+			<if test="representIdCardTypeId != null  and representIdCardTypeId != ''  ">represent_id_card_type_id,</if>
+			<if test="representName != null  and representName != ''  ">represent_name,</if>
+			<if test="representPost != null  and representPost != ''  ">represent_post,</if>
+			<if test="representTitle != null  and representTitle != ''  ">represent_title,</if>
+			<if test="socialCreditNumber != null  and socialCreditNumber != ''  ">social_credit_number,</if>
+			<if test="status != null  and status != ''  ">status,</if>
+			<if test="statusId != null  and statusId != ''  ">status_id,</if>
+			<if test="statusTime != null  ">status_time,</if>
+			<if test="typeId != null  and typeId != ''  ">type_id,</if>
+			<if test="zipCode != null  and zipCode != ''  ">zip_code,</if>
+			<if test="opStatus != null  and opStatus != ''  ">op_status,</if>
+			<if test="opType != null  and opType != ''  ">op_type,</if>
+			<if test="createdTime != null  ">created_time,</if>
+			<if test="createdBy != null  and createdBy != ''  ">created_by,</if>
+			<if test="updatedTime != null  ">updated_time,</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">updated_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">#{id},</if>
+			<if test="abbrName != null  and abbrName != ''  ">#{abbrName},</if>
+			<if test="address != null  and address != ''  ">#{address},</if>
+			<if test="areaCode != null  and areaCode != ''  ">#{areaCode},</if>
+			<if test="businessScope != null  and businessScope != ''  ">#{businessScope},</if>
+			<if test="capitalCurrencyId != null  and capitalCurrencyId != ''  ">#{capitalCurrencyId},</if>
+			<if test="contactPeopleCellPhone != null  and contactPeopleCellPhone != ''  ">#{contactPeopleCellPhone},</if>
+			<if test="contactPeopleName != null  and contactPeopleName != ''  ">#{contactPeopleName},</if>
+			<if test="contactPeoplePhone != null  and contactPeoplePhone != ''  ">#{contactPeoplePhone},</if>
+			<if test="createDate != null  ">#{createDate},</if>
+			<if test="email != null  and email != ''  ">#{email},</if>
+			<if test="establishDate != null  ">#{establishDate},</if>
+			<if test="faxNumber != null  and faxNumber != ''  ">#{faxNumber},</if>
+			<if test="homeWebsiteUrl != null  and homeWebsiteUrl != ''  ">#{homeWebsiteUrl},</if>
+			<if test="issuingDate != null  ">#{issuingDate},</if>
+			<if test="issuingOffice != null  and issuingOffice != ''  ">#{issuingOffice},</if>
+			<if test="name != null  and name != ''  ">#{name},</if>
+			<if test="phoneNumber != null  and phoneNumber != ''  ">#{phoneNumber},</if>
+			<if test="registrationCapital != null  and registrationCapital != ''  ">#{registrationCapital},</if>
+			<if test="remark != null  and remark != ''  ">#{remark},</if>
+			<if test="representIdCardNumber != null  and representIdCardNumber != ''  ">#{representIdCardNumber},</if>
+			<if test="representIdCardTypeId != null  and representIdCardTypeId != ''  ">#{representIdCardTypeId},</if>
+			<if test="representName != null  and representName != ''  ">#{representName},</if>
+			<if test="representPost != null  and representPost != ''  ">#{representPost},</if>
+			<if test="representTitle != null  and representTitle != ''  ">#{representTitle},</if>
+			<if test="socialCreditNumber != null  and socialCreditNumber != ''  ">#{socialCreditNumber},</if>
+			<if test="status != null  and status != ''  ">#{status},</if>
+			<if test="statusId != null  and statusId != ''  ">#{statusId},</if>
+			<if test="statusTime != null  ">#{statusTime},</if>
+			<if test="typeId != null  and typeId != ''  ">#{typeId},</if>
+			<if test="zipCode != null  and zipCode != ''  ">#{zipCode},</if>
+			<if test="opStatus != null  and opStatus != ''  ">#{opStatus},</if>
+			<if test="opType != null  and opType != ''  ">#{opType},</if>
+			<if test="createdTime != null  ">#{createdTime},</if>
+			<if test="createdBy != null  and createdBy != ''  ">#{createdBy},</if>
+			<if test="updatedTime != null  ">#{updatedTime},</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">#{updatedBy},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateBiScopeEnterpriseData" parameterType="BiScopeEnterpriseData">
+        update bi_scope_enterprise_data
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="id != null  and id != ''  ">id = #{id},</if>
+            <if test="abbrName != null  and abbrName != ''  ">abbr_name = #{abbrName},</if>
+            <if test="address != null  and address != ''  ">address = #{address},</if>
+            <if test="areaCode != null  and areaCode != ''  ">area_code = #{areaCode},</if>
+            <if test="businessScope != null  and businessScope != ''  ">business_scope = #{businessScope},</if>
+            <if test="capitalCurrencyId != null  and capitalCurrencyId != ''  ">capital_currency_id = #{capitalCurrencyId},</if>
+            <if test="contactPeopleCellPhone != null  and contactPeopleCellPhone != ''  ">contact_people_cell_phone = #{contactPeopleCellPhone},</if>
+            <if test="contactPeopleName != null  and contactPeopleName != ''  ">contact_people_name = #{contactPeopleName},</if>
+            <if test="contactPeoplePhone != null  and contactPeoplePhone != ''  ">contact_people_phone = #{contactPeoplePhone},</if>
+            <if test="createDate != null  ">create_date = #{createDate},</if>
+            <if test="email != null  and email != ''  ">email = #{email},</if>
+            <if test="establishDate != null  ">establish_date = #{establishDate},</if>
+            <if test="faxNumber != null  and faxNumber != ''  ">fax_number = #{faxNumber},</if>
+            <if test="homeWebsiteUrl != null  and homeWebsiteUrl != ''  ">home_website_url = #{homeWebsiteUrl},</if>
+            <if test="issuingDate != null  ">issuing_date = #{issuingDate},</if>
+            <if test="issuingOffice != null  and issuingOffice != ''  ">issuing_office = #{issuingOffice},</if>
+            <if test="name != null  and name != ''  ">name = #{name},</if>
+            <if test="phoneNumber != null  and phoneNumber != ''  ">phone_number = #{phoneNumber},</if>
+            <if test="registrationCapital != null  and registrationCapital != ''  ">registration_capital = #{registrationCapital},</if>
+            <if test="remark != null  and remark != ''  ">remark = #{remark},</if>
+            <if test="representIdCardNumber != null  and representIdCardNumber != ''  ">represent_id_card_number = #{representIdCardNumber},</if>
+            <if test="representIdCardTypeId != null  and representIdCardTypeId != ''  ">represent_id_card_type_id = #{representIdCardTypeId},</if>
+            <if test="representName != null  and representName != ''  ">represent_name = #{representName},</if>
+            <if test="representPost != null  and representPost != ''  ">represent_post = #{representPost},</if>
+            <if test="representTitle != null  and representTitle != ''  ">represent_title = #{representTitle},</if>
+            <if test="socialCreditNumber != null  and socialCreditNumber != ''  ">social_credit_number = #{socialCreditNumber},</if>
+            <if test="status != null  and status != ''  ">status = #{status},</if>
+            <if test="statusId != null  and statusId != ''  ">status_id = #{statusId},</if>
+            <if test="statusTime != null  ">status_time = #{statusTime},</if>
+            <if test="typeId != null  and typeId != ''  ">type_id = #{typeId},</if>
+            <if test="zipCode != null  and zipCode != ''  ">zip_code = #{zipCode},</if>
+            <if test="opStatus != null  and opStatus != ''  ">op_status = #{opStatus},</if>
+            <if test="opType != null  and opType != ''  ">op_type = #{opType},</if>
+            <if test="createdTime != null  ">created_time = #{createdTime},</if>
+            <if test="createdBy != null  and createdBy != ''  ">created_by = #{createdBy},</if>
+            <if test="updatedTime != null  ">updated_time = #{updatedTime},</if>
+            <if test="updatedBy != null  and updatedBy != ''  ">updated_by = #{updatedBy},</if>
+        </trim>
+        where tid = #{tid}
+    </update>
+
+	<delete id="deleteBiScopeEnterpriseDataById" parameterType="Integer">
+        delete from bi_scope_enterprise_data where tid = #{tid}
+    </delete>
+	
+    <delete id="deleteBiScopeEnterpriseDataByIds" parameterType="String">
+        delete from bi_scope_enterprise_data where tid in 
+        <foreach item="tid" collection="array" open="(" separator="," close=")">
+            #{tid}
+        </foreach>
+    </delete>
+
+    <update id="updateBiScopeEnterpriseDataReadyToDeal" parameterType="Map">
+        update bi_scope_enterprise_data set op_status=3,updated_by=#{host},updated_time=now() where op_status=1 limit 100
+    </update>
+
+
+
+    <update id="updateBiScopeEnterpriseDataToFailed" parameterType="Map">
+        update bi_scope_enterprise_data set op_status=9,updated_by=#{host},updated_time=now() where tid=#{tid}
+    </update>
+
+    <update id="updateBiScopeEnterpriseDataToComplate" parameterType="Map">
+        update bi_scope_enterprise_data set op_status=2,updated_by=#{host},updated_time=now() where tid=#{tid}
+    </update>
+
+
+    <select id="selectBiScopeEnterpriseDataReadToDeal" parameterType="Map" resultType="com.ruoyi.project.system.biScopeEnterpriseData.vo.BiScopeEnterpriseDataVO">
+        select
+        tid, id, abbr_name abbrName, address, area_code areaCode, business_scope businessScope, capital_currency_id capitalCurrencyId, contact_people_cell_phone contactPeopleCellPhone,
+        contact_people_name contactPeopleName, contact_people_phone contactPeoplePhone, create_date createDate, email, establish_date establishDate, fax_number faxNumber,
+        home_website_url homeWebsiteUrl, issuing_date issuingDate, issuing_office issuingOffice, name, phone_number phoneNumber, registration_capital registrationCapital, remark,
+        represent_id_card_number representIdCardNumber, represent_id_card_type_id representIdCardTypeId, represent_name representName, represent_post representPost, represent_title representTitle,
+        social_credit_number socialCreditNumber, status, status_id statusId, status_time statusTime, type_id typeId, zip_code zipCode, op_status opStatus, op_type opType, created_time createdTime, created_by createdBy, updated_time updatedTime, updated_by updatedBy
+        from bi_scope_enterprise_data where op_status=3 and updated_by=#{host} limit 100
+    </select>
+
+    
+</mapper>

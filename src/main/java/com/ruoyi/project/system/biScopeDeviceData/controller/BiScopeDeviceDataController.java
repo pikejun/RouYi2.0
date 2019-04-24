@@ -35,7 +35,7 @@ public class BiScopeDeviceDataController extends BaseController
 	@Autowired
 	private IBiScopeDeviceDataService biScopeDeviceDataService;
 	
-	@RequiresPermissions("system:biScopeDeviceData:view")
+	@RequiresPermissions("bi:biScopeDeviceData:view")
 	@GetMapping()
 	public String biScopeDeviceData()
 	{
@@ -45,7 +45,7 @@ public class BiScopeDeviceDataController extends BaseController
 	/**
 	 * 查询设备数据列表
 	 */
-	@RequiresPermissions("system:biScopeDeviceData:list")
+	@RequiresPermissions("bi:biScopeDeviceData:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiScopeDeviceData biScopeDeviceData)
@@ -59,7 +59,7 @@ public class BiScopeDeviceDataController extends BaseController
 	/**
 	 * 导出设备数据列表
 	 */
-	@RequiresPermissions("system:biScopeDeviceData:export")
+	@RequiresPermissions("bi:biScopeDeviceData:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiScopeDeviceData biScopeDeviceData)
@@ -71,7 +71,7 @@ public class BiScopeDeviceDataController extends BaseController
     /**
      * 导入设备数据列表
      */
-    @RequiresPermissions("system:biScopeDeviceData:import")
+    @RequiresPermissions("bi:biScopeDeviceData:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -85,7 +85,7 @@ public class BiScopeDeviceDataController extends BaseController
 	 * 设备数据表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biScopeDeviceData:view")
+    @RequiresPermissions("bi:biScopeDeviceData:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -106,7 +106,7 @@ public class BiScopeDeviceDataController extends BaseController
 	/**
 	 * 新增保存设备数据
 	 */
-	@RequiresPermissions("system:biScopeDeviceData:add")
+	@RequiresPermissions("bi:biScopeDeviceData:add")
 	@Log(title = "设备数据", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -129,7 +129,7 @@ public class BiScopeDeviceDataController extends BaseController
 	/**
 	 * 修改保存设备数据
 	 */
-	@RequiresPermissions("system:biScopeDeviceData:edit")
+	@RequiresPermissions("bi:biScopeDeviceData:edit")
 	@Log(title = "设备数据", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -141,7 +141,7 @@ public class BiScopeDeviceDataController extends BaseController
 	/**
 	 * 删除设备数据
 	 */
-	@RequiresPermissions("system:biScopeDeviceData:remove")
+	@RequiresPermissions("bi:biScopeDeviceData:remove")
 	@Log(title = "设备数据", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody

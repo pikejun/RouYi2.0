@@ -35,14 +35,14 @@ public class BiIndexFieldController extends BaseController
 	@Autowired
 	private IBiIndexFieldService biIndexFieldService;
 	
-	@RequiresPermissions("system:biIndexField:view")
+	@RequiresPermissions("bi:biIndexField:view")
 	@GetMapping()
 	public String biIndexField()
 	{
 	    return prefix + "/biIndexField";
 	}
 
-	@RequiresPermissions("system:biIndexField:view")
+	@RequiresPermissions("bi:biIndexField:view")
 	@GetMapping("{indexNo}")
 	public String biIndexField(@PathVariable String indexNo,ModelMap modelMap)
 	{
@@ -53,7 +53,7 @@ public class BiIndexFieldController extends BaseController
 	/**
 	 * 查询指标字段明细列表
 	 */
-	@RequiresPermissions("system:biIndexField:list")
+	@RequiresPermissions("bi:biIndexField:list")
 	@PostMapping("/list/{indexNo}")
 	@ResponseBody
 	public TableDataInfo list(@PathVariable String indexNo, BiIndexField biIndexField)
@@ -68,7 +68,7 @@ public class BiIndexFieldController extends BaseController
 	/**
 	 * 查询指标字段明细列表
 	 */
-	@RequiresPermissions("system:biIndexField:list")
+	@RequiresPermissions("bi:biIndexField:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiIndexField biIndexField)
@@ -82,7 +82,7 @@ public class BiIndexFieldController extends BaseController
 	/**
 	 * 导出指标字段明细列表
 	 */
-	@RequiresPermissions("system:biIndexField:export")
+	@RequiresPermissions("bi:biIndexField:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiIndexField biIndexField)
@@ -94,7 +94,7 @@ public class BiIndexFieldController extends BaseController
     /**
      * 导入指标字段明细列表
      */
-    @RequiresPermissions("system:biIndexField:import")
+    @RequiresPermissions("bi:biIndexField:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -108,7 +108,7 @@ public class BiIndexFieldController extends BaseController
 	 * 指标字段明细表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biIndexField:view")
+    @RequiresPermissions("bi:biIndexField:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -147,7 +147,7 @@ public class BiIndexFieldController extends BaseController
 	/**
 	 * 新增保存指标字段明细
 	 */
-	@RequiresPermissions("system:biIndexField:add")
+	@RequiresPermissions("bi:biIndexField:add")
 	@Log(title = "指标字段明细", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -170,7 +170,7 @@ public class BiIndexFieldController extends BaseController
 	/**
 	 * 修改保存指标字段明细
 	 */
-	@RequiresPermissions("system:biIndexField:edit")
+	@RequiresPermissions("bi:biIndexField:edit")
 	@Log(title = "指标字段明细", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -182,7 +182,7 @@ public class BiIndexFieldController extends BaseController
 	/**
 	 * 删除指标字段明细
 	 */
-	@RequiresPermissions("system:biIndexField:remove")
+	@RequiresPermissions("bi:biIndexField:remove")
 	@Log(title = "指标字段明细", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody

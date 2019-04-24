@@ -35,7 +35,7 @@ public class BiScopeComplaintLogController extends BaseController
 	@Autowired
 	private IBiScopeComplaintLogService biScopeComplaintLogService;
 	
-	@RequiresPermissions("system:biScopeComplaintLog:view")
+	@RequiresPermissions("bi:biScopeComplaintLog:view")
 	@GetMapping()
 	public String biScopeComplaintLog()
 	{
@@ -45,7 +45,7 @@ public class BiScopeComplaintLogController extends BaseController
 	/**
 	 * 查询维权日志列表
 	 */
-	@RequiresPermissions("system:biScopeComplaintLog:list")
+	@RequiresPermissions("bi:biScopeComplaintLog:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiScopeComplaintLog biScopeComplaintLog)
@@ -59,7 +59,7 @@ public class BiScopeComplaintLogController extends BaseController
 	/**
 	 * 导出维权日志列表
 	 */
-	@RequiresPermissions("system:biScopeComplaintLog:export")
+	@RequiresPermissions("bi:biScopeComplaintLog:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiScopeComplaintLog biScopeComplaintLog)
@@ -71,7 +71,7 @@ public class BiScopeComplaintLogController extends BaseController
     /**
      * 导入维权日志列表
      */
-    @RequiresPermissions("system:biScopeComplaintLog:import")
+    @RequiresPermissions("bi:biScopeComplaintLog:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -85,7 +85,7 @@ public class BiScopeComplaintLogController extends BaseController
 	 * 维权日志表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biScopeComplaintLog:view")
+    @RequiresPermissions("bi:biScopeComplaintLog:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -106,7 +106,7 @@ public class BiScopeComplaintLogController extends BaseController
 	/**
 	 * 新增保存维权日志
 	 */
-	@RequiresPermissions("system:biScopeComplaintLog:add")
+	@RequiresPermissions("bi:biScopeComplaintLog:add")
 	@Log(title = "维权日志", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -129,7 +129,7 @@ public class BiScopeComplaintLogController extends BaseController
 	/**
 	 * 修改保存维权日志
 	 */
-	@RequiresPermissions("system:biScopeComplaintLog:edit")
+	@RequiresPermissions("bi:biScopeComplaintLog:edit")
 	@Log(title = "维权日志", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -141,7 +141,7 @@ public class BiScopeComplaintLogController extends BaseController
 	/**
 	 * 删除维权日志
 	 */
-	@RequiresPermissions("system:biScopeComplaintLog:remove")
+	@RequiresPermissions("bi:biScopeComplaintLog:remove")
 	@Log(title = "维权日志", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody

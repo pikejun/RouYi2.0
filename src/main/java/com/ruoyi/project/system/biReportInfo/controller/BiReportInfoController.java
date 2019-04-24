@@ -35,7 +35,7 @@ public class BiReportInfoController extends BaseController
 	@Autowired
 	private IBiReportInfoService biReportInfoService;
 	
-	@RequiresPermissions("system:biReportInfo:view")
+	@RequiresPermissions("bi:biReportInfo:view")
 	@GetMapping()
 	public String biReportInfo()
 	{
@@ -45,7 +45,7 @@ public class BiReportInfoController extends BaseController
 	/**
 	 * 查询汇报数据列表
 	 */
-	@RequiresPermissions("system:biReportInfo:list")
+	@RequiresPermissions("bi:biReportInfo:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiReportInfo biReportInfo)
@@ -59,7 +59,7 @@ public class BiReportInfoController extends BaseController
 	/**
 	 * 导出汇报数据列表
 	 */
-	@RequiresPermissions("system:biReportInfo:export")
+	@RequiresPermissions("bi:biReportInfo:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiReportInfo biReportInfo)
@@ -71,7 +71,7 @@ public class BiReportInfoController extends BaseController
     /**
      * 导入汇报数据列表
      */
-    @RequiresPermissions("system:biReportInfo:import")
+    @RequiresPermissions("bi:biReportInfo:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -85,7 +85,7 @@ public class BiReportInfoController extends BaseController
 	 * 汇报数据表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biReportInfo:view")
+    @RequiresPermissions("bi:biReportInfo:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -97,6 +97,7 @@ public class BiReportInfoController extends BaseController
 	/**
 	 * 新增汇报数据
 	 */
+	@RequiresPermissions("bi:biReportInfo:add")
 	@GetMapping("/add")
 	public String add()
 	{
@@ -106,7 +107,7 @@ public class BiReportInfoController extends BaseController
 	/**
 	 * 新增保存汇报数据
 	 */
-	@RequiresPermissions("system:biReportInfo:add")
+	@RequiresPermissions("bi:biReportInfo:add")
 	@Log(title = "汇报数据", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -118,6 +119,7 @@ public class BiReportInfoController extends BaseController
 	/**
 	 * 修改汇报数据
 	 */
+	@RequiresPermissions("bi:biReportInfo:edit")
 	@GetMapping("/edit/{reportId}")
 	public String edit(@PathVariable("reportId") Integer reportId, ModelMap mmap)
 	{
@@ -129,7 +131,7 @@ public class BiReportInfoController extends BaseController
 	/**
 	 * 修改保存汇报数据
 	 */
-	@RequiresPermissions("system:biReportInfo:edit")
+	@RequiresPermissions("bi:biReportInfo:edit")
 	@Log(title = "汇报数据", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -141,7 +143,7 @@ public class BiReportInfoController extends BaseController
 	/**
 	 * 删除汇报数据
 	 */
-	@RequiresPermissions("system:biReportInfo:remove")
+	@RequiresPermissions("bi:biReportInfo:remove")
 	@Log(title = "汇报数据", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody

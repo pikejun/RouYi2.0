@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.biScopeWorkerData.mapper.BiScopeWorkerDataMapper">
+    
+    <resultMap type="BiScopeWorkerData" id="BiScopeWorkerDataResult">
+        <result property="tid"    column="tid"    />
+        <result property="id"    column="id"    />
+        <result property="workerName"    column="worker_name"    />
+        <result property="groupId"    column="group_id"    />
+        <result property="workTypeId"    column="work_type_id"    />
+        <result property="workTypeName"    column="work_type_name"    />
+        <result property="realNameId"    column="real_name_id"    />
+        <result property="realStatus"    column="real_status"    />
+        <result property="realDate"    column="real_date"    />
+        <result property="workStatus"    column="work_status"    />
+        <result property="enterTrain"    column="enter_train"    />
+        <result property="techniqueTrain"    column="technique_train"    />
+        <result property="entranceCardId"    column="entrance_card_id"    />
+        <result property="lastSafetyDate"    column="last_safety_date"    />
+        <result property="safetyCount"    column="safety_count"    />
+        <result property="safetyScore"    column="safety_score"    />
+        <result property="opStatus"    column="op_status"    />
+        <result property="opType"    column="op_type"    />
+        <result property="createdTime"    column="created_time"    />
+        <result property="createdBy"    column="created_by"    />
+        <result property="updatedTime"    column="updated_time"    />
+        <result property="updatedBy"    column="updated_by"    />
+    </resultMap>
+	
+	<sql id="selectBiScopeWorkerDataVo">
+        select tid, id, worker_name, group_id, work_type_id, work_type_name, real_name_id, real_status, real_date, work_status, enter_train, technique_train, entrance_card_id, last_safety_date, safety_count, safety_score, op_status, op_type, created_time, created_by, updated_time, updated_by from bi_scope_worker_data
+    </sql>
+	
+    <select id="selectBiScopeWorkerDataList" parameterType="BiScopeWorkerData" resultMap="BiScopeWorkerDataResult">
+        <include refid="selectBiScopeWorkerDataVo"/>
+        <where>  
+            <if test="tid != null "> and tid = #{tid}</if>
+             <if test="id != null  and id != '' "> and id = #{id}</if>
+             <if test="workerName != null  and workerName != '' "> and worker_name = #{workerName}</if>
+             <if test="groupId != null  and groupId != '' "> and group_id = #{groupId}</if>
+             <if test="workTypeId != null  and workTypeId != '' "> and work_type_id = #{workTypeId}</if>
+             <if test="workTypeName != null  and workTypeName != '' "> and work_type_name = #{workTypeName}</if>
+             <if test="realNameId != null  and realNameId != '' "> and real_name_id = #{realNameId}</if>
+             <if test="realStatus != null  and realStatus != '' "> and real_status = #{realStatus}</if>
+             <if test="realDate != null "> and real_date = #{realDate}</if>
+             <if test="workStatus != null  and workStatus != '' "> and work_status = #{workStatus}</if>
+             <if test="enterTrain != null "> and enter_train = #{enterTrain}</if>
+             <if test="techniqueTrain != null "> and technique_train = #{techniqueTrain}</if>
+             <if test="entranceCardId != null  and entranceCardId != '' "> and entrance_card_id = #{entranceCardId}</if>
+             <if test="lastSafetyDate != null "> and last_safety_date = #{lastSafetyDate}</if>
+             <if test="safetyCount != null "> and safety_count = #{safetyCount}</if>
+             <if test="safetyScore != null "> and safety_score = #{safetyScore}</if>
+             <if test="opStatus != null  and opStatus != '' "> and op_status = #{opStatus}</if>
+             <if test="opType != null  and opType != '' "> and op_type = #{opType}</if>
+             <if test="createdTime != null "> and created_time = #{createdTime}</if>
+             <if test="createdBy != null  and createdBy != '' "> and created_by = #{createdBy}</if>
+             <if test="updatedTime != null "> and updated_time = #{updatedTime}</if>
+             <if test="updatedBy != null  and updatedBy != '' "> and updated_by = #{updatedBy}</if>
+         </where>
+    </select>
+    
+    <select id="selectBiScopeWorkerDataById" parameterType="Integer" resultMap="BiScopeWorkerDataResult">
+        <include refid="selectBiScopeWorkerDataVo"/>
+        where tid = #{tid}
+    </select>
+        
+    <insert id="insertBiScopeWorkerData" parameterType="BiScopeWorkerData" useGeneratedKeys="true" keyProperty="tid">
+        insert into bi_scope_worker_data
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">id,</if>
+			<if test="workerName != null  and workerName != ''  ">worker_name,</if>
+			<if test="groupId != null  and groupId != ''  ">group_id,</if>
+			<if test="workTypeId != null  and workTypeId != ''  ">work_type_id,</if>
+			<if test="workTypeName != null  and workTypeName != ''  ">work_type_name,</if>
+			<if test="realNameId != null  and realNameId != ''  ">real_name_id,</if>
+			<if test="realStatus != null  and realStatus != ''  ">real_status,</if>
+			<if test="realDate != null  ">real_date,</if>
+			<if test="workStatus != null  and workStatus != ''  ">work_status,</if>
+			<if test="enterTrain != null  ">enter_train,</if>
+			<if test="techniqueTrain != null  ">technique_train,</if>
+			<if test="entranceCardId != null  and entranceCardId != ''  ">entrance_card_id,</if>
+			<if test="lastSafetyDate != null  ">last_safety_date,</if>
+			<if test="safetyCount != null  ">safety_count,</if>
+			<if test="safetyScore != null  ">safety_score,</if>
+			<if test="opStatus != null  and opStatus != ''  ">op_status,</if>
+			<if test="opType != null  and opType != ''  ">op_type,</if>
+			<if test="createdTime != null  ">created_time,</if>
+			<if test="createdBy != null  and createdBy != ''  ">created_by,</if>
+			<if test="updatedTime != null  ">updated_time,</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">updated_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">#{id},</if>
+			<if test="workerName != null  and workerName != ''  ">#{workerName},</if>
+			<if test="groupId != null  and groupId != ''  ">#{groupId},</if>
+			<if test="workTypeId != null  and workTypeId != ''  ">#{workTypeId},</if>
+			<if test="workTypeName != null  and workTypeName != ''  ">#{workTypeName},</if>
+			<if test="realNameId != null  and realNameId != ''  ">#{realNameId},</if>
+			<if test="realStatus != null  and realStatus != ''  ">#{realStatus},</if>
+			<if test="realDate != null  ">#{realDate},</if>
+			<if test="workStatus != null  and workStatus != ''  ">#{workStatus},</if>
+			<if test="enterTrain != null  ">#{enterTrain},</if>
+			<if test="techniqueTrain != null  ">#{techniqueTrain},</if>
+			<if test="entranceCardId != null  and entranceCardId != ''  ">#{entranceCardId},</if>
+			<if test="lastSafetyDate != null  ">#{lastSafetyDate},</if>
+			<if test="safetyCount != null  ">#{safetyCount},</if>
+			<if test="safetyScore != null  ">#{safetyScore},</if>
+			<if test="opStatus != null  and opStatus != ''  ">#{opStatus},</if>
+			<if test="opType != null  and opType != ''  ">#{opType},</if>
+			<if test="createdTime != null  ">#{createdTime},</if>
+			<if test="createdBy != null  and createdBy != ''  ">#{createdBy},</if>
+			<if test="updatedTime != null  ">#{updatedTime},</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">#{updatedBy},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateBiScopeWorkerData" parameterType="BiScopeWorkerData">
+        update bi_scope_worker_data
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="id != null  and id != ''  ">id = #{id},</if>
+            <if test="workerName != null  and workerName != ''  ">worker_name = #{workerName},</if>
+            <if test="groupId != null  and groupId != ''  ">group_id = #{groupId},</if>
+            <if test="workTypeId != null  and workTypeId != ''  ">work_type_id = #{workTypeId},</if>
+            <if test="workTypeName != null  and workTypeName != ''  ">work_type_name = #{workTypeName},</if>
+            <if test="realNameId != null  and realNameId != ''  ">real_name_id = #{realNameId},</if>
+            <if test="realStatus != null  and realStatus != ''  ">real_status = #{realStatus},</if>
+            <if test="realDate != null  ">real_date = #{realDate},</if>
+            <if test="workStatus != null  and workStatus != ''  ">work_status = #{workStatus},</if>
+            <if test="enterTrain != null  ">enter_train = #{enterTrain},</if>
+            <if test="techniqueTrain != null  ">technique_train = #{techniqueTrain},</if>
+            <if test="entranceCardId != null  and entranceCardId != ''  ">entrance_card_id = #{entranceCardId},</if>
+            <if test="lastSafetyDate != null  ">last_safety_date = #{lastSafetyDate},</if>
+            <if test="safetyCount != null  ">safety_count = #{safetyCount},</if>
+            <if test="safetyScore != null  ">safety_score = #{safetyScore},</if>
+            <if test="opStatus != null  and opStatus != ''  ">op_status = #{opStatus},</if>
+            <if test="opType != null  and opType != ''  ">op_type = #{opType},</if>
+            <if test="createdTime != null  ">created_time = #{createdTime},</if>
+            <if test="createdBy != null  and createdBy != ''  ">created_by = #{createdBy},</if>
+            <if test="updatedTime != null  ">updated_time = #{updatedTime},</if>
+            <if test="updatedBy != null  and updatedBy != ''  ">updated_by = #{updatedBy},</if>
+        </trim>
+        where tid = #{tid}
+    </update>
+
+	<delete id="deleteBiScopeWorkerDataById" parameterType="Integer">
+        delete from bi_scope_worker_data where tid = #{tid}
+    </delete>
+	
+    <delete id="deleteBiScopeWorkerDataByIds" parameterType="String">
+        delete from bi_scope_worker_data where tid in 
+        <foreach item="tid" collection="array" open="(" separator="," close=")">
+            #{tid}
+        </foreach>
+    </delete>
+
+    <update id="updateBiScopeWorkerDataReadyToDeal" parameterType="Map">
+        update bi_scope_worker_data set op_status=3,updated_by=#{host},updated_time=now() where op_status=1 limit 100
+    </update>
+
+
+
+    <update id="updateBiScopeWorkerDataToFailed" parameterType="Map">
+        update bi_scope_worker_data set op_status=9,updated_by=#{host},updated_time=now() where tid=#{tid}
+    </update>
+
+    <update id="updateBiScopeWorkerDataToComplate" parameterType="Map">
+        update bi_scope_worker_data set op_status=2,updated_by=#{host},updated_time=now() where tid=#{tid}
+    </update>
+
+
+    <select id="selectBiScopeWorkerDataReadToDeal" parameterType="Map" resultType="com.ruoyi.project.system.biScopeWorkerData.vo.BiScopeWorkerDataVO">
+        select  tid, id,worker_name workerName, group_id groupId, work_type_id workTypeId, work_type_name workTypeName, real_name_id realNameId,
+         real_status realStatus, real_date realDate, work_status workStatus, enter_train enterTrain, technique_train techniqueTrain,
+         entrance_card_id entranceCardId, last_safety_date lastSafetyDate, safety_count safetyCount, safety_score safetyScore,
+         op_status opStatus, op_type opType, created_time createdTime, created_by createdBy, updated_time updatedTime, updated_by updatedBy
+        from bi_scope_worker_data where op_status=3 and updated_by=#{host} limit 100
+    </select>
+    
+</mapper>

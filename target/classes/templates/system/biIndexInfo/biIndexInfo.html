@@ -1,0 +1,212 @@
+<!DOCTYPE HTML>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="formId">
+                <div class="select-list">
+                    <ul>
+                                                                                                                                                                            <li>
+                                        指标编号：<input type="text" name="indexNo"/>
+                                    </li>
+
+                                                                                                                                                                                    <li>
+                                        指标名称：<input type="text" name="indexName"/>
+                                    </li>
+
+                                                                                                                                                                                    <li>
+                                        显示类型：
+
+                                    </li>
+                                      <li> <select name="displayType" class="form-control m-b" th:with="type=${@dict.getType('bi_index_display_type')}">
+                                          <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                                      </select></li>
+
+                                                                                                            <li>
+                            <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i
+                                    class="fa fa-search"></i>&nbsp;搜索</a>
+                            <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i
+                                    class="fa fa-refresh"></i>&nbsp;重置</a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+
+        <div class="btn-group-sm" id="toolbar" role="group">
+            <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="system:biIndexInfo:add">
+                <i class="fa fa-plus"></i> 添加
+            </a>
+            <a class="btn btn-primary btn-edit disabled" onclick="$.operate.edit()"
+               shiro:hasPermission="system:biIndexInfo:edit">
+                <i class="fa fa-edit"></i> 修改
+            </a>
+            <a class="btn btn-danger btn-del btn-del disabled" onclick="$.operate.removeAll()"
+               shiro:hasPermission="system:biIndexInfo:remove">
+                <i class="fa fa-remove"></i> 删除
+            </a>
+            <a class="btn btn-info" onclick="$.table.importExcel()" shiro:hasPermission="system:biIndexInfo:import">
+                <i class="fa fa-upload"></i> 导入
+            </a>
+            <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:biIndexInfo:export">
+                <i class="fa fa-download"></i> 导出
+            </a>
+        </div>
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table" data-mobile-responsive="true"></table>
+        </div>
+    </div>
+</div>
+<div th:include="include :: footer"></div>
+<script th:inline="javascript">
+    function displayType(value,row)
+    {
+        if(value==1)
+        {
+            return "总数";
+        }
+        else {
+            return '<a href="#" onclick="detailField(\'' + row.indexNo + '\')">' + "字段明细" + '</a>'+'&nbsp; <a href="#" onclick="detailDisplay(\'' + row.indexNo + '\')">' + "明细模板" + '</a>';
+        }
+    }
+
+    function statusFunc(value)
+    {
+        if(value==1)
+        {
+            return "有效";
+        }
+        else {
+            return "无效";
+        }
+    }
+
+
+
+    var editFlag = [[${@permission.hasPermi('system:biIndexInfo:edit')}]];
+    var removeFlag = [[${@permission.hasPermi('system:biIndexInfo:remove')}]];
+    var prefix = ctx + "system/biIndexInfo";
+                                                                                                                                                                                            
+    $(function () {
+        var options = {
+            url: prefix + "/list",
+            createUrl: prefix + "/add",
+            updateUrl: prefix + "/edit/{id}",
+            removeUrl: prefix + "/remove",
+            displayUrl: prefix + "/display/{id}",
+            exportUrl: prefix + "/export",
+            importUrl: prefix + "/importData",
+            importTemplateUrl: prefix + "/importTemplate",
+            modalName: "指标",
+            showExport: true,
+            columns: [{
+                checkbox: true
+            },
+                                                            {
+                            field: 'indexId',
+                            title: '指标ID',
+                            visible: false
+                        },
+                                                                                                            {
+                                field: 'indexNo',
+                                title: '指标编号',
+                                sortable: true
+                            },
+                                                                                                                                    {
+                                field: 'indexName',
+                                title: '指标名称',
+                                sortable: true,
+                                formatter: function(value, row, index)
+                                {
+                                    return '<a href="#" onclick="detail(\'' + row.indexNo + '\')">' + value + '</a>';
+                                }
+                            },
+                                                                                                                                    {
+                                field: 'displayType',
+                                title: '显示类型',
+                                sortable: true,
+                                formatter: function (value, row, index) {
+                                    return displayType(value,row);
+                                }
+                            },
+                                                                                                                                    {
+                                field: 'status',
+                                title: '指标状态',
+                                sortable: true,
+                                formatter: function (value, row, index) {
+                                    return statusFunc(value);
+                                }
+                            },
+                                                                                                                                    {
+                                field: 'createdTime',
+                                title: '创建时间',
+                                sortable: true
+                            },
+                                                                                                                                    {
+                                field: 'createdBy',
+                                title: '创建人',
+                                sortable: true
+                            },
+                                                                                                                                    {
+                                field: 'updatedTime',
+                                title: '更新时间',
+                                sortable: true
+                            },
+                                                                                                                                    {
+                                field: 'updatedBy',
+                                title: '更新人',
+                                sortable: true
+                            },
+                                                                            {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="#" onclick="$.operate.edit(\'' + row.indexId + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="#" onclick="$.operate.remove(\'' + row.indexId + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        actions.push('<a class="btn btn-success btn-xs ' + removeFlag + '" href="#" onclick="$.operate.display(\'' + row.indexId + '\')"><i class="fa fa-music"></i>预览</a>');
+                        return actions.join('&nbsp;');
+                    }
+                }]
+        };
+        $.table.init(options);
+    });
+
+    /*指标范围-详细*/
+    function detail(indexNo)
+    {
+        var url = ctx + "system/biIndexScope/"+indexNo;
+        createMenuItem(url, "指标范围");
+    }
+
+    /*指标字段明细-详细*/
+    function detailField(indexNo)
+    {
+        var url = ctx + "system/biIndexField/"+indexNo;
+        createMenuItem(url, "指标字段明细");
+    }
+
+    /*指标展示-详细*/
+    function detailDisplay(indexNo)
+    {
+        var url = ctx + "system/biIndexDisplay/"+indexNo;
+        createMenuItem(url, "指标字段明细模板");
+    }
+</script>
+</body>
+<form id="importForm" enctype="multipart/form-data" class="mt20 mb10" style="display: none;">
+    <div class="col-xs-offset-1">
+        <input type="file" id="file" name="file"/>
+        <div class="mt10 pt5">
+            &nbsp;	<a onclick="$.table.importTemplate()" class="btn btn-default btn-xs"><i class="fa fa-file-excel-o"></i> 下载模板</a>
+        </div>
+        <font color="red" class="pull-left mt10">
+            提示：仅允许导入“xls”或“xlsx”格式文件！
+        </font>
+    </div>
+</form>
+</html>

@@ -42,14 +42,14 @@ public class BiIndexDisplayController extends BaseController
 	@Autowired
 	private IBiIndexFieldService iBiIndexFieldService;
 	
-	@RequiresPermissions("system:biIndexDisplay:view")
+	@RequiresPermissions("bi:biIndexDisplay:view")
 	@GetMapping()
 	public String biIndexDisplay()
 	{
 	    return prefix + "/biIndexDisplay";
 	}
 
-	@RequiresPermissions("system:biIndexDisplay:view")
+	@RequiresPermissions("bi:biIndexDisplay:view")
 	@GetMapping("{indexNo}")
 	public String biIndexDisplay(@PathVariable String indexNo,ModelMap mmap)
 	{
@@ -61,7 +61,7 @@ public class BiIndexDisplayController extends BaseController
 	/**
 	 * 查询指标展示列表
 	 */
-	@RequiresPermissions("system:biIndexDisplay:list")
+	@RequiresPermissions("bi:biIndexDisplay:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiIndexDisplay biIndexDisplay)
@@ -75,7 +75,7 @@ public class BiIndexDisplayController extends BaseController
 	/**
 	 * 查询指标展示列表
 	 */
-	@RequiresPermissions("system:biIndexDisplay:list")
+	@RequiresPermissions("bi:biIndexDisplay:list")
 	@PostMapping("/list/{indexNo}")
 	@ResponseBody
 	public TableDataInfo list(BiIndexDisplay biIndexDisplay,@PathVariable String indexNo)
@@ -89,7 +89,7 @@ public class BiIndexDisplayController extends BaseController
 	/**
 	 * 导出指标展示列表
 	 */
-	@RequiresPermissions("system:biIndexDisplay:export")
+	@RequiresPermissions("bi:biIndexDisplay:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiIndexDisplay biIndexDisplay)
@@ -101,7 +101,7 @@ public class BiIndexDisplayController extends BaseController
     /**
      * 导入指标展示列表
      */
-    @RequiresPermissions("system:biIndexDisplay:import")
+    @RequiresPermissions("bi:biIndexDisplay:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -115,7 +115,7 @@ public class BiIndexDisplayController extends BaseController
 	 * 指标展示表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biIndexDisplay:view")
+    @RequiresPermissions("bi:biIndexDisplay:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -127,6 +127,7 @@ public class BiIndexDisplayController extends BaseController
 	/**
 	 * 新增指标展示
 	 */
+	@RequiresPermissions("bi:add:view")
 	@GetMapping("/add")
 	public String add()
 	{
@@ -136,6 +137,7 @@ public class BiIndexDisplayController extends BaseController
 	/**
 	 * 新增指标展示
 	 */
+	@RequiresPermissions("bi:add:indexNo")
 	@GetMapping("/add/{indexNo}")
 	public String add(@PathVariable String indexNo, ModelMap mmap)
 	{
@@ -166,7 +168,7 @@ public class BiIndexDisplayController extends BaseController
 	/**
 	 * 新增保存指标展示
 	 */
-	@RequiresPermissions("system:biIndexDisplay:add")
+	@RequiresPermissions("bi:biIndexDisplay:add")
 	@Log(title = "指标展示", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -178,6 +180,7 @@ public class BiIndexDisplayController extends BaseController
 	/**
 	 * 修改指标展示
 	 */
+	@RequiresPermissions("bi:edit:view")
 	@GetMapping("/edit/{displayId}")
 	public String edit(@PathVariable("displayId") Integer displayId, ModelMap mmap)
 	{
@@ -211,7 +214,7 @@ public class BiIndexDisplayController extends BaseController
 	/**
 	 * 修改保存指标展示
 	 */
-	@RequiresPermissions("system:biIndexDisplay:edit")
+	@RequiresPermissions("bi:biIndexDisplay:edit")
 	@Log(title = "指标展示", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -223,7 +226,7 @@ public class BiIndexDisplayController extends BaseController
 	/**
 	 * 删除指标展示
 	 */
-	@RequiresPermissions("system:biIndexDisplay:remove")
+	@RequiresPermissions("bi:biIndexDisplay:remove")
 	@Log(title = "指标展示", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody
@@ -236,6 +239,7 @@ public class BiIndexDisplayController extends BaseController
 	 * 预览指标
 	 * @return
 	 */
+	@RequiresPermissions("bi:display:displayId")
 	@GetMapping("/display/{displayId}")
 	public String display(@PathVariable("displayId") Integer displayId, ModelMap mmap)
 	{

@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-biIndexDisplay-edit" th:object="${biIndexDisplay}">
+            <input id="displayId" name="displayId" th:field="*{displayId}"  type="hidden">
+			<div class="form-group">
+				<label class="col-sm-3 control-label">指标编号：</label>
+				<div class="col-sm-8">
+					<input id="indexNo" name="indexNo" th:field="*{indexNo}" class="form-control" type="text"  readonly="true">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">展示编号：</label>
+				<div class="col-sm-8">
+					<input id="displayNo" name="displayNo" th:field="*{displayNo}" class="form-control" type="text">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">可选参数：</label>
+				<div class="col-sm-8" th:text="${paramStr}">
+				</div>
+			</div>
+
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">展示格式：</label>
+				<div class="col-sm-8">
+					<textarea id="displayContent" name="displayContent" th:field="*{displayContent}" class="form-control" rows="15" cols="150"></textarea>
+				</div>
+			</div>
+		</form>
+    </div>
+    <div th:include="include::footer"></div>
+    <script type="text/javascript">
+		var prefix = ctx + "system/biIndexDisplay";
+		$("#form-biIndexDisplay-edit").validate({
+			rules:{
+				xxxx:{
+					required:true,
+				},
+			},
+			focusCleanup: true
+		});
+		
+		function submitHandler() {
+	        if ($.validate.form()) {
+	            $.operate.save(prefix + "/edit", $('#form-biIndexDisplay-edit').serialize());
+	        }
+	    }
+	</script>
+</body>
+</html>

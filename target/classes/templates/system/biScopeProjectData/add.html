@@ -1,0 +1,215 @@
+<!DOCTYPE HTML>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-biScopeProjectData-add">
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">项目ID：</label>
+                        <div class="col-sm-8">
+                            <input id="id" name="id" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">项目简称：</label>
+                        <div class="col-sm-8">
+                            <input id="abbrName" name="abbrName" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">项目别名：</label>
+                        <div class="col-sm-8">
+                            <input id="aliasName" name="aliasName" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">项目日期：</label>
+                        <div class="col-sm-8">
+                            <input id="createDate" name="createDate" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">关联企业ID：</label>
+                        <div class="col-sm-8">
+                            <input id="enterpriseId" name="enterpriseId" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">项目名称：</label>
+                        <div class="col-sm-8">
+                            <input id="name" name="name" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">总工程ID：</label>
+                        <div class="col-sm-8">
+                            <input id="rootProjectId" name="rootProjectId" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">备注：</label>
+                        <div class="col-sm-8">
+                            <input id="remark" name="remark" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">项目更新日期：</label>
+                        <div class="col-sm-8">
+                            <input id="updateDate" name="updateDate" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">项目状态：</label>
+                        <div class="col-sm-8">
+                            <input id="workStatus" name="workStatus" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">项目地址：</label>
+                        <div class="col-sm-8">
+                            <input id="address" name="address" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">区域ID：</label>
+                        <div class="col-sm-8">
+                            <input id="areaId" name="areaId" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">项目性质ID：</label>
+                        <div class="col-sm-8">
+                            <input id="buildNatureId" name="buildNatureId" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">施工合同编号：</label>
+                        <div class="col-sm-8">
+                            <input id="contractNo" name="contractNo" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">项目造价：</label>
+                        <div class="col-sm-8">
+                            <input id="costMoney" name="costMoney" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">竣工日期：</label>
+                        <div class="col-sm-8">
+                            <input id="endDate" name="endDate" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">项目面积：</label>
+                        <div class="col-sm-8">
+                            <input id="floorArea" name="floorArea" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">项目长度：</label>
+                        <div class="col-sm-8">
+                            <input id="length" name="length" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">上级单位：</label>
+                        <div class="col-sm-8">
+                            <input id="parentEnterpriseId" name="parentEnterpriseId" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">施工许可证号：</label>
+                        <div class="col-sm-8">
+                            <input id="permitNo" name="permitNo" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">备案号：</label>
+                        <div class="col-sm-8">
+                            <input id="recordNo" name="recordNo" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">项目编号：</label>
+                        <div class="col-sm-8">
+                            <input id="serialNo" name="serialNo" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">单位标签：</label>
+                        <div class="col-sm-8">
+                            <input id="signType" name="signType" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">开工日期：</label>
+                        <div class="col-sm-8">
+                            <input id="startDate" name="startDate" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">项目状态：</label>
+                        <div class="col-sm-8">
+                            <input id="status" name="status" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">操作状态：</label>
+                        <div class="col-sm-8">
+                            <input id="opStatus" name="opStatus" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">操作类型：</label>
+                        <div class="col-sm-8">
+                            <input id="opType" name="opType" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">创建人：</label>
+                        <div class="col-sm-8">
+                            <input id="createdBy" name="createdBy" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">创建时间：</label>
+                        <div class="col-sm-8">
+                            <input id="createdTime" name="createdTime" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">更新人：</label>
+                        <div class="col-sm-8">
+                            <input id="updatedBy" name="updatedBy" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">更新时间：</label>
+                        <div class="col-sm-8">
+                            <input id="updatedTime" name="updatedTime" class="form-control" type="text">
+                        </div>
+                    </div>
+                                        </form>
+</div>
+<div th:include="include::footer"></div>
+<script type="text/javascript">
+    var prefix = ctx + "system/biScopeProjectData"
+    $("#form-biScopeProjectData-add").validate({
+        rules: {
+            xxxx: {
+                required: true,
+            },
+        },
+        focusCleanup: true
+    });
+
+    function submitHandler() {
+        if ($.validate.form()) {
+            $.operate.save(prefix + "/add", $('#form-biScopeProjectData-add').serialize());
+        }
+    }
+</script>
+</body>
+</html>

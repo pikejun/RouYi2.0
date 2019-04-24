@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.biScopeAttendInfo.mapper.BiScopeAttendInfoMapper">
+    
+    <resultMap type="BiScopeAttendInfo" id="BiScopeAttendInfoResult">
+        <result property="tid"    column="tid"    />
+        <result property="id"    column="id"    />
+        <result property="workerId"    column="worker_id"    />
+        <result property="day"    column="day"    />
+        <result property="month"    column="month"    />
+        <result property="attendSpotId"    column="attend_spot_id"    />
+        <result property="onWorkTime"    column="on_work_time"    />
+        <result property="unWorkTime"    column="un_work_time"    />
+        <result property="attendMode"    column="attend_mode"    />
+        <result property="imageId"    column="image_id"    />
+        <result property="deviceNumber"    column="device_number"    />
+        <result property="opStatus"    column="op_status"    />
+        <result property="opType"    column="op_type"    />
+        <result property="createdTime"    column="created_time"    />
+        <result property="createdBy"    column="created_by"    />
+        <result property="updatedTime"    column="updated_time"    />
+        <result property="updatedBy"    column="updated_by"    />
+    </resultMap>
+	
+	<sql id="selectBiScopeAttendInfoVo">
+        select tid, id, worker_id, day, month, attend_spot_id, on_work_time, un_work_time, attend_mode, image_id, device_number, op_status, op_type, created_time, created_by, updated_time, updated_by from bi_scope_attend_info
+    </sql>
+	
+    <select id="selectBiScopeAttendInfoList" parameterType="BiScopeAttendInfo" resultMap="BiScopeAttendInfoResult">
+        <include refid="selectBiScopeAttendInfoVo"/>
+        <where>  
+            <if test="tid != null "> and tid = #{tid}</if>
+             <if test="id != null  and id != '' "> and id = #{id}</if>
+             <if test="workerId != null  and workerId != '' "> and worker_id = #{workerId}</if>
+             <if test="day != null  and day != '' "> and day = #{day}</if>
+             <if test="month != null  and month != '' "> and month = #{month}</if>
+             <if test="attendSpotId != null  and attendSpotId != '' "> and attend_spot_id = #{attendSpotId}</if>
+             <if test="onWorkTime != null "> and on_work_time = #{onWorkTime}</if>
+             <if test="unWorkTime != null "> and un_work_time = #{unWorkTime}</if>
+             <if test="attendMode != null  and attendMode != '' "> and attend_mode = #{attendMode}</if>
+             <if test="imageId != null  and imageId != '' "> and image_id = #{imageId}</if>
+             <if test="deviceNumber != null  and deviceNumber != '' "> and device_number = #{deviceNumber}</if>
+             <if test="opStatus != null  and opStatus != '' "> and op_status = #{opStatus}</if>
+             <if test="opType != null  and opType != '' "> and op_type = #{opType}</if>
+             <if test="createdTime != null "> and created_time = #{createdTime}</if>
+             <if test="createdBy != null  and createdBy != '' "> and created_by = #{createdBy}</if>
+             <if test="updatedTime != null "> and updated_time = #{updatedTime}</if>
+             <if test="updatedBy != null  and updatedBy != '' "> and updated_by = #{updatedBy}</if>
+         </where>
+    </select>
+    
+    <select id="selectBiScopeAttendInfoById" parameterType="Integer" resultMap="BiScopeAttendInfoResult">
+        <include refid="selectBiScopeAttendInfoVo"/>
+        where tid = #{tid}
+    </select>
+        
+    <insert id="insertBiScopeAttendInfo" parameterType="BiScopeAttendInfo" useGeneratedKeys="true" keyProperty="tid">
+        insert into bi_scope_attend_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">id,</if>
+			<if test="workerId != null  and workerId != ''  ">worker_id,</if>
+			<if test="day != null  and day != ''  ">day,</if>
+			<if test="month != null  and month != ''  ">month,</if>
+			<if test="attendSpotId != null  and attendSpotId != ''  ">attend_spot_id,</if>
+			<if test="onWorkTime != null  ">on_work_time,</if>
+			<if test="unWorkTime != null  ">un_work_time,</if>
+			<if test="attendMode != null  and attendMode != ''  ">attend_mode,</if>
+			<if test="imageId != null  and imageId != ''  ">image_id,</if>
+			<if test="deviceNumber != null  and deviceNumber != ''  ">device_number,</if>
+			<if test="opStatus != null  and opStatus != ''  ">op_status,</if>
+			<if test="opType != null  and opType != ''  ">op_type,</if>
+			<if test="createdTime != null  ">created_time,</if>
+			<if test="createdBy != null  and createdBy != ''  ">created_by,</if>
+			<if test="updatedTime != null  ">updated_time,</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">updated_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">#{id},</if>
+			<if test="workerId != null  and workerId != ''  ">#{workerId},</if>
+			<if test="day != null  and day != ''  ">#{day},</if>
+			<if test="month != null  and month != ''  ">#{month},</if>
+			<if test="attendSpotId != null  and attendSpotId != ''  ">#{attendSpotId},</if>
+			<if test="onWorkTime != null  ">#{onWorkTime},</if>
+			<if test="unWorkTime != null  ">#{unWorkTime},</if>
+			<if test="attendMode != null  and attendMode != ''  ">#{attendMode},</if>
+			<if test="imageId != null  and imageId != ''  ">#{imageId},</if>
+			<if test="deviceNumber != null  and deviceNumber != ''  ">#{deviceNumber},</if>
+			<if test="opStatus != null  and opStatus != ''  ">#{opStatus},</if>
+			<if test="opType != null  and opType != ''  ">#{opType},</if>
+			<if test="createdTime != null  ">#{createdTime},</if>
+			<if test="createdBy != null  and createdBy != ''  ">#{createdBy},</if>
+			<if test="updatedTime != null  ">#{updatedTime},</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">#{updatedBy},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateBiScopeAttendInfo" parameterType="BiScopeAttendInfo">
+        update bi_scope_attend_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="id != null  and id != ''  ">id = #{id},</if>
+            <if test="workerId != null  and workerId != ''  ">worker_id = #{workerId},</if>
+            <if test="day != null  and day != ''  ">day = #{day},</if>
+            <if test="month != null  and month != ''  ">month = #{month},</if>
+            <if test="attendSpotId != null  and attendSpotId != ''  ">attend_spot_id = #{attendSpotId},</if>
+            <if test="onWorkTime != null  ">on_work_time = #{onWorkTime},</if>
+            <if test="unWorkTime != null  ">un_work_time = #{unWorkTime},</if>
+            <if test="attendMode != null  and attendMode != ''  ">attend_mode = #{attendMode},</if>
+            <if test="imageId != null  and imageId != ''  ">image_id = #{imageId},</if>
+            <if test="deviceNumber != null  and deviceNumber != ''  ">device_number = #{deviceNumber},</if>
+            <if test="opStatus != null  and opStatus != ''  ">op_status = #{opStatus},</if>
+            <if test="opType != null  and opType != ''  ">op_type = #{opType},</if>
+            <if test="createdTime != null  ">created_time = #{createdTime},</if>
+            <if test="createdBy != null  and createdBy != ''  ">created_by = #{createdBy},</if>
+            <if test="updatedTime != null  ">updated_time = #{updatedTime},</if>
+            <if test="updatedBy != null  and updatedBy != ''  ">updated_by = #{updatedBy},</if>
+        </trim>
+        where tid = #{tid}
+    </update>
+
+	<delete id="deleteBiScopeAttendInfoById" parameterType="Integer">
+        delete from bi_scope_attend_info where tid = #{tid}
+    </delete>
+	
+    <delete id="deleteBiScopeAttendInfoByIds" parameterType="String">
+        delete from bi_scope_attend_info where tid in 
+        <foreach item="tid" collection="array" open="(" separator="," close=")">
+            #{tid}
+        </foreach>
+    </delete>
+
+
+    <update id="updateBiScopeAttendInfoReadyToDeal" parameterType="Map">
+        update bi_scope_attend_info set op_status=3,updated_by=#{host},updated_time=now() where op_status=1 limit 100
+    </update>
+
+
+
+    <update id="updateBiScopeAttendInfoToFailed" parameterType="Map">
+        update bi_scope_attend_info set op_status=9,updated_by=#{host},updated_time=now() where tid=#{tid}
+    </update>
+
+    <update id="updateBiScopeAttendInfoToComplate" parameterType="Map">
+        update bi_scope_attend_info set op_status=2,updated_by=#{host},updated_time=now() where tid=#{tid}
+    </update>
+
+
+    <select id="selectBiScopeAttendInfoReadToDeal" parameterType="Map" resultType="com.ruoyi.project.system.biScopeAttendInfo.vo.BiScopeAttendInfoVO">
+        select tid, id, worker_id workerId, `day`, `month`, attend_spot_id attendSpotId, on_work_time onWorkTime, un_work_time unWorkTime,
+        attend_mode attendMode, image_id imageId, device_number deviceNumber, op_status opStatus, op_type opType, created_time createdTime,
+        created_by createdBy, updated_time updatedTime, updated_by updatedBy
+        from bi_scope_attend_info where op_status=3 and updated_by=#{host} limit 100
+    </select>
+    
+</mapper>

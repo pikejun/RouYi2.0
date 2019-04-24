@@ -25,6 +25,7 @@ public class BiScopeWorkerDataJob extends  BaseDataJob {
     @Autowired
     private IBiScopeWorkerDataService biScopeWorkerDataService;
 
+
     /**
      * MATCH (u:User {username:'admin'}), (r:Role {name:'ROLE_WEB_USER'})
      * delete (u)-[:HAS_ROLE]->(r)

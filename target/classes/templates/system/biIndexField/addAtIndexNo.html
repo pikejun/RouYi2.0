@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-biIndexField-add">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">指标编号：</label>
+            <div class="col-sm-8">
+                <input id="indexNo" name="indexNo" class="form-control" type="text" readonly="true" th:value="${indexNo}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">范围别名：</label>
+            <div class="col-sm-8">
+
+                <select id="aliasName" name="aliasName" class="form-control m-b">
+
+                </select>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">属性名称：</label>
+            <div class="col-sm-8">
+                <select id="propertyName" name="propertyName" class="form-control m-b">
+
+                </select>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">字段名称：</label>
+            <div class="col-sm-8">
+                <input id="fieldName" name="fieldName" class="form-control" type="text" readonly="true">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">排序号：</label>
+            <div class="col-sm-8">
+                <select id="orderNum" name="orderNum" class="form-control m-b" th:with="type=${@dict.getType('order_no')}">
+                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                </select>
+            </div>
+        </div>
+    </form>
+</div>
+<div th:include="include::footer"></div>
+<script type="text/javascript">
+    var prefix = ctx + "system/biIndexField"
+    $("#form-biIndexField-add").validate({
+        rules: {
+            xxxx: {
+                required: true,
+            },
+        },
+        focusCleanup: true
+    });
+
+    function submitHandler() {
+        if ($.validate.form()) {
+            $.operate.save(prefix + "/add", $('#form-biIndexField-add').serialize());
+        }
+    }
+
+    //通过indexNo查询指标的别名和范围名称
+
+    var indexNo = $("#indexNo").val();
+
+    var name2Name=[];
+    var aliasName=null;
+    var scopeName=null;
+    var propertyName=null;
+    if (indexNo) {
+        $("#aliasName").empty();
+        $("#propertyName").empty();
+        $.post(ctx + "system/biIndexScope/getScopeAndAliasNameList", {indexNo: indexNo}, function (result) {
+            var data = result;
+            data = $.parseJSON(data);
+            $.each(data, function (k, item) {
+                $("#aliasName").append("<option value='" + item.aliasName + "'>" + item.aliasNameDesc + "</option>");
+                name2Name[item.aliasName]=item.scopeName;
+                if(aliasName==null)
+                {
+                    aliasName=item.aliasName;
+                    scopeName=item.scopeName;
+                    //alert(scopeName);
+
+                    $.post(ctx + "system/biScopeProperty/getScopePropertyByScopeName", {scopeName: scopeName}, function (result) {
+                        var data = result;
+                        data = $.parseJSON(data);
+                        $.each(data, function (k, item) {
+                            $("#propertyName").append("<option value='" + item.propertyName + "'>" + item.propertyNameDesc + "</option>");
+                            if(propertyName==null)
+                            {
+                                propertyName=item.propertyName;
+                                $("#fieldName").val(aliasName+"."+propertyName);
+                            }
+                        });
+                    })
+                }
+            });
+        })
+    }
+
+    //通过范围选择，加载范围的
+
+    //加载
+    $(function () {
+        //范围属性联动
+        $("#aliasName").change(function () {
+            aliasName = $(this).children('option:selected').val();
+            scopeName = name2Name[aliasName];
+            propertyName=null;
+
+            $("#propertyName").empty();
+            $.post(ctx + "system/biScopeProperty/getScopePropertyByScopeName", {scopeName: scopeName}, function (result) {
+                var data = result;
+                data = $.parseJSON(data);
+                $.each(data, function (k, item) {
+                    $("#propertyName").append("<option value='" + item.propertyName + "'>" + item.propertyNameDesc + "</option>");
+                    if(propertyName==null)
+                    {
+                        propertyName=item.propertyName;
+                        $("#fieldName").val(aliasName+"."+propertyName);
+                    }
+                });
+            })
+        })
+
+        //范围属性联动
+        $("#propertyName").change(function ()
+        {
+            propertyName = $(this).children('option:selected').val();
+            $("#fieldName").val(aliasName+"."+propertyName);
+        })
+    });
+</script>
+</body>
+</html>

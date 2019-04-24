@@ -35,7 +35,7 @@ public class BiTemplateInfoController extends BaseController
 	@Autowired
 	private IBiTemplateInfoService biTemplateInfoService;
 	
-	@RequiresPermissions("system:biTemplateInfo:view")
+	@RequiresPermissions("bi:biTemplateInfo:view")
 	@GetMapping()
 	public String biTemplateInfo()
 	{
@@ -45,7 +45,7 @@ public class BiTemplateInfoController extends BaseController
 	/**
 	 * 查询模板数据列表
 	 */
-	@RequiresPermissions("system:biTemplateInfo:list")
+	@RequiresPermissions("bi:biTemplateInfo:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiTemplateInfo biTemplateInfo)
@@ -59,7 +59,7 @@ public class BiTemplateInfoController extends BaseController
 	/**
 	 * 导出模板数据列表
 	 */
-	@RequiresPermissions("system:biTemplateInfo:export")
+	@RequiresPermissions("bi:biTemplateInfo:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiTemplateInfo biTemplateInfo)
@@ -71,7 +71,7 @@ public class BiTemplateInfoController extends BaseController
     /**
      * 导入模板数据列表
      */
-    @RequiresPermissions("system:biTemplateInfo:import")
+    @RequiresPermissions("bi:biTemplateInfo:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -85,7 +85,7 @@ public class BiTemplateInfoController extends BaseController
 	 * 模板数据表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biTemplateInfo:view")
+    @RequiresPermissions("bi:biTemplateInfo:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -106,7 +106,7 @@ public class BiTemplateInfoController extends BaseController
 	/**
 	 * 新增保存模板数据
 	 */
-	@RequiresPermissions("system:biTemplateInfo:add")
+	@RequiresPermissions("bi:biTemplateInfo:add")
 	@Log(title = "模板数据", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -146,7 +146,7 @@ public class BiTemplateInfoController extends BaseController
 	/**
 	 * 修改保存模板数据
 	 */
-	@RequiresPermissions("system:biTemplateInfo:edit")
+	@RequiresPermissions("bi:biTemplateInfo:edit")
 	@Log(title = "模板数据", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -158,7 +158,7 @@ public class BiTemplateInfoController extends BaseController
 	/**
 	 * 删除模板数据
 	 */
-	@RequiresPermissions("system:biTemplateInfo:remove")
+	@RequiresPermissions("bi:biTemplateInfo:remove")
 	@Log(title = "模板数据", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody

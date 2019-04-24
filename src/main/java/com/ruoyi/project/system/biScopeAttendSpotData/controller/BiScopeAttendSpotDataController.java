@@ -35,7 +35,7 @@ public class BiScopeAttendSpotDataController extends BaseController
 	@Autowired
 	private IBiScopeAttendSpotDataService biScopeAttendSpotDataService;
 	
-	@RequiresPermissions("system:biScopeAttendSpotData:view")
+	@RequiresPermissions("bi:biScopeAttendSpotData:view")
 	@GetMapping()
 	public String biScopeAttendSpotData()
 	{
@@ -45,7 +45,7 @@ public class BiScopeAttendSpotDataController extends BaseController
 	/**
 	 * 查询考勤点列表
 	 */
-	@RequiresPermissions("system:biScopeAttendSpotData:list")
+	@RequiresPermissions("bi:biScopeAttendSpotData:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiScopeAttendSpotData biScopeAttendSpotData)
@@ -59,7 +59,7 @@ public class BiScopeAttendSpotDataController extends BaseController
 	/**
 	 * 导出考勤点列表
 	 */
-	@RequiresPermissions("system:biScopeAttendSpotData:export")
+	@RequiresPermissions("bi:biScopeAttendSpotData:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiScopeAttendSpotData biScopeAttendSpotData)
@@ -71,7 +71,7 @@ public class BiScopeAttendSpotDataController extends BaseController
     /**
      * 导入考勤点列表
      */
-    @RequiresPermissions("system:biScopeAttendSpotData:import")
+    @RequiresPermissions("bi:biScopeAttendSpotData:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -85,7 +85,7 @@ public class BiScopeAttendSpotDataController extends BaseController
 	 * 考勤点表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biScopeAttendSpotData:view")
+    @RequiresPermissions("bi:biScopeAttendSpotData:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -106,7 +106,7 @@ public class BiScopeAttendSpotDataController extends BaseController
 	/**
 	 * 新增保存考勤点
 	 */
-	@RequiresPermissions("system:biScopeAttendSpotData:add")
+	@RequiresPermissions("bi:biScopeAttendSpotData:add")
 	@Log(title = "考勤点", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -129,7 +129,7 @@ public class BiScopeAttendSpotDataController extends BaseController
 	/**
 	 * 修改保存考勤点
 	 */
-	@RequiresPermissions("system:biScopeAttendSpotData:edit")
+	@RequiresPermissions("bi:biScopeAttendSpotData:edit")
 	@Log(title = "考勤点", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -141,7 +141,7 @@ public class BiScopeAttendSpotDataController extends BaseController
 	/**
 	 * 删除考勤点
 	 */
-	@RequiresPermissions("system:biScopeAttendSpotData:remove")
+	@RequiresPermissions("bi:biScopeAttendSpotData:remove")
 	@Log(title = "考勤点", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody

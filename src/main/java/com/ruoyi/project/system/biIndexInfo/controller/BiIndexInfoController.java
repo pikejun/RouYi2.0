@@ -53,7 +53,7 @@ public class BiIndexInfoController extends BaseController
 	@Autowired
 	private IBiIndexFieldService biIndexFieldService;
 	
-	@RequiresPermissions("system:biIndexInfo:view")
+	@RequiresPermissions("bi:biIndexInfo:view")
 	@GetMapping()
 	public String biIndexInfo()
 	{
@@ -140,7 +140,7 @@ public class BiIndexInfoController extends BaseController
 	/**
 	 * 查询指标列表
 	 */
-	@RequiresPermissions("system:biIndexInfo:list")
+	@RequiresPermissions("bi:biIndexInfo:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiIndexInfo biIndexInfo)
@@ -154,7 +154,7 @@ public class BiIndexInfoController extends BaseController
 	/**
 	 * 导出指标列表
 	 */
-	@RequiresPermissions("system:biIndexInfo:export")
+	@RequiresPermissions("bi:biIndexInfo:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiIndexInfo biIndexInfo)
@@ -166,7 +166,7 @@ public class BiIndexInfoController extends BaseController
     /**
      * 导入指标列表
      */
-    @RequiresPermissions("system:biIndexInfo:import")
+    @RequiresPermissions("bi:biIndexInfo:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -180,7 +180,7 @@ public class BiIndexInfoController extends BaseController
 	 * 指标表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biIndexInfo:view")
+    @RequiresPermissions("bi:biIndexInfo:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -201,7 +201,7 @@ public class BiIndexInfoController extends BaseController
 	/**
 	 * 新增保存指标
 	 */
-	@RequiresPermissions("system:biIndexInfo:add")
+	@RequiresPermissions("bi:biIndexInfo:add")
 	@Log(title = "指标", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -249,7 +249,7 @@ public class BiIndexInfoController extends BaseController
 	/**
 	 * 修改保存指标
 	 */
-	@RequiresPermissions("system:biIndexInfo:edit")
+	@RequiresPermissions("bi:biIndexInfo:edit")
 	@Log(title = "指标", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -261,7 +261,7 @@ public class BiIndexInfoController extends BaseController
 	/**
 	 * 删除指标
 	 */
-	@RequiresPermissions("system:biIndexInfo:remove")
+	@RequiresPermissions("bi:biIndexInfo:remove")
 	@Log(title = "指标", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody

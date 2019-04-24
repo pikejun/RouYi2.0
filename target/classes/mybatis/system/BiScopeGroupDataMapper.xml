@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.biScopeGroupData.mapper.BiScopeGroupDataMapper">
+    
+    <resultMap type="BiScopeGroupData" id="BiScopeGroupDataResult">
+        <result property="tid"    column="tid"    />
+        <result property="id"    column="id"    />
+        <result property="createDate"    column="create_date"    />
+        <result property="name"    column="name"    />
+        <result property="levelCode"    column="level_code"    />
+        <result property="parentId"    column="parent_id"    />
+        <result property="projectId"    column="project_id"    />
+        <result property="rootProjectId"    column="root_project_id"    />
+        <result property="remark"    column="remark"    />
+        <result property="updateDate"    column="update_date"    />
+        <result property="workStatus"    column="work_status"    />
+        <result property="opStatus"    column="op_status"    />
+        <result property="opType"    column="op_type"    />
+        <result property="createdTime"    column="created_time"    />
+        <result property="createdBy"    column="created_by"    />
+        <result property="updatedTime"    column="updated_time"    />
+        <result property="updatedBy"    column="updated_by"    />
+    </resultMap>
+	
+	<sql id="selectBiScopeGroupDataVo">
+        select tid, id, create_date, name, level_code, parent_id, project_id, root_project_id, remark, update_date, work_status, op_status, op_type, created_time, created_by, updated_time, updated_by from bi_scope_group_data
+    </sql>
+	
+    <select id="selectBiScopeGroupDataList" parameterType="BiScopeGroupData" resultMap="BiScopeGroupDataResult">
+        <include refid="selectBiScopeGroupDataVo"/>
+        <where>  
+            <if test="tid != null "> and tid = #{tid}</if>
+             <if test="id != null  and id != '' "> and id = #{id}</if>
+             <if test="createDate != null "> and create_date = #{createDate}</if>
+             <if test="name != null  and name != '' "> and name = #{name}</if>
+             <if test="levelCode != null  and levelCode != '' "> and level_code = #{levelCode}</if>
+             <if test="parentId != null  and parentId != '' "> and parent_id = #{parentId}</if>
+             <if test="projectId != null  and projectId != '' "> and project_id = #{projectId}</if>
+             <if test="rootProjectId != null  and rootProjectId != '' "> and root_project_id = #{rootProjectId}</if>
+             <if test="remark != null  and remark != '' "> and remark = #{remark}</if>
+             <if test="updateDate != null "> and update_date = #{updateDate}</if>
+             <if test="workStatus != null  and workStatus != '' "> and work_status = #{workStatus}</if>
+             <if test="opStatus != null  and opStatus != '' "> and op_status = #{opStatus}</if>
+             <if test="opType != null  and opType != '' "> and op_type = #{opType}</if>
+             <if test="createdTime != null "> and created_time = #{createdTime}</if>
+             <if test="createdBy != null  and createdBy != '' "> and created_by = #{createdBy}</if>
+             <if test="updatedTime != null "> and updated_time = #{updatedTime}</if>
+             <if test="updatedBy != null  and updatedBy != '' "> and updated_by = #{updatedBy}</if>
+         </where>
+    </select>
+    
+    <select id="selectBiScopeGroupDataById" parameterType="Integer" resultMap="BiScopeGroupDataResult">
+        <include refid="selectBiScopeGroupDataVo"/>
+        where tid = #{tid}
+    </select>
+        
+    <insert id="insertBiScopeGroupData" parameterType="BiScopeGroupData" useGeneratedKeys="true" keyProperty="tid">
+        insert into bi_scope_group_data
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">id,</if>
+			<if test="createDate != null  ">create_date,</if>
+			<if test="name != null  and name != ''  ">name,</if>
+			<if test="levelCode != null  and levelCode != ''  ">level_code,</if>
+			<if test="parentId != null  and parentId != ''  ">parent_id,</if>
+			<if test="projectId != null  and projectId != ''  ">project_id,</if>
+			<if test="rootProjectId != null  and rootProjectId != ''  ">root_project_id,</if>
+			<if test="remark != null  and remark != ''  ">remark,</if>
+			<if test="updateDate != null  ">update_date,</if>
+			<if test="workStatus != null  and workStatus != ''  ">work_status,</if>
+			<if test="opStatus != null  and opStatus != ''  ">op_status,</if>
+			<if test="opType != null  and opType != ''  ">op_type,</if>
+			<if test="createdTime != null  ">created_time,</if>
+			<if test="createdBy != null  and createdBy != ''  ">created_by,</if>
+			<if test="updatedTime != null  ">updated_time,</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">updated_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">#{id},</if>
+			<if test="createDate != null  ">#{createDate},</if>
+			<if test="name != null  and name != ''  ">#{name},</if>
+			<if test="levelCode != null  and levelCode != ''  ">#{levelCode},</if>
+			<if test="parentId != null  and parentId != ''  ">#{parentId},</if>
+			<if test="projectId != null  and projectId != ''  ">#{projectId},</if>
+			<if test="rootProjectId != null  and rootProjectId != ''  ">#{rootProjectId},</if>
+			<if test="remark != null  and remark != ''  ">#{remark},</if>
+			<if test="updateDate != null  ">#{updateDate},</if>
+			<if test="workStatus != null  and workStatus != ''  ">#{workStatus},</if>
+			<if test="opStatus != null  and opStatus != ''  ">#{opStatus},</if>
+			<if test="opType != null  and opType != ''  ">#{opType},</if>
+			<if test="createdTime != null  ">#{createdTime},</if>
+			<if test="createdBy != null  and createdBy != ''  ">#{createdBy},</if>
+			<if test="updatedTime != null  ">#{updatedTime},</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">#{updatedBy},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateBiScopeGroupData" parameterType="BiScopeGroupData">
+        update bi_scope_group_data
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="id != null  and id != ''  ">id = #{id},</if>
+            <if test="createDate != null  ">create_date = #{createDate},</if>
+            <if test="name != null  and name != ''  ">name = #{name},</if>
+            <if test="levelCode != null  and levelCode != ''  ">level_code = #{levelCode},</if>
+            <if test="parentId != null  and parentId != ''  ">parent_id = #{parentId},</if>
+            <if test="projectId != null  and projectId != ''  ">project_id = #{projectId},</if>
+            <if test="rootProjectId != null  and rootProjectId != ''  ">root_project_id = #{rootProjectId},</if>
+            <if test="remark != null  and remark != ''  ">remark = #{remark},</if>
+            <if test="updateDate != null  ">update_date = #{updateDate},</if>
+            <if test="workStatus != null  and workStatus != ''  ">work_status = #{workStatus},</if>
+            <if test="opStatus != null  and opStatus != ''  ">op_status = #{opStatus},</if>
+            <if test="opType != null  and opType != ''  ">op_type = #{opType},</if>
+            <if test="createdTime != null  ">created_time = #{createdTime},</if>
+            <if test="createdBy != null  and createdBy != ''  ">created_by = #{createdBy},</if>
+            <if test="updatedTime != null  ">updated_time = #{updatedTime},</if>
+            <if test="updatedBy != null  and updatedBy != ''  ">updated_by = #{updatedBy},</if>
+        </trim>
+        where tid = #{tid}
+    </update>
+
+	<delete id="deleteBiScopeGroupDataById" parameterType="Integer">
+        delete from bi_scope_group_data where tid = #{tid}
+    </delete>
+	
+    <delete id="deleteBiScopeGroupDataByIds" parameterType="String">
+        delete from bi_scope_group_data where tid in 
+        <foreach item="tid" collection="array" open="(" separator="," close=")">
+            #{tid}
+        </foreach>
+    </delete>
+
+
+
+    <update id="updateBiScopeGroupDataReadyToDeal" parameterType="Map">
+        update bi_scope_group_data set op_status=3,updated_by=#{host},updated_time=now() where op_status=1 limit 100
+    </update>
+
+
+
+    <update id="updateBiScopeGroupDataToFailed" parameterType="Map">
+        update bi_scope_group_data set op_status=9,updated_by=#{host},updated_time=now() where tid=#{tid}
+    </update>
+
+    <update id="updateBiScopeGroupDataToComplate" parameterType="Map">
+        update bi_scope_group_data set op_status=2,updated_by=#{host},updated_time=now() where tid=#{tid}
+    </update>
+
+
+    <select id="selectBiScopeGroupDataReadToDeal" parameterType="Map" resultType="com.ruoyi.project.system.biScopeGroupData.vo.BiScopeGroupDataVO">
+        select
+        tid, id, create_date createDate, name, level_code levelCode, parent_id parentId, project_id projectId, root_project_id rootProjectId,
+        remark, update_date updateDate, work_status workStatus,
+        op_status opStatus, op_type opType, created_time createdTime, created_by createdBy, updated_time updatedTime, updated_by updatedBy
+        from bi_scope_group_data where op_status=3 and updated_by=#{host} limit 100
+    </select>
+
+    
+</mapper>

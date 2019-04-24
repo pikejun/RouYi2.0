@@ -35,7 +35,7 @@ public class BiScopeSectionDataController extends BaseController
 	@Autowired
 	private IBiScopeSectionDataService biScopeSectionDataService;
 	
-	@RequiresPermissions("system:biScopeSectionData:view")
+	@RequiresPermissions("bi:biScopeSectionData:view")
 	@GetMapping()
 	public String biScopeSectionData()
 	{
@@ -45,7 +45,7 @@ public class BiScopeSectionDataController extends BaseController
 	/**
 	 * 查询标段数据列表
 	 */
-	@RequiresPermissions("system:biScopeSectionData:list")
+	@RequiresPermissions("bi:biScopeSectionData:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiScopeSectionData biScopeSectionData)
@@ -59,7 +59,7 @@ public class BiScopeSectionDataController extends BaseController
 	/**
 	 * 导出标段数据列表
 	 */
-	@RequiresPermissions("system:biScopeSectionData:export")
+	@RequiresPermissions("bi:biScopeSectionData:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiScopeSectionData biScopeSectionData)
@@ -71,7 +71,7 @@ public class BiScopeSectionDataController extends BaseController
     /**
      * 导入标段数据列表
      */
-    @RequiresPermissions("system:biScopeSectionData:import")
+    @RequiresPermissions("bi:biScopeSectionData:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -85,7 +85,7 @@ public class BiScopeSectionDataController extends BaseController
 	 * 标段数据表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biScopeSectionData:view")
+    @RequiresPermissions("bi:biScopeSectionData:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -106,7 +106,7 @@ public class BiScopeSectionDataController extends BaseController
 	/**
 	 * 新增保存标段数据
 	 */
-	@RequiresPermissions("system:biScopeSectionData:add")
+	@RequiresPermissions("bi:biScopeSectionData:add")
 	@Log(title = "标段数据", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -129,7 +129,7 @@ public class BiScopeSectionDataController extends BaseController
 	/**
 	 * 修改保存标段数据
 	 */
-	@RequiresPermissions("system:biScopeSectionData:edit")
+	@RequiresPermissions("bi:biScopeSectionData:edit")
 	@Log(title = "标段数据", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -141,7 +141,7 @@ public class BiScopeSectionDataController extends BaseController
 	/**
 	 * 删除标段数据
 	 */
-	@RequiresPermissions("system:biScopeSectionData:remove")
+	@RequiresPermissions("bi:biScopeSectionData:remove")
 	@Log(title = "标段数据", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody

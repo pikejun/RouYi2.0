@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+	<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+		<div> 指标编号:</div> <div th:text="${biIndexInfo.indexNo}"> idx_200 </div><div> 指标名称:</div> <div th:text="${biIndexInfo.indexName}"> 我的指标 </div>
+        <table>
+			　<tbody th:remove="all-but-first">
+					<tr th:each="ret:${retList}">
+					    <td th:text="${ret}">no data</td>
+					</tr>
+					<tr>
+						<td>White table</td>
+					</tr>
+					<tr>
+						<td>Reb table</td>
+					</tr>
+					<tr>
+						<td>Blue table</td>
+					</tr>
+			 </tbody>
+		</table>
+	</div>
+    <div th:include="include::footer"></div>
+</body>
+</html>

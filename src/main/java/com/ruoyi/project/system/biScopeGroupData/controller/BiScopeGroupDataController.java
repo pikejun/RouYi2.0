@@ -35,7 +35,7 @@ public class BiScopeGroupDataController extends BaseController
 	@Autowired
 	private IBiScopeGroupDataService biScopeGroupDataService;
 	
-	@RequiresPermissions("system:biScopeGroupData:view")
+	@RequiresPermissions("bi:biScopeGroupData:view")
 	@GetMapping()
 	public String biScopeGroupData()
 	{
@@ -45,7 +45,7 @@ public class BiScopeGroupDataController extends BaseController
 	/**
 	 * 查询项目班组数据列表
 	 */
-	@RequiresPermissions("system:biScopeGroupData:list")
+	@RequiresPermissions("bi:biScopeGroupData:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiScopeGroupData biScopeGroupData)
@@ -59,7 +59,7 @@ public class BiScopeGroupDataController extends BaseController
 	/**
 	 * 导出项目班组数据列表
 	 */
-	@RequiresPermissions("system:biScopeGroupData:export")
+	@RequiresPermissions("bi:biScopeGroupData:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiScopeGroupData biScopeGroupData)
@@ -71,7 +71,7 @@ public class BiScopeGroupDataController extends BaseController
     /**
      * 导入项目班组数据列表
      */
-    @RequiresPermissions("system:biScopeGroupData:import")
+    @RequiresPermissions("bi:biScopeGroupData:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -85,7 +85,7 @@ public class BiScopeGroupDataController extends BaseController
 	 * 项目班组数据表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biScopeGroupData:view")
+    @RequiresPermissions("bi:biScopeGroupData:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -106,7 +106,7 @@ public class BiScopeGroupDataController extends BaseController
 	/**
 	 * 新增保存项目班组数据
 	 */
-	@RequiresPermissions("system:biScopeGroupData:add")
+	@RequiresPermissions("bi:biScopeGroupData:add")
 	@Log(title = "项目班组数据", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -129,7 +129,7 @@ public class BiScopeGroupDataController extends BaseController
 	/**
 	 * 修改保存项目班组数据
 	 */
-	@RequiresPermissions("system:biScopeGroupData:edit")
+	@RequiresPermissions("bi:biScopeGroupData:edit")
 	@Log(title = "项目班组数据", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -141,7 +141,7 @@ public class BiScopeGroupDataController extends BaseController
 	/**
 	 * 删除项目班组数据
 	 */
-	@RequiresPermissions("system:biScopeGroupData:remove")
+	@RequiresPermissions("bi:biScopeGroupData:remove")
 	@Log(title = "项目班组数据", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody

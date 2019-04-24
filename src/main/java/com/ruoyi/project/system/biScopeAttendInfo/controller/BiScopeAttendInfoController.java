@@ -35,7 +35,7 @@ public class BiScopeAttendInfoController extends BaseController
 	@Autowired
 	private IBiScopeAttendInfoService biScopeAttendInfoService;
 	
-	@RequiresPermissions("system:biScopeAttendInfo:view")
+	@RequiresPermissions("bi:biScopeAttendInfo:view")
 	@GetMapping()
 	public String biScopeAttendInfo()
 	{
@@ -45,7 +45,7 @@ public class BiScopeAttendInfoController extends BaseController
 	/**
 	 * 查询考勤列表
 	 */
-	@RequiresPermissions("system:biScopeAttendInfo:list")
+	@RequiresPermissions("bi:biScopeAttendInfo:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiScopeAttendInfo biScopeAttendInfo)
@@ -59,7 +59,7 @@ public class BiScopeAttendInfoController extends BaseController
 	/**
 	 * 导出考勤列表
 	 */
-	@RequiresPermissions("system:biScopeAttendInfo:export")
+	@RequiresPermissions("bi:biScopeAttendInfo:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiScopeAttendInfo biScopeAttendInfo)
@@ -71,7 +71,7 @@ public class BiScopeAttendInfoController extends BaseController
     /**
      * 导入考勤列表
      */
-    @RequiresPermissions("system:biScopeAttendInfo:import")
+    @RequiresPermissions("bi:biScopeAttendInfo:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -85,7 +85,7 @@ public class BiScopeAttendInfoController extends BaseController
 	 * 考勤表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biScopeAttendInfo:view")
+    @RequiresPermissions("bi:biScopeAttendInfo:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -106,7 +106,7 @@ public class BiScopeAttendInfoController extends BaseController
 	/**
 	 * 新增保存考勤
 	 */
-	@RequiresPermissions("system:biScopeAttendInfo:add")
+	@RequiresPermissions("bi:biScopeAttendInfo:add")
 	@Log(title = "考勤", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -129,7 +129,7 @@ public class BiScopeAttendInfoController extends BaseController
 	/**
 	 * 修改保存考勤
 	 */
-	@RequiresPermissions("system:biScopeAttendInfo:edit")
+	@RequiresPermissions("bi:biScopeAttendInfo:edit")
 	@Log(title = "考勤", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -141,7 +141,7 @@ public class BiScopeAttendInfoController extends BaseController
 	/**
 	 * 删除考勤
 	 */
-	@RequiresPermissions("system:biScopeAttendInfo:remove")
+	@RequiresPermissions("bi:biScopeAttendInfo:remove")
 	@Log(title = "考勤", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody

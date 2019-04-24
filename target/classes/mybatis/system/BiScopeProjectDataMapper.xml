@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.biScopeProjectData.mapper.BiScopeProjectDataMapper">
+    
+    <resultMap type="BiScopeProjectData" id="BiScopeProjectDataResult">
+        <result property="tid"    column="tid"    />
+        <result property="id"    column="id"    />
+        <result property="abbrName"    column="abbr_name"    />
+        <result property="aliasName"    column="alias_name"    />
+        <result property="createDate"    column="create_date"    />
+        <result property="enterpriseId"    column="enterprise_id"    />
+        <result property="name"    column="name"    />
+        <result property="rootProjectId"    column="root_project_id"    />
+        <result property="remark"    column="remark"    />
+        <result property="updateDate"    column="update_date"    />
+        <result property="workStatus"    column="work_status"    />
+        <result property="address"    column="address"    />
+        <result property="areaId"    column="area_id"    />
+        <result property="buildNatureId"    column="build_nature_id"    />
+        <result property="contractNo"    column="contract_no"    />
+        <result property="costMoney"    column="cost_money"    />
+        <result property="endDate"    column="end_date"    />
+        <result property="floorArea"    column="floor_area"    />
+        <result property="length"    column="length"    />
+        <result property="parentEnterpriseId"    column="parent_enterprise_id"    />
+        <result property="permitNo"    column="permit_no"    />
+        <result property="recordNo"    column="record_no"    />
+        <result property="serialNo"    column="serial_no"    />
+        <result property="signType"    column="sign_type"    />
+        <result property="startDate"    column="start_date"    />
+        <result property="status"    column="status"    />
+        <result property="opStatus"    column="op_status"    />
+        <result property="opType"    column="op_type"    />
+        <result property="createdBy"    column="created_by"    />
+        <result property="createdTime"    column="created_time"    />
+        <result property="updatedBy"    column="updated_by"    />
+        <result property="updatedTime"    column="updated_time"    />
+    </resultMap>
+	
+	<sql id="selectBiScopeProjectDataVo">
+        select tid, id, abbr_name, alias_name, create_date, enterprise_id, name, root_project_id, remark, update_date, work_status, address, area_id, build_nature_id, contract_no, cost_money, end_date, floor_area, length, parent_enterprise_id, permit_no, record_no, serial_no, sign_type, start_date, status, op_status, op_type, created_by, created_time, updated_by, updated_time from bi_scope_project_data
+    </sql>
+	
+    <select id="selectBiScopeProjectDataList" parameterType="BiScopeProjectData" resultMap="BiScopeProjectDataResult">
+        <include refid="selectBiScopeProjectDataVo"/>
+        <where>  
+            <if test="tid != null "> and tid = #{tid}</if>
+             <if test="id != null  and id != '' "> and id = #{id}</if>
+             <if test="abbrName != null  and abbrName != '' "> and abbr_name = #{abbrName}</if>
+             <if test="aliasName != null  and aliasName != '' "> and alias_name = #{aliasName}</if>
+             <if test="createDate != null "> and create_date = #{createDate}</if>
+             <if test="enterpriseId != null  and enterpriseId != '' "> and enterprise_id = #{enterpriseId}</if>
+             <if test="name != null  and name != '' "> and name = #{name}</if>
+             <if test="rootProjectId != null  and rootProjectId != '' "> and root_project_id = #{rootProjectId}</if>
+             <if test="remark != null  and remark != '' "> and remark = #{remark}</if>
+             <if test="updateDate != null "> and update_date = #{updateDate}</if>
+             <if test="workStatus != null  and workStatus != '' "> and work_status = #{workStatus}</if>
+             <if test="address != null  and address != '' "> and address = #{address}</if>
+             <if test="areaId != null  and areaId != '' "> and area_id = #{areaId}</if>
+             <if test="buildNatureId != null  and buildNatureId != '' "> and build_nature_id = #{buildNatureId}</if>
+             <if test="contractNo != null  and contractNo != '' "> and contract_no = #{contractNo}</if>
+             <if test="costMoney != null  and costMoney != '' "> and cost_money = #{costMoney}</if>
+             <if test="endDate != null "> and end_date = #{endDate}</if>
+             <if test="floorArea != null  and floorArea != '' "> and floor_area = #{floorArea}</if>
+             <if test="length != null  and length != '' "> and length = #{length}</if>
+             <if test="parentEnterpriseId != null  and parentEnterpriseId != '' "> and parent_enterprise_id = #{parentEnterpriseId}</if>
+             <if test="permitNo != null  and permitNo != '' "> and permit_no = #{permitNo}</if>
+             <if test="recordNo != null  and recordNo != '' "> and record_no = #{recordNo}</if>
+             <if test="serialNo != null  and serialNo != '' "> and serial_no = #{serialNo}</if>
+             <if test="signType != null  and signType != '' "> and sign_type = #{signType}</if>
+             <if test="startDate != null "> and start_date = #{startDate}</if>
+             <if test="status != null  and status != '' "> and status = #{status}</if>
+             <if test="opStatus != null  and opStatus != '' "> and op_status = #{opStatus}</if>
+             <if test="opType != null  and opType != '' "> and op_type = #{opType}</if>
+             <if test="createdBy != null  and createdBy != '' "> and created_by = #{createdBy}</if>
+             <if test="createdTime != null "> and created_time = #{createdTime}</if>
+             <if test="updatedBy != null  and updatedBy != '' "> and updated_by = #{updatedBy}</if>
+             <if test="updatedTime != null "> and updated_time = #{updatedTime}</if>
+         </where>
+    </select>
+    
+    <select id="selectBiScopeProjectDataById" parameterType="Integer" resultMap="BiScopeProjectDataResult">
+        <include refid="selectBiScopeProjectDataVo"/>
+        where tid = #{tid}
+    </select>
+        
+    <insert id="insertBiScopeProjectData" parameterType="BiScopeProjectData" useGeneratedKeys="true" keyProperty="tid">
+        insert into bi_scope_project_data
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">id,</if>
+			<if test="abbrName != null  and abbrName != ''  ">abbr_name,</if>
+			<if test="aliasName != null  and aliasName != ''  ">alias_name,</if>
+			<if test="createDate != null  ">create_date,</if>
+			<if test="enterpriseId != null  and enterpriseId != ''  ">enterprise_id,</if>
+			<if test="name != null  and name != ''  ">name,</if>
+			<if test="rootProjectId != null  and rootProjectId != ''  ">root_project_id,</if>
+			<if test="remark != null  and remark != ''  ">remark,</if>
+			<if test="updateDate != null  ">update_date,</if>
+			<if test="workStatus != null  and workStatus != ''  ">work_status,</if>
+			<if test="address != null  and address != ''  ">address,</if>
+			<if test="areaId != null  and areaId != ''  ">area_id,</if>
+			<if test="buildNatureId != null  and buildNatureId != ''  ">build_nature_id,</if>
+			<if test="contractNo != null  and contractNo != ''  ">contract_no,</if>
+			<if test="costMoney != null  and costMoney != ''  ">cost_money,</if>
+			<if test="endDate != null  ">end_date,</if>
+			<if test="floorArea != null  and floorArea != ''  ">floor_area,</if>
+			<if test="length != null  and length != ''  ">length,</if>
+			<if test="parentEnterpriseId != null  and parentEnterpriseId != ''  ">parent_enterprise_id,</if>
+			<if test="permitNo != null  and permitNo != ''  ">permit_no,</if>
+			<if test="recordNo != null  and recordNo != ''  ">record_no,</if>
+			<if test="serialNo != null  and serialNo != ''  ">serial_no,</if>
+			<if test="signType != null  and signType != ''  ">sign_type,</if>
+			<if test="startDate != null  ">start_date,</if>
+			<if test="status != null  and status != ''  ">status,</if>
+			<if test="opStatus != null  and opStatus != ''  ">op_status,</if>
+			<if test="opType != null  and opType != ''  ">op_type,</if>
+			<if test="createdBy != null  and createdBy != ''  ">created_by,</if>
+			<if test="createdTime != null  ">created_time,</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">updated_by,</if>
+			<if test="updatedTime != null  ">updated_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">#{id},</if>
+			<if test="abbrName != null  and abbrName != ''  ">#{abbrName},</if>
+			<if test="aliasName != null  and aliasName != ''  ">#{aliasName},</if>
+			<if test="createDate != null  ">#{createDate},</if>
+			<if test="enterpriseId != null  and enterpriseId != ''  ">#{enterpriseId},</if>
+			<if test="name != null  and name != ''  ">#{name},</if>
+			<if test="rootProjectId != null  and rootProjectId != ''  ">#{rootProjectId},</if>
+			<if test="remark != null  and remark != ''  ">#{remark},</if>
+			<if test="updateDate != null  ">#{updateDate},</if>
+			<if test="workStatus != null  and workStatus != ''  ">#{workStatus},</if>
+			<if test="address != null  and address != ''  ">#{address},</if>
+			<if test="areaId != null  and areaId != ''  ">#{areaId},</if>
+			<if test="buildNatureId != null  and buildNatureId != ''  ">#{buildNatureId},</if>
+			<if test="contractNo != null  and contractNo != ''  ">#{contractNo},</if>
+			<if test="costMoney != null  and costMoney != ''  ">#{costMoney},</if>
+			<if test="endDate != null  ">#{endDate},</if>
+			<if test="floorArea != null  and floorArea != ''  ">#{floorArea},</if>
+			<if test="length != null  and length != ''  ">#{length},</if>
+			<if test="parentEnterpriseId != null  and parentEnterpriseId != ''  ">#{parentEnterpriseId},</if>
+			<if test="permitNo != null  and permitNo != ''  ">#{permitNo},</if>
+			<if test="recordNo != null  and recordNo != ''  ">#{recordNo},</if>
+			<if test="serialNo != null  and serialNo != ''  ">#{serialNo},</if>
+			<if test="signType != null  and signType != ''  ">#{signType},</if>
+			<if test="startDate != null  ">#{startDate},</if>
+			<if test="status != null  and status != ''  ">#{status},</if>
+			<if test="opStatus != null  and opStatus != ''  ">#{opStatus},</if>
+			<if test="opType != null  and opType != ''  ">#{opType},</if>
+			<if test="createdBy != null  and createdBy != ''  ">#{createdBy},</if>
+			<if test="createdTime != null  ">#{createdTime},</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">#{updatedBy},</if>
+			<if test="updatedTime != null  ">#{updatedTime},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateBiScopeProjectData" parameterType="BiScopeProjectData">
+        update bi_scope_project_data
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="id != null  and id != ''  ">id = #{id},</if>
+            <if test="abbrName != null  and abbrName != ''  ">abbr_name = #{abbrName},</if>
+            <if test="aliasName != null  and aliasName != ''  ">alias_name = #{aliasName},</if>
+            <if test="createDate != null  ">create_date = #{createDate},</if>
+            <if test="enterpriseId != null  and enterpriseId != ''  ">enterprise_id = #{enterpriseId},</if>
+            <if test="name != null  and name != ''  ">name = #{name},</if>
+            <if test="rootProjectId != null  and rootProjectId != ''  ">root_project_id = #{rootProjectId},</if>
+            <if test="remark != null  and remark != ''  ">remark = #{remark},</if>
+            <if test="updateDate != null  ">update_date = #{updateDate},</if>
+            <if test="workStatus != null  and workStatus != ''  ">work_status = #{workStatus},</if>
+            <if test="address != null  and address != ''  ">address = #{address},</if>
+            <if test="areaId != null  and areaId != ''  ">area_id = #{areaId},</if>
+            <if test="buildNatureId != null  and buildNatureId != ''  ">build_nature_id = #{buildNatureId},</if>
+            <if test="contractNo != null  and contractNo != ''  ">contract_no = #{contractNo},</if>
+            <if test="costMoney != null  and costMoney != ''  ">cost_money = #{costMoney},</if>
+            <if test="endDate != null  ">end_date = #{endDate},</if>
+            <if test="floorArea != null  and floorArea != ''  ">floor_area = #{floorArea},</if>
+            <if test="length != null  and length != ''  ">length = #{length},</if>
+            <if test="parentEnterpriseId != null  and parentEnterpriseId != ''  ">parent_enterprise_id = #{parentEnterpriseId},</if>
+            <if test="permitNo != null  and permitNo != ''  ">permit_no = #{permitNo},</if>
+            <if test="recordNo != null  and recordNo != ''  ">record_no = #{recordNo},</if>
+            <if test="serialNo != null  and serialNo != ''  ">serial_no = #{serialNo},</if>
+            <if test="signType != null  and signType != ''  ">sign_type = #{signType},</if>
+            <if test="startDate != null  ">start_date = #{startDate},</if>
+            <if test="status != null  and status != ''  ">status = #{status},</if>
+            <if test="opStatus != null  and opStatus != ''  ">op_status = #{opStatus},</if>
+            <if test="opType != null  and opType != ''  ">op_type = #{opType},</if>
+            <if test="createdBy != null  and createdBy != ''  ">created_by = #{createdBy},</if>
+            <if test="createdTime != null  ">created_time = #{createdTime},</if>
+            <if test="updatedBy != null  and updatedBy != ''  ">updated_by = #{updatedBy},</if>
+            <if test="updatedTime != null  ">updated_time = #{updatedTime},</if>
+        </trim>
+        where tid = #{tid}
+    </update>
+
+	<delete id="deleteBiScopeProjectDataById" parameterType="Integer">
+        delete from bi_scope_project_data where tid = #{tid}
+    </delete>
+	
+    <delete id="deleteBiScopeProjectDataByIds" parameterType="String">
+        delete from bi_scope_project_data where tid in 
+        <foreach item="tid" collection="array" open="(" separator="," close=")">
+            #{tid}
+        </foreach>
+    </delete>
+
+
+    <update id="updateBiScopeProjectDataReadyToDeal" parameterType="Map">
+        update bi_scope_project_data set op_status=3,updated_by=#{host},updated_time=now() where op_status=1 limit 100
+    </update>
+
+
+
+    <update id="updateBiScopeProjectDataToFailed" parameterType="Map">
+        update bi_scope_project_data set op_status=9,updated_by=#{host},updated_time=now() where tid=#{tid}
+    </update>
+
+    <update id="updateBiScopeProjectDataToComplate" parameterType="Map">
+        update bi_scope_project_data set op_status=2,updated_by=#{host},updated_time=now() where tid=#{tid}
+    </update>
+
+
+    <select id="selectBiScopeProjectDataReadToDeal" parameterType="Map" resultType="com.ruoyi.project.system.biScopeProjectData.vo.BiScopeProjectDataVO">
+        select
+       tid, id, abbr_name abbrName, alias_name aliasName, create_date createDate, enterprise_id enterpriseId, name, root_project_id rootProjectId,  remark,
+        update_date updateDate, work_status workStatus, address,
+ area_id areaId, build_nature_id buildNatureId, contract_no contractNo, cost_money costMoney, end_date endDate, floor_area floorArea, length, parent_enterprise_id parentEnterpriseId, permit_no permitNo, record_no recordNo,
+  serial_no serialNo, sign_type signType, start_date startDate, status, op_status opStatus, op_type opType, created_by createdBy, created_time createdTime, updated_by updatedBy, updated_time updatedTime
+        from bi_scope_project_data where op_status=3 and updated_by=#{host} limit 100
+    </select>
+    
+</mapper>

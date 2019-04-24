@@ -70,7 +70,7 @@ public class RoleServiceImpl implements IRoleService
         {
             if (StringUtils.isNotNull(perm))
             {
-                permsSet.addAll(Arrays.asList(perm.getRoleKey().trim().split(",")));
+                permsSet.addAll(Arrays.asList(perm.getRoleKey().trim().split("[,;]+")));
             }
         }
         return permsSet;

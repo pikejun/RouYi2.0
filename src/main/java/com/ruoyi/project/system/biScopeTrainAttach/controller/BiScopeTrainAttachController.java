@@ -35,7 +35,7 @@ public class BiScopeTrainAttachController extends BaseController
 	@Autowired
 	private IBiScopeTrainAttachService biScopeTrainAttachService;
 	
-	@RequiresPermissions("system:biScopeTrainAttach:view")
+	@RequiresPermissions("bi:biScopeTrainAttach:view")
 	@GetMapping()
 	public String biScopeTrainAttach()
 	{
@@ -45,7 +45,7 @@ public class BiScopeTrainAttachController extends BaseController
 	/**
 	 * 查询培训附件列表
 	 */
-	@RequiresPermissions("system:biScopeTrainAttach:list")
+	@RequiresPermissions("bi:biScopeTrainAttach:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiScopeTrainAttach biScopeTrainAttach)
@@ -59,7 +59,7 @@ public class BiScopeTrainAttachController extends BaseController
 	/**
 	 * 导出培训附件列表
 	 */
-	@RequiresPermissions("system:biScopeTrainAttach:export")
+	@RequiresPermissions("bi:biScopeTrainAttach:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiScopeTrainAttach biScopeTrainAttach)
@@ -71,7 +71,7 @@ public class BiScopeTrainAttachController extends BaseController
     /**
      * 导入培训附件列表
      */
-    @RequiresPermissions("system:biScopeTrainAttach:import")
+    @RequiresPermissions("bi:biScopeTrainAttach:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -85,7 +85,7 @@ public class BiScopeTrainAttachController extends BaseController
 	 * 培训附件表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biScopeTrainAttach:view")
+    @RequiresPermissions("bi:biScopeTrainAttach:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -106,7 +106,7 @@ public class BiScopeTrainAttachController extends BaseController
 	/**
 	 * 新增保存培训附件
 	 */
-	@RequiresPermissions("system:biScopeTrainAttach:add")
+	@RequiresPermissions("bi:biScopeTrainAttach:add")
 	@Log(title = "培训附件", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -129,7 +129,7 @@ public class BiScopeTrainAttachController extends BaseController
 	/**
 	 * 修改保存培训附件
 	 */
-	@RequiresPermissions("system:biScopeTrainAttach:edit")
+	@RequiresPermissions("bi:biScopeTrainAttach:edit")
 	@Log(title = "培训附件", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -141,7 +141,7 @@ public class BiScopeTrainAttachController extends BaseController
 	/**
 	 * 删除培训附件
 	 */
-	@RequiresPermissions("system:biScopeTrainAttach:remove")
+	@RequiresPermissions("bi:biScopeTrainAttach:remove")
 	@Log(title = "培训附件", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody

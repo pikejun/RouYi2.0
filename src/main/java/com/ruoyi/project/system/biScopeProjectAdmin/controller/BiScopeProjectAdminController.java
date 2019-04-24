@@ -35,7 +35,7 @@ public class BiScopeProjectAdminController extends BaseController
 	@Autowired
 	private IBiScopeProjectAdminService biScopeProjectAdminService;
 	
-	@RequiresPermissions("system:biScopeProjectAdmin:view")
+	@RequiresPermissions("bi:biScopeProjectAdmin:view")
 	@GetMapping()
 	public String biScopeProjectAdmin()
 	{
@@ -45,7 +45,7 @@ public class BiScopeProjectAdminController extends BaseController
 	/**
 	 * 查询项目管理员列表
 	 */
-	@RequiresPermissions("system:biScopeProjectAdmin:list")
+	@RequiresPermissions("bi:biScopeProjectAdmin:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiScopeProjectAdmin biScopeProjectAdmin)
@@ -59,7 +59,7 @@ public class BiScopeProjectAdminController extends BaseController
 	/**
 	 * 导出项目管理员列表
 	 */
-	@RequiresPermissions("system:biScopeProjectAdmin:export")
+	@RequiresPermissions("bi:biScopeProjectAdmin:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiScopeProjectAdmin biScopeProjectAdmin)
@@ -71,7 +71,7 @@ public class BiScopeProjectAdminController extends BaseController
     /**
      * 导入项目管理员列表
      */
-    @RequiresPermissions("system:biScopeProjectAdmin:import")
+    @RequiresPermissions("bi:biScopeProjectAdmin:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -85,7 +85,7 @@ public class BiScopeProjectAdminController extends BaseController
 	 * 项目管理员表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biScopeProjectAdmin:view")
+    @RequiresPermissions("bi:biScopeProjectAdmin:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -106,7 +106,7 @@ public class BiScopeProjectAdminController extends BaseController
 	/**
 	 * 新增保存项目管理员
 	 */
-	@RequiresPermissions("system:biScopeProjectAdmin:add")
+	@RequiresPermissions("bi:biScopeProjectAdmin:add")
 	@Log(title = "项目管理员", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -129,7 +129,7 @@ public class BiScopeProjectAdminController extends BaseController
 	/**
 	 * 修改保存项目管理员
 	 */
-	@RequiresPermissions("system:biScopeProjectAdmin:edit")
+	@RequiresPermissions("bi:biScopeProjectAdmin:edit")
 	@Log(title = "项目管理员", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -141,7 +141,7 @@ public class BiScopeProjectAdminController extends BaseController
 	/**
 	 * 删除项目管理员
 	 */
-	@RequiresPermissions("system:biScopeProjectAdmin:remove")
+	@RequiresPermissions("bi:biScopeProjectAdmin:remove")
 	@Log(title = "项目管理员", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody

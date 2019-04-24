@@ -102,7 +102,7 @@ public class GenUtils
     {
         String autoRemovePre = GenConfig.getAutoRemovePre();
         String tablePrefix = GenConfig.getTablePrefix();
-        if (Constants.AUTO_REOMVE_PRE.equals(autoRemovePre) && StringUtils.isNotEmpty(tablePrefix))
+        if (Constants.AUTO_REMOVE_PRE.equals(autoRemovePre) && StringUtils.isNotEmpty(tablePrefix))
         {
             tableName = tableName.replaceFirst(tablePrefix, "");
         }

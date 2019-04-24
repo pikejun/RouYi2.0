@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.biScopeWorkerSafeEvent.mapper.BiScopeWorkerSafeEventMapper">
+    
+    <resultMap type="BiScopeWorkerSafeEvent" id="BiScopeWorkerSafeEventResult">
+        <result property="tid"    column="tid"    />
+        <result property="id"    column="id"    />
+        <result property="eventDate"    column="event_date"    />
+        <result property="remark"    column="remark"    />
+        <result property="checkerId"    column="checker_id"    />
+        <result property="workerId"    column="worker_id"    />
+        <result property="itemId"    column="item_id"    />
+        <result property="itemName"    column="item_name"    />
+        <result property="typeId"    column="type_id"    />
+        <result property="typeName"    column="type_name"    />
+        <result property="eventPoints"    column="event_points"    />
+        <result property="opStatus"    column="op_status"    />
+        <result property="opType"    column="op_type"    />
+        <result property="createdTime"    column="created_time"    />
+        <result property="createdBy"    column="created_by"    />
+        <result property="updatedTime"    column="updated_time"    />
+        <result property="updatedBy"    column="updated_by"    />
+    </resultMap>
+	
+	<sql id="selectBiScopeWorkerSafeEventVo">
+        select tid, id, event_date, remark, checker_id, worker_id, item_id, item_name, type_id, type_name, event_points, op_status, op_type, created_time, created_by, updated_time, updated_by from bi_scope_worker_safe_event
+    </sql>
+	
+    <select id="selectBiScopeWorkerSafeEventList" parameterType="BiScopeWorkerSafeEvent" resultMap="BiScopeWorkerSafeEventResult">
+        <include refid="selectBiScopeWorkerSafeEventVo"/>
+        <where>  
+            <if test="tid != null "> and tid = #{tid}</if>
+             <if test="id != null  and id != '' "> and id = #{id}</if>
+             <if test="eventDate != null "> and event_date = #{eventDate}</if>
+             <if test="remark != null  and remark != '' "> and remark = #{remark}</if>
+             <if test="checkerId != null  and checkerId != '' "> and checker_id = #{checkerId}</if>
+             <if test="workerId != null  and workerId != '' "> and worker_id = #{workerId}</if>
+             <if test="itemId != null  and itemId != '' "> and item_id = #{itemId}</if>
+             <if test="itemName != null  and itemName != '' "> and item_name = #{itemName}</if>
+             <if test="typeId != null  and typeId != '' "> and type_id = #{typeId}</if>
+             <if test="typeName != null  and typeName != '' "> and type_name = #{typeName}</if>
+             <if test="eventPoints != null "> and event_points = #{eventPoints}</if>
+             <if test="opStatus != null  and opStatus != '' "> and op_status = #{opStatus}</if>
+             <if test="opType != null  and opType != '' "> and op_type = #{opType}</if>
+             <if test="createdTime != null "> and created_time = #{createdTime}</if>
+             <if test="createdBy != null  and createdBy != '' "> and created_by = #{createdBy}</if>
+             <if test="updatedTime != null "> and updated_time = #{updatedTime}</if>
+             <if test="updatedBy != null  and updatedBy != '' "> and updated_by = #{updatedBy}</if>
+         </where>
+    </select>
+    
+    <select id="selectBiScopeWorkerSafeEventById" parameterType="Integer" resultMap="BiScopeWorkerSafeEventResult">
+        <include refid="selectBiScopeWorkerSafeEventVo"/>
+        where tid = #{tid}
+    </select>
+        
+    <insert id="insertBiScopeWorkerSafeEvent" parameterType="BiScopeWorkerSafeEvent" useGeneratedKeys="true" keyProperty="tid">
+        insert into bi_scope_worker_safe_event
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">id,</if>
+			<if test="eventDate != null  ">event_date,</if>
+			<if test="remark != null  and remark != ''  ">remark,</if>
+			<if test="checkerId != null  and checkerId != ''  ">checker_id,</if>
+			<if test="workerId != null  and workerId != ''  ">worker_id,</if>
+			<if test="itemId != null  and itemId != ''  ">item_id,</if>
+			<if test="itemName != null  and itemName != ''  ">item_name,</if>
+			<if test="typeId != null  and typeId != ''  ">type_id,</if>
+			<if test="typeName != null  and typeName != ''  ">type_name,</if>
+			<if test="eventPoints != null  ">event_points,</if>
+			<if test="opStatus != null  and opStatus != ''  ">op_status,</if>
+			<if test="opType != null  and opType != ''  ">op_type,</if>
+			<if test="createdTime != null  ">created_time,</if>
+			<if test="createdBy != null  and createdBy != ''  ">created_by,</if>
+			<if test="updatedTime != null  ">updated_time,</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">updated_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">#{id},</if>
+			<if test="eventDate != null  ">#{eventDate},</if>
+			<if test="remark != null  and remark != ''  ">#{remark},</if>
+			<if test="checkerId != null  and checkerId != ''  ">#{checkerId},</if>
+			<if test="workerId != null  and workerId != ''  ">#{workerId},</if>
+			<if test="itemId != null  and itemId != ''  ">#{itemId},</if>
+			<if test="itemName != null  and itemName != ''  ">#{itemName},</if>
+			<if test="typeId != null  and typeId != ''  ">#{typeId},</if>
+			<if test="typeName != null  and typeName != ''  ">#{typeName},</if>
+			<if test="eventPoints != null  ">#{eventPoints},</if>
+			<if test="opStatus != null  and opStatus != ''  ">#{opStatus},</if>
+			<if test="opType != null  and opType != ''  ">#{opType},</if>
+			<if test="createdTime != null  ">#{createdTime},</if>
+			<if test="createdBy != null  and createdBy != ''  ">#{createdBy},</if>
+			<if test="updatedTime != null  ">#{updatedTime},</if>
+			<if test="updatedBy != null  and updatedBy != ''  ">#{updatedBy},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateBiScopeWorkerSafeEvent" parameterType="BiScopeWorkerSafeEvent">
+        update bi_scope_worker_safe_event
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="id != null  and id != ''  ">id = #{id},</if>
+            <if test="eventDate != null  ">event_date = #{eventDate},</if>
+            <if test="remark != null  and remark != ''  ">remark = #{remark},</if>
+            <if test="checkerId != null  and checkerId != ''  ">checker_id = #{checkerId},</if>
+            <if test="workerId != null  and workerId != ''  ">worker_id = #{workerId},</if>
+            <if test="itemId != null  and itemId != ''  ">item_id = #{itemId},</if>
+            <if test="itemName != null  and itemName != ''  ">item_name = #{itemName},</if>
+            <if test="typeId != null  and typeId != ''  ">type_id = #{typeId},</if>
+            <if test="typeName != null  and typeName != ''  ">type_name = #{typeName},</if>
+            <if test="eventPoints != null  ">event_points = #{eventPoints},</if>
+            <if test="opStatus != null  and opStatus != ''  ">op_status = #{opStatus},</if>
+            <if test="opType != null  and opType != ''  ">op_type = #{opType},</if>
+            <if test="createdTime != null  ">created_time = #{createdTime},</if>
+            <if test="createdBy != null  and createdBy != ''  ">created_by = #{createdBy},</if>
+            <if test="updatedTime != null  ">updated_time = #{updatedTime},</if>
+            <if test="updatedBy != null  and updatedBy != ''  ">updated_by = #{updatedBy},</if>
+        </trim>
+        where tid = #{tid}
+    </update>
+
+	<delete id="deleteBiScopeWorkerSafeEventById" parameterType="Integer">
+        delete from bi_scope_worker_safe_event where tid = #{tid}
+    </delete>
+	
+    <delete id="deleteBiScopeWorkerSafeEventByIds" parameterType="String">
+        delete from bi_scope_worker_safe_event where tid in 
+        <foreach item="tid" collection="array" open="(" separator="," close=")">
+            #{tid}
+        </foreach>
+    </delete>
+
+
+
+    <update id="updateBiScopeWorkerSafeEventReadyToDeal" parameterType="Map">
+        update bi_scope_worker_safe_event set op_status=3,updated_by=#{host},updated_time=now() where op_status=1 limit 100
+    </update>
+
+    <update id="updateBiScopeWorkerSafeEventToFailed" parameterType="Map">
+        update bi_scope_worker_safe_event set op_status=9,updated_by=#{host},updated_time=now() where tid=#{tid}
+    </update>
+
+    <update id="updateBiScopeWorkerSafeEventToComplate" parameterType="Map">
+        update bi_scope_worker_safe_event set op_status=2,updated_by=#{host},updated_time=now() where tid=#{tid}
+    </update>
+
+    <select id="selectBiScopeWorkerSafeEventReadToDeal" parameterType="Map" resultType="com.ruoyi.project.system.biScopeWorkerSafeEvent.vo.BiScopeWorkerSafeEventVO">
+        select tid,  id, event_date eventDate, remark, checker_id checkerId, worker_id workerId, item_id itemId, item_name itemName, type_id typeId, type_name typeName, event_points eventPoints,
+          op_status opStatus, op_type opType, created_time createdTime, created_by createdBy, updated_time updatedTime, updated_by updatedBy
+        from bi_scope_worker_safe_event where op_status=3 and updated_by=#{host} limit 100
+    </select>
+    
+</mapper>

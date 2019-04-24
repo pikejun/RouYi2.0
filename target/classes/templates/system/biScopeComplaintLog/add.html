@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-biScopeComplaintLog-add">
+                                                                            <div class="form-group">
+                        <label class="col-sm-3 control-label">维权日志ID：</label>
+                        <div class="col-sm-8">
+                            <input id="id" name="id" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">维权ID：</label>
+                        <div class="col-sm-8">
+                            <input id="complaintId" name="complaintId" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">日志内容：</label>
+                        <div class="col-sm-8">
+                            <input id="content" name="content" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">发表时间：</label>
+                        <div class="col-sm-8">
+                            <input id="createDate" name="createDate" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">是否发起人：</label>
+                        <div class="col-sm-8">
+                            <input id="sender" name="sender" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">回复人ID：</label>
+                        <div class="col-sm-8">
+                            <input id="replayId" name="replayId" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">回复人姓名：</label>
+                        <div class="col-sm-8">
+                            <input id="replayName" name="replayName" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">操作状态：</label>
+                        <div class="col-sm-8">
+                            <input id="opStatus" name="opStatus" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">操作类型：</label>
+                        <div class="col-sm-8">
+                            <input id="opType" name="opType" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">创建时间：</label>
+                        <div class="col-sm-8">
+                            <input id="createdTime" name="createdTime" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">创建人：</label>
+                        <div class="col-sm-8">
+                            <input id="createdBy" name="createdBy" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">更新时间：</label>
+                        <div class="col-sm-8">
+                            <input id="updatedTime" name="updatedTime" class="form-control" type="text">
+                        </div>
+                    </div>
+                                                                                    <div class="form-group">
+                        <label class="col-sm-3 control-label">更新人：</label>
+                        <div class="col-sm-8">
+                            <input id="updatedBy" name="updatedBy" class="form-control" type="text">
+                        </div>
+                    </div>
+                                        </form>
+</div>
+<div th:include="include::footer"></div>
+<script type="text/javascript">
+    var prefix = ctx + "system/biScopeComplaintLog"
+    $("#form-biScopeComplaintLog-add").validate({
+        rules: {
+            xxxx: {
+                required: true,
+            },
+        },
+        focusCleanup: true
+    });
+
+    function submitHandler() {
+        if ($.validate.form()) {
+            $.operate.save(prefix + "/add", $('#form-biScopeComplaintLog-add').serialize());
+        }
+    }
+</script>
+</body>
+</html>

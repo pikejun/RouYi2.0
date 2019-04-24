@@ -35,7 +35,7 @@ public class BiScopeTrainInfoController extends BaseController
 	@Autowired
 	private IBiScopeTrainInfoService biScopeTrainInfoService;
 	
-	@RequiresPermissions("system:biScopeTrainInfo:view")
+	@RequiresPermissions("bi:biScopeTrainInfo:view")
 	@GetMapping()
 	public String biScopeTrainInfo()
 	{
@@ -45,7 +45,7 @@ public class BiScopeTrainInfoController extends BaseController
 	/**
 	 * 查询培训列表
 	 */
-	@RequiresPermissions("system:biScopeTrainInfo:list")
+	@RequiresPermissions("bi:biScopeTrainInfo:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiScopeTrainInfo biScopeTrainInfo)
@@ -59,7 +59,7 @@ public class BiScopeTrainInfoController extends BaseController
 	/**
 	 * 导出培训列表
 	 */
-	@RequiresPermissions("system:biScopeTrainInfo:export")
+	@RequiresPermissions("bi:biScopeTrainInfo:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiScopeTrainInfo biScopeTrainInfo)
@@ -71,7 +71,7 @@ public class BiScopeTrainInfoController extends BaseController
     /**
      * 导入培训列表
      */
-    @RequiresPermissions("system:biScopeTrainInfo:import")
+    @RequiresPermissions("bi:biScopeTrainInfo:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -85,7 +85,7 @@ public class BiScopeTrainInfoController extends BaseController
 	 * 培训表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biScopeTrainInfo:view")
+    @RequiresPermissions("bi:biScopeTrainInfo:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -106,7 +106,7 @@ public class BiScopeTrainInfoController extends BaseController
 	/**
 	 * 新增保存培训
 	 */
-	@RequiresPermissions("system:biScopeTrainInfo:add")
+	@RequiresPermissions("bi:biScopeTrainInfo:add")
 	@Log(title = "培训", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -129,7 +129,7 @@ public class BiScopeTrainInfoController extends BaseController
 	/**
 	 * 修改保存培训
 	 */
-	@RequiresPermissions("system:biScopeTrainInfo:edit")
+	@RequiresPermissions("bi:biScopeTrainInfo:edit")
 	@Log(title = "培训", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -141,7 +141,7 @@ public class BiScopeTrainInfoController extends BaseController
 	/**
 	 * 删除培训
 	 */
-	@RequiresPermissions("system:biScopeTrainInfo:remove")
+	@RequiresPermissions("bi:biScopeTrainInfo:remove")
 	@Log(title = "培训", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody

@@ -35,7 +35,7 @@ public class BiScopeTrainImageController extends BaseController
 	@Autowired
 	private IBiScopeTrainImageService biScopeTrainImageService;
 	
-	@RequiresPermissions("system:biScopeTrainImage:view")
+	@RequiresPermissions("bi:biScopeTrainImage:view")
 	@GetMapping()
 	public String biScopeTrainImage()
 	{
@@ -45,7 +45,7 @@ public class BiScopeTrainImageController extends BaseController
 	/**
 	 * 查询培训图片列表
 	 */
-	@RequiresPermissions("system:biScopeTrainImage:list")
+	@RequiresPermissions("bi:biScopeTrainImage:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiScopeTrainImage biScopeTrainImage)
@@ -59,7 +59,7 @@ public class BiScopeTrainImageController extends BaseController
 	/**
 	 * 导出培训图片列表
 	 */
-	@RequiresPermissions("system:biScopeTrainImage:export")
+	@RequiresPermissions("bi:biScopeTrainImage:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiScopeTrainImage biScopeTrainImage)
@@ -71,7 +71,7 @@ public class BiScopeTrainImageController extends BaseController
     /**
      * 导入培训图片列表
      */
-    @RequiresPermissions("system:biScopeTrainImage:import")
+    @RequiresPermissions("bi:biScopeTrainImage:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -85,7 +85,7 @@ public class BiScopeTrainImageController extends BaseController
 	 * 培训图片表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biScopeTrainImage:view")
+    @RequiresPermissions("bi:biScopeTrainImage:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -106,7 +106,7 @@ public class BiScopeTrainImageController extends BaseController
 	/**
 	 * 新增保存培训图片
 	 */
-	@RequiresPermissions("system:biScopeTrainImage:add")
+	@RequiresPermissions("bi:biScopeTrainImage:add")
 	@Log(title = "培训图片", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -129,7 +129,7 @@ public class BiScopeTrainImageController extends BaseController
 	/**
 	 * 修改保存培训图片
 	 */
-	@RequiresPermissions("system:biScopeTrainImage:edit")
+	@RequiresPermissions("bi:biScopeTrainImage:edit")
 	@Log(title = "培训图片", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -141,7 +141,7 @@ public class BiScopeTrainImageController extends BaseController
 	/**
 	 * 删除培训图片
 	 */
-	@RequiresPermissions("system:biScopeTrainImage:remove")
+	@RequiresPermissions("bi:biScopeTrainImage:remove")
 	@Log(title = "培训图片", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody

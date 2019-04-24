@@ -35,7 +35,7 @@ public class BiScopeSalaryInfoController extends BaseController
 	@Autowired
 	private IBiScopeSalaryInfoService biScopeSalaryInfoService;
 	
-	@RequiresPermissions("system:biScopeSalaryInfo:view")
+	@RequiresPermissions("bi:biScopeSalaryInfo:view")
 	@GetMapping()
 	public String biScopeSalaryInfo()
 	{
@@ -45,7 +45,7 @@ public class BiScopeSalaryInfoController extends BaseController
 	/**
 	 * 查询工人工资列表
 	 */
-	@RequiresPermissions("system:biScopeSalaryInfo:list")
+	@RequiresPermissions("bi:biScopeSalaryInfo:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiScopeSalaryInfo biScopeSalaryInfo)
@@ -59,7 +59,7 @@ public class BiScopeSalaryInfoController extends BaseController
 	/**
 	 * 导出工人工资列表
 	 */
-	@RequiresPermissions("system:biScopeSalaryInfo:export")
+	@RequiresPermissions("bi:biScopeSalaryInfo:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiScopeSalaryInfo biScopeSalaryInfo)
@@ -71,7 +71,7 @@ public class BiScopeSalaryInfoController extends BaseController
     /**
      * 导入工人工资列表
      */
-    @RequiresPermissions("system:biScopeSalaryInfo:import")
+    @RequiresPermissions("bi:biScopeSalaryInfo:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -85,7 +85,7 @@ public class BiScopeSalaryInfoController extends BaseController
 	 * 工人工资表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biScopeSalaryInfo:view")
+    @RequiresPermissions("bi:biScopeSalaryInfo:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -106,7 +106,7 @@ public class BiScopeSalaryInfoController extends BaseController
 	/**
 	 * 新增保存工人工资
 	 */
-	@RequiresPermissions("system:biScopeSalaryInfo:add")
+	@RequiresPermissions("bi:biScopeSalaryInfo:add")
 	@Log(title = "工人工资", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -129,7 +129,7 @@ public class BiScopeSalaryInfoController extends BaseController
 	/**
 	 * 修改保存工人工资
 	 */
-	@RequiresPermissions("system:biScopeSalaryInfo:edit")
+	@RequiresPermissions("bi:biScopeSalaryInfo:edit")
 	@Log(title = "工人工资", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -141,7 +141,7 @@ public class BiScopeSalaryInfoController extends BaseController
 	/**
 	 * 删除工人工资
 	 */
-	@RequiresPermissions("system:biScopeSalaryInfo:remove")
+	@RequiresPermissions("bi:biScopeSalaryInfo:remove")
 	@Log(title = "工人工资", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody

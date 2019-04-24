@@ -35,7 +35,7 @@ public class BiScopeEnterpriseAdminController extends BaseController
 	@Autowired
 	private IBiScopeEnterpriseAdminService biScopeEnterpriseAdminService;
 	
-	@RequiresPermissions("system:biScopeEnterpriseAdmin:view")
+	@RequiresPermissions("bi:biScopeEnterpriseAdmin:view")
 	@GetMapping()
 	public String biScopeEnterpriseAdmin()
 	{
@@ -45,7 +45,7 @@ public class BiScopeEnterpriseAdminController extends BaseController
 	/**
 	 * 查询企业管理员列表
 	 */
-	@RequiresPermissions("system:biScopeEnterpriseAdmin:list")
+	@RequiresPermissions("bi:biScopeEnterpriseAdmin:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiScopeEnterpriseAdmin biScopeEnterpriseAdmin)
@@ -59,7 +59,7 @@ public class BiScopeEnterpriseAdminController extends BaseController
 	/**
 	 * 导出企业管理员列表
 	 */
-	@RequiresPermissions("system:biScopeEnterpriseAdmin:export")
+	@RequiresPermissions("bi:biScopeEnterpriseAdmin:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiScopeEnterpriseAdmin biScopeEnterpriseAdmin)
@@ -71,7 +71,7 @@ public class BiScopeEnterpriseAdminController extends BaseController
     /**
      * 导入企业管理员列表
      */
-    @RequiresPermissions("system:biScopeEnterpriseAdmin:import")
+    @RequiresPermissions("bi:biScopeEnterpriseAdmin:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -85,7 +85,7 @@ public class BiScopeEnterpriseAdminController extends BaseController
 	 * 企业管理员表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biScopeEnterpriseAdmin:view")
+    @RequiresPermissions("bi:biScopeEnterpriseAdmin:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -106,7 +106,7 @@ public class BiScopeEnterpriseAdminController extends BaseController
 	/**
 	 * 新增保存企业管理员
 	 */
-	@RequiresPermissions("system:biScopeEnterpriseAdmin:add")
+	@RequiresPermissions("bi:biScopeEnterpriseAdmin:add")
 	@Log(title = "企业管理员", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -129,7 +129,7 @@ public class BiScopeEnterpriseAdminController extends BaseController
 	/**
 	 * 修改保存企业管理员
 	 */
-	@RequiresPermissions("system:biScopeEnterpriseAdmin:edit")
+	@RequiresPermissions("bi:biScopeEnterpriseAdmin:edit")
 	@Log(title = "企业管理员", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -141,7 +141,7 @@ public class BiScopeEnterpriseAdminController extends BaseController
 	/**
 	 * 删除企业管理员
 	 */
-	@RequiresPermissions("system:biScopeEnterpriseAdmin:remove")
+	@RequiresPermissions("bi:biScopeEnterpriseAdmin:remove")
 	@Log(title = "企业管理员", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody

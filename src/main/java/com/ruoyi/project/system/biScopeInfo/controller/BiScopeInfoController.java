@@ -35,7 +35,7 @@ public class BiScopeInfoController extends BaseController
 	@Autowired
 	private IBiScopeInfoService biScopeInfoService;
 	
-	@RequiresPermissions("system:biScopeInfo:view")
+	@RequiresPermissions("bi:biScopeInfo:view")
 	@GetMapping()
 	public String biScopeInfo()
 	{
@@ -45,7 +45,7 @@ public class BiScopeInfoController extends BaseController
 	/**
 	 * 查询范围列表
 	 */
-	@RequiresPermissions("system:biScopeInfo:list")
+	@RequiresPermissions("bi:biScopeInfo:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiScopeInfo biScopeInfo)
@@ -59,7 +59,7 @@ public class BiScopeInfoController extends BaseController
 	/**
 	 * 导出范围列表
 	 */
-	@RequiresPermissions("system:biScopeInfo:export")
+	@RequiresPermissions("bi:biScopeInfo:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiScopeInfo biScopeInfo)
@@ -71,7 +71,7 @@ public class BiScopeInfoController extends BaseController
     /**
      * 导入范围列表
      */
-    @RequiresPermissions("system:biScopeInfo:import")
+    @RequiresPermissions("bi:biScopeInfo:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -85,7 +85,7 @@ public class BiScopeInfoController extends BaseController
 	 * 范围表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biScopeInfo:view")
+    @RequiresPermissions("bi:biScopeInfo:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -106,7 +106,7 @@ public class BiScopeInfoController extends BaseController
 	/**
 	 * 新增保存范围
 	 */
-	@RequiresPermissions("system:biScopeInfo:add")
+	@RequiresPermissions("bi:biScopeInfo:add")
 	@Log(title = "范围", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -129,7 +129,7 @@ public class BiScopeInfoController extends BaseController
 	/**
 	 * 修改保存范围
 	 */
-	@RequiresPermissions("system:biScopeInfo:edit")
+	@RequiresPermissions("bi:biScopeInfo:edit")
 	@Log(title = "范围", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -141,7 +141,7 @@ public class BiScopeInfoController extends BaseController
 	/**
 	 * 删除范围
 	 */
-	@RequiresPermissions("system:biScopeInfo:remove")
+	@RequiresPermissions("bi:biScopeInfo:remove")
 	@Log(title = "范围", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody

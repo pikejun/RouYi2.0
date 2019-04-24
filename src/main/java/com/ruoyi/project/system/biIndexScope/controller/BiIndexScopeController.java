@@ -38,14 +38,14 @@ public class BiIndexScopeController extends BaseController
 	@Autowired
 	private IBiIndexScopeService biIndexScopeService;
 	
-	@RequiresPermissions("system:biIndexScope:view")
+	@RequiresPermissions("bi:biIndexScope:view")
 	@GetMapping()
 	public String biIndexScope()
 	{
 	    return prefix + "/biIndexScope";
 	}
 
-	@RequiresPermissions("system:biIndexScope:view")
+	@RequiresPermissions("bi:biIndexScope:view")
 	@GetMapping("/{indexNo}")
 	public String biIndexScopeAtIndexNo(@PathVariable String indexNo,ModelMap mmap)
 	{
@@ -68,7 +68,7 @@ public class BiIndexScopeController extends BaseController
 	/**
 	 * 查询指标范围列表
 	 */
-	@RequiresPermissions("system:biIndexScope:list")
+	@RequiresPermissions("bi:biIndexScope:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiIndexScope biIndexScope)
@@ -81,7 +81,7 @@ public class BiIndexScopeController extends BaseController
 	/**
 	 * 查询指标范围列表
 	 */
-	@RequiresPermissions("system:biIndexScope:list")
+	@RequiresPermissions("bi:biIndexScope:list")
 	@PostMapping("/list/{indexNo}")
 	@ResponseBody
 	public TableDataInfo list(BiIndexScope biIndexScope,@PathVariable String indexNo)
@@ -97,7 +97,7 @@ public class BiIndexScopeController extends BaseController
 	/**
 	 * 导出指标范围列表
 	 */
-	@RequiresPermissions("system:biIndexScope:export")
+	@RequiresPermissions("bi:biIndexScope:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiIndexScope biIndexScope)
@@ -109,7 +109,7 @@ public class BiIndexScopeController extends BaseController
     /**
      * 导入指标范围列表
      */
-    @RequiresPermissions("system:biIndexScope:import")
+    @RequiresPermissions("bi:biIndexScope:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -123,7 +123,7 @@ public class BiIndexScopeController extends BaseController
 	 * 指标范围表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biIndexScope:view")
+    @RequiresPermissions("bi:biIndexScope:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -156,7 +156,7 @@ public class BiIndexScopeController extends BaseController
 	/**
 	 * 新增保存指标范围
 	 */
-	@RequiresPermissions("system:biIndexScope:add")
+	@RequiresPermissions("bi:biIndexScope:add")
 	@Log(title = "指标范围", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -179,7 +179,7 @@ public class BiIndexScopeController extends BaseController
 	/**
 	 * 修改保存指标范围
 	 */
-	@RequiresPermissions("system:biIndexScope:edit")
+	@RequiresPermissions("bi:biIndexScope:edit")
 	@Log(title = "指标范围", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -191,7 +191,7 @@ public class BiIndexScopeController extends BaseController
 	/**
 	 * 删除指标范围
 	 */
-	@RequiresPermissions("system:biIndexScope:remove")
+	@RequiresPermissions("bi:biIndexScope:remove")
 	@Log(title = "指标范围", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody

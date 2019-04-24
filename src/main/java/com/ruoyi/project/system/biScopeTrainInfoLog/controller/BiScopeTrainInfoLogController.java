@@ -35,7 +35,7 @@ public class BiScopeTrainInfoLogController extends BaseController
 	@Autowired
 	private IBiScopeTrainInfoLogService biScopeTrainInfoLogService;
 	
-	@RequiresPermissions("system:biScopeTrainInfoLog:view")
+	@RequiresPermissions("bi:biScopeTrainInfoLog:view")
 	@GetMapping()
 	public String biScopeTrainInfoLog()
 	{
@@ -45,7 +45,7 @@ public class BiScopeTrainInfoLogController extends BaseController
 	/**
 	 * 查询工人培训日志列表
 	 */
-	@RequiresPermissions("system:biScopeTrainInfoLog:list")
+	@RequiresPermissions("bi:biScopeTrainInfoLog:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiScopeTrainInfoLog biScopeTrainInfoLog)
@@ -59,7 +59,7 @@ public class BiScopeTrainInfoLogController extends BaseController
 	/**
 	 * 导出工人培训日志列表
 	 */
-	@RequiresPermissions("system:biScopeTrainInfoLog:export")
+	@RequiresPermissions("bi:biScopeTrainInfoLog:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiScopeTrainInfoLog biScopeTrainInfoLog)
@@ -71,7 +71,7 @@ public class BiScopeTrainInfoLogController extends BaseController
     /**
      * 导入工人培训日志列表
      */
-    @RequiresPermissions("system:biScopeTrainInfoLog:import")
+    @RequiresPermissions("bi:biScopeTrainInfoLog:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -85,7 +85,7 @@ public class BiScopeTrainInfoLogController extends BaseController
 	 * 工人培训日志表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biScopeTrainInfoLog:view")
+    @RequiresPermissions("bi:biScopeTrainInfoLog:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -106,7 +106,7 @@ public class BiScopeTrainInfoLogController extends BaseController
 	/**
 	 * 新增保存工人培训日志
 	 */
-	@RequiresPermissions("system:biScopeTrainInfoLog:add")
+	@RequiresPermissions("bi:biScopeTrainInfoLog:add")
 	@Log(title = "工人培训日志", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -129,7 +129,7 @@ public class BiScopeTrainInfoLogController extends BaseController
 	/**
 	 * 修改保存工人培训日志
 	 */
-	@RequiresPermissions("system:biScopeTrainInfoLog:edit")
+	@RequiresPermissions("bi:biScopeTrainInfoLog:edit")
 	@Log(title = "工人培训日志", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -141,7 +141,7 @@ public class BiScopeTrainInfoLogController extends BaseController
 	/**
 	 * 删除工人培训日志
 	 */
-	@RequiresPermissions("system:biScopeTrainInfoLog:remove")
+	@RequiresPermissions("bi:biScopeTrainInfoLog:remove")
 	@Log(title = "工人培训日志", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody

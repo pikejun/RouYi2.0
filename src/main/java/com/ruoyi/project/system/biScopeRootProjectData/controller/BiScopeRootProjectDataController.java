@@ -35,7 +35,7 @@ public class BiScopeRootProjectDataController extends BaseController
 	@Autowired
 	private IBiScopeRootProjectDataService biScopeRootProjectDataService;
 	
-	@RequiresPermissions("system:biScopeRootProjectData:view")
+	@RequiresPermissions("bi:biScopeRootProjectData:view")
 	@GetMapping()
 	public String biScopeRootProjectData()
 	{
@@ -45,7 +45,7 @@ public class BiScopeRootProjectDataController extends BaseController
 	/**
 	 * 查询总工程列表
 	 */
-	@RequiresPermissions("system:biScopeRootProjectData:list")
+	@RequiresPermissions("bi:biScopeRootProjectData:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiScopeRootProjectData biScopeRootProjectData)
@@ -59,7 +59,7 @@ public class BiScopeRootProjectDataController extends BaseController
 	/**
 	 * 导出总工程列表
 	 */
-	@RequiresPermissions("system:biScopeRootProjectData:export")
+	@RequiresPermissions("bi:biScopeRootProjectData:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiScopeRootProjectData biScopeRootProjectData)
@@ -71,7 +71,7 @@ public class BiScopeRootProjectDataController extends BaseController
     /**
      * 导入总工程列表
      */
-    @RequiresPermissions("system:biScopeRootProjectData:import")
+    @RequiresPermissions("bi:biScopeRootProjectData:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -85,7 +85,7 @@ public class BiScopeRootProjectDataController extends BaseController
 	 * 总工程表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biScopeRootProjectData:view")
+    @RequiresPermissions("bi:biScopeRootProjectData:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -106,7 +106,7 @@ public class BiScopeRootProjectDataController extends BaseController
 	/**
 	 * 新增保存总工程
 	 */
-	@RequiresPermissions("system:biScopeRootProjectData:add")
+	@RequiresPermissions("bi:biScopeRootProjectData:add")
 	@Log(title = "总工程", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -129,7 +129,7 @@ public class BiScopeRootProjectDataController extends BaseController
 	/**
 	 * 修改保存总工程
 	 */
-	@RequiresPermissions("system:biScopeRootProjectData:edit")
+	@RequiresPermissions("bi:biScopeRootProjectData:edit")
 	@Log(title = "总工程", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -141,7 +141,7 @@ public class BiScopeRootProjectDataController extends BaseController
 	/**
 	 * 删除总工程
 	 */
-	@RequiresPermissions("system:biScopeRootProjectData:remove")
+	@RequiresPermissions("bi:biScopeRootProjectData:remove")
 	@Log(title = "总工程", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody

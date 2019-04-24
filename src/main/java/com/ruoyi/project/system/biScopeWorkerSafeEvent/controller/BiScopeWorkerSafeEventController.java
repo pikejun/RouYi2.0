@@ -35,7 +35,7 @@ public class BiScopeWorkerSafeEventController extends BaseController
 	@Autowired
 	private IBiScopeWorkerSafeEventService biScopeWorkerSafeEventService;
 	
-	@RequiresPermissions("system:biScopeWorkerSafeEvent:view")
+	@RequiresPermissions("bi:biScopeWorkerSafeEvent:view")
 	@GetMapping()
 	public String biScopeWorkerSafeEvent()
 	{
@@ -45,7 +45,7 @@ public class BiScopeWorkerSafeEventController extends BaseController
 	/**
 	 * 查询工人安全事件列表
 	 */
-	@RequiresPermissions("system:biScopeWorkerSafeEvent:list")
+	@RequiresPermissions("bi:biScopeWorkerSafeEvent:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BiScopeWorkerSafeEvent biScopeWorkerSafeEvent)
@@ -59,7 +59,7 @@ public class BiScopeWorkerSafeEventController extends BaseController
 	/**
 	 * 导出工人安全事件列表
 	 */
-	@RequiresPermissions("system:biScopeWorkerSafeEvent:export")
+	@RequiresPermissions("bi:biScopeWorkerSafeEvent:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BiScopeWorkerSafeEvent biScopeWorkerSafeEvent)
@@ -71,7 +71,7 @@ public class BiScopeWorkerSafeEventController extends BaseController
     /**
      * 导入工人安全事件列表
      */
-    @RequiresPermissions("system:biScopeWorkerSafeEvent:import")
+    @RequiresPermissions("bi:biScopeWorkerSafeEvent:import")
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file) throws Exception
@@ -85,7 +85,7 @@ public class BiScopeWorkerSafeEventController extends BaseController
 	 * 工人安全事件表格模板下载
 	 * @return
 	 */
-    @RequiresPermissions("system:biScopeWorkerSafeEvent:view")
+    @RequiresPermissions("bi:biScopeWorkerSafeEvent:view")
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate()
@@ -106,7 +106,7 @@ public class BiScopeWorkerSafeEventController extends BaseController
 	/**
 	 * 新增保存工人安全事件
 	 */
-	@RequiresPermissions("system:biScopeWorkerSafeEvent:add")
+	@RequiresPermissions("bi:biScopeWorkerSafeEvent:add")
 	@Log(title = "工人安全事件", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -129,7 +129,7 @@ public class BiScopeWorkerSafeEventController extends BaseController
 	/**
 	 * 修改保存工人安全事件
 	 */
-	@RequiresPermissions("system:biScopeWorkerSafeEvent:edit")
+	@RequiresPermissions("bi:biScopeWorkerSafeEvent:edit")
 	@Log(title = "工人安全事件", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
@@ -141,7 +141,7 @@ public class BiScopeWorkerSafeEventController extends BaseController
 	/**
 	 * 删除工人安全事件
 	 */
-	@RequiresPermissions("system:biScopeWorkerSafeEvent:remove")
+	@RequiresPermissions("bi:biScopeWorkerSafeEvent:remove")
 	@Log(title = "工人安全事件", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody
