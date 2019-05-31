@@ -1,7 +1,7 @@
 # 项目相关配置
 ruoyi:
   # 名称
-  name: 能工巧匠BI业务系统
+  name: ROUYI
   # 版本
   version: 3.2.0
   # 版权年份
@@ -135,7 +135,7 @@ gen:
 
 #Neo4j
 neo4j:
-  url: bolt://211.149.217.136:7687
+  url: bolt://127.0.0.1:7687
   username: neo4j
-  password: ngqj@2019
+  password: neo4j
 host: 999
